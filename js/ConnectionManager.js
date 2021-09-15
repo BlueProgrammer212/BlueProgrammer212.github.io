@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 import FragmentManager from "./FragmentManager.js";
 
 let template = document.getElementById("users");
@@ -140,5 +138,4 @@ export default class ConnectionManager {
             });
         });
     }
->>>>>>> b8660830268428f671dc9077d40597616419f13c
 }
