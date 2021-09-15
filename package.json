@@ -1,0 +1,40 @@
+{
+  "name": "bacon",
+  "version": "1.0.0",
+  "description": "A gaming chat platform for pro gamers!",
+  "main": "main.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "btoa": "^1.2.1",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "git": "^0.1.5",
+    "https": "^1.0.0",
+    "jssha": "^3.2.0",
+    "live-server-https": "^0.0.2",
+    "tls": "^0.0.1",
+    "ws": "^8.2.2"
+  },
+  "scripts": {
+    "test": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlueProgrammer212/Bacon.git"
+  },
+  "keywords": [
+    "Gaming",
+    "Chat",
+    "Gamers",
+    "Friends",
+    "Servers",
+    "Groupchat",
+    "Voicecall"
+  ],
+  "author": "Gian Marlo M. Tullao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BlueProgrammer212/Bacon/issues"
+  },
+  "homepage": "https://github.com/BlueProgrammer212/Bacon#readme"
+}
