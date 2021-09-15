@@ -1,4 +1,4 @@
 import ConnectionManager from "./js/ConnectionManager.js"
 
-let connection = new ConnectionManager("ws://192.168.18.10:6969/");
+let connection = new ConnectionManager(`wss://${window.location.host}${window.location.pathname}/ws`);
 connection.connect();
