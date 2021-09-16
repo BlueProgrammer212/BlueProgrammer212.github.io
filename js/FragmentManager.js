@@ -15,7 +15,8 @@ export default class FragmentManager {
     }
     add(userName) {
         this.element = document.importNode(this.template.content, true).children[0];
-        this.element.children[0].children[0].style.transform = "scale(0.5)"
+        let video = this.element.children[0];
+        video.style.transform = "scale(0.5)"
         this.start(this.element.children[0])
         this.userName = userName;
         document.getElementById("booth").appendChild(this.element);
