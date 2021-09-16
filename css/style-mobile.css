@@ -1,0 +1,53 @@
+@media only screen and (max-width: 600px) {
+    .navbar {
+        position: sticky;
+        display: block;
+        inset: 0;
+        margin-left: auto;
+        height: 3rem;
+        z-index: 99;
+        transition: 400ms;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+}
+.navbar:hover {
+    height: 20rem;
+    transition: 400ms;
+    overflow-y: auto;
+}
+
+.navbar-nav {
+    display: none;
+    flex-direction: column;
+    margin: 2rem 0;
+}
+
+.navbar-nav > * {
+    padding: 0 1rem;
+    margin: 0;
+}
+
+.navbar:hover .navbar-nav {
+    display: flex
+}
+
+.navbar-nav > *:last-child {
+    margin: 0;
+}
+
+.navbar:hover .nav-item {
+    display: block;
+}
+
+.navbar::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.navbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+}
+
+.main-frame > *:nth-child(1) {
+    display: none;
+}
