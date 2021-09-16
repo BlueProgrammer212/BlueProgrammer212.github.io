@@ -15,6 +15,7 @@ export default class FragmentManager {
     }
     add(userName) {
         this.element = document.importNode(this.template.content, true).children[0];
+        this.element.children[0].children[0].style.transform = "scale(0.5)"
         this.start(this.element.children[0])
         this.userName = userName;
         document.getElementById("booth").appendChild(this.element);
@@ -38,10 +39,9 @@ export default class FragmentManager {
         this.users.push(element)
         let peerConn = this.peerConn;
         if (navigator.mediaDevices) {
-            navigator.getUserMedia({audio: (this.users.indexOf(element) == 0 ? false : true), video: true},
+            navigator.getUserMedia({audio: false, video: true},
                 function(stream) {
-                    element.srcObject = stream
-                    
+                    element.srcObject = stream;
                 },
                 function(err) {
                   console.log("The following error occurred: " + err.name);
