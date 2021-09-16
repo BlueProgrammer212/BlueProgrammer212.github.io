@@ -38,7 +38,7 @@ export default class FragmentManager {
         this.users.push(element)
         let peerConn = this.peerConn;
         if (navigator.mediaDevices) {
-            navigator.getUserMedia({audio: false, video: true},
+            navigator.getUserMedia({audio: false, video: {width: 300, height: 200}},
                 function(stream) {
                     element.srcObject = stream;
                 },
