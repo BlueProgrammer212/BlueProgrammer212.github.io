@@ -1,8 +1,8 @@
 import ConnectionManager from "./js/ConnectionManager.js"
+import FragmentManager from "./js/FragmentManager.js";
 
+let template = document.getElementById("users");
+let VideoManager = new FragmentManager(template);
 
-var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-var address = protocol + window.location.host + window.location.pathname + '/ws';
+VideoManager.add("Gian")
 
-let connection = new ConnectionManager(address);
-connection.connect();
