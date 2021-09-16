@@ -1,4 +1,8 @@
 import ConnectionManager from "./js/ConnectionManager.js"
 
-let connection = new ConnectionManager(`wss://${window.location.host}${window.location.pathname}ws`);
+
+var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+var address = protocol + window.location.host + window.location.pathname + '/ws';
+
+let connection = new ConnectionManager(address);
 connection.connect();
