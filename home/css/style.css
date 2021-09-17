@@ -13,8 +13,9 @@
     height: 100px;
 }
 
-[data-color="blue"] {
+navbar .overflow-none {
     background-color: #0000ff;
+    border: 0.1px solid #0000ff;
 }
 
 body {
