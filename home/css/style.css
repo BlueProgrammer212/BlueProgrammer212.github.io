@@ -4,13 +4,10 @@
     top: 0px;
 }
 
-.overflow-none {
+.nav-id-1 {
     overflow: none;
     background-color: #0000ff;
     border: 0.1px solid #0000ff;
-}
-
-#options {
     width: 100%; 
     height: 100px;
 }
