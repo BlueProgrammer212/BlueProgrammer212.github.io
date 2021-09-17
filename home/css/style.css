@@ -9,6 +9,12 @@
     src: url("../assets/Pixel.ttf");
 }
 
+#title {
+    position: absolute;
+    left: 200px;
+    top: 200px;
+}
+
 .nav-id-1 {
     overflow: none;
     background-color: #0000ff;
