@@ -1,2 +1,2 @@
 # BlueProgrammer212.github.io
-A video conferencing app 
+A 2d drawing application for artists.
