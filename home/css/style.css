@@ -1,0 +1,13 @@
+.pos-relative {
+    position: relative;
+    left: 0px;
+    top: 0px
+}
+
+body {
+    overflow: none;
+}
+
+#main_container {
+    overflow: auto;
+}
