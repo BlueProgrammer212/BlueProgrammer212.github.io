@@ -4,6 +4,10 @@
     top: 0px
 }
 
+.overflow-none {
+    overflow: none;
+}
+
 body {
     overflow: none;
 }
