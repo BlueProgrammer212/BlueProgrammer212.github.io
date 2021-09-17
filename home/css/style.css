@@ -2,8 +2,11 @@
     position: relative;
     left: 0px;
     top: 0px;
-    width: 100%;
-    height: 100%;
+}
+
+@font-face {
+    font-family: Pixel;
+    src: url("../assets/Pixel.ttf");
 }
 
 .nav-id-1 {
@@ -16,12 +19,16 @@
 
 body {
     overflow: none;
+    margin: 0px 0px;
+    position: absolute;
 }
 
 #main_container {
     overflow: auto;
+    width: 100%;
+    height: 100%;
 }
 
 .heading {
-    font-family: sans-serif;
+    font-family: Pixel;
 }
