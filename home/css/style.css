@@ -8,6 +8,15 @@
     overflow: none;
 }
 
+#options {
+    width: 100%; 
+    height: 100px;
+}
+
+[data-color="blue"] {
+    background-color: #0000ff;
+}
+
 body {
     overflow: none;
 }
