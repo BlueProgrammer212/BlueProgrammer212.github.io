@@ -26,6 +26,7 @@ body {
   font-family: sans-serif;
   padding: 14px 16px;
   text-decoration: none;
+  margin: 50px;
 }
 
 .topnav a:hover {
