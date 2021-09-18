@@ -60,6 +60,22 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
   font-family: Pixel;
 }
 
+.fontSmall {
+  font-size: 13px;
+}
+
+.fontSmall.paragraph {
+  max-width: 75%;
+}
+
+.fontMedium {
+  font-size: 17px;
+}
+
+.fontMedium.align-left {
+  margin: 6.25%;
+}
+
 @media screen and (max-width:600px) {
   .column {
       width: 100%;
