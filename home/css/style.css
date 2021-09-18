@@ -16,28 +16,6 @@ body {
   text-align: center;
 }
 
-.column {
-  float: left;
-  padding: 10px;
-}
-
-/* Left and right column */
-.column.side {
-  width: 25%;
-}
-
-/* Middle column */
-.column.middle {
-  width: 50%;
-}
-
-
-@media screen and (max-width: 600px) {
-  .column.side, .column.middle {
-    width: 100%;
-  }
-}
-
 .topnav {
   overflow: hidden;
   background-color: #00f;
@@ -64,6 +42,12 @@ body {
   background-image: url("../assets/Background.png");
 }
 
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 15px;
+}
+
 p, a, span, h1, h2, h3, h4, h5, h6 {
   font-family: Pixel;
   color: white;
@@ -74,4 +58,10 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
   display: table;
   clear: both;
   font-family: Pixel;
+}
+
+@media screen and (max-width:600px) {
+  .column {
+      width: 100%;
+  }
 }
