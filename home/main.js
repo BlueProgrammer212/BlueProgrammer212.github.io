@@ -23,6 +23,6 @@ class FragmentManager {
 
 let template = document.getElementById("emoji_heart");
 let fragment = new FragmentManager(template);
-fragment.appendTo(document.getElementById("p-id-0"))
+fragment.appendTo(document.getElementById("p-id-1"))
 
 console.log("Wanna be a developer?")
