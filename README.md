@@ -1,2 +1,2 @@
-# BlueProgrammer212.github.io
-A 2d drawing application for artists.
+# Pixiv
+A 2d drawing application for pixel artists.
