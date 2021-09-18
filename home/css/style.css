@@ -51,6 +51,7 @@ body {
   padding: 0;
   left: 0;
   top: 0;
+  z-index: 100;
 }
 
 .link {
@@ -66,7 +67,6 @@ body {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 100%;
-  z-index: 1001;
 }
 
 .topnav a:hover {
