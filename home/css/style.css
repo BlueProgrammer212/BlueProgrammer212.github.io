@@ -39,6 +39,10 @@ body {
   color: #f2f2f2;
 }
 
+body {
+  background-image: url("../assets/Background.png");
+}
+
 .column {
   float: left;
   width: 33.33%;
@@ -47,6 +51,7 @@ body {
 
 p, a, span, h1, h2, h3, h4, h5, h6 {
   font-family: Pixel;
+  color: white;
 }
 
 .row:after {
