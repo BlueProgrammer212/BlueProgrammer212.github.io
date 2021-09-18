@@ -13,8 +13,10 @@ if ("getElementsByTagName" in document) {
         });
         images[i].setAttribute("draggable", "false");
         //Emoji size
-        images[i].width = "20"
-        images[i].height = "20"
+        if (images[i].classList.contains("emoji")) {
+            images[i].width = "20"
+            images[i].height = "20"
+        }
     }
 }
 

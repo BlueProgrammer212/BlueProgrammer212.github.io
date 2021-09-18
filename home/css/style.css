@@ -9,6 +9,10 @@ body {
   scroll-behavior: smooth;
 }
 
+.fontBig {
+   font-size: 60px;
+}
+
 .footer {
   border-top: 3.5px solid black;
   padding: 15px;
@@ -23,9 +27,18 @@ body {
   src: url("../assets/Pixel.ttf");
 }
 
+*:focus {
+  outline: none;
+}
+
 .header {
-  padding: 20px;
+  padding: 10px;
   text-align: center;
+}
+
+.abs {
+  margin: 100px;
+  padding: 10;
 }
 
 .topnav {
@@ -53,6 +66,7 @@ body {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 100%;
+  z-index: 1001;
 }
 
 .topnav a:hover {
@@ -78,6 +92,10 @@ body {
   color: violet;
 }
 
+#logo_icon {
+  transform: translateY(16px);
+}
+
 .green {
   color: green;
 }
@@ -93,6 +111,7 @@ body {
 p, a, span, h1, h2, h3, h4, h5, h6 {
   font-family: Pixel;
   color: white;
+  text-shadow: 1px 3px 1px gray;
 }
 
 .row:after {
