@@ -1,8 +1,9 @@
 const regExpression = /|([^|]*)|/g
-
+/*
 if (window.location.host !== "blueprogrammer212.github.io") {
     window.location.href = "https://blueprogrammer212.github.io/home"
 }
+*/
 
 if ("getElementsByTagName" in document) {
     let images = document.getElementsByTagName("img");
