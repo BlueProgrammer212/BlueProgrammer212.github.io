@@ -20,6 +20,7 @@ body {
   overflow: hidden;
   background-color: #0c9;
   box-shadow: 1px 0.3px 2px #444444;
+  position: sticky;
 }
 
 .link {
@@ -97,12 +98,6 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
 .fontSmall.paragraph.align-left {
   max-width: 75%;
   margin: 1.25%
-}
-
-img {
-  border: 3.5px solid #000;
-  width: 200px;
-  height: 200px;
 }
 
 .fontMedium {
