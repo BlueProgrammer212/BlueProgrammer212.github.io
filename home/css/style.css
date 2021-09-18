@@ -61,11 +61,12 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
 }
 
 .fontSmall {
-  font-size: 20px;
+  font-size: 15px;
 }
 
-.fontSmall.paragraph {
+.fontSmall.paragraph.align-left {
   max-width: 75%;
+  margin: 1.25%
 }
 
 .fontMedium {
@@ -73,7 +74,7 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
 }
 
 .fontMedium.align-left {
-  margin: 6.25%;
+  margin: 1.25%;
 }
 
 @media screen and (max-width:600px) {
