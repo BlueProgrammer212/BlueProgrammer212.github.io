@@ -17,7 +17,7 @@ class FragmentManager {
     }
     appendTo(element) {
         this.emoji = document.importNode(this.template.content, true).children[0];
-        element.appendChild(this.element)
+        element.appendChild(this.emoji)
     }
 }
 
