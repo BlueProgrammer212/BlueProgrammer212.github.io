@@ -12,7 +12,6 @@ body {
 }
 
 .header {
-  background-color: #f1f1f1;
   padding: 20px;
   text-align: center;
 }
@@ -20,7 +19,7 @@ body {
 .topnav {
   overflow: hidden;
   background-color: #00f;
-  
+  box-shadow: 10 10 10px black;
 }
 
 .topnav a {
