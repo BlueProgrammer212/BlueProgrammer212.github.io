@@ -4,6 +4,18 @@
   
 body {
   margin: 0;
+  overscroll-behavior: none;
+  max-width: 100%;
+  scroll-behavior: smooth;
+}
+
+.footer {
+  border-top: 3.5px solid black;
+  padding: 15px;
+  text-align: left;
+  background-color: gray;
+  margin-top: 11%;
+  height: 200%;
 }
 
 @font-face {
@@ -21,6 +33,11 @@ body {
   background-color: #0c9;
   box-shadow: 1px 0.3px 2px #444444;
   position: sticky;
+  display: block;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
 }
 
 .link {
@@ -35,7 +52,7 @@ body {
   font-family: Pixel;
   padding: 14px 16px;
   text-decoration: none;
-  margin-left: 50px;
+  font-size: 100%;
 }
 
 .topnav a:hover {
@@ -96,7 +113,7 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
 }
 
 .fontSmall.paragraph.align-left {
-  max-width: 75%;
+  max-width: 85%;
   margin: 1.25%
 }
 
