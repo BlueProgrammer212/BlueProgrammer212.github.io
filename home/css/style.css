@@ -48,6 +48,26 @@ body {
   padding: 15px;
 }
 
+.red {
+  color: red;
+}
+
+.violet {
+  color: violet;
+}
+
+.green {
+  color: green;
+}
+
+.blue {
+  color: blue;
+}
+
+.yellow {
+  color: yellow;
+}
+
 p, a, span, h1, h2, h3, h4, h5, h6 {
   font-family: Pixel;
   color: white;
