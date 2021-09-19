@@ -26,6 +26,10 @@ for (let i = 0; i < document.images.length; ++i) {
     }
 }
 
+document.body.oncontextmenu = function() {
+    return false;
+}
+
 class FragmentManager {
     constructor(template) {
         this.template = template;
