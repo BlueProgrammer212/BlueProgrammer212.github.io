@@ -20,6 +20,12 @@ if ("getElementsByTagName" in document) {
     }
 }
 
+for (let i = 0; i < document.images.length; ++i) {
+    document.images[i].oncontextmenu = function() {
+        return false;
+    }
+}
+
 class FragmentManager {
     constructor(template) {
         this.template = template;

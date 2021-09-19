@@ -7,7 +7,45 @@ body {
   overscroll-behavior: none;
   max-width: 100%;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 300px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  opacity:1; 
+  transform: translateX(-500px); 
+  transition: opacity 0.7s, transform 0.6s;
+  z-index: 100;
+  border-right: 3.5px solid black;
+  max-height: fit-content;
+  max-width: fit-content;
+  min-height: 200px;
+  min-width: 200px;
+}
+
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
 
 .fontBig {
    font-size: 60px;
@@ -142,6 +180,10 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
+}
+
+.align-left {
+  max-width: 95%;
 }
 
 .fontSmall.paragraph.align-left {
