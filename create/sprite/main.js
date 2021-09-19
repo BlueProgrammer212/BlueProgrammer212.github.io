@@ -256,4 +256,19 @@ function pick(pos, state, dispatch) {
       app.syncState(state);
     }
   });
+
+  var link = document.createElement("a");
+  link.download = "image.png";
+  document.body.addEventListener("keydown", (e) => {
+    e.preventDefault();
+    if (e.ctrlKey && e.code == "KeyS") {
+        app.canvas.dom.toBlob(function(blob){
+            link.href = URL.createObjectURL(blob);
+            console.log(blob);
+            console.log(link.href);
+            link.click();
+          },'image/png');
+    }
+  })
+
   document.getElementById("main_content").appendChild(app.dom);
