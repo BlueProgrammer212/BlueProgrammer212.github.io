@@ -109,6 +109,20 @@ body {
   color: blue;
 }
 
+#background-layer {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#title_container {
+  z-index: 100;
+}
+
 .topnav a {
   float: left;
   display: block;
@@ -126,6 +140,11 @@ body {
 }
 
 body {
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image: url("../assets/bg_icon (4).png");
+}
+
+#main_content {
   background-image: url("../assets/Background.png");
 }
 
@@ -176,6 +195,18 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
   font-size: 15px;
 }
 
+#FAQ {
+  color: black;
+  padding-bottom: 40px;
+}
+#FAQ > div {
+  margin-top: 20;
+}
+
+#FAQ > div > p, #FAQ > div > h2 {
+  color: white;
+}
+
 *::selection {
   user-select: none;
   -webkit-user-select: none;
@@ -184,19 +215,11 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
 
 .align-left {
   max-width: 95%;
-}
-
-.fontSmall.paragraph.align-left {
-  max-width: 85%;
   margin: 1.25%
 }
 
 .fontMedium {
   font-size: 30px;
-}
-
-.fontMedium.align-left {
-  margin: 1.25%;
 }
 
 @media screen and (max-width:600px) {
