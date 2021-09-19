@@ -23,6 +23,7 @@ body {
   max-width: 100%;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  background-color: grey;
 }
 
 .sidebar {
@@ -154,13 +155,12 @@ body {
   color: #f2f2f2;
 }
 
-body {
-  background-color: rgba(0, 0, 0, 0.5);
-  background-image: url("../assets/bg_icon (4).png");
-}
-
-#main_content {
-  background-image: url("../assets/Background.png");
+#main_canvas {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -46%);
 }
 
 .column {
