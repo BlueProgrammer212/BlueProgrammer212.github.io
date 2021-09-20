@@ -22,8 +22,9 @@ body {
   overscroll-behavior: none;
   max-width: 100%;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow: hidden;
   background-color: grey;
+  background-image: url("../assets/bg_icon\ \(5\).png");
 }
 
 .sidebar {
@@ -95,6 +96,12 @@ body {
   padding: 10;
 }
 
+.add::after {
+  content: "+";
+  font-size: 45px;
+  text-align: center;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #0c9;
@@ -162,7 +169,6 @@ body {
     margin-right: -50%;
     transform: translate(-50%, -46%);
 }
-
 .column {
   float: left;
   width: 33.33%;
@@ -175,6 +181,29 @@ body {
 
 .violet {
   color: violet;
+}
+
+.colorBox {
+  border: 2px solid black;
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+#bg-color-pallete {
+  display: grid;
+  margin-left: 10px;
+  grid-template-columns: auto auto auto auto auto;
+  border: 3.5px solid black;
+  background-color: rgba(0, 128, 198, 0.5);
+  padding-bottom: 26%;
+  width: 350px;
+  white-space: nowrap;
+}
+
+#coords {
+  margin-left: 25px; 
 }
 
 #logo_icon {

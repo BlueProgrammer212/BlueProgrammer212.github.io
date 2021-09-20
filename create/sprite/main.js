@@ -10,16 +10,29 @@ for (let i = 0; i < document.images.length; ++i) {
         return false;
     }
 }
+let color_set = "black";
 
 class FragmentManager {
     constructor(template) {
         this.template = template;
     }
-    appendTo(element) {
+    appendTo(element, colors) {
         this.emoji = document.importNode(this.template.content, true).children[0];
-        element.appendChild(this.emoji)
+        this.emoji.setAttribute("style", `background-color: ${colors}`)
+        this.emoji.addEventListener("click", () => {
+          color_set = colors;
+        })
+        element.insertBefore(this.emoji, document.getElementsByClassName("add")[0])
     }
 }
+
+let fragment = new FragmentManager(document.getElementById("colorBox_temp"));
+window.fragment = fragment
+let colors = ["red", "blue", "yellow", "orange", "violet", "magenta", "pink", "green", "lime", "white", "black", "lightblue"]
+
+colors.forEach((color) => {
+  fragment.appendTo(document.getElementById("bg-color-pallete"), color)
+})
 
 let scale = new Vector2(20, 20);
 
@@ -51,7 +64,7 @@ function makeGrid() {
 makeGrid();
 
 function drawPixel(cx, x, y) {
-   cx.fillStyle = "black";
+   cx.fillStyle = color_set;
    cx.fillRect(x * scale.x, y * scale.y, scale.x, scale.y);
 }
 
@@ -68,7 +81,7 @@ function eventHandler(e) {
         document.getElementById("coords").innerHTML = `x: ${d.x}, y: ${d.y}`
 }
 
-document.body.addEventListener("mousedown", (e) => {
+canvas.addEventListener("mousedown", (e) => {
   eventHandler(e)
   canvas.addEventListener("mousemove", eventHandler)
   canvas.addEventListener("pointermove", eventHandler)
