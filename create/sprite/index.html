@@ -20,7 +20,7 @@
     <body>
       <div id="background-layer"></div>
       <div class="sidebar">
-        <a href="#wiki" search="?n=13252352463">Visit our wikipage!</a>
+        <a href="#wiki">Visit our wikipage!</a>
         <a href="#community">Community</a>
         <a href="#comments">Comments and Feedbacks</a>
         <a href="#about-us">About us</a>
@@ -43,8 +43,15 @@
             <div class="colorBox" role="button"></div>
          </template> 
          <div id="bg-color-pallete">
-           <div class="colorBox add"></div>
+           <div id="addButton" class="colorBox add" role="button" aria-pressed="false">
+              <p>+</p>
+           </div>
          </div>
+      </div>
+      <div class="colorDialog_bg invisible">
+          <div class="colorDialog_body">
+              
+          </div>
       </div>
       <script type="module" src="main.js" async defer></script>
     </body>

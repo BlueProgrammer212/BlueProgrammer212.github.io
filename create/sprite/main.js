@@ -34,6 +34,16 @@ colors.forEach((color) => {
   fragment.appendTo(document.getElementById("bg-color-pallete"), color)
 })
 
+String.prototype.removeClass = function(className) {
+    return this.replace(className, '');
+}
+
+let div_dialog = document.getElementsByClassName("invisible")
+document.getElementById("addButton").addEventListener("click", () => {
+    div_dialog[0].className = div_dialog[0].className.removeClass("invisible")
+});
+
+
 let scale = new Vector2(20, 20);
 
 let enableGrid = true;
