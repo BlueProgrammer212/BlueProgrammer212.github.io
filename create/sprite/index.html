@@ -16,6 +16,7 @@
         <meta name="twitter:card" content="summary" />
         <meta property="twitter:title" content="A 2D pixel app for talented pixel artists" />
         <script src="./js/openSideBar.js" async defer crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jaames/iro/dist/iro.min.js"></script>
     </head>
     <body>
       <div id="background-layer"></div>
@@ -50,7 +51,12 @@
       </div>
       <div class="colorDialog_bg invisible">
           <div class="colorDialog_body">
-              
+              <div class="colorPicker"></div>
+              <div class="values"></div>
+              <div class="colorHex"></div>
+              <button class="addButton">
+                Add
+              </button>
           </div>
       </div>
       <script type="module" src="main.js" async defer></script>

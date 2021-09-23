@@ -13,18 +13,42 @@ for (let i = 0; i < document.images.length; ++i) {
 let color_set = "black";
 
 class FragmentManager {
-    constructor(template) {
-        this.template = template;
-    }
-    appendTo(element, colors) {
-        this.emoji = document.importNode(this.template.content, true).children[0];
-        this.emoji.setAttribute("style", `background-color: ${colors}`)
-        this.emoji.addEventListener("click", () => {
-          color_set = colors;
-        })
-        element.insertBefore(this.emoji, document.getElementsByClassName("add")[0])
-    }
+  constructor(template) {
+      this.template = template;
+  }
+  appendTo(element, colors) {
+      this.emoji = document.importNode(this.template.content, true).children[0];
+      this.emoji.setAttribute("style", `background-color: ${colors}`)
+      this.emoji.addEventListener("click", () => {
+        color_set = colors;
+      })
+      element.insertBefore(this.emoji, document.getElementsByClassName("add")[0])
+  }
 }
+var colorPicker = new iro.ColorPicker(".colorPicker", {
+  width: 280,
+  color: "rgb(255, 0, 0)",
+  borderWidth: 1,
+  borderColor: "#fff",
+});
+
+var values = document.getElementsByClassName("values"),
+    colorBox = document.getElementsByClassName("colorHex"),
+    addColor = document.getElementsByClassName("addButton")[0];
+  
+let hex = "#000"
+
+colorPicker.on(["color:init", "color:change"], function(color) {
+  values.innerHTML = [
+    "hex: " + color.hexString,
+    "rgb: " + color.rgbString,
+    "hsl: " + color.hslString,
+  ].join("<br>");
+  hex = color.hexString;
+  colorBox[0].style.backgroundColor = color.hexString;
+});
+
+
 
 let fragment = new FragmentManager(document.getElementById("colorBox_temp"));
 window.fragment = fragment
@@ -34,15 +58,19 @@ colors.forEach((color) => {
   fragment.appendTo(document.getElementById("bg-color-pallete"), color)
 })
 
+let div_dialog = document.getElementsByClassName("colorDialog_bg");
+addColor.addEventListener("click", () => {
+  div_dialog[0].className += " invisible"
+  fragment.appendTo(document.getElementById("bg-color-pallete"), hex)
+})
+
 String.prototype.removeClass = function(className) {
     return this.replace(className, '');
 }
 
-let div_dialog = document.getElementsByClassName("invisible")
 document.getElementById("addButton").addEventListener("click", () => {
     div_dialog[0].className = div_dialog[0].className.removeClass("invisible")
 });
-
 
 let scale = new Vector2(20, 20);
 
@@ -64,14 +92,12 @@ function makeGrid() {
  
  for (let row = 0; row < rows; ++row) {
    canvas.getContext("2d").strokeStyle = "gray";
-   canvas.getContext("2d").lineWidth = 1
+   canvas.getContext("2d").lineWidth = 0.1
    canvas.getContext("2d").moveTo(0, row * scale.y)
    canvas.getContext("2d").lineTo(canvas.width, row * scale.y)
    canvas.getContext("2d").stroke();
  }
 }
-
-makeGrid();
 
 function drawPixel(cx, x, y) {
    cx.fillStyle = color_set;
@@ -86,7 +112,7 @@ function pointerPosition(pos, domNode) {
 
 function eventHandler(e) {
     let d = pointerPosition(e, canvas);
-    drawPixel(canvas.getContext("2d"), d.x, d.y);
+    drawPixel(canvas.getContext("2d"), d.x, d.y)
     if (document.getElementById("coords").innerHTML !==`x: ${d.x}, y: ${d.y}`)
         document.getElementById("coords").innerHTML = `x: ${d.x}, y: ${d.y}`
 }
