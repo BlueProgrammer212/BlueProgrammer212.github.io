@@ -22,7 +22,7 @@ body {
   overscroll-behavior: none;
   max-width: 100%;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .sidebar {
