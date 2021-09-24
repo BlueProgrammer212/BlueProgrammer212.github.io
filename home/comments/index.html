@@ -15,14 +15,14 @@
       <meta property="og:site_name" content="BlueProgrammer212.github.io" />
       <meta name="twitter:card" content="summary" />
       <meta property="twitter:title" content="A 2D pixel app for talented pixel artists" />
-      <script src="https://blueprogrammer212.github.io/home/comments/js/openSideBar.js" async defer></script>
+      <script src="./js/openSideBar.js" async defer></script>
     </head>
     <body>
         <div class="sidebar">
             <a class="active" href="#home">Contact us!</a>
             <a href="#wiki">Visit our wikipage!</a>
             <a href="#community">Community</a>
-            <a href="#comments">Comments and Feedbacks</a>
+            <a href="../">Home</a>
             <a href="#about-us">About us</a>
         </div>
         <nav class="topnav" role="navigation">
@@ -43,16 +43,13 @@
             Pixcel
           </h1>
         </div>
-        
-        <!--
-          Indevelopment
           <div id="main_content">
           <div class="titles">
             <h2 draggable="false" class="fontMedium align-left">Comments & Suggestions<h2>
             <p class="comment fontSmall paragraph align-left" draggable="false" translate="no">
                 Send your feedbacks here! Before using this feature, you must agree to our terms of service and community guidelines.
                 <ol class="fontSmall align-left">
-                    <li class="align-left">Refrain from spamming. Spamming can flood the server and will allow hackers to trick the security protocol.</li>
+                    <li class="align-left">Refrain from spamming. DDoS (Distributed Denial of Service) is prohibited.</li>
                     <li class="align-left">Avoid talking about offensive topics such as political, religious, and human race.</li>
                     <li class="align-left">In addition to rule #2, swearing and talking about anything regarding to pornography/NSFW is prohibited.</li>
                     <li class="align-left">Do not send phishing links here! Sending phishing links will result in an <span class="red">IP ban.</span></li>
@@ -60,20 +57,24 @@
                     <li class="align-left">You must be above 13 years old to be eligible to join this community.</li>
                 </ol>
             </p>
+            <div id="agree" class="agreement">  
+              <template id="checkElement">
+                <img id="checkImg" class="check" src="./assets/Check.png" contextmenu="false" draggable="false" alt="check" />
+              </template>
+              <div id="checkbox-id-0" class="checkbox align-left" tabIndex="-1"
+              aria-role="checkbox" name="checkbox_lb" aria-labelledby="checkbox_lb_txt" data-checked="false"></div>
+              <label for="checkbox_lb" id="description" name="checkbox_lb_txt" class="fontSmall align-left">
+                I agree to the terms and conditions and community guidelines.
+              </label>
+              <p id="invalid" style="color: red" class="fontSmall align-left invisible">You must agree to our terms of service.</p> 
+              <button id="proceed">Proceed</button>
+            </div>
           </div>
         </div>
-        <div class="footer">
-          <p id="p-id-2" class="fontSmall paragraph align-left" draggable="false" translate="no" tabindex="0">
-            If you have any sugguestions or if you encountered a problem. Do not hesitate to contact us via email. Email: |prog46357@gmail.com|.
-            Copyright Pixcel @ 2021. All rights reserved.
-          </p>
-          <a class="fontSmall paragraph align-left link" href="javascript:window.open('https://github.com/BlueProgrammer212/BlueProgrammer212.github.io/issues/new')">
-              Report an issue?
-          </a>
-        </div>-->
-        <div class="indevelopment">
+        <script src="./main.js" type="module" crossorigin="anonymous"></script>
+        <!--<div class="indevelopment">
           <h2 class="align-left">This page is currently under maintainance.</h2>
           <p class="align-left" id="redirect">Redirecting back to homepage in 5s.</p>
-        </div>
+        </div>-->
     </body>
 </html>

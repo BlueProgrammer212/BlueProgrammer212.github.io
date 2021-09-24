@@ -44,9 +44,8 @@ function includeHTML() {
 }
 
 function hashChangeCallback() {
-    if (window.location.hash == "#comments") {
-        document.getElementsByTagName("html")[0].setAttribute("w3-include-html", "./comments")
-        includeHTML();
+    if (window.location.hash == "#856764344573547") {
+        window.location.href = "./comments"
     }
 }
 

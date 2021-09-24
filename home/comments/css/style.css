@@ -156,13 +156,49 @@ body {
 
 body {
   background-color: rgba(0, 0, 0, 0.5);
-  /*background-image: url("../assets/bg_icon (4).png");*/
+  background-image: url("../assets/bg_icon (4).png");
 }
-/*
 #main_content {
   background-image: url("../assets/Background.png");
 }
-*/
+
+.checkbox {
+  border: 3.5px solid #000;
+  background-color: #fff;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  transform: translateY(-50%);
+}
+
+.agreement {
+  padding-bottom: 40px;
+}
+
+#description {
+  margin-left: 70px;
+}
+
+.invisible {
+  display: none;
+}
+
+.checkbox > img {
+  width: 8px;
+  height: 8px;
+  transform: translateX(10px) translateY(-8px) scale(4);
+}
+
+#proceed {
+  margin-left: 85%;
+  margin-top: 20px;
+  font-family: Pixel;
+  padding: 10px;
+  padding-left: 15px;
+  color: white;
+  padding-right: 15px;
+  background-color: green;
+}
 
 .column {
   float: left;
@@ -194,7 +230,7 @@ body {
   color: yellow;
 }
 
-p, a, span, h1, h2, h3, h4, h5, h6 {
+p, a, span, h1, h2, h3, h4, h5, h6, label {
   font-family: Pixel;
   color: white;
   text-shadow: 1px 3px 1px gray;

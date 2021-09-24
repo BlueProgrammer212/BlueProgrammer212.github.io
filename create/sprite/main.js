@@ -48,8 +48,6 @@ colorPicker.on(["color:init", "color:change"], function(color) {
   colorBox[0].style.backgroundColor = color.hexString;
 });
 
-
-
 let fragment = new FragmentManager(document.getElementById("colorBox_temp"));
 window.fragment = fragment
 let colors = ["red", "blue", "yellow", "orange", "violet", "magenta", "pink", "green", "lime", "white", "black", "lightblue"]
