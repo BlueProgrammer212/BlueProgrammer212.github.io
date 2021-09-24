@@ -20,6 +20,16 @@
       <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
+        <script>
+          function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            document.getElementsByClassName("pfp_img")[0].src = profile.getImageUrl();
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail());
+          }
+        </script>
         <div class="sidebar">
             <a class="active" href="#home">Contact us!</a>
             <a href="#wiki">Visit our wikipage!</a>
@@ -70,7 +80,7 @@
                 I agree to the terms and conditions and community guidelines.
               </label>
               <p id="invalid" style="color: red" class="fontSmall align-left invisible">You must agree to our terms of service.</p> 
-              <a href="https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?redirect_uri=storagerelay%3A%2F%2Fhttps%2Fblueprogrammer212.github.io%3Fid%3Dauth336901&response_type=permission%20id_token&scope=email%20profile%20openid&openid.realm&client_id=730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com&ss_domain=https%3A%2F%2Fblueprogrammer212.github.io&fetch_basic_profile=true&gsiwebsdk=2&flowName=GeneralOAuthFlow"><button id="proceed">Sign In</button></a>
+              <a class="g-signin2" data-onsuccess="onSignIn"><button id="proceed">Sign In</button></a>
             </div>
           </div>
         </div>
@@ -79,16 +89,5 @@
           <h2 class="align-left">This page is currently under maintainance.</h2>
           <p class="align-left" id="redirect">Redirecting back to homepage in 5s.</p>
         </div>-->
-        <script>
-          function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            document.getElementsByClassName("pfp_img")[0].src = profile.getImageUrl();
-            console.log('ID: ' + profile.getId());
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail());
-          }
-        </script>
-        <div class="g-signin2" data-onsuccess="onSignIn" display="none"></div>
     </body>
 </html>
