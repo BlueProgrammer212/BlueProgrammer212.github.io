@@ -24,6 +24,11 @@ body {
   scroll-behavior: smooth;
 }
 
+.pfp_img {
+  margin-left: 47.5%;
+  margin-top: 0.5%;
+}
+
 .sidebar {
   margin: 0;
   padding: 0;

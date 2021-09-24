@@ -34,6 +34,7 @@
             <a href="javascript:openTab('https://blueprogrammer212.github.io/download')">Downloads</a>
             <a href="javascript:openTab('https://blueprogrammer212.github.io/create/sprite/?session_id=97654532')">Get started</a>
             <a href="javascript:openTab('https://discord.gg/WGtktKKNHR')">Join our discord server!</a>
+            <img src="../assets/default_pfp_16x16.png" width="32" height="32" draggable="false" class="pfp_img" />
         </nav>
         <nav id="offline" class="topnav" role="navigation" style="display: none; background-color: yellow;">
           <p>You are offline. Retrying to connect in 5s</p>
@@ -81,12 +82,13 @@
         <script>
           function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
+            document.getElementsByClassName("pfp_img")[0].src = profile.getImageUrl();
             console.log('ID: ' + profile.getId());
             console.log('Name: ' + profile.getName());
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail());
           }
-          </script>
-          <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </script>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </body>
 </html>
