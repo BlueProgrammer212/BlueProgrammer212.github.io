@@ -49,7 +49,7 @@ function onSignIn(googleUser) {
     localStorage.setItem("pf_name", name)
     localStorage.setItem("pf_email", email);
 }
-if (!auth2.isSignedIn.get()) {
+if (status == true) {
   let pfp_img_elem = document.getElementsByClassName("pfp_img")[0],
       image_url = localStorage.getItem("pfp_url");
 
@@ -60,6 +60,8 @@ window.addEventListener("load", () => {
      auth2.attachClickHandler(proceed, {},
         onSignIn, function(error) {
         console.error('An error occured:', JSON.stringify(error, undefined, 2));
+        document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
+        document.getElementsById("invalid").className = document.getElementsById("invalid").removeClass("invisible");
     });
 })
 
