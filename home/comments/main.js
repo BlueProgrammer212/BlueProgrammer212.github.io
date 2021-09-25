@@ -72,16 +72,14 @@ function getCookie(cname) {
   return "";
 }
 
-document.addEventListener("DOMElementLoaded", () => {
-  if (auth2.isSignedIn.get()) {
-    let pfp_img_elem = document.getElementsByClassName("pfp_img")[0],
-        image_url = getCookie("pfp_url");
-        
-      pfp_img_elem.setAttribute("src", image_url);
-      console.log(`Loading profile picture ${pfp_img_elem}...`)  
-  }
-})
 window.addEventListener("load", () => {
+    if (auth2.isSignedIn.get()) {
+      let pfp_img_elem = document.getElementsByClassName("pfp_img")[0],
+          image_url = getCookie("pfp_url");
+          
+        pfp_img_elem.setAttribute("src", image_url);
+        console.log(`Loading profile picture ${pfp_img_elem}...`)  
+    }
      auth2.attachClickHandler(proceed, {},
         onSignIn, function(error) {
         console.error('An error occured:', JSON.stringify(error, undefined, 2));
