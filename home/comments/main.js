@@ -74,7 +74,7 @@ function getCookie(cname) {
 
 let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
 
-function loadInformation() {
+function loadInformation(auth2) {
   return new Promise((res) => {
     if (auth2.isSignedIn.get()) {
       let image_url = getCookie("pfp_url");
@@ -85,7 +85,7 @@ function loadInformation() {
 }
 
 window.addEventListener("load", () => {
-     loadInformation().then((url) => {
+     loadInformation(auth2).then((url) => {
        pfp_img_elem.setAttribute("src", url);
      })
      auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
