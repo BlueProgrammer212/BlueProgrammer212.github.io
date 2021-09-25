@@ -101,11 +101,11 @@ window.addEventListener("load", () => {
       document.getElementById("invalid").className = document.getElementById("invalid").removeClass("invisible");
     });
     console.log(`Loading client content... ${document.body}`)
-    console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
     if (auth2.isSignedIn.get()) {
       let image_url = getCookie("pfp_url"), 
           name = getCookie("pf_name"),
           id = getCookie("pf_id");
+      console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
       console.log(`Loading username... NAME:${name}`)
       console.log(`Loading UserID... ID:<${id}>`)
       console.log(`Loading profile picture ${image_url}...`)  
