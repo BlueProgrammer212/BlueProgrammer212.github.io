@@ -94,13 +94,6 @@ function loadInformation() {
   });
 }
 
-loadInformation().then((profile) => {
-  console.log(`Loading username... NAME:${profile.name}`)
-  console.log(`Loading UserID... ID:<${profile.id}>`)
-  console.log(`Loading profile picture ${image_url}...`)  
-  pfp_img_elem.setAttribute("src", profile.url);
-})
-
 window.addEventListener("load", () => {
     auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
       console.error('An error occured:', JSON.stringify(error, undefined, 2));
@@ -109,6 +102,12 @@ window.addEventListener("load", () => {
     });
     console.log(`Loading client content... ${document.body}`)
     console.log(`Loading profile...`)
+    loadInformation().then((profile) => {
+      console.log(`Loading username... NAME:${profile.name}`)
+      console.log(`Loading UserID... ID:<${profile.id}>`)
+      console.log(`Loading profile picture ${image_url}...`)  
+      pfp_img_elem.setAttribute("src", profile.url);
+    })
 })
 
 checkBox.addEventListener("click", () => {
