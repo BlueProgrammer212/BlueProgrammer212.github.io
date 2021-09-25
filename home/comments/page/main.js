@@ -82,7 +82,6 @@ function signOut() {
     console.log('User signed out.');
   });
 }
-
 console.log("%cWarning", "color:red;font-size:32px;");
 console.log("%cPlease do not execute a malicious code here! You might give hackers access to your account!", "color:white;font-size:16px;");
 console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
@@ -101,5 +100,5 @@ window.addEventListener("load", () => {
     } else {
         window.location.href = "https://blueprogrammer212.github.io/home/comments";
     }
-    console.log(`Loading client content... ${JSON.parse(document.body)}`)
+    console.log(`Loading client content... ${document.images}`)
 })
