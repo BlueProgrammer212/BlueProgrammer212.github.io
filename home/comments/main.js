@@ -95,12 +95,6 @@ function loadInformation() {
 }
 
 window.addEventListener("load", () => {
-    auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
-      console.error('An error occured:', JSON.stringify(error, undefined, 2));
-      document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
-      document.getElementById("invalid").className = document.getElementById("invalid").removeClass("invisible");
-    });
-    console.log(`Loading client content... ${document.body}`)
     if (auth2.isSignedIn.get()) {
       let image_url = getCookie("pfp_url"), 
           name = getCookie("pf_name"),
@@ -111,6 +105,12 @@ window.addEventListener("load", () => {
       console.log(`Loading profile picture ${image_url}...`)  
       pfp_img_elem.setAttribute("src", image_url);
     }
+    auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
+      console.error('An error occured:', JSON.stringify(error, undefined, 2));
+      document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
+      document.getElementById("invalid").className = document.getElementById("invalid").removeClass("invisible");
+    });
+    console.log(`Loading client content... ${document.body}`)
 })
 
 checkBox.addEventListener("click", () => {
