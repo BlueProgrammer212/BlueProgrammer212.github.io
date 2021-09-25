@@ -14,10 +14,8 @@
       <meta property="og:url" content="https://blueprogrammer212.github.io/" />
       <meta property="og:site_name" content="BlueProgrammer212.github.io" />
       <meta name="twitter:card" content="summary" />
-      <meta name="google-signin-client_id" content="730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com">
       <meta property="twitter:title" content="A 2D pixel app for talented pixel artists" />
       <script src="./js/openSideBar.js" async defer></script>
-      <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
         <script>
@@ -80,11 +78,15 @@
                 I agree to the terms and conditions and community guidelines.
               </label>
               <p id="invalid" style="color: red" class="fontSmall align-left invisible">You must agree to our terms of service.</p> 
-              <a data-onsuccess="onSignIn"><button id="proceed">Sign In</button></a>
+              <div id="proceed_parent">
+                <button id="proceed">Sign In</button>
+              </div>
             </div>
           </div>
         </div>
-        <script src="./main.js" type="module" crossorigin="anonymous"></script>
+        <script src="https://apis.google.com/js/api:client.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="./main.js" crossorigin="anonymous"></script>
         <!--<div class="indevelopment">
           <h2 class="align-left">This page is currently under maintainance.</h2>
           <p class="align-left" id="redirect">Redirecting back to homepage in 5s.</p>

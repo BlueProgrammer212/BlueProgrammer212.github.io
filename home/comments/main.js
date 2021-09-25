@@ -4,13 +4,35 @@ let checkBox = document.getElementById("checkbox-id-0"),
     proceed = document.getElementById("proceed"),
     message = document.getElementById("invalid");
 checkBox.click = null;
+let disagreed = () => {
+    if (!checkBox.firstChild) {
+        message.className = message.className.removeClass("invisible");
+    } else {
+        message.className += " invisible" 
+        if (window.location.hash == "#89679456935") {
+            
+        }
+        window.location.hash = "#89679456935"  
+    }
+};
+
+window.addEventListener("load", () => {
+    auth2.attachClickHandler(proceed, {},
+        function(googleUser) {
+        document.getElementById('name').innerText = "Signed in: " +
+            googleUser.getBasicProfile().getName();
+        }, function(error) {
+        console.error('An error occured:', JSON.stringify(error, undefined, 2));
+    });
+})
+
 checkBox.addEventListener("click", () => {
     if (!checkBox.firstChild) {
         checkBox.appendChild(check)
         checkBox.setAttribute("data-checked", "true")
     } else {
-       checkBox.removeChild(check)
-       checkBox.setAttribute("data-checked", "false")
+        checkBox.removeChild(check)
+        checkBox.setAttribute("data-checked", "false")
     }
 })
 String.prototype.removeClass = function(className) {
@@ -24,15 +46,26 @@ window.addEventListener("hashchange", () => {
     }
 })
 
-proceed.addEventListener("click", () => {
-    if (!checkBox.firstChild) {
-        message.className = message.className.removeClass("invisible");
-    } else {
-        message.className += " invisible" 
-        if (window.location.hash == "#89679456935") {
-            window.location.href = "../../auth/user";
-            console.log("Redirecting to https://blueprogrammer212.github.io/auth/user#537356346?verified=true")
-        }
-        window.location.hash = "#89679456935"  
-    }
-})
+var googleUser = {};
+  var startApp = function() {
+    gapi.load('auth2', function(){
+      auth2 = gapi.auth2.init({
+        client_id: '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+      });
+    });
+  };
+
+  function attachSignin(element) {
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+          document.getElementById('name').innerText = "Signed in: " +
+              googleUser.getBasicProfile().getName();
+        }, function(error) {
+          console.error('An error occured:', JSON.stringify(error, undefined, 2));
+    });
+  }
+
+  startApp()
+
+proceed.addEventListener("click", disagreed)
