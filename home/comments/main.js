@@ -74,10 +74,10 @@ function getCookie(cname) {
 
 if (GoogleAuth.isSignedIn.get()) {
   let pfp_img_elem = document.getElementsByClassName("pfp_img")[0],
-      image_url = localStorage.getItem("pfp_url");
-
-  pfp_img_elem.setAttribute("src", image_url);
-  
+      image_url = getCookie("pfp_url");
+      
+    pfp_img_elem.setAttribute("src", image_url);
+    console.log(`Loading profile picture ${pfp_img_elem}...`)  
 }
 window.addEventListener("load", () => {
      auth2.attachClickHandler(proceed, {},
