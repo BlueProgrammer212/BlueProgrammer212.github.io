@@ -74,24 +74,39 @@ function getCookie(cname) {
 
 let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
 
+class Profile {
+  constructor(url, id, name) {
+      this.url = url;
+      this.id = id; 
+      this.name = name;
+  }
+}
+
 function loadInformation(auth2) {
   return new Promise((res) => {
     if (auth2.isSignedIn.get()) {
-      let image_url = getCookie("pfp_url");
-      console.log(`Loading profile picture ${pfp_img_elem}...`)  
-      res(image_url)
+      let image_url = getCookie("pfp_url"), 
+          name = getCookie("pf_name"),
+          id = getCookie("pf_id");
+      console.log(`Loading profile picture ${image_url}...`)  
+      setTimeout(res, 2000, new Profile(image_url, id, name))
     }
   });
 }
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
     auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
       console.error('An error occured:', JSON.stringify(error, undefined, 2));
       document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
       document.getElementsById("invalid").className = document.getElementsById("invalid").removeClass("invisible");
     });
-    loadInformation(auth2).then((url) => {
-      pfp_img_elem.setAttribute("src", url);
+    await loadInformation(auth2).then((profile) => {
+      console.log(`Loading client content... ${document.body}`)
+      console.log(`Loading profile...`)
+      console.log(`Loading username... NAME:${profile.name}`)
+      console.log(`Loading UserID... ID:<${profile.id}>`)
+      
+      pfp_img_elem.setAttribute("src", profile.url);
     })
 })
 
