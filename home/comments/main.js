@@ -19,8 +19,7 @@ let disagreed = () => {
 window.addEventListener("load", () => {
     auth2.attachClickHandler(proceed, {},
         function(googleUser) {
-        document.getElementById('name').innerText = "Signed in: " +
-            googleUser.getBasicProfile().getName();
+        document.getElementById('pfp_img_id').src = googleUser.getBasicProfile().getImageUrl();
         }, function(error) {
         console.error('An error occured:', JSON.stringify(error, undefined, 2));
     });
