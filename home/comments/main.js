@@ -108,7 +108,7 @@ window.addEventListener("load", () => {
     auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
       console.error('An error occured:', JSON.stringify(error, undefined, 2));
       document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
-      document.getElementById("invalid").className = document.getElementById("invalid").removeClass("invisible");
+      document.getElementById("invalid").className = document.getElementById("invalid").className.removeClass("invisible");
     });
     console.log(`Loading client content... ${document.body}`)
 })
