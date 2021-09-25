@@ -77,7 +77,7 @@ function loadInformation() {
 }
 
 window.addEventListener("load", () => {
-    if (!auth2.isSignedIn.get()) {
+    if (auth2.isSignedIn.get()) {
       let image_url = getCookie("pfp_url"), 
       name = getCookie("pf_name"),
       id = getCookie("pf_id");
@@ -86,6 +86,8 @@ window.addEventListener("load", () => {
       console.log(`Loading UserID... ID:<${id}>`)
       console.log(`Loading profile picture ${image_url}...`)  
       pfp_img_elem.setAttribute("src", image_url);
+    } else {
+        window.location.href = "https://blueprogrammer212.github.io/home/comments";
     }
     console.log(`Loading client content... ${document.body}`)
 })
