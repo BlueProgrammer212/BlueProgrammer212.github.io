@@ -100,13 +100,12 @@ window.addEventListener("load", () => {
       document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
       document.getElementsById("invalid").className = document.getElementsById("invalid").removeClass("invisible");
     });
+    console.log(`Loading client content... ${document.body}`)
+    console.log(`Loading profile...`)
+    console.log(`Loading username... NAME:${profile.name}`)
+    console.log(`Loading UserID... ID:<${profile.id}>`)
+    console.log(`Loading profile picture ${image_url}...`)  
     loadInformation(auth2).then((profile) => {
-      console.log(`Loading client content... ${document.body}`)
-      console.log(`Loading profile...`)
-      console.log(`Loading username... NAME:${profile.name}`)
-      console.log(`Loading UserID... ID:<${profile.id}>`)
-      console.log(`Loading profile picture ${image_url}...`)  
-
       pfp_img_elem.setAttribute("src", profile.url);
     })
 })
