@@ -79,14 +79,12 @@ function loadInformation() {
 
 window.addEventListener("load", () => {
     if (auth2.isSignedIn.get()) {
-      let image_url = getCookie("pfp_url"), 
-      name = getCookie("pf_name"),
-      id = getCookie("pf_id");
-      console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
-      console.log(`Loading username... NAME:${name}`)
-      console.log(`Loading UserID... ID:<${id}>`)
-      console.log(`Loading profile picture ${image_url}...`)  
-      pfp_img_elem.setAttribute("src", image_url);
+        loadInformation().then((profile) => {
+            console.log(`Loading username... NAME:${profile.name}`)
+            console.log(`Loading UserID... ID:<${profile.id}>`)
+            console.log(`Loading profile picture ${profile.url}...`)  
+            pfp_img_elem.setAttribute("src", profile.url);
+          })
     } else {
         window.location.href = "https://blueprogrammer212.github.io/home/comments";
     }
