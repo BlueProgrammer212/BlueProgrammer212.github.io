@@ -23,10 +23,19 @@ function onSignIn(googleUser) {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail());
-  }
+}
+
 
 window.addEventListener("load", () => {
-    auth2.attachClickHandler(proceed, {},
+    if (auth2.isSignedIn.get()) {
+      var profile = googleUser.getBasicProfile();
+      document.getElementsByClassName("pfp_img")[0].src = profile.getImageUrl();
+      console.log('ID: ' + profile.getId());
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+    }
+     auth2.attachClickHandler(proceed, {},
         function(googleUser) {
         document.getElementById('pfp_img_id').src = googleUser.getBasicProfile().getImageUrl();
         }, function(error) {
