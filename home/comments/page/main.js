@@ -86,7 +86,6 @@ window.addEventListener("load", () => {
       console.log(`Loading UserID... ID:<${id}>`)
       console.log(`Loading profile picture ${image_url}...`)  
       pfp_img_elem.setAttribute("src", image_url);
-      window.location.href = "/page"
     }
     console.log(`Loading client content... ${document.body}`)
 })
