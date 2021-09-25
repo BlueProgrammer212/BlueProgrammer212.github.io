@@ -94,7 +94,7 @@ function loadInformation(auth2) {
   });
 }
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
     auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
       console.error('An error occured:', JSON.stringify(error, undefined, 2));
       document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
@@ -105,7 +105,7 @@ window.addEventListener("load", () => {
     console.log(`Loading username... NAME:${profile.name}`)
     console.log(`Loading UserID... ID:<${profile.id}>`)
     console.log(`Loading profile picture ${image_url}...`)  
-    loadInformation(auth2).then((profile) => {
+    await loadInformation(auth2).then((profile) => {
       pfp_img_elem.setAttribute("src", profile.url);
     })
 })
