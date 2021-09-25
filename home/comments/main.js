@@ -100,6 +100,8 @@ function signOut() {
   });
 }
 
+console.log("%cImportant", "color:red;font-size:32px;");
+
 window.addEventListener("load", () => {
     if (!auth2.isSignedIn.get()) {
       let image_url = getCookie("pfp_url"), 
