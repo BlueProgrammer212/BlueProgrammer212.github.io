@@ -56,7 +56,7 @@ var googleUser = {};
     gapi.load('auth2', function(){
       auth2 = gapi.auth2.init({
         client_id: '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
+        cookiepolicy: 'single_host_origin'
       });
     });
   };
