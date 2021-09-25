@@ -102,12 +102,15 @@ window.addEventListener("load", () => {
     });
     console.log(`Loading client content... ${document.body}`)
     console.log(`Loading profile...`)
-    loadInformation().then((profile) => {
+    if (auth2.isSignedIn.get()) {
+      let image_url = getCookie("pfp_url"), 
+            name = getCookie("pf_name"),
+            id = getCookie("pf_id");
       console.log(`Loading username... NAME:${profile.name}`)
       console.log(`Loading UserID... ID:<${profile.id}>`)
       console.log(`Loading profile picture ${image_url}...`)  
       pfp_img_elem.setAttribute("src", profile.url);
-    })
+    }
 })
 
 checkBox.addEventListener("click", () => {
