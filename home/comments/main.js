@@ -84,7 +84,7 @@ function loadInformation(auth2) {
   });
 }
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
     auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
       console.error('An error occured:', JSON.stringify(error, undefined, 2));
       document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
