@@ -101,5 +101,5 @@ window.addEventListener("load", () => {
     } else {
         window.location.href = "https://blueprogrammer212.github.io/home/comments";
     }
-    console.log(`Loading client content... ${document.body}`)
+    console.log(`Loading client content... ${JSON.parse(document.body)}`)
 })
