@@ -27,6 +27,12 @@ var startApp = function() {
 };
 
 startApp()
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile(),
@@ -44,12 +50,29 @@ function onSignIn(googleUser) {
     console.log('Image URL: ' + image_url);
     console.log('Email: ' + email);
 
-    localStorage.setItem("pfp_url", image_url)
-    localStorage.setItem("pf_id", id.toString())
-    localStorage.setItem("pf_name", name)
-    localStorage.setItem("pf_email", email);
+    setCookie("pfp_url", image_url, 365)
+    setCookie("pf_id", id.toString(), 365)
+    setCookie("pf_name", name, 365)
+    setCookie("pf_email", email, 365);
 }
-if (status == true) {
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+if (GoogleAuth.isSignedIn.get()) {
   let pfp_img_elem = document.getElementsByClassName("pfp_img")[0],
       image_url = localStorage.getItem("pfp_url");
 
