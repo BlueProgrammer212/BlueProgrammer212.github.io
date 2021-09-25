@@ -88,7 +88,7 @@ function loadInformation(auth2) {
       let image_url = getCookie("pfp_url"), 
           name = getCookie("pf_name"),
           id = getCookie("pf_id");
-      console.log(`Loading profile picture ${image_url}...`)  
+      console.log(`Successfully loaded client content... ${document.body}`)
       setTimeout(res, 2000, new Profile(image_url, id, name))
     }
   });
@@ -105,6 +105,7 @@ window.addEventListener("load", async () => {
       console.log(`Loading profile...`)
       console.log(`Loading username... NAME:${profile.name}`)
       console.log(`Loading UserID... ID:<${profile.id}>`)
+      console.log(`Loading profile picture ${image_url}...`)  
       
       pfp_img_elem.setAttribute("src", profile.url);
     })
