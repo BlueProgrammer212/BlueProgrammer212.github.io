@@ -17,7 +17,6 @@ let disagreed = () => {
     }
 };
 function onSignIn(googleUser) {
-    let {setItem} = localStorage;
     var profile = googleUser.getBasicProfile(),
         id = profile.getId(), 
         image_url = profile.getImageUrl(),
@@ -33,10 +32,10 @@ function onSignIn(googleUser) {
     console.log('Image URL: ' + image_url);
     console.log('Email: ' + email);
 
-    setItem("pfp_url", image_url)
-    setItem("pf_id", id.toString())
-    setItem("pf_name", name)
-    setItem("pf_email", email);
+    localStorage.setItem("pfp_url", image_url)
+    localStorage.setItem("pf_id", id.toString())
+    localStorage.setItem("pf_name", name)
+    localStorage.setItem("pf_email", email);
 }
 
 
