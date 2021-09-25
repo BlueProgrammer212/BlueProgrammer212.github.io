@@ -25,6 +25,8 @@ body {
 }
 
 .pfp_img {
+  position: absolute;
+  left: 90%;
   margin-top: 0.5%;
 }
 

@@ -38,13 +38,6 @@ String.prototype.removeClass = function(className) {
     return this.replace(className, '');
 }
 
-window.addEventListener("hashchange", () => {
-    if (window.location.hash == "#89679456935") {
-        window.location.href = "../../auth/user";
-        console.log("Redirecting to https://blueprogrammer212.github.io/auth/user#537356346?verified=true")
-    }
-})
-
 var googleUser = {};
   var startApp = function() {
     gapi.load('auth2', function(){
