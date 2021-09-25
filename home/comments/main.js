@@ -1,21 +1,33 @@
 const template = document.getElementById("checkElement");   
 let check = document.importNode(template.content, true).children[0];
 let checkBox = document.getElementById("checkbox-id-0"),
-    proceed = document.getElementById("proceed"),
-    message = document.getElementById("invalid");
+proceed = document.getElementById("proceed"),
+message = document.getElementById("invalid");
 checkBox.click = null;
 proceed.disabled = true;
 let disagreed = () => {
-    if (!checkBox.firstChild) {
-        message.className = message.className.removeClass("invisible");
-    } else {
-        message.className += " invisible" 
-        if (window.location.hash == "#89679456935") {
-            
-        }
-        window.location.hash = "#89679456935"  
+  if (!checkBox.firstChild) {
+    message.className = message.className.removeClass("invisible");
+  } else {
+    message.className += " invisible" 
+    if (window.location.hash == "#89679456935") {
+      
     }
+    window.location.hash = "#89679456935"  
+  }
 };
+var googleUser = {};
+var startApp = function() {
+  gapi.load('auth2', function(){
+    auth2 = gapi.auth2.init({
+      client_id: '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com',
+      cookiepolicy: 'single_host_origin'
+    });
+  });
+};
+
+startApp()
+
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile(),
         id = profile.getId(), 
@@ -40,8 +52,7 @@ function onSignIn(googleUser) {
 
 
 window.addEventListener("load", () => {
-    if (auth2.isSignedIn.get()) {
-      console.log("true")
+    if (!auth2.isSignedIn.get()) {
       let pfp_img_elem = document.getElementsByClassName("pfp_img")[0],
           image_url = localStorage.getItem("pfp_url");
 
@@ -71,16 +82,5 @@ String.prototype.removeClass = function(className) {
     return this.replace(className, '');
 }
 
-var googleUser = {};
-  var startApp = function() {
-    gapi.load('auth2', function(){
-      auth2 = gapi.auth2.init({
-        client_id: '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin'
-      });
-    });
-  };
-
-  startApp()
 
 proceed.addEventListener("click", disagreed)
