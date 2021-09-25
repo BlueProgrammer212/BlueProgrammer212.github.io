@@ -79,18 +79,18 @@ function loadInformation(auth2) {
     if (auth2.isSignedIn.get()) {
       let image_url = getCookie("pfp_url");
       console.log(`Loading profile picture ${pfp_img_elem}...`)  
-      setTimeout(res, 100, image_url);
+      res(image_url)
     }
   });
 }
 
-window.addEventListener("load", async () => {
+window.addEventListener("load", () => {
     auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
       console.error('An error occured:', JSON.stringify(error, undefined, 2));
       document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
       document.getElementsById("invalid").className = document.getElementsById("invalid").removeClass("invisible");
     });
-    await loadInformation(auth2).then((url) => {
+    loadInformation(auth2).then((url) => {
       pfp_img_elem.setAttribute("src", url);
     })
 })
