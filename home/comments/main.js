@@ -102,10 +102,10 @@ window.addEventListener("load", async () => {
     });
     console.log(`Loading client content... ${document.body}`)
     console.log(`Loading profile...`)
-    console.log(`Loading username... NAME:${profile.name}`)
-    console.log(`Loading UserID... ID:<${profile.id}>`)
-    console.log(`Loading profile picture ${image_url}...`)  
     await loadInformation(auth2).then((profile) => {
+      console.log(`Loading username... NAME:${profile.name}`)
+      console.log(`Loading UserID... ID:<${profile.id}>`)
+      console.log(`Loading profile picture ${image_url}...`)  
       pfp_img_elem.setAttribute("src", profile.url);
     })
 })
