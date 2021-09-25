@@ -41,6 +41,7 @@ function onSignIn(googleUser) {
 
 window.addEventListener("load", () => {
     if (auth2.isSignedIn.get()) {
+      console.log("true")
       let pfp_img_elem = document.getElementsByClassName("pfp_img")[0],
           image_url = localStorage.getItem("pfp_url");
 
