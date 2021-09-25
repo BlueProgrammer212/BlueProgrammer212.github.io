@@ -85,14 +85,14 @@ function loadInformation(auth2) {
 }
 
 window.addEventListener("load", () => {
-     loadInformation(auth2).then((url) => {
-       pfp_img_elem.setAttribute("src", url);
-     })
-     auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
-        console.error('An error occured:', JSON.stringify(error, undefined, 2));
-        document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
-        document.getElementsById("invalid").className = document.getElementsById("invalid").removeClass("invisible");
+    auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
+      console.error('An error occured:', JSON.stringify(error, undefined, 2));
+      document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
+      document.getElementsById("invalid").className = document.getElementsById("invalid").removeClass("invisible");
     });
+    await loadInformation(auth2).then((url) => {
+      pfp_img_elem.setAttribute("src", url);
+    })
 })
 
 checkBox.addEventListener("click", () => {
