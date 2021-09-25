@@ -82,7 +82,6 @@ function signOut() {
     console.log('User signed out.');
   });
 }
-console.log("%cImportant", "color:red;font-size:32px;");
 
 window.addEventListener("load", () => {
     if (!auth2.isSignedIn.get()) {
