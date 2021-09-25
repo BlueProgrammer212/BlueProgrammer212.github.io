@@ -36,6 +36,7 @@ window.addEventListener("load", () => {
 
 checkBox.addEventListener("click", () => {
     if (!checkBox.firstChild) {
+        message.className = message.className.removeClass("invisible");
         checkBox.appendChild(check)
         checkBox.setAttribute("data-checked", "true")
         proceed.disabled = false;
