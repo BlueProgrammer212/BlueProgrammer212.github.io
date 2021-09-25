@@ -16,6 +16,9 @@
         <meta name="twitter:card" content="summary" />
         <meta property="twitter:title" content="A 2D pixel app for talented pixel artists" />
         <script src="./js/openSideBar.js" async defer crossorigin="anonymous"></script>
+        <meta name="google-signin-client_id" content="730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/api:client.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
       <div class="sidebar">
@@ -32,6 +35,7 @@
             <a href="javascript:openTab('https://blueprogrammer212.github.io/download')">Downloads</a>
             <a href="javascript:openTab('https://blueprogrammer212.github.io/create/sprite/?session_id=97654532')">Get started</a>
             <a href="javascript:openTab('https://discord.gg/WGtktKKNHR')">Join our discord server!</a>
+            <img src="assets/default_pfp_16x16.png" width="32" height="32" draggable="false" class="pfp_img" id="pfp_img_id" />
         </nav>
         <nav id="offline" class="topnav" role="navigation" style="display: none; background-color: yellow;">
           <p>You are offline. Retrying to connect in 5s</p>
@@ -103,7 +107,6 @@
               </div>
           </div>
         </div>
-        <script src="server.php"></script>
         <div class="footer">
           <p id="p-id-2" class="fontSmall paragraph align-left" draggable="false" translate="no" tabindex="0">
             If you have any sugguestions or if you encountered a problem. Do not hesitate to contact us via email. Email: |prog46357@gmail.com|.

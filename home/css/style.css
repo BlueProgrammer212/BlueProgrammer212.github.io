@@ -16,6 +16,12 @@
   background: grey;
   border: 3.5px solid black;
 }
+
+.pfp_img {
+  position: absolute;
+  left: 90%;
+  margin-top: 0.5%;
+}
   
 body {
   margin: 0;
