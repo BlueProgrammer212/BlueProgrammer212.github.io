@@ -88,10 +88,5 @@ window.addEventListener("load", () => {
       pfp_img_elem.setAttribute("src", image_url);
       window.location.href = "/page"
     }
-    auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
-      console.error('An error occured:', JSON.stringify(error, undefined, 2));
-      document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
-      document.getElementById("invalid").className = document.getElementById("invalid").className.removeClass("invisible");
-    });
     console.log(`Loading client content... ${document.body}`)
 })
