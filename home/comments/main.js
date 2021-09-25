@@ -23,7 +23,7 @@ function onSignIn(googleUser) {
         name = profile.getName(),
         email = profile.getEmail();
       
-    let pfp_elem = document.getElementsByClassName("pfp_img")[0]
+    let pfp_elem = document.getElementsByClassName("pfp_img")[0];
 
     pfp_elem.setAttribute("src", image_url)
     
@@ -48,9 +48,7 @@ window.addEventListener("load", () => {
       
     }
      auth2.attachClickHandler(proceed, {},
-        function(googleUser) {
-        document.getElementById('pfp_img_id').src = googleUser.getBasicProfile().getImageUrl();
-        }, function(error) {
+        onSignIn, function(error) {
         console.error('An error occured:', JSON.stringify(error, undefined, 2));
     });
 })
@@ -81,16 +79,6 @@ var googleUser = {};
       });
     });
   };
-
-  function attachSignin(element) {
-    auth2.attachClickHandler(element, {},
-        function(googleUser) {
-          document.getElementById('name').innerText = "Signed in: " +
-              googleUser.getBasicProfile().getName();
-        }, function(error) {
-          console.error('An error occured:', JSON.stringify(error, undefined, 2));
-    });
-  }
 
   startApp()
 
