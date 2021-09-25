@@ -73,13 +73,14 @@ function getCookie(cname) {
 }
 
 let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
+
 function loadInformation() {
   return new Promise((res) => {
     if (auth2.isSignedIn.get()) {
       let image_url = getCookie("pfp_url");
       console.log(`Loading profile picture ${pfp_img_elem}...`)  
+      setTimeout(res, 3000, image_url);
     }
-    setTimeout(res, 3000, image_url);
   });
 }
 
