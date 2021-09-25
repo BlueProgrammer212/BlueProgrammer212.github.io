@@ -17,23 +17,37 @@ let disagreed = () => {
     }
 };
 function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    document.getElementsByClassName("pfp_img")[0].src = profile.getImageUrl();
-    console.log('ID: ' + profile.getId());
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail());
+    let {setItem} = localStorage;
+    var profile = googleUser.getBasicProfile(),
+        id = profile.getId(), 
+        image_url = profile.getImageUrl(),
+        name = profile.getName(),
+        email = profile.getEmail();
+      
+    let pfp_elem = document.getElementsByClassName("pfp_img")[0]
+
+    pfp_elem.setAttribute("src", image_url)
+    
+    console.log('ID: ' + id);
+    console.log('Name: ' + name);
+    console.log('Image URL: ' + image_url);
+    console.log('Email: ' + email);
+
+    setItem("pfp_url", image_url)
+    setItem("pf_id", id.toString())
+    setItem("pf_name", name)
+    setItem("pf_email", email);
 }
 
 
 window.addEventListener("load", () => {
     if (auth2.isSignedIn.get()) {
-      var profile = googleUser.getBasicProfile();
-      document.getElementsByClassName("pfp_img")[0].src = profile.getImageUrl();
-      console.log('ID: ' + profile.getId());
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail());
+      let {getItem} = localStorage,
+          pfp_img_elem = document.getElementsByClassName("pfp_img")[0],
+          image_url = getItem("pfp_url");
+
+      pfp_img_elem.setAttribute("src", image_url);
+      
     }
      auth2.attachClickHandler(proceed, {},
         function(googleUser) {
