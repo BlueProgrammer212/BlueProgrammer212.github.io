@@ -8,13 +8,11 @@ proceed.disabled = true;
 let disagreed = () => {
     if (!checkBox.firstChild) {
         message.className = message.className.removeClass("invisible");
-        proceed.disabled = true;
     } else {
         message.className += " invisible" 
         if (window.location.hash == "#89679456935") {
             
         }
-        proceed.disabled = false;
         window.location.hash = "#89679456935"  
     }
 };
@@ -40,7 +38,9 @@ checkBox.addEventListener("click", () => {
     if (!checkBox.firstChild) {
         checkBox.appendChild(check)
         checkBox.setAttribute("data-checked", "true")
+        proceed.disabled = false;
     } else {
+        proceed.disabled = true;
         checkBox.removeChild(check)
         checkBox.setAttribute("data-checked", "false")
     }
