@@ -84,8 +84,8 @@ function loadInformation() {
   });
 }
 
-window.addEventListener("load", async () => {
-     await loadInformation().then((url) => {
+window.addEventListener("load", () => {
+     loadInformation().then((url) => {
        pfp_img_elem.setAttribute("src", url);
      })
      auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
