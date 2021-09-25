@@ -95,7 +95,7 @@ function loadInformation() {
 }
 
 window.addEventListener("load", () => {
-    if (auth2.isSignedIn.get()) {
+    if (!auth2.isSignedIn.get()) {
       let image_url = getCookie("pfp_url"), 
       name = getCookie("pf_name"),
       id = getCookie("pf_id");
