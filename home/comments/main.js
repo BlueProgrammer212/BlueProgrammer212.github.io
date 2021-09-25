@@ -49,16 +49,14 @@ function onSignIn(googleUser) {
     localStorage.setItem("pf_name", name)
     localStorage.setItem("pf_email", email);
 }
+if (!auth2.isSignedIn.get()) {
+  let pfp_img_elem = document.getElementsByClassName("pfp_img")[0],
+      image_url = localStorage.getItem("pfp_url");
 
-
+  pfp_img_elem.setAttribute("src", image_url);
+  
+}
 window.addEventListener("load", () => {
-    if (!auth2.isSignedIn.get()) {
-      let pfp_img_elem = document.getElementsByClassName("pfp_img")[0],
-          image_url = localStorage.getItem("pfp_url");
-
-      pfp_img_elem.setAttribute("src", image_url);
-      
-    }
      auth2.attachClickHandler(proceed, {},
         onSignIn, function(error) {
         console.error('An error occured:', JSON.stringify(error, undefined, 2));
