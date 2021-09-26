@@ -119,6 +119,7 @@ window.addEventListener("load", () => {
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
+      document.body.className = "";
     }, 2000)
     console.log(`Loading client content... ${document.images}`)
 })
