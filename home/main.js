@@ -170,6 +170,7 @@ window.addEventListener("load", () => {
         console.log(`Loading profile picture ${image_url}...`)  
         pfp_img_elem.setAttribute("src", image_url);
       }
+      document.body.style = "";
     }, 2000)
     console.log(`Loading client content... ${document.body}`)
 })
