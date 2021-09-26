@@ -49,14 +49,12 @@ function onSignIn(googleUser) {
     console.log('Name: ' + name);
     console.log('Image URL: ' + image_url);
     console.log('Email: ' + email);
-    if (getCookie("pfp_url")) {
-      window.location.href = "./page"
-    }
 
     setCookie("pfp_url", image_url, 365)
     setCookie("pf_id", id.toString(), 365)
     setCookie("pf_name", name, 365)
     setCookie("pf_email", email, 365);
+    window.location.href="./page"
 }
 
 function getCookie(cname) {
@@ -134,7 +132,6 @@ window.addEventListener("load", () => {
         console.log(`Loading UserID... ID:<${id}>`)
         console.log(`Loading profile picture ${image_url}...`)  
         pfp_img_elem.setAttribute("src", image_url);
-        window.location.href = "./page"
       } else {
         document.body.style = ""
       }
