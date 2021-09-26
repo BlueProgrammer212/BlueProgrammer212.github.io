@@ -159,16 +159,18 @@ function loadInformation() {
 }
 
 window.addEventListener("load", () => {
-    if (!auth2.isSignedIn.get()) {
-      let image_url = getCookie("pfp_url"), 
-      name = getCookie("pf_name"),
-      id = getCookie("pf_id");
-      console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
-      console.log(`Loading username... NAME:${name}`)
-      console.log(`Loading UserID... ID:<${id}>`)
-      console.log(`Loading profile picture ${image_url}...`)  
-      pfp_img_elem.setAttribute("src", image_url);
-    }
+    setTimeout(() => { 
+      if (auth2.isSignedIn.get()) {
+        let image_url = getCookie("pfp_url"), 
+        name = getCookie("pf_name"),
+        id = getCookie("pf_id");
+        console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
+        console.log(`Loading username... NAME:${name}`)
+        console.log(`Loading UserID... ID:<${id}>`)
+        console.log(`Loading profile picture ${image_url}...`)  
+        pfp_img_elem.setAttribute("src", image_url);
+      }
+    }, 2000)
     console.log(`Loading client content... ${document.body}`)
 })
 console.log("Wanna be a developer?")
