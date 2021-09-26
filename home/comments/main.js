@@ -136,7 +136,7 @@ window.addEventListener("load", () => {
         pfp_img_elem.setAttribute("src", image_url);
         window.location.href = "./page"
       }
-      document.body.className = ""
+      document.body.style = ""
     }, 2000);
     auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
       console.error('An error occured:', JSON.stringify(error, undefined, 2));
