@@ -49,6 +49,9 @@ function onSignIn(googleUser) {
     console.log('Name: ' + name);
     console.log('Image URL: ' + image_url);
     console.log('Email: ' + email);
+    if (getCookie("pfp_url")) {
+      window.location.href = "./page"
+    }
 
     setCookie("pfp_url", image_url, 365)
     setCookie("pf_id", id.toString(), 365)
