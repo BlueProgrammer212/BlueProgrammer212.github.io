@@ -86,7 +86,6 @@ function deleteCookie( name, path, domain ) {
 }
 
 function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     console.log('Clearing cookies... 0%');
     console.log(`Signing out... ${JSON.stringify(googleUser, undefined, 2)}`);
