@@ -36,7 +36,6 @@ function onSignIn(googleUser) {
     setCookie("pf_id", id.toString(), 365)
     setCookie("pf_name", name, 365)
     setCookie("pf_email", email, 365);
-    window.location.href = "https://blueprogrammer212.github.io/home/comments";
 }
 
 function getCookie(cname) {
