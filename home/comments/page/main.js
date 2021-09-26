@@ -106,17 +106,19 @@ console.log("%cSelf-XSS is a software attack to give hackers access to your acco
 console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
 
 window.addEventListener("load", () => {
-    if (auth2.isSignedIn.get()) {
-      let image_url = getCookie("pfp_url"), 
-      name = getCookie("pf_name"),
-      id = getCookie("pf_id");
-      console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
-      console.log(`Loading username... NAME:${name}`)
-      console.log(`Loading UserID... ID:<${id}>`)
-      console.log(`Loading profile picture ${image_url}...`)  
-      pfp_img_elem.setAttribute("src", image_url);
-    } else {
-        window.location.href = "https://blueprogrammer212.github.io/home/comments";
-    }
+    setTimeout(() => {
+      if (auth2.isSignedIn.get()) {
+        let image_url = getCookie("pfp_url"), 
+        name = getCookie("pf_name"),
+        id = getCookie("pf_id");
+        console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
+        console.log(`Loading username... NAME:${name}`)
+        console.log(`Loading UserID... ID:<${id}>`)
+        console.log(`Loading profile picture ${image_url}...`)  
+        pfp_img_elem.setAttribute("src", image_url);
+      } else {
+          window.location.href = "https://blueprogrammer212.github.io/home/comments";
+      }
+    }, 2000)
     console.log(`Loading client content... ${document.images}`)
 })
