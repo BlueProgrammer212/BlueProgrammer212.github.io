@@ -89,7 +89,7 @@ function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
     console.log('Clearing cookies... 0%');
-    console.log(`Signing out... ${JSON.parse(googleUser, undefined, 2)}`);
+    console.log(`Signing out... ${JSON.stringify(googleUser, undefined, 2)}`);
     let domain = "https://blueprogrammer212.github.io";
     deleteCookie("pfp_url", "../")
     deleteCookie("pf_id", "../")
