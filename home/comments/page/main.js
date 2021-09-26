@@ -76,10 +76,25 @@ function loadInformation() {
     }
   });
 }
+function deleteCookie( name, path, domain ) {
+  if(getCookie(name)) {
+    document.cookie = name + "=" +
+      ((path) ? ";path="+path:"")+
+      ((domain)?";domain="+domain:"") +
+      ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+  }
+}
+
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
-    console.log('User signed out.');
+    console.log('Clearing cookies...');
+    console.log(`Signing out... ${googleUser}`);
+    let domain = "https://blueprogrammer212.github.io";
+    deleteCookie("pfp_url", "/", domain)
+    deleteCookie("pf_id", "/", domain)
+    deleteCookie("pf_name", "/", domain)
+    deleteCookie("pf_email", "/", domain);
   });
 }
 
