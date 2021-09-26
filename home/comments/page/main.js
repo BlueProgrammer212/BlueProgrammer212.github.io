@@ -88,13 +88,17 @@ function deleteCookie( name, path, domain ) {
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
-    console.log('Clearing cookies...');
-    console.log(`Signing out... ${googleUser}`);
+    console.log('Clearing cookies... 0%');
+    console.log(`Signing out... ${JSON.parse(googleUser, undefined, 2)}`);
     let domain = "https://blueprogrammer212.github.io";
     deleteCookie("pfp_url", "../")
     deleteCookie("pf_id", "../")
     deleteCookie("pf_name", "../")
     deleteCookie("pf_email", "../");
+    console.log('Succesfully cleared cookies. 100%');
+    setTimeout(() => {
+      window.location.href = "../"
+    }, 800)
   });
 }
 
