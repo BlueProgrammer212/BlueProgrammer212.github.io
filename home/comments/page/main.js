@@ -116,10 +116,10 @@ window.addEventListener("load", () => {
         console.log(`Loading UserID... ID:<${id}>`)
         console.log(`Loading profile picture ${image_url}...`)  
         pfp_img_elem.setAttribute("src", image_url);
+        document.body.style = "";
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
-      document.body.style = "";
     }, 2000)
     console.log(`Loading client content... ${document.images}`)
 })

@@ -135,8 +135,9 @@ window.addEventListener("load", () => {
         console.log(`Loading profile picture ${image_url}...`)  
         pfp_img_elem.setAttribute("src", image_url);
         window.location.href = "./page"
+      } else {
+        document.body.style = ""
       }
-      document.body.style = ""
     }, 2000);
     auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
       console.error('An error occured:', JSON.stringify(error, undefined, 2));
