@@ -91,10 +91,10 @@ function signOut() {
     console.log('Clearing cookies...');
     console.log(`Signing out... ${googleUser}`);
     let domain = "https://blueprogrammer212.github.io";
-    deleteCookie("pfp_url", "/", domain)
-    deleteCookie("pf_id", "/", domain)
-    deleteCookie("pf_name", "/", domain)
-    deleteCookie("pf_email", "/", domain);
+    deleteCookie("pfp_url", "../", domain)
+    deleteCookie("pf_id", "../", domain)
+    deleteCookie("pf_name", "../", domain)
+    deleteCookie("pf_email", "../", domain);
   });
 }
 
