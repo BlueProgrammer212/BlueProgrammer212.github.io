@@ -90,10 +90,10 @@ function signOut() {
     console.log('Clearing cookies... 0%');
     console.log(`Signing out... ${JSON.stringify(googleUser, undefined, 2)}`);
     let domain = "https://blueprogrammer212.github.io";
-    deleteCookie("pfp_url", "../")
-    deleteCookie("pf_id", "../")
-    deleteCookie("pf_name", "../")
-    deleteCookie("pf_email", "../");
+    deleteCookie("pfp_url", "/")
+    deleteCookie("pf_id", "/")
+    deleteCookie("pf_name", "/")
+    deleteCookie("pf_email", "/");
     console.log('Succesfully cleared cookies. 100%');
     setTimeout(() => {
       window.location.href = "../"
