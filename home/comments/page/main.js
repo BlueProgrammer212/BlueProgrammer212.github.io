@@ -107,7 +107,7 @@ console.log("%cSelf-XSS is a software attack to give hackers access to your acco
 console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
 
 window.addEventListener("load", () => {
-    if (!auth2.isSignedIn.get()) {
+    if (auth2.isSignedIn.get()) {
       let image_url = getCookie("pfp_url"), 
       name = getCookie("pf_name"),
       id = getCookie("pf_id");
