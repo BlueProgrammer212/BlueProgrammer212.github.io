@@ -100,6 +100,12 @@ function signOut() {
   });
 }
 
+for (let i = 0; i < document.images.length; ++i) {
+  document.images[i].oncontextmenu = function() {
+    return false;
+  }
+}
+
 console.log("%cWarning", "color:red;font-size:32px;");
 console.log("%cPlease do not execute a malicious code here! You might give hackers access to your account!", "color:white;font-size:16px;");
 console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
