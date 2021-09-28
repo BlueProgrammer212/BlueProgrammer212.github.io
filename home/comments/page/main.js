@@ -150,7 +150,7 @@ window.addEventListener("load", () => {
         pfp_img_elem.setAttribute("src", image_url);
         document.body.style = "";
         firebase.initializeApp(firebaseConfig);
-       /* firestore = firebase.firestore();
+        firestore = firebase.firestore();
         firestore.collection(`comments`).onSnapshot(snapshot => {
           const posts = snapshot.docs
           .filter(doc => doc.data().slug === slug)
@@ -158,8 +158,7 @@ window.addEventListener("load", () => {
             return { id: doc.id, ...doc.data() }
           })
           console.log(posts)
-        })*/
-        console.log(firebase);
+        })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
