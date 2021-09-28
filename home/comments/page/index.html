@@ -21,9 +21,15 @@
       <script src="js/openSideBar.js" async defer></script>
     </head>
     <body style="display: none;">
-       <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
-      <div id="fb-root"></div>
-      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="gY1A3XN4"></script>
+      <template>
+          <div id="comment">
+             <img id="profile_picture_32x32" src="./assets/default_pfp_16x16.png" width="32" height="32" />
+             <h6 class="name pfp_name"></h6>
+             <p class="timeStamp" id="time_sent"></p>
+             <p class="align-left" id="comment_message"></p>
+          </div>
+      </template>
+      <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
         <div class="sidebar">
             <a class="active" href="#home">Contact us!</a>
             <a href="#wiki">Visit our wikipage!</a>
@@ -54,7 +60,6 @@
           <div id="main_content">
           <div class="titles">
             <h2 draggable="false" class="fontMedium align-left">Comments & Suggestions</h2>
-            <div class="fb-comments" data-href="https://blueprogrammer212.github.io" data-width="1000" data-numposts="10"></div>
           </div>
         </div>
         <script src="./main.js" async defer></script>

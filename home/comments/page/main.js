@@ -130,6 +130,8 @@ for (let i = 0; i < document.images.length; ++i) {
   }
 }
 
+let firestore;
+
 console.log("%cWarning", "color:red;font-size:32px;");
 console.log("%cPlease do not execute a malicious code here! You might give hackers access to your account!", "color:white;font-size:16px;");
 console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
@@ -147,7 +149,15 @@ window.addEventListener("load", () => {
         console.log(`Loading profile picture ${image_url}...`)  
         pfp_img_elem.setAttribute("src", image_url);
         document.body.style = "";
-        saveToFirebase("urmom");
+        firestore = firebase.firestore();
+        firestore.collection(`comments`).onSnapshot(snapshot => {
+          const posts = snapshot.docs
+          .filter(doc => doc.data().slug === slug)
+          .map(doc => {
+            return { id: doc.id, ...doc.data() }
+          })
+          console.log(posts)
+        })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
