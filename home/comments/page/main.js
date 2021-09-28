@@ -84,6 +84,21 @@ function deleteCookie( name, path, domain ) {
   }
 }
 
+function saveToFirebase(email) {
+  var emailObject = {
+      email: email
+  };
+
+  firebase.database().ref('subscription-entries').push().set(emailObject)
+      .then(function(snapshot) {
+          console.log("works", snapshot);
+      }, function(error) {
+          console.log('error' + error);
+      });
+}
+
+saveToFirebase("urmom");
+
 function signOut() {
   auth2.signOut().then(function () {
     console.log('Clearing cookies... 0%');

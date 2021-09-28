@@ -21,6 +21,23 @@
       <script src="js/openSideBar.js" async defer></script>
     </head>
     <body style="display: none;">
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-analytics.js";
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
+          authDomain: "pixcel-272e8.firebaseapp.com",
+          projectId: "pixcel-272e8",
+          storageBucket: "pixcel-272e8.appspot.com",
+          messagingSenderId: "527485563587",
+          appId: "1:527485563587:web:59c6c095e772a028802876",
+          measurementId: "G-49V48L8TZR"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
       <div id="fb-root"></div>
       <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="gY1A3XN4"></script>
         <div class="sidebar">
