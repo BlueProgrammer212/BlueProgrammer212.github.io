@@ -1,4 +1,18 @@
 var googleUser = {};
+class CommentManager {
+   constructor(template, parent) {
+      this.template = template;
+      this.parent = parent;
+      this.child = document.importNode(this.template.content, true).children[0];
+   }
+   add(data) {
+      for (let i = 0; i < data.length; ++i) {
+          document.getElementById("comment_message").innerHTML = data.content;
+          this.parent.appendChild(this.child);
+      }
+   }
+}
+
 const firebaseConfig = {
   apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
   authDomain: "pixcel-272e8.firebaseapp.com",
@@ -158,7 +172,7 @@ window.addEventListener("load", () => {
           .map(doc => {
             return { id: doc.id, ...doc.data() }
           })
-          console.log(posts)
+          comments.add(posts)
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
