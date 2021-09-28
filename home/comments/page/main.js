@@ -200,10 +200,8 @@ window.addEventListener("load", () => {
           
           comments.add(posts)
           document.getElementById("post_btn").addEventListener("click", () => {
-            comments.post({
-              content: document.getElementById("post_comment").value,
-
-            }, firestore)
+            comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
+            slug: 'dead-sea', content: 'Hello comment test', pld: null}, firestore)
             document.getElementById("post_comment").value = "";
           })
           console.log(posts[0])
