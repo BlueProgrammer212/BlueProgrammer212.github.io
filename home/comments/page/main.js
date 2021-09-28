@@ -1,4 +1,7 @@
 var googleUser = {};
+let template_elem = document.getElementById("template_comment"), 
+    parent = document.getElementById("comment_section");
+
 class CommentManager {
    constructor(template, parent) {
       this.template = template;
@@ -13,6 +16,8 @@ class CommentManager {
    }
 }
 
+let comments = new CommentManager(template_elem, parent)
+
 const firebaseConfig = {
   apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
   authDomain: "pixcel-272e8.firebaseapp.com",
@@ -23,6 +28,7 @@ const firebaseConfig = {
   measurementId: "G-49V48L8TZR",
   databaseURL: "https://pixcel-272e8-default-rtdb.firebaseio.com"
 };
+
 var startApp = function() {
   gapi.load('auth2', function(){
     auth2 = gapi.auth2.init({
@@ -33,6 +39,7 @@ var startApp = function() {
 };
 
 startApp()
+
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
