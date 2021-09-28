@@ -28,7 +28,7 @@ class CommentManager {
       this.generatedKey = this.generateKey();
       this.child.children[3].id = this.generatedKey;
       this.parent.appendChild(this.child);
-      document.getElementById(this.generatedKey).innerHTML = data[i].content;
+      document.getElementById(this.generatedKey).innerHTML = data.content;
       firestore.collection(`comments`).add(data).catch(err => {
         console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
       })
