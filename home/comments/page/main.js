@@ -21,7 +21,7 @@ class CommentManager {
       for (let i = 0; i < data.length; ++i) {
           this.child.children[3].id = this.generatedKey;
           this.parent.appendChild(this.child);
-          document.getElementById(this.generatedKey).innerHTML = data.content;
+          document.getElementById(this.generatedKey).innerHTML = data[i].content;
       }
    }
 }
