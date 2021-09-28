@@ -8,10 +8,20 @@ class CommentManager {
       this.parent = parent;
       this.child = document.importNode(this.template.content, true).children[0];
    }
+   generateKey(len=40) {
+       let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+       let string;
+       while (--len > 0) {
+          string += chars[Math.round(Math.random()*chars.length-1)];
+       }
+       return string;
+   }
    add(data) {
+      this.generatedKey = this.generateKey();
       for (let i = 0; i < data.length; ++i) {
-          document.getElementById("comment_message").innerHTML = data.content;
+          this.child.children[3].id = this.generatedKey;
           this.parent.appendChild(this.child);
+          document.getElementById(this.generatedKey).innerHTML = data.content;
       }
    }
 }
