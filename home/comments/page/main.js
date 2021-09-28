@@ -1,4 +1,13 @@
 var googleUser = {};
+const firebaseConfig = {
+  apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
+  authDomain: "pixcel-272e8.firebaseapp.com",
+  projectId: "pixcel-272e8",
+  storageBucket: "pixcel-272e8.appspot.com",
+  messagingSenderId: "527485563587",
+  appId: "1:527485563587:web:59c6c095e772a028802876",
+  measurementId: "G-49V48L8TZR"
+};
 var startApp = function() {
   gapi.load('auth2', function(){
     auth2 = gapi.auth2.init({
@@ -85,6 +94,7 @@ function deleteCookie( name, path, domain ) {
 }
 
 function saveToFirebase(email) {
+  firebase.initializeApp(firebaseConfig);
   var emailObject = {
       email: email
   };
