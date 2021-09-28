@@ -197,14 +197,13 @@ window.addEventListener("load", () => {
           .map(doc => {
             return { id: doc.id, ...doc.data() }
           });
-          
+          console.log(posts)
           comments.add(posts)
           document.getElementById("post_btn").addEventListener("click", () => {
             comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
-            slug: 'dead-sea', content: 'Hello comment test', pld: null}, firestore)
+            slug: 'dead-sea', content: document.getElementById("post_comment").value, pld: null}, firestore)
             document.getElementById("post_comment").value = "";
           })
-          console.log(posts[0])
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
