@@ -97,8 +97,6 @@ function saveToFirebase(email) {
       });
 }
 
-saveToFirebase("urmom");
-
 function signOut() {
   auth2.signOut().then(function () {
     console.log('Clearing cookies... 0%');
@@ -138,6 +136,7 @@ window.addEventListener("load", () => {
         console.log(`Loading profile picture ${image_url}...`)  
         pfp_img_elem.setAttribute("src", image_url);
         document.body.style = "";
+        saveToFirebase("urmom");
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
