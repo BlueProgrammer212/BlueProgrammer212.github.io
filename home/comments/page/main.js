@@ -6,7 +6,8 @@ const firebaseConfig = {
   storageBucket: "pixcel-272e8.appspot.com",
   messagingSenderId: "527485563587",
   appId: "1:527485563587:web:59c6c095e772a028802876",
-  measurementId: "G-49V48L8TZR"
+  measurementId: "G-49V48L8TZR",
+  databaseURL: "https://pixcel-272e8-default-rtdb.firebaseio.com"
 };
 var startApp = function() {
   gapi.load('auth2', function(){
