@@ -190,6 +190,7 @@ window.addEventListener("load", () => {
             return { id: doc.id, ...doc.data() }
           })
           comments.add(posts)
+          console.log(posts[0].content)
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
