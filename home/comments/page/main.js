@@ -131,6 +131,7 @@ for (let i = 0; i < document.images.length; ++i) {
 }
 
 let firestore;
+let slug = "dead-sea"
 
 console.log("%cWarning", "color:red;font-size:32px;");
 console.log("%cPlease do not execute a malicious code here! You might give hackers access to your account!", "color:white;font-size:16px;");
