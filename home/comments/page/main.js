@@ -24,6 +24,11 @@ class CommentManager {
           document.getElementById(this.generatedKey).innerHTML = data[i].content;
       }
    }
+   post(data, firestore) {
+      firestore.collection(`comments`).add(data).catch(err => {
+        console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
+      })
+    }
 }
 
 let comments = new CommentManager(template_elem, parent)
@@ -175,12 +180,15 @@ window.addEventListener("load", () => {
         let image_url = getCookie("pfp_url"), 
         name = getCookie("pf_name"),
         id = getCookie("pf_id");
+
         console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
         console.log(`Loading username... NAME:${name}`)
         console.log(`Loading UserID... ID:<${id}>`)
-        console.log(`Loading profile picture ${image_url}...`)  
+        console.log(`Loading profile picture ${image_url}...`) 
+
         pfp_img_elem.setAttribute("src", image_url);
         document.body.style = "";
+
         firebase.initializeApp(firebaseConfig);
         firestore = firebase.firestore();
         firestore.collection(`comments`).onSnapshot(snapshot => {
@@ -188,9 +196,17 @@ window.addEventListener("load", () => {
           .filter(doc => doc.data().slug === slug)
           .map(doc => {
             return { id: doc.id, ...doc.data() }
-          })
+          });
+          
           comments.add(posts)
-          console.log(posts[0].content)
+          document.getElementById("post_btn").addEventListener("click", () => {
+            comments.post({
+              content: document.getElementById("post_comment").value,
+
+            }, firestore)
+            document.getElementById("post_comment").value = "";
+          })
+          console.log(posts[0])
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
