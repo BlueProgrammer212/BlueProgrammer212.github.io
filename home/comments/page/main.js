@@ -19,7 +19,7 @@ class CommentManager {
    }
    add(data) {
       for (let i = 0; i < data.length; ++i) {
-          this.parent.appendChild(this.child);
+          this.parent.appendChild(this.child.cloneNode(true));
           this.commentBoxes = document.getElementsByClassName("commentBox");
       }
    }
