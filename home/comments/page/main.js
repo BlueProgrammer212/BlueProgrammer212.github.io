@@ -21,11 +21,6 @@ class CommentManager {
       for (let i = 0; i < data.length; ++i) {
           this.parent.appendChild(this.child);
           this.commentBoxes = document.getElementsByClassName("commentBox");
-          setTimeout(() => {
-              if (this.commentBoxes[i].children[3]) {
-                  this.commentBoxes[i].children[3].innerHTML = data[i].content
-              }
-          }, 500);
       }
    }
    post(data, firestore) {
@@ -33,7 +28,6 @@ class CommentManager {
         console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
       })
       this.parent.appendChild(this.child);
-      this.commentBoxes[this.commentBoxes.length - 1].innerHTML = data.content
     }
 }
 
@@ -206,7 +200,7 @@ window.addEventListener("load", () => {
           console.log(posts.length)
           comments.add(posts)
           document.getElementById("post_btn").addEventListener("click", () => {
-            comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
+            comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now().toUTCString(), 
             slug: 'dead-sea', content: document.getElementById("post_comment").value, pld: null}, firestore)
             document.getElementById("post_comment").value = "";
           })
