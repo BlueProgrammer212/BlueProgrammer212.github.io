@@ -27,7 +27,7 @@ class CommentManager {
       firestore.collection(`comments`).add(data).catch(err => {
         console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
       })
-      this.parent.appendChild(this.child);
+      this.parent.appendChild(this.child.cloneNode(true));
     }
 }
 
