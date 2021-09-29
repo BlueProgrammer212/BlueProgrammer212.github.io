@@ -208,8 +208,8 @@ body {
 #post_comment {
    border: 3.5px solid black;
    font-family: Pixel; 
-   width: 350px;
-   height: 200px;
+   width: 950px;
+   height: 500px;
    resize: none;
    font-size: 16px; 
 }
