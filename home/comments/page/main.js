@@ -200,7 +200,7 @@ window.addEventListener("load", () => {
           console.log(posts.length)
           comments.add(posts)
           document.getElementById("post_btn").addEventListener("click", () => {
-            comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now().toUTCString(), 
+            comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
             slug: 'dead-sea', content: document.getElementById("post_comment").value, pld: null}, firestore)
             document.getElementById("post_comment").value = "";
           })
