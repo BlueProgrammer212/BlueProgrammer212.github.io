@@ -19,9 +19,8 @@ class CommentManager {
    add(data) {
       this.generatedKey_ = this.generateKey();
       for (let i = 0; i < data.length; ++i) {
-          this.child.children[3].id = this.generatedKey_;
+          this.child.children[3].innerHTML = data[i].content;
           this.parent.appendChild(this.child);
-          document.getElementById(this.generatedKey_).innerHTML = data[i].content;
       }
    }
    post(data, firestore) {
