@@ -22,7 +22,9 @@ class CommentManager {
           this.parent.appendChild(this.child);
           this.commentBoxes = document.getElementsByClassName("commentBox");
           setTimeout(() => {
-          this.commentBoxes[i].innerHTML = data[i].content
+              if (this.commentBoxes[i]) {
+                  this.commentBoxes[i].innerHTML = data[i].content
+              }
           }, 500);
       }
    }
