@@ -7,6 +7,7 @@ class CommentManager {
       this.template = template;
       this.parent = parent;
       this.child = document.importNode(this.template.content, true).children[0];
+      this.commentBoxes = document.getElementsByClassName("commentBox");
    }
    generateKey(len=40) {
        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -17,18 +18,17 @@ class CommentManager {
        return string;
    }
    add(data) {
-      this.generatedKey_ = this.generateKey();
       for (let i = 0; i < data.length; ++i) {
           this.child.children[3].innerHTML = data[i].content;
           this.parent.appendChild(this.child);
       }
    }
    post(data, firestore) {
-      this.child.children[3].innerHTML = data.content;
       firestore.collection(`comments`).add(data).catch(err => {
         console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
       })
       this.parent.appendChild(this.child);
+      this.commentBoxes[this.commentBoxes.length - 1].innerHTML = data.content
     }
 }
 
