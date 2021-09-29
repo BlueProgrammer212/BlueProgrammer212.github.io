@@ -205,12 +205,12 @@ body {
   background-color: green;
 }
 
-.post_comment {
+#post_comment {
    border: 3.5px solid black;
    font-family: Pixel; 
    width: 250px;
    height: 150px;
-   font-size: 16px;
+   font-size: 16px; 
 }
 
 .column {
