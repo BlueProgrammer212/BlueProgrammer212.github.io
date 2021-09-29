@@ -6,8 +6,7 @@ class CommentManager {
    constructor(template, parent) {
       this.template = template;
       this.parent = parent;
-      this.child = document.importNode(this.template.content, true).children[0];
-      this.commentBoxes = document.getElementsByClassName("commentBox");
+      this.child = this.template.content.children[0];
    }
    generateKey(len=40) {
        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -18,9 +17,8 @@ class CommentManager {
        return string;
    }
    add(data) {
-    this.parent.appendChild(this.child.cloneNode(true));
       for (let i = 0; i < data.length; ++i) {
-          this.commentBoxes = document.getElementsByClassName("commentBox");
+        this.parent.appendChild(this.child.cloneNode(true));  
       }
    }
    post(data, firestore) {
