@@ -20,7 +20,10 @@ class CommentManager {
    add(data) {
       for (let i = 0; i < data.length; ++i) {
           this.parent.appendChild(this.child);
-          this.commentBoxes[i - 1].innerHTML = data[i].content
+          this.commentBoxes = document.getElementsByClassName("commentBox");
+          setTimeout(() => {
+          this.commentBoxes[i].innerHTML = data[i].content
+          }, 500);
       }
    }
    post(data, firestore) {
