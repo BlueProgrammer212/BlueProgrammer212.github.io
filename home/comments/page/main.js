@@ -24,13 +24,11 @@ class CommentManager {
       }
    }
    post(data, firestore) {
-      this.generatedKey_ = this.generateKey();
-      this.child.children[3].id = this.generatedKey_;
-      this.parent.appendChild(this.child);
-      document.getElementById(this.generatedKey_).innerHTML = data.content;
+      this.child.children[3].innerHTML = data.content;
       firestore.collection(`comments`).add(data).catch(err => {
         console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
       })
+      this.parent.appendChild(this.child);
     }
 }
 
