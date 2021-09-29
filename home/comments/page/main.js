@@ -17,11 +17,11 @@ class CommentManager {
        return string;
    }
    add(data) {
-      this.generatedKey = this.generateKey();
+      this.generatedKey_ = this.generateKey();
       for (let i = 0; i < data.length; ++i) {
-          this.child.children[3].id = this.generatedKey;
+          this.child.children[3].id = this.generatedKey_;
           this.parent.appendChild(this.child);
-          document.getElementById(this.generatedKey).innerHTML = data[i].content;
+          document.getElementById(this.generatedKey_).innerHTML = data[i].content;
       }
    }
    post(data, firestore) {
