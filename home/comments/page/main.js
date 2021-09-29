@@ -19,8 +19,8 @@ class CommentManager {
    }
    add(data) {
       for (let i = 0; i < data.length; ++i) {
-          this.child.children[3].innerHTML = data[i].content;
           this.parent.appendChild(this.child);
+          this.commentBoxes[i].innerHTML = data[i].content
       }
    }
    post(data, firestore) {
