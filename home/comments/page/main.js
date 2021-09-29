@@ -6,7 +6,7 @@ class CommentManager {
    constructor(template, parent) {
       this.template = template;
       this.parent = parent;
-      this.child = this.template.content.children[0];
+      this.child = this.template.content.cloneNode(true);
    }
    generateKey(len=40) {
        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -18,14 +18,14 @@ class CommentManager {
    }
    add(data) {
       for (let i = 0; i < data.length; ++i) {
-        this.parent.appendChild(this.child.cloneNode(true));  
+        this.parent.appendChild(this.child);  
       }
    }
    post(data, firestore) {
       firestore.collection(`comments`).add(data).catch(err => {
         console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
       })
-      this.parent.appendChild(this.child.cloneNode(true));
+      this.parent.appendChild(this.child);
     }
 }
 
