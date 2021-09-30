@@ -3,6 +3,16 @@ let firestore;
 let template_elem = document.getElementById("template_comment"), 
     parent = document.getElementById("comment_section");
 
+function clearDatabase() {
+  if (prompt("Token:")===`j.ZD]O2N}ge"#)}UfXv/24F/JJ%[|=~f.4lJ#7hM<x}{[?blm*cyo++}xR2Ol7}`) {
+    firestore.collection('comments').get().then(querySnapshot => {
+      querySnapshot.docs.forEach(snapshot => {
+          snapshot.ref.delete();
+      })
+    })
+  }
+}
+
 class CommentManager {
    constructor(template, parent) {
       this.template = template;

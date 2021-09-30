@@ -5,5 +5,5 @@ window.addEventListener("hashchange", () => {
 })
 
 for (let i = 0; i < document.images.length; ++i) {
-    document.images[i].draggable = false;
+    document.images[i].draggable = false; 
 }
