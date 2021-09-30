@@ -179,7 +179,7 @@ document.getElementById("post_btn").addEventListener("click", () => {
 
 let posts;
 let loadedComments = false;
-let a;
+let mx_;
 
 window.addEventListener("load", () => {
     setTimeout(() => {
@@ -206,6 +206,7 @@ window.addEventListener("load", () => {
             });
             console.log(posts)
             for (let mx = 0; mx < posts.length; ++mx) {
+               mx_ = mx;
             }
             
             if (loadedComments) {
