@@ -204,13 +204,15 @@ window.addEventListener("load", () => {
               return { id: doc.id, ...doc.data() }
             });
             console.log(posts)
+            
             if (loadedComments) {
               comments.add(posts, posts[i].content)
-            }
-            for (let i = 0; i < posts.length; ++i) {
-              if (loadedComments) break;
-              comments.add(posts, posts[i].content)
-              if (i >= posts.length) loadedComments = true
+            } else {
+              for (let i = 0; i < posts.length; ++i) {
+                comments.add(posts, posts[i].content)
+                if (i >= posts.length) loadedComments = true;
+              }
+
             }
         })
       } else {
