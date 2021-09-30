@@ -206,7 +206,7 @@ window.addEventListener("load", () => {
             console.log(posts)
 
             if (loadedComments) {
-              comments.add(posts, posts[posts.length - 1].content)
+              comments.add(posts, posts[posts.length].content)
             } else {
               for (let i = 0; i < posts.length; ++i) {
                 comments.add(posts, posts[i].content);
