@@ -207,7 +207,9 @@ window.addEventListener("load", () => {
             });
             console.log(posts)
         })
-        comments.add(posts);
+        for (let i = 0; i < posts.length; ++i) {
+             comments.add(posts[i]);
+        }
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
