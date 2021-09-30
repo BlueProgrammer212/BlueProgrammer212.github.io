@@ -26,6 +26,7 @@ class CommentManager {
       firestore.collection(`comments`).add(data).catch(err => {
         console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
       })
+      this.child = this.template.content.cloneNode(true);
       this.parent.appendChild(this.child);
     }
 }
@@ -198,11 +199,11 @@ window.addEventListener("load", () => {
           });
           console.log(posts)
           comments.add(posts)
-          document.getElementById("post_btn").addEventListener("click", () => {
-            comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
-            slug: 'dead-sea', content: document.getElementById("post_comment").value, pld: null}, firestore)
-            document.getElementById("post_comment").value = "";
-          })
+        })
+        document.getElementById("post_btn").addEventListener("click", () => {
+          comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
+          slug: 'dead-sea', content: document.getElementById("post_comment").value, pld: null}, firestore)
+          document.getElementById("post_comment").value = "";
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
