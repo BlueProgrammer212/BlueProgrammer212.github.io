@@ -1,4 +1,5 @@
 var googleUser = {};
+let firestore;
 let template_elem = document.getElementById("template_comment"), 
     parent = document.getElementById("comment_section");
 
@@ -22,7 +23,7 @@ class CommentManager {
         this.parent.appendChild(this.child);  
       }
    }
-   post(data, firestore) {
+   post(data) {
       firestore.collection(`comments`).add(data).catch(err => {
         console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
       })
@@ -165,7 +166,6 @@ for (let i = 0; i < document.images.length; ++i) {
   }
 }
 
-let firestore;
 let slug = "dead-sea"
 
 console.log("%cWarning", "color:red;font-size:32px;");
