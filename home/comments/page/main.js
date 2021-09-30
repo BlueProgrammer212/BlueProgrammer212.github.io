@@ -18,11 +18,11 @@ class CommentManager {
        return string;
    }
    add(data) {
-      this.child = this.template.content.cloneNode(true);
-      for (i = 0; i < data.length; ++i) {
+      for (let i = 0; i < data.length; ++i) {
+        this.child = this.template.content.cloneNode(true);
         this.child.innerHTML = this.data[i].content;
+        this.parent.appendChild(this.child);  
       }
-      this.parent.appendChild(this.child);  
    }
    post(data) {
       firestore.collection(`comments`).add(data).catch(err => {
@@ -198,13 +198,14 @@ window.addEventListener("load", () => {
         firestore = firebase.firestore();
         firestore.collection(`comments`).onSnapshot(snapshot => {
           const posts = snapshot.docs
-          .filter(doc => doc.data().slug === slug)
+          .filter(doc => doc.data().slug === slug);
+          window.posts = posts;
           .map(doc => {
             return { id: doc.id, ...doc.data() }
           });
           console.log(posts)
-          comments.add(posts)
         })
+        comments.add(posts)
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
