@@ -202,11 +202,11 @@ window.addEventListener("load", () => {
           .map(doc => {
             return { id: doc.id, ...doc.data() }
           });
-          for (let i = 0; i < posts.length; ++i) {
-            comments.add(posts, posts[i].content)
-          }
           console.log(posts)
         })
+        for (let i = 0; i < posts.length; ++i) {
+          comments.add(posts, posts[i].content)
+        }
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
