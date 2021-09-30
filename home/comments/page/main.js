@@ -17,9 +17,33 @@ class CommentManager {
        }
        return string;
    }
-   add(data) {
-        this.child = this.template.content.cloneNode(true);
-        this.parent.appendChild(this.child);  
+   add() {
+      try {
+        for (let i = 0; i < arguments.length; ++i) {
+              if (arguments[i] === void 0) {
+                  throw new Error(`
+                      The provided data is not valid. errcode: 0x972533
+                `) 
+              } else if (arguments[i].content === void 0) {
+                throw new Error(`
+                      The content string is not specified. errcode: 0x972534
+                `);
+              } else if (arguments[i].slug !== "pixcel") {
+                throw new Error(`
+                      The specified id is not verified. errcode: 0x972535
+                `);
+              } else if (arguments.length >= 5) {
+                throw new Error(`
+                      The provided arguments passed the limit. errcode: 0x972536
+                `);
+              }
+              this.child = this.template.content.cloneNode(true);
+              this.parent.appendChild(this.child);  
+        }
+      } catch(err) {
+        console.error(err);
+        return;
+      }
    }
    post(data) {
       firestore.collection(`comments`).add(data).catch(err => {
@@ -163,16 +187,18 @@ for (let i = 0; i < document.images.length; ++i) {
   }
 }
 
-let slug = "dead-sea"
+let slug = "pixcel";
 
-console.log("%cWarning", "color:red;font-size:32px;");
-console.log("%cPlease do not execute a malicious code here! You might give hackers access to your account!", "color:white;font-size:16px;");
-console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
-console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
+(function() {
+    console.log("%cWarning", "color:red;font-size:32px;");
+    console.log("%cPlease do not execute a malicious code here! You might give hackers access to your account!", "color:white;font-size:16px;");
+    console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
+    console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
+}());
 
 document.getElementById("post_btn").addEventListener("click", () => {
   comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
-  slug: 'dead-sea', content: document.getElementById("post_comment").value, pld: null})
+  slug: 'pixcel', content: document.getElementById("post_comment").value, pld: null})
   document.getElementById("post_comment").value = "";
   window.location.reload();
 })
