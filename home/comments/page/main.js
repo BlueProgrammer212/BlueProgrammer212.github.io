@@ -199,13 +199,6 @@ for (let i = 0; i < document.images.length; ++i) {
 
 let slug = "pixcel";
 
-(function() {
-    console.log("%cWarning", "color:red;font-size:32px;");
-    console.log("%cPlease do not execute a malicious code here! You might give hackers access to your account!", "color:white;font-size:16px;");
-    console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
-    console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
-}());
-
 document.getElementById("post_btn").addEventListener("click", () => {
   comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
   slug: 'pixcel', content: document.getElementById("post_comment").value, pld: null})
@@ -215,6 +208,18 @@ document.getElementById("post_btn").addEventListener("click", () => {
 let posts;
 let loadedComments = false;
 let mx_;
+console.log("%c///////", "font-family:Pixel;font-size:20px;")
+
+console.log("%cPIXCEL", "font-family:Pixel;font-size:40px;")
+
+console.log("%c///////", "font-family:Pixel;font-size:20px;")
+
+console.log("%c////////////////////////////////////////////////////////////////", "font-family:Pixel;font-size:20px;")
+
+console.log("%cWanna be a developer? Apply at https://blueprogrammer.github.io/developers",
+             "font-family:Pixel;font-size:40px;")
+
+console.log("%c///////////////////////////////////////////////////////////////", "font-family:Pixel;font-size:20px;")
 
 window.addEventListener("load", () => {
     setTimeout(() => {
@@ -238,15 +243,20 @@ window.addEventListener("load", () => {
             posts = snapshot.docs
             .filter(doc => doc.data().slug === slug)
             .map(doc => {
-              console.log(doc.data().content)
               return { id: doc.id, ...doc.data() }
             });
             
-            console.log(posts)
+            console.log(`Loading comments 0%... ${posts}`)
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
+      (function() {
+        console.log("%cWarning", "color:red;font-size:32px;");
+        console.log("%cPlease do not execute a malicious code here! You might give hackers access to your account!", "color:white;font-size:16px;");
+        console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
+        console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
+       }());
     }, 2100);
     console.log(`Loading client content... ${document.images}`)
 })
