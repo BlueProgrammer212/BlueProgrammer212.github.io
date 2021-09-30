@@ -208,24 +208,6 @@ document.getElementById("post_btn").addEventListener("click", () => {
 let posts;
 let loadedComments = false;
 let mx_;
-console.log(`%cPPPPPPPPPPPPPPPPP   IIIIIIIIIIXXXXXXX        XXXXXXX       CCCCCCCCCCCCCEEEEEEELLLLLLLLLLLLL        
-P::::::::::::::::P  I::::::::IX:::::X       X:::::X     CCC::::::::::::CE::::::::::::::::::::EL:::::::::L             
-P::::::PPPPPP:::::P I::::::::IX:::::X       X:::::X   CC:::::::::::::::CE::::::::::::::::::::EL:::::::::L             
-PP:::::P     P:::::PII::::::IIX::::::X     X::::::X  C:::::CCCCCCCC::::CEE::::::EEEEEEEEE::::ELL:::::::LL             
-  P::::P     P:::::P  I::::I  XXX:::::X   X:::::XXX C:::::C       CCCCCC  E:::::E       EEEEEE  L:::::L               
-  P::::P     P:::::P  I::::I     X:::::X X:::::X  C:::::C                 E:::::E               L:::::L               
-  P::::PPPPPP:::::P   I::::I      X:::::X:::::X   C:::::C                 E::::::EEEEEEEEEE     L:::::L               
-  P:::::::::::::PP    I::::I       X:::::::::X    C:::::C                 E:::::::::::::::E     L:::::L               
-  P::::PPPPPPPPP      I::::I       X:::::::::X    C:::::C                 E:::::::::::::::E     L:::::L               
-  P::::P              I::::I      X:::::X:::::X   C:::::C                 E::::::EEEEEEEEEE     L:::::L               
-  P::::P              I::::I     X:::::X X:::::X  C: ::::C                E:::::E               L:::::L               
-  P::::P              I::::I  XXX:::::X   X:::::XXXC :::::C       CCCCCC  E:::::E       EEEEEE  L:::::L         LLLLLL
-PP::::::PP          II::::::IIX::::::X     X::::::X  C:::::CCCCCCCC::::CEE::::::EEEEEEEE:::::ELL:::::::LLLLLLLLL:::::L
-P::::::::P          I::::::::IX:::::X       X:::::X   CC:::::::::::::::CE::::::::::::::::::::EL::::::::::::::::::::::L
-P::::::::P          I::::::::IX:::::X       X:::::X     CCC::::::::::::CE::::::::::::::::::::EL::::::::::::::::::::::L
-PPPPPPPPPP          IIIIIIIIIIXXXXXXX       XXXXXXX        CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLLLLLLLLLLLLLLL`, `
-    font-size: 3px;font-weight: 9px
-`)
 
 window.addEventListener("load", () => {
     setTimeout(() => {
@@ -252,7 +234,7 @@ window.addEventListener("load", () => {
               return { id: doc.id, ...doc.data() }
             });
             
-            console.log(`Loading comments 0%... ${posts}`)
+            console.log(`Loading comments 0%... ${JSON.stringify(posts)}`)
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
