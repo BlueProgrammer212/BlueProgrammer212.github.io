@@ -188,9 +188,9 @@ window.addEventListener("load", () => {
         name = getCookie("pf_name"),
         id = getCookie("pf_id");
 
-        console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
-        console.log(`Loading username... NAME:${name}`)
-        console.log(`Loading UserID... ID:<${id}>`)
+        console.log(`Loading profile... ${JSON.stringify(new Profile(image_url, id, name))}`)
+        console.log(`Loading username... Name:${name}`)
+        console.log(`Loading UserID... Id:<${id}>`)
         console.log(`Loading profile picture ${image_url}...`) 
 
         pfp_img_elem.setAttribute("src", image_url);
@@ -198,21 +198,20 @@ window.addEventListener("load", () => {
 
         firebase.initializeApp(firebaseConfig);
         firestore = firebase.firestore();
+
         firestore.collection(`comments`).onSnapshot(snapshot => {
             posts = snapshot.docs
             .filter(doc => doc.data().slug === slug)
             .map(doc => {
-              console.log(doc.data())
+              console.log(doc.data().content)
               return { id: doc.id, ...doc.data() }
             });
+            
             console.log(posts)
         })
-        for (let i = 0; i < posts.length; ++i) {
-             comments.add(posts[i]);
-        }
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
-    }, 2000)
+    }, 2100);
     console.log(`Loading client content... ${document.images}`)
 })
