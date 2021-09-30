@@ -17,9 +17,8 @@ class CommentManager {
        }
        return string;
    }
-   add(data, content) {
+   add(data) {
         this.child = this.template.content.cloneNode(true);
-        this.child.children[0].children[3].innerHTML = content;
         this.parent.appendChild(this.child);  
    }
    post(data) {
@@ -175,6 +174,7 @@ document.getElementById("post_btn").addEventListener("click", () => {
   comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
   slug: 'dead-sea', content: document.getElementById("post_comment").value, pld: null})
   document.getElementById("post_comment").value = "";
+  window.location.reload();
 })
 
 let posts;
@@ -203,11 +203,11 @@ window.addEventListener("load", () => {
             .filter(doc => doc.data().slug === slug)
             .map(doc => {
               console.log(doc.data())
-              comments.add(null, doc.data().content)
               return { id: doc.id, ...doc.data() }
             });
             console.log(posts)
         })
+        comments.add(posts);
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
