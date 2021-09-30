@@ -178,6 +178,7 @@ document.getElementById("post_btn").addEventListener("click", () => {
 })
 
 let posts;
+let loadedComments = false;
 
 window.addEventListener("load", () => {
     setTimeout(() => {
@@ -203,10 +204,14 @@ window.addEventListener("load", () => {
               return { id: doc.id, ...doc.data() }
             });
             console.log(posts)
-        }).then(() => {
-          for (let i = 0; i < posts.length; ++i) {
-            comments.add(posts, posts[i].content)
-          }
+            if (loadedComments) {
+              comments.add(posts, posts[i].content)
+            }
+            for (let i = 0; i < posts.length; ++i) {
+              if (loadedComments) break;
+              comments.add(posts, posts[i].content)
+              if (i >= posts.length) loadedComments = true
+            }
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
