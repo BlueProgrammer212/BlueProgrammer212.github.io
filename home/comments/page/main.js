@@ -202,7 +202,9 @@ window.addEventListener("load", () => {
           .map(doc => {
             return { id: doc.id, ...doc.data() }
           });
-          comments.add(posts, "Hello")
+          for (let i = 0; i < posts.length; ++i) {
+            comments.add(posts, posts[i].content)
+          }
           console.log(posts)
         })
       } else {
