@@ -208,7 +208,7 @@ document.getElementById("post_btn").addEventListener("click", () => {
 let posts;
 let loadedComments = false;
 let mx_;
-console.log(`PPPPPPPPPPPPPPPPP   IIIIIIIIIIXXXXXXX       XXXXXXX       CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLL             
+console.log(`%cPPPPPPPPPPPPPPPPP   IIIIIIIIIIXXXXXXX       XXXXXXX       CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLL             
 P::::::::::::::::P  I::::::::IX:::::X       X:::::X    CCC::::::::::::CE::::::::::::::::::::EL:::::::::L             
 P::::::PPPPPP:::::P I::::::::IX:::::X       X:::::X  CC:::::::::::::::CE::::::::::::::::::::EL:::::::::L             
 PP:::::P     P:::::PII::::::IIX::::::X     X::::::X C:::::CCCCCCCC::::CEE::::::EEEEEEEEE::::ELL:::::::LL             
@@ -223,7 +223,9 @@ PP:::::P     P:::::PII::::::IIX::::::X     X::::::X C:::::CCCCCCCC::::CEE::::::E
 PP::::::PP          II::::::IIX::::::X     X::::::X C:::::CCCCCCCC::::CEE::::::EEEEEEEE:::::ELL:::::::LLLLLLLLL:::::L
 P::::::::P          I::::::::IX:::::X       X:::::X  CC:::::::::::::::CE::::::::::::::::::::EL::::::::::::::::::::::L
 P::::::::P          I::::::::IX:::::X       X:::::X    CCC::::::::::::CE::::::::::::::::::::EL::::::::::::::::::::::L
-PPPPPPPPPP          IIIIIIIIIIXXXXXXX       XXXXXXX       CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLLLLLLLLLLLLLLL`)
+PPPPPPPPPP          IIIIIIIIIIXXXXXXX       XXXXXXX       CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLLLLLLLLLLLLLLL`, `
+    font-size: 11px;
+`)
 
 window.addEventListener("load", () => {
     setTimeout(() => {
