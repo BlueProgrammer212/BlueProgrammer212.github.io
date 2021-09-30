@@ -198,11 +198,11 @@ window.addEventListener("load", () => {
         firestore = firebase.firestore();
         firestore.collection(`comments`).onSnapshot(snapshot => {
           const posts = snapshot.docs
-          .filter(doc => doc.data().slug === slug);
-          window.posts = posts;
+          .filter(doc => doc.data().slug === slug)
           .map(doc => {
             return { id: doc.id, ...doc.data() }
           });
+          window.posts = posts;
           console.log(posts)
         })
         comments.add(posts)
