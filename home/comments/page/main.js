@@ -195,7 +195,7 @@ window.addEventListener("load", () => {
           .map(doc => {
             return { id: doc.id, ...doc.data() }
           });
-          console.log(posts.length)
+          console.log(posts)
           comments.add(posts)
           document.getElementById("post_btn").addEventListener("click", () => {
             comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
