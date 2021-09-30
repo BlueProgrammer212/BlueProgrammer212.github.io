@@ -197,16 +197,17 @@ window.addEventListener("load", () => {
         firebase.initializeApp(firebaseConfig);
         firestore = firebase.firestore();
         firestore.collection(`comments`).onSnapshot(snapshot => {
-          posts = snapshot.docs
-          .filter(doc => doc.data().slug === slug)
-          .map(doc => {
-            return { id: doc.id, ...doc.data() }
-          });
-          console.log(posts)
+            posts = snapshot.docs
+            .filter(doc => doc.data().slug === slug)
+            .map(doc => {
+              return { id: doc.id, ...doc.data() }
+            });
+            console.log(posts)
+        }).then(() => {
+          for (let i = 0; i < posts.length; ++i) {
+            comments.add(posts, posts[i].content)
+          }
         })
-        for (let i = 0; i < posts.length; ++i) {
-          comments.add(posts, posts[i].content)
-        }
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
