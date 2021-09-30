@@ -202,8 +202,8 @@ window.addEventListener("load", () => {
             posts = snapshot.docs
             .filter(doc => doc.data().slug === slug)
             .map(doc => {
-              console.log(doc)
-              comments.add(null, doc.content)
+              console.log(doc.data())
+              comments.add(null, doc.data().content)
               return { id: doc.id, ...doc.data() }
             });
             console.log(posts)
