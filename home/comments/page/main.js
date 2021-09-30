@@ -19,7 +19,7 @@ class CommentManager {
    }
    add(data, content) {
         this.child = this.template.content.cloneNode(true);
-        this.child.innerHTML = content;
+        this.child.children[3].innerHTML = content;
         this.parent.appendChild(this.child);  
    }
    post(data) {
