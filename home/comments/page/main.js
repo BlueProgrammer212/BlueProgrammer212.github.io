@@ -19,6 +19,9 @@ class CommentManager {
    }
    add(data) {
       this.child = this.template.content.cloneNode(true);
+      for (i = 0; i < data.length; ++i) {
+        this.child.innerHTML = this.data[i].content;
+      }
       this.parent.appendChild(this.child);  
    }
    post(data) {
