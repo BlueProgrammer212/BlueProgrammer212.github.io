@@ -205,6 +205,12 @@ document.getElementById("post_btn").addEventListener("click", () => {
   document.getElementById("post_comment").value = "";
 })
 
+document.getElementById("post_comment").addEventListener("input", () => {
+   setTimeout(() => {
+      window.localStorage.setItem("prev_text", document.getElementById("post_comment"));
+   }, 500)
+});
+
 let posts;
 let loadedComments = false;
 let mx_;
@@ -246,5 +252,6 @@ window.addEventListener("load", () => {
         console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
        }());
     }, 2100);
+    document.getElementById("post_comment").value = window.localStorage.getItem("prev_text") 
     console.log(`Loading client content... ${document.images}`)
 })
