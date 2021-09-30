@@ -202,21 +202,10 @@ window.addEventListener("load", () => {
             posts = snapshot.docs
             .filter(doc => doc.data().slug === slug)
             .map(doc => {
+              comments.add(null, doc.content)
               return { id: doc.id, ...doc.data() }
             });
             console.log(posts)
-            for (let mx = 0; mx < posts.length; ++mx) {
-               mx_ = mx;
-            }
-            
-            if (loadedComments) {
-              comments.add(posts, posts[mx_].content)
-            } else {
-              for (let i = 0; i < posts.length; ++i) {
-                comments.add(posts, posts[i].content);
-              }
-              loadedComments = true;
-            }
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
