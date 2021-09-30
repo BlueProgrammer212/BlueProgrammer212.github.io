@@ -173,6 +173,12 @@ console.log("%cPlease do not execute a malicious code here! You might give hacke
 console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
 console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
 
+document.getElementById("post_btn").addEventListener("click", () => {
+  comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
+  slug: 'dead-sea', content: document.getElementById("post_comment").value, pld: null})
+  document.getElementById("post_comment").value = "";
+})
+
 window.addEventListener("load", () => {
     setTimeout(() => {
       if (auth2.isSignedIn.get()) {
@@ -198,11 +204,6 @@ window.addEventListener("load", () => {
           });
           console.log(posts)
           comments.add(posts)
-        })
-        document.getElementById("post_btn").addEventListener("click", () => {
-          comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
-          slug: 'dead-sea', content: document.getElementById("post_comment").value, pld: null}, firestore)
-          document.getElementById("post_comment").value = "";
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
