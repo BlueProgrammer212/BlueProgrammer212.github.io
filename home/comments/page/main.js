@@ -210,7 +210,7 @@ window.addEventListener("load", () => {
             }
             
             if (loadedComments) {
-              comments.add(posts, posts[mx].content)
+              comments.add(posts, posts[mx_].content)
             } else {
               for (let i = 0; i < posts.length; ++i) {
                 comments.add(posts, posts[i].content);
