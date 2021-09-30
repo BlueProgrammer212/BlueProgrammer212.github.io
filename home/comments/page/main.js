@@ -224,7 +224,7 @@ PP::::::PP          II::::::IIX::::::X     X::::::X C:::::CCCCCCCC::::CEE::::::E
 P::::::::P          I::::::::IX:::::X       X:::::X  CC:::::::::::::::CE::::::::::::::::::::EL::::::::::::::::::::::L
 P::::::::P          I::::::::IX:::::X       X:::::X    CCC::::::::::::CE::::::::::::::::::::EL::::::::::::::::::::::L
 PPPPPPPPPP          IIIIIIIIIIXXXXXXX       XXXXXXX       CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLLLLLLLLLLLLLLL`, `
-    font-size: 11px;
+    font-size: 5px;
 `)
 
 window.addEventListener("load", () => {
