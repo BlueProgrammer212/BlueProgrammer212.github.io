@@ -207,7 +207,7 @@ document.getElementById("post_btn").addEventListener("click", () => {
 
 document.getElementById("post_comment").addEventListener("input", () => {
    setTimeout(() => {
-      window.localStorage.setItem("prev_text", document.getElementById("post_comment"));
+      window.localStorage.setItem("prev_text", document.getElementById("post_comment").value);
    }, 500)
 });
 
