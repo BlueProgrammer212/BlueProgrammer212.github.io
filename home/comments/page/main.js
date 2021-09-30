@@ -200,7 +200,6 @@ document.getElementById("post_btn").addEventListener("click", () => {
   comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
   slug: 'pixcel', content: document.getElementById("post_comment").value, pld: null})
   document.getElementById("post_comment").value = "";
-  window.location.reload();
 })
 
 let posts;
