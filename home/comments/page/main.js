@@ -18,10 +18,8 @@ class CommentManager {
        return string;
    }
    add(data) {
-      for (let i = 0; i < data.length; ++i) {
-        this.child = this.template.content.cloneNode(true);
-        this.parent.appendChild(this.child);  
-      }
+      this.child = this.template.content.cloneNode(true);
+      this.parent.appendChild(this.child);  
    }
    post(data) {
       firestore.collection(`comments`).add(data).catch(err => {
