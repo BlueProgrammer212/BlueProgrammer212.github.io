@@ -17,12 +17,10 @@ class CommentManager {
        }
        return string;
    }
-   add(data) {
-      for (let i = 0; i < data.length; ++i) {
+   add(data, content) {
         this.child = this.template.content.cloneNode(true);
-        this.child.innerHTML = this.data[i].content;
+        this.child.innerHTML = content;
         this.parent.appendChild(this.child);  
-      }
    }
    post(data) {
       firestore.collection(`comments`).add(data).catch(err => {
@@ -204,9 +202,9 @@ window.addEventListener("load", () => {
           .map(doc => {
             return { id: doc.id, ...doc.data() }
           });
+          comments.add(posts, "Hello")
           console.log(posts)
         })
-        comments.add(posts)
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
