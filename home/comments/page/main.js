@@ -19,7 +19,7 @@ class CommentManager {
       this.parent = parent;
       this.child = this.template.content.cloneNode(true);
    }
-   
+
    generateKey(len=40) {
        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
        let string;
@@ -29,14 +29,12 @@ class CommentManager {
        return string;
    }
 
-   add() {
-    for (let i = 0; i < arguments.length; ++i) {
-        for (let j = 0; j < arguments[i].length; ++j) {
-            this.child = this.template.content.cloneNode(true);
-            document.getElementById("profile_picture_32x32").src = arguments[i][j].pfp_link;
-            this.parent.appendChild(this.child);  
-        }
-     }
+   add(comm) {
+      for (let j = 0; j < comm.length; ++j) {
+          this.child = this.template.content.cloneNode(true);
+          document.getElementById("profile_picture_32x32").src = comm[j].pfp_link;
+          this.parent.appendChild(this.child);  
+      }
    }
    
    post(data) {
