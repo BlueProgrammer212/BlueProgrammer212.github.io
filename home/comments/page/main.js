@@ -19,6 +19,7 @@ class CommentManager {
       this.parent = parent;
       this.child = this.template.content.cloneNode(true);
    }
+   
    generateKey(len=40) {
        let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
        let string;
@@ -27,29 +28,17 @@ class CommentManager {
        }
        return string;
    }
+
    add() {
-      try {
-        for (let i = 0; i < arguments.length; ++i) {
-              if (arguments[i] === void 0) {
-                  throw new Error(`The provided data is not valid. errcode: 0x972533`) 
-              } else if (arguments[i].content === void 0) {
-                throw new Error(`The content string is not specified. errcode: 0x972534`);
-              } else if (arguments[i].slug !== "pixcel") {
-                throw new Error(`The specified id is not verified. errcode: 0x972535`);
-              } else if (arguments.length >= 5) {
-                throw new Error(`The provided arguments passed the limit. errcode: 0x972536`);
-              }
-              for (let j = 0; j < arguments[i].length; ++j) {
-                 this.child = this.template.content.cloneNode(true);
-                 document.getElementById("profile_picture_32x32").src = arguments[i][j].pfp_link;
-                 this.parent.appendChild(this.child);  
-              }
+    for (let i = 0; i < arguments.length; ++i) {
+        for (let j = 0; j < arguments[i].length; ++j) {
+            this.child = this.template.content.cloneNode(true);
+            document.getElementById("profile_picture_32x32").src = arguments[i][j].pfp_link;
+            this.parent.appendChild(this.child);  
         }
-      } catch(err) {
-        console.error(err);
-        return;
-      }
+     }
    }
+   
    post(data) {
       firestore.collection(`comments`).add(data).catch(err => {
         console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
