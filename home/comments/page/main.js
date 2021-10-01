@@ -214,14 +214,10 @@ document.getElementById("post_comment").addEventListener("input", () => {
 let posts;
 let loadedComments = false;
 let mx_;
-
-const menu = document.getElementById('menu-options');
-const options = document.getElementById("ctx_btn_menu");
-
-options.addEventListener('mousedown', ({ offsetX, offsetY }) => {
-    menu.style.top = offsetY + 'px';
-    menu.style.left = offsetX + 'px';
-});
+const menu = document.getElementById('ctxBtnId');
+menu.addEventListener("click", ({offsetX, offsetY}) => {
+   
+})
 
 window.addEventListener("load", () => {
     setTimeout(() => {

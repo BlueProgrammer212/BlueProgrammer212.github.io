@@ -48,32 +48,9 @@
               <div role="button" class="btnclnctxmenu" id="ctx_btn_menu" onclick="console.log('Loading context menu content...')" oncontextmenu="return false;">
                 <img src="./assets/default_pfp_16x16.png" width="32" height="32" 
                 draggable="false" class="pfp_img" id="pfp_img_id" alt="PROFILE_PIC_16x16" />
-                <nav class="menu" id="menu-options">
-                  <ul id="contextMenu">
-                    <li class="optionContextMenu">
-                      <a href="https://blueprogrammer212.github.io/profile#nickname?verified=yes">
-                          <button class="optionContextMenuButton" onclick="console.log(`Redirecting to
-                          https://blueprogrammer212.github.io/profile#nickname?verified=yes`)">
-                              Edit nickname
-                          </button>
-                       </a>
-                    </li>
-                    <li class="optionContextMenu">
-                      <a href="https://blueprogrammer212.github.io/profile#general?verified=yes">
-                        <button class="optionContextMenuButton">
-                          Edit Profile
-                        </button>
-                      </a>
-                    </li>
-                    <li class="optionContextMenu">
-                      <a href="javascript:signOut();"> 
-                        <button class="optionContextMenuButton"><span class="red">
-                          Log out
-                        </span></button>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+                <figure><nav class="menu" id="ctxBtnId"><ul><li>
+                  <button class="sign_out">Sign out</button>
+                </li></ul></nav></figure>
               </div>
               <a href="javascript:openTab('https://blueprogrammer212.github.io/home')">Home</a>
             </nav>
