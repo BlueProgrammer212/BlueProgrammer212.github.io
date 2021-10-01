@@ -256,6 +256,14 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   clear: both;
   font-family: Pixel;
 }
+.menu {
+  visibility: hidden;
+}
+
+#contextMenu > li > a > button + .menu:active,
+button:focus + .menu {
+  visibility: visible;
+}
 
 .fontSmall {
   font-size: 15px;
