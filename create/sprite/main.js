@@ -128,3 +128,12 @@ canvas.addEventListener("pointerout", () => {
   canvas.removeEventListener("mousemove", eventHandler)
   canvas.removeEventListener("pointermove", eventHandler)
 })
+
+canvas.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  let d = pointerPosition(e.changedTouches[0], canvas);
+  drawPixel(canvas.getContext("2d"), d.x, d.y)
+  if (document.getElementById("coords").innerHTML !==`x: ${d.x}, y: ${d.y}`)
+      document.getElementById("coords").innerHTML = `x: ${d.x}, y: ${d.y}`
+})
