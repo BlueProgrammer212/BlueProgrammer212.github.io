@@ -71,10 +71,17 @@ document.getElementById("addButton").addEventListener("click", () => {
 });
 
 let scale = new Vector2(20, 20);
+let canvas_scale = new Vector2(0.5, 0.5);
 
 let enableGrid = true;
 
 const canvas = document.getElementById("main_canvas");
+canvas.offScreenCanvas = document.createElement('canvas');
+canvas.offScreenCanvas.width = canvas.width;
+canvas.offScreenCanvas.height = canvas.height;
+canvas.getContext("2d").scale(canvas_scale.x, canvas_scale.y)
+
+canvas.getContext('2d').drawImage(canvas.offScreenCanvas, 0, 0);
 
 let rows = canvas.height / scale.y;
 let columns = canvas.width / scale.x;
@@ -104,8 +111,8 @@ function drawPixel(cx, x, y) {
 
 function pointerPosition(pos, domNode) {
   let rect = domNode.getBoundingClientRect();
-  return {x: Math.floor((pos.clientX - rect.left) / scale.x),
-          y: Math.floor((pos.clientY - rect.top) / scale.y)};
+  return {x: Math.floor((pos.clientX - rect.left) / scale.x / canvas_scale.x),
+          y: Math.floor((pos.clientY - rect.top) / scale.y / canvas_scale.x)};
 }
 
 function eventHandler(e) {
@@ -130,7 +137,7 @@ canvas.addEventListener("pointerout", () => {
 })
 
 canvas.addEventListener("touchmove", (e) => {
-  e.preventDefault();
+  if (e.cancelable) e.preventDefault()
   e.stopPropagation();
   let d = pointerPosition(e.changedTouches[0], canvas);
   drawPixel(canvas.getContext("2d"), d.x, d.y)
