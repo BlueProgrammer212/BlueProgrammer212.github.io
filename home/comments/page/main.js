@@ -215,10 +215,10 @@ let posts;
 let loadedComments = false;
 let mx_;
 
-const menu = document.querySelector('.menu');
-const options = document.querySelector('.btnclnctxmenu');
+const menu = document.getElementById('menu-options');
+const options = document.getElementById("ctx_btn_menu");
 
-options[0].addEventListener('mousedown', ({ offsetX, offsetY }) => {
+options.addEventListener('mousedown', ({ offsetX, offsetY }) => {
     menu.style.top = offsetY + 'px';
     menu.style.left = offsetX + 'px';
 });
