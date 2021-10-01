@@ -39,8 +39,11 @@ class CommentManager {
               } else if (arguments.length >= 5) {
                 throw new Error(`The provided arguments passed the limit. errcode: 0x972536`);
               }
-              this.child = this.template.content.cloneNode(true);
-              this.parent.appendChild(this.child);  
+              for (let j = 0; j < arguments[i].length; ++j) {
+                 this.child = this.template.content.cloneNode(true);
+                 document.getElementById("profile_picture_32x32").src = arguments[i][j].pfp_link;
+                 this.parent.appendChild(this.child);  
+              }
         }
       } catch(err) {
         console.error(err);
