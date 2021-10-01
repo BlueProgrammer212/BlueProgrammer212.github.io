@@ -218,7 +218,7 @@ let mx_;
 const menu = document.querySelector('.menu');
 const options = document.querySelector('.btnclnctxmenu');
 
-options.addEventListener('mousedown', ({ offsetX, offsetY }) => {
+options[0].addEventListener('mousedown', ({ offsetX, offsetY }) => {
     menu.style.top = offsetY + 'px';
     menu.style.left = offsetX + 'px';
 });
