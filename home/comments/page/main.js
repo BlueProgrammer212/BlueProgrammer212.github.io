@@ -39,7 +39,7 @@ class CommentManager {
    async add(comm = []) {
       let img = document.getElementsByClassName("profile_picture_32x32");
       for (let j = 0; j < comm.length; ++j) {
-          await timeout(1000, () => {
+          await timeout(100, () => {
               this.child = this.template.content.cloneNode(true);
               this.parent.appendChild(this.child);  
           }).then((cb) => {
