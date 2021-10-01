@@ -201,7 +201,8 @@ let slug = "pixcel";
 
 document.getElementById("post_btn").addEventListener("click", () => {
   comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
-  slug: 'pixcel', content: document.getElementById("post_comment").value, pld: null})
+  slug: 'pixcel', content: document.getElementById("post_comment").value, pld: null, 
+  pfp_link: getCookie("pfp_url")});
   document.getElementById("post_comment").value = "";
 })
 
@@ -238,9 +239,9 @@ window.addEventListener("load", () => {
             .filter(doc => doc.data().slug === slug)
             .map(doc => {
               return { id: doc.id, ...doc.data() }
-            });
-            
+            });          
             console.log(`Loading comments 0%... ${JSON.stringify(posts)}`)
+            comments.add(posts)  
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
