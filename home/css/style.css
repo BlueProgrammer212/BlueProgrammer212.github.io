@@ -166,7 +166,7 @@ body {
 }
 
 #main_content {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/Background.png?alt=media&token=b315fe5c-313c-449b-966b-38fa1b356160");
+  background-image: url("../assets/Background.png");
 }
 
 .column {
