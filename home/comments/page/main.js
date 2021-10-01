@@ -31,21 +31,13 @@ class CommentManager {
       try {
         for (let i = 0; i < arguments.length; ++i) {
               if (arguments[i] === void 0) {
-                  throw new Error(`
-                      The provided data is not valid. errcode: 0x972533
-                `) 
+                  throw new Error(`The provided data is not valid. errcode: 0x972533`) 
               } else if (arguments[i].content === void 0) {
-                throw new Error(`
-                      The content string is not specified. errcode: 0x972534
-                `);
+                throw new Error(`The content string is not specified. errcode: 0x972534`);
               } else if (arguments[i].slug !== "pixcel") {
-                throw new Error(`
-                      The specified id is not verified. errcode: 0x972535
-                `);
+                throw new Error(`The specified id is not verified. errcode: 0x972535`);
               } else if (arguments.length >= 5) {
-                throw new Error(`
-                      The provided arguments passed the limit. errcode: 0x972536
-                `);
+                throw new Error(`The provided arguments passed the limit. errcode: 0x972536`);
               }
               this.child = this.template.content.cloneNode(true);
               this.parent.appendChild(this.child);  
@@ -241,8 +233,8 @@ window.addEventListener("load", () => {
               return { id: doc.id, ...doc.data() }
             });          
             console.log(`Loading comments 0%... ${JSON.stringify(posts)}`)
-            comments.add(posts)  
         })
+        comments.add(posts)  
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
