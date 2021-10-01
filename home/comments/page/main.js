@@ -29,10 +29,11 @@ class CommentManager {
        return string;
    }
 
-   add(comm) {
+   add(comm = []) {
+      let img = document.getElementsByClassName("profile_picture_32x32");
       for (let j = 0; j < comm.length; ++j) {
           this.child = this.template.content.cloneNode(true);
-          document.getElementById("profile_picture_32x32").src = comm[j].pfp_link;
+          img[j].setAttribute("src", comm[j].pfp_link);
           this.parent.appendChild(this.child);  
       }
    }
@@ -223,8 +224,8 @@ window.addEventListener("load", () => {
               return { id: doc.id, ...doc.data() }
             });          
             console.log(`Loading comments 0%... ${JSON.stringify(posts)}`)
+            comments.add(posts)  
         })
-        comments.add(posts)  
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
       }
