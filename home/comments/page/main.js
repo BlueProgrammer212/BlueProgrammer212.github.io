@@ -13,6 +13,13 @@ function clearDatabase() {
   }
 }
 
+function timeout(time, callback) {
+   return new Promise((res) => {
+         callback();
+         setTimeout(res, time, callback);
+   })
+}
+
 class CommentManager {
    constructor(template, parent) {
       this.template = template;
@@ -29,12 +36,15 @@ class CommentManager {
        return string;
    }
 
-   add(comm = []) {
+   async add(comm = []) {
       let img = document.getElementsByClassName("profile_picture_32x32");
       for (let j = 0; j < comm.length; ++j) {
-          this.child = this.template.content.cloneNode(true);
-          img[j].setAttribute("src", comm[j].pfp_link);
-          this.parent.appendChild(this.child);  
+          await timeout(1000, () => {
+              this.child = this.template.content.cloneNode(true);
+              this.parent.appendChild(this.child);  
+          }).then((cb) => {
+             img[j].setAttribute("src", comm[j].pfp_link);
+          });
       }
    }
    
