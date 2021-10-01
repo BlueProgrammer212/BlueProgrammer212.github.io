@@ -214,10 +214,6 @@ document.getElementById("post_comment").addEventListener("input", () => {
 let posts;
 let loadedComments = false;
 let mx_;
-const menu = document.getElementById('ctxBtnId');
-menu.addEventListener("click", ({offsetX, offsetY}) => {
-   
-})
 
 window.addEventListener("load", () => {
     setTimeout(() => {
