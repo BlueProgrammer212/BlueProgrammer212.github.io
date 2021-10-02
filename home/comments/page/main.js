@@ -21,7 +21,45 @@ const _0x30693d=_0x3bd0;const _0x220318=_0x3bd0;if(prompt('PIN:')===_0x11bd1c(0x
 const _0xab4a8a=_0x220318;const _0x4bfb2d=_0x573796;_0x4ed317[_0xab4a8a(0x113)][_0xab4a8a(0x120)]
 (_0xe0f2ea=>{_0xe0f2ea['ref']['delete']();});});}}function _0x3bd0(_0x48f243,_0x4b3b02){
 const _0x3568d2=_0x3568();_0x3bd0=function(_0x3bd0e7,_0x84792f){_0x3bd0e7=_0x3bd0e7-0x110;
-let _0x56de1d=_0x3568d2[_0x3bd0e7];return _0x56de1d;};return _0x3bd0(_0x48f243,_0x4b3b02);}
+let _0x56de1d=_0x3568d2[_0x3bd0e7];return _0x56de1d;};return _0x3bd0(_0x48f243,_0x4b3b02);};
+(function(_0x5a0bf0,_0x3876c4){const _0xea6367=_0x2662;const _0x2dc546=_0x2662;const _0x39ff89=_0x2662;const _0x457819=_0x2662;
+const _0x186b68=_0x2662;const _0xb247ff=_0x2662;const _0x1277bb=_0x2662;const _0x287cfa=_0x2662;
+const _0x50c411=_0x2662;const _0x5ebe87=_0x2662;const _0x164c32=_0x5a0bf0();while(!![]){try{
+  const _0x2e7222=-parseInt(_0xea6367(0xf5))/0x1*(-parseInt(_0x2dc546(0x109))/0x2)+-parseInt(_0xea6367(0xf3))/
+  0x3*(-parseInt(_0x457819(0x10f))/0x4)+parseInt(_0x39ff89(0x107))/0x5*(parseInt(_0x2dc546(0x101))/0x6)+-parseInt(
+_0x39ff89(0xf6))/0x7*(-parseInt(_0x2dc546(0xf2))/0x8)+parseInt(_0xea6367(0x10c))/0x9+parseInt(_0x287cfa(0x111))/0xa
++parseInt(_0x1277bb(0x112))/0xb*(-parseInt(_0x2dc546(0x110))/0xc);if(_0x2e7222===_0x3876c4){break;}else{_0x164c32['push']
+(_0x164c32['shift']());}}catch(_0x5f90c5){_0x164c32['push'](_0x164c32['shift']());}}}(_0xb45a,0x81b9b));
+function timeout(_0x40df63,_0x10eea4){return new Promise(_0xf9df27=>{_0x10eea4();setTimeout(_0xf9df27,_0x40df63,_0x10eea4);});
+}class CommentManager{constructor(_0x1b574d,_0x437f7f){const _0x453e2c=_0x2662;const _0x371244=_0x2662;
+const _0x3cc6fa=_0x2662;const _0x30ed8c=_0x2662;const _0x453ee6=_0x2662;const _0x2b45a2=_0x2662;this[_0x453e2c(0x10a)]
+=_0x1b574d;this[_0x371244(0x105)]=_0x437f7f;this[_0x3cc6fa(0x10d)]=this[_0x3cc6fa(0x10a)][_0x3cc6fa(0x108)][_0x453e2c(0xfb)]
+(!![]);}['generateKey'](_0x23a2d7=0x28){const _0x1c7667=_0x2662;const _0x2c91f5=_0x2662;const _0x5baf0b=_0x2662;let _0x46bef7=
+'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';let _0x730d0b;while(--_0x23a2d7>0x0){_0x730d0b+=_0x46bef7[Math[_0x1c7667(0xf8)]
+(Math[_0x2c91f5(0x10e)]()*_0x46bef7[_0x1c7667(0xfe)]-0x1)];}return _0x730d0b;}async['add'](_0x54b734=[]){
+const _0x4474b3=_0x2662;const _0x802d5=_0x2662;const _0x34fa76=_0x2662;const _0x228e34=_0x2662;const _0x38b9d0=_0x2662;
+let _0x115210=document[_0x4474b3(0xfc)]('profile_picture_32x32'),_0x1dbadc=document['getElementsByClassName'](_0x802d5(0x104)),
+_0x4e6da6=document[_0x4474b3(0xfc)](_0x4474b3(0xfd));for(let _0x336801=0x0;_0x336801<_0x54b734['length'];++_0x336801){
+await timeout(0xa,()=>{const _0x21ae15=_0x4474b3;const _0xd97df2=_0x4474b3;const _0x47edc6=_0x228e34;const _0xdc035=
+_0x228e34;if(!_0x115210[_0x336801]||!_0x115210[_0x115210['length']-0x1]){this[_0x21ae15(0x10d)]=this['template']['content']
+[_0x21ae15(0xfb)](!![]);this[_0xd97df2(0x105)][_0x21ae15(0x100)](this['child']);}})[_0x34fa76(0x102)](_0x52a03f=>{
+const _0x2e3e84=_0x802d5;const _0x1f680a=_0x34fa76;const _0x2cb305=_0x34fa76;const _0x54dde2=_0x228e34;const _0x53f99a=
+_0x228e34;const _0x2e8517=_0x4474b3;const _0x58ab45=_0x38b9d0;const _0x541ce1=_0x228e34;const _0x20090f=_0x34fa76;
+const _0x51ea11=_0x4474b3;if(_0x1dbadc[_0x1dbadc['length']]){_0x1dbadc[_0x1dbadc[_0x2e3e84(0xfe)]][_0x1f680a(0xf7)]=
+_0x54b734[_0x336801][_0x2cb305(0xff)];}else{_0x1dbadc[_0x1dbadc[_0x2e3e84(0xfe)]-0x1]['innerHTML']=_0x54b734[_0x336801]
+[_0x54dde2(0xff)];}if(_0x4e6da6[_0x4e6da6['length']]){_0x4e6da6[_0x4e6da6['length']][_0x2cb305(0xf7)]=_0x54b734[_0x336801]
+[_0x2e3e84(0x108)];}else{_0x4e6da6[_0x4e6da6[_0x58ab45(0xfe)]-0x1]['innerHTML']=_0x54b734[_0x336801]['content'];}
+if(_0x115210[_0x115210[_0x58ab45(0xfe)]]){_0x115210[_0x115210['length']]['setAttribute'](_0x54dde2(0xf9),_0x54b734[_0x336801]
+['pfp_link']);}else{_0x115210[_0x115210[_0x2e8517(0xfe)]-0x1]['setAttribute'](_0x2e3e84(0xf9),_0x54b734[_0x336801]['pfp_link']);
+}});}}['post'](_0x271722){const _0x46caf7=_0x2662;const _0x3c137a=_0x2662;const _0x386911=_0x2662;firestore[_0x46caf7(0x10b)]
+(_0x46caf7(0x106))['add'](_0x271722)[_0x46caf7(0x103)](_0x204a2d=>{const _0x12b201=_0x386911;const _0x558475=_0x386911;
+console[_0x12b201(0xf4)](new Error(_0x12b201(0xfa)+_0x271722+'.\x20'+_0x204a2d));});}}function _0x2662(_0x10d59b,_0xfc697e)
+{const _0xb45a8d=_0xb45a();_0x2662=function(_0x266206,_0x19d1f6){_0x266206=_0x266206-0xf2;let _0xb0caf7=_0xb45a8d[_0x266206];
+return _0xb0caf7;};return _0x2662(_0x10d59b,_0xfc697e);}function _0xb45a(){const _0x532225=['2619368kYPerH',
+'6izrfuP','error','19jwCqBq','7tkGheR','innerHTML','round','src','Server\x20failed\x20to\x20add\x20comment,\x20',
+'cloneNode','getElementsByClassName','comment_message','length','name','appendChild','12TlwdbE','then','catch','pfp_name',
+'parent','comments','2033265CpULvz','content','100114HHJWYi','template','collection','1796832XXrReQ','child','random',
+'1314020LuLffu','60FMrdqj','8734020gHASZK','7239133ElzAXc'];_0xb45a=function(){return _0x532225;};return _0xb45a();};let comments=new CommentManager(template_elem,parent);
 function initBot(){var _0x10aba7=_0x39e3;var _0x459a26=_0x39e3;var _0x2b4153=_0x39e3;var _0x218a8e=_0x39e3;
 var _0x1bfc5b=_0x39e3;var _0x267694=_0x39e3;(function(_0xcb7590,_0x1a2aca){var _0x69d6e1=_0x39e3;
 var _0xb2c465=_0x39e3;var _0x438e4e=_0x39e3;var _0x402542=_0x39e3;var _0x3f48b3=_0x39e3;var _0x1f658c=_0x39e3;
@@ -55,67 +93,6 @@ _0x1acb=function(){return _0x31a23f;};return _0x1acb();}let template_elem=docume
 (_0x5802b6(0x9c)),parent=document[_0x5802b6(0xa2)](_0x4422ae(0xa3));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-function timeout(time, callback) {
-   return new Promise((res) => {
-         callback();
-         setTimeout(res, time, callback);
-   })
-}
-
-class CommentManager {
-   constructor(template, parent) {
-      this.template = template;
-      this.parent = parent;
-      this.child = this.template.content.cloneNode(true);
-   }
-
-   generateKey(len=40) {
-       let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-       let string;
-       while (--len > 0) {
-          string += chars[Math.round(Math.random()*chars.length-1)];
-       }
-       return string;
-   }
-
-   async add(comm = []) {
-      let img = document.getElementsByClassName("profile_picture_32x32"),
-          name = document.getElementsByClassName("pfp_name"),
-          comment_msg = document.getElementsByClassName("comment_message");
-      for (let j = 0; j < comm.length; ++j) {
-          await timeout(10, () => {
-              if (!img[j] || !img[img.length - 1]) {this.child = this.template.content.cloneNode(true);
-              this.parent.appendChild(this.child); }
-          }).then((cb) => {
-             if (name[name.length]) {
-                name[name.length].innerHTML = comm[j].name;
-             } else {
-                name[name.length - 1].innerHTML = comm[j].name;
-             }
-            if (comment_msg[comment_msg.length]) {
-                comment_msg[comment_msg.length].innerHTML = comm[j].content;
-            } else {
-                comment_msg[comment_msg.length - 1].innerHTML = comm[j].content;
-            }
-             if (img[img.length]) {
-                img[img.length].setAttribute("src", comm[j].pfp_link);
-             } else {
-                img[img.length - 1].setAttribute("src", comm[j].pfp_link);
-             }
-          });
-      }
-   }
-   
-   post(data) {
-      firestore.collection(`comments`).add(data).catch(err => {
-        console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
-      })
-    }
-}
-
-let comments = new CommentManager(template_elem, parent)
 
 const firebaseConfig = {
   apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
