@@ -263,8 +263,12 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
 
 .pfp_name {
   position: absolute;
+  transform: translateX(28px) translateY(-48px);
   color: black;
   font-size: 12px;
+}
+.eop {
+  padding: 10px;
 }
 .commentBox {
   padding: 20px;
