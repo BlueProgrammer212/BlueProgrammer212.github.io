@@ -269,6 +269,7 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
 }
 .commentBox {
   padding: 20px;
+  padding-bottom: 25px;
   margin-bottom: 30px;
   border: 3.5px solid black;
   background-color: white;
