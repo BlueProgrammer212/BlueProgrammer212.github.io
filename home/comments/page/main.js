@@ -66,7 +66,7 @@ class CommentManager {
           comment_msg = document.getElementsByClassName("comment_message");
       for (let j = 0; j < comm.length; ++j) {
           await timeout(10, () => {
-              if (!img[j]) {this.child = this.template.content.cloneNode(true);
+              if (!img[j] || !img[img.length - 1]) {this.child = this.template.content.cloneNode(true);
               this.parent.appendChild(this.child); }
           }).then((cb) => {
              if (name[name.length]) {
