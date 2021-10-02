@@ -22,7 +22,7 @@
     </head>
     <body style="display: none;">
       <template id="template_comment">
-          <div class="commentBox align-left">
+          <div class="commentBox">
              <img class="pfp_img_elem profile_picture_32x32" src="./assets/default_pfp_16x16.png" width="32" height="32" />
              <h6 class="align-left name pfp_name"></h6>
              <p class="timeStamp" id="time_sent"></p>
@@ -49,7 +49,7 @@
                 <img src="https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/default_pfp_16x16.png?alt=media&token=3f9e0294-d318-4afb-b6ea-1c161670d597" width="32" height="32" 
                 draggable="false" class="pfp_img" id="pfp_img_id" alt="PROFILE_PIC_16x16" />
               </div>
-              <a href="javascript:openTab('https://blueprogrammer212.github.io/home')">Home</a>
+              <a href="https://blueprogrammer212.github.io/home">Home</a>
               <a href="javascript:signOut()">Log Out</a>
             </nav>
             <nav id="offline" class="topnav" role="navigation" style="display: none; background-color: yellow;">
@@ -63,10 +63,10 @@
           </h1>
         </div>
           <div id="main_content">
-          <div class="titles" id="comment_section">
-            <h2 draggable="false" class="fontMedium align-left">Comments & Suggestions</h2>
-            <textarea type="search" id="post_comment" class="align-left" placeholder="Add a comment..."></textarea>
-            <button id="post_btn" class="align-left">Post</button>
+          <div class="titles" id="comment_section align-left">
+            <h2 draggable="false" class="fontMedium">Comments & Suggestions</h2>
+            <textarea type="search" id="post_comment" placeholder="Add a comment..."></textarea>
+            <button id="post_btn">Post</button>
           </div>
           <div class="eop"></div>
         </div>
