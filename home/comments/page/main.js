@@ -38,11 +38,15 @@ class CommentManager {
 
    async add(comm = []) {
       let img = document.getElementsByClassName("profile_picture_32x32");
+      let name = document.getElementsByClassName("pfp_name");
       for (let j = 0; j < comm.length; ++j) {
           await timeout(10, () => {
               this.child = this.template.content.cloneNode(true);
               this.parent.appendChild(this.child);  
           }).then((cb) => {
+             if (name[name.length]) {
+                name[name.length].innerHTML = comm[j].name;
+             }
              if (img[img.length]) {
                 img[img.length].setAttribute("src", comm[j].pfp_link);
              } else {
@@ -199,7 +203,7 @@ let slug = "pixcel";
 document.getElementById("post_btn").addEventListener("click", () => {
   comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
   slug: 'pixcel', content: document.getElementById("post_comment").value, pld: null, 
-  pfp_link: getCookie("pfp_url")});
+  pfp_link: getCookie("pfp_url"), name: getCookie("pf_name")});
   document.getElementById("post_comment").value = "";
 })
 
