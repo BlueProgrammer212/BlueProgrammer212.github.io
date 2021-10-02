@@ -286,6 +286,7 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   color: black;
   font-size: 12px;
   transform: translateX(28px) translateY(-32px);
+  max-width: 45%;
 }
 
 #FAQ {
