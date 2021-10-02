@@ -47,7 +47,7 @@ class CommentManager {
              if (name[name.length]) {
                 name[name.length].innerHTML = comm[j].name;
              } else {
-                name[name.length].innerHTML = comm[j].name;
+                name[name.length - 1].innerHTML = comm[j].name;
              }
              if (img[img.length]) {
                 img[img.length].setAttribute("src", comm[j].pfp_link);
