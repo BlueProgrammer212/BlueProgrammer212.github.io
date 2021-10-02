@@ -261,6 +261,11 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   font-size: 15px;
 }
 
+.pfp_name {
+  position: absolute;
+  transform: translateX(56px) translateY(-32px);
+}
+
 #FAQ {
   color: black;
   padding-bottom: 40px;
