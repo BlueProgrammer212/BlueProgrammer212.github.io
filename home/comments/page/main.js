@@ -42,8 +42,8 @@ class CommentManager {
           comment_msg = document.getElementsByClassName("comment_message");
       for (let j = 0; j < comm.length; ++j) {
           await timeout(10, () => {
-              this.child = this.template.content.cloneNode(true);
-              this.parent.appendChild(this.child);  
+              if (!img[j]) {this.child = this.template.content.cloneNode(true);
+              this.parent.appendChild(this.child); }
           }).then((cb) => {
              if (name[name.length]) {
                 name[name.length].innerHTML = comm[j].name;
