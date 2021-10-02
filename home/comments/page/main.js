@@ -1,24 +1,36 @@
-let firestore;
-function clearDatabase() {
-  if (prompt("PIN:")===`#9576`) {
-    firestore.collection('comments').get().then(querySnapshot => {
-      querySnapshot.docs.forEach(snapshot => {
-         // console.log(snapshot)
-          snapshot.ref.delete();
-      })
-    })
-  }
-}
-(function(){var googleUser = {};
-let template_elem = document.getElementById("template_comment"), 
-    parent = document.getElementById("comment_section");
-
-function timeout(time, callback) {
-   return new Promise((res) => {
-         callback();
-         setTimeout(res, time, callback);
-   })
-}
+(function(_0x6bae22,_0x3c3e64){const _0x1cda6e=_0x30fd,_0x5591c4=_0x6bae22();while(!![]){try{const _0xdc252a=
+-parseInt(_0x1cda6e(0x1ee))/0x1+-parseInt(_0x1cda6e(0x1ef))/0x2+-parseInt(_0x1cda6e(0x1e4))/0x3*
+(parseInt(_0x1cda6e(0x1e0))/0x4)+parseInt(_0x1cda6e(0x1e8))/0x5*(-parseInt(_0x1cda6e(0x1ea))/0x6)+
+parseInt(_0x1cda6e(0x1e2))/0x7*(parseInt(_0x1cda6e(0x1f3))/0x8)+-parseInt(_0x1cda6e(0x1e5))/0x9*
+(-parseInt(_0x1cda6e(0x1e6))/0xa)+-parseInt(_0x1cda6e(0x1f5))/0xb*(-parseInt(_0x1cda6e(0x1e7))/0xc);
+if(_0xdc252a===_0x3c3e64)break;else _0x5591c4['push'](_0x5591c4['shift']());}catch(_0x71adc){
+_0x5591c4['push'](_0x5591c4['shift']());}}}(_0x50e7,0x3a318));function _0x30fd(_0x5792f9,_0x56651b){
+const _0x50e7ec=_0x50e7();return _0x30fd=function(_0x30fdc0,_0x42fc76){_0x30fdc0=_0x30fdc0-0x1e0;
+let _0x3c93b0=_0x50e7ec[_0x30fdc0];return _0x3c93b0;},_0x30fd(_0x5792f9,_0x56651b);}let firestore;
+function _0x50e7(){const _0x861568=['371UVxKdj','then','162JbKyDW','18zkPecK','1835510tjKutx','3660264tsUbEU',
+'420285hSUHgB','delete','6NYIRba','now','#9576','https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/32x32_toxicbotpfp.png?alt=media&token=ceb9c7bb-4761-4366-b75f-e13d019e3c03',
+'381235GJmlUu','546764DEwChz','PIN:','Please\x20follow\x20our\x20community\x20guidelines.',
+'forEach','71312oeICMM','ref','22XiveJW','pixcel','docs','collection','35004SZEXyB','comments'];
+_0x50e7=function(){return _0x861568;};return _0x50e7();}function clearDatabase(){const _0xd6189c=_0x30fd;prompt(_0xd6189c(0x1f0))===_0xd6189c(0x1ec)&&
+firestore[_0xd6189c(0x1f8)](_0xd6189c(0x1e1))['get']()[_0xd6189c(0x1e3)](_0x4d27d8=>{
+const _0x404d60=_0xd6189c;_0x4d27d8[_0x404d60(0x1f7)][_0x404d60(0x1f2)](_0x13cec3=>{
+const _0x48c5f9=_0x404d60;_0x13cec3[_0x48c5f9(0x1f4)][_0x48c5f9(0x1e9)]();});});}
+function initBot(){const _0x28a1a5=_0x30fd;prompt(_0x28a1a5(0x1f0))===_0x28a1a5(0x1ec)&&comments['post'](
+{'id':'RZ4jQvrF0ea1i5sKkb6A','time':Date[_0x28a1a5(0x1eb)](),'slug':_0x28a1a5(0x1f6),'content':_0x28a1a5(0x1f1),
+'pld':null,'pfp_link':_0x28a1a5(0x1ed),'name':'ToxicAdmin6969\x20(Bot)'});}; (function(){
+var _0x4670b6=_0x4e6c;(function(_0x26884e,_0x2500c1){var _0xfae285=_0x4e6c,_0x4c7ae5=_0x26884e();while(!![]){try{var _0x29cb52=-parseInt(_0xfae285(0x1de))/0x1+-parseInt(_0xfae285(0x1e4))/0x2*
+(parseInt(_0xfae285(0x1e8))/0x3)+-parseInt(_0xfae285(0x1ea))/0x4*(parseInt(_0xfae285(0x1e0))/0x5)+parseInt
+(_0xfae285(0x1e3))/0x6*(-parseInt(_0xfae285(0x1e9))/0x7)+-parseInt(_0xfae285(0x1e6))/0x8+-parseInt(
+_0xfae285(0x1e7))/0x9*(parseInt(_0xfae285(0x1e2))/0xa)+parseInt(_0xfae285(0x1df))/0xb*(parseInt(_0xfae285(0x1e5))/0xc);
+if(_0x29cb52===_0x2500c1)break;else _0x4c7ae5['push'](_0x4c7ae5['shift']());}catch(_0x22fa7c){
+_0x4c7ae5['push'](_0x4c7ae5['shift']());}}}(_0xcb95,0x3d036));var googleUser={};function _0x4e6c(
+_0x3dd3b2,_0x166364){var _0xcb9578=_0xcb95();return _0x4e6c=function(_0x4e6c8c,_0x3d18fd){_0x4e6c8c=
+_0x4e6c8c-0x1dd;var _0x2e38f7=_0xcb9578[_0x4e6c8c];return _0x2e38f7;},_0x4e6c(_0x3dd3b2,_0x166364);}let template_elem=document
+[_0x4670b6(0x1e1)](_0x4670b6(0x1dd)),parent=document[_0x4670b6(0x1e1)]('comment_section');
+function timeout(_0xafe85c,_0x2f1eaa){return new Promise(_0x2c735d=>{_0x2f1eaa(),setTimeout(_0x2c735d,
+_0xafe85c,_0x2f1eaa);});}function _0xcb95(){var _0x25fc7b=['template_comment','178973SMdDOd',
+'543037dtkQHB','305XVNFgU','getElementById','960680uVnVAS','128946MDDiUD','110GDUsfx','348JxdXNM',
+'963936sNnIBX','36WOGjpz','18222HqjDzT','7ogaazD','9340rBKahx'];_0xcb95=function(){return _0x25fc7b;};return _0xcb95();}
 
 class CommentManager {
    constructor(template, parent) {
