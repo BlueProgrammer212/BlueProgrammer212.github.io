@@ -66,9 +66,13 @@ class CommentManager {
    }
    
    post(data) {
-      firestore.collection(`comments`).add(data).catch(err => {
-        console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
-      })
+      if (data.length <= 100) {
+        firestore.collection(`comments`).add(data).catch(err => {
+          console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
+        })
+      } else {
+        alert("Database is full.")
+      }
     }
 }
 
