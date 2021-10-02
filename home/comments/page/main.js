@@ -223,9 +223,11 @@ document.getElementById("post_comment").addEventListener("input", () => {
 });
 
 function initBot() {
-  comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
-  slug: 'pixcel', content: "Please follow our community guidelines.", pld: null, 
-  pfp_link: "https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/32x32_toxicbotpfp.png?alt=media&token=ceb9c7bb-4761-4366-b75f-e13d019e3c03", name: "ToxicAdmin6969 (Bot)"})
+  if (prompt("PIN: ", "Clear Database.") === "#9576") {
+    comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
+    slug: 'pixcel', content: "Please follow our community guidelines.", pld: null, 
+    pfp_link: "https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/32x32_toxicbotpfp.png?alt=media&token=ceb9c7bb-4761-4366-b75f-e13d019e3c03", name: "ToxicAdmin6969 (Bot)"})
+  }
 }
 
 let posts;
