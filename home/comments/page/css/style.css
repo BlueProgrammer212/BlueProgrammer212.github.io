@@ -281,7 +281,8 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
 } 
 .comment_message {
   position: absolute;
-  transform: translateX(28px);
+  color: black;
+  transform: translateX(28px) translateY(32px);
 }
 
 #FAQ {
