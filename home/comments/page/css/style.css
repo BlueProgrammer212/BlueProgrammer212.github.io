@@ -271,23 +271,6 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   padding: 10px;
 }
 
-.commentBox {
-  padding: 16px;
-  padding-bottom: 25px;
-  margin-bottom: 30px;
-  border: 3.5px solid black;
-  background-color: white;
-  color: black;
-  width: 75%;
-} 
-.comment_message {
-  position: absolute;
-  color: black;
-  font-size: 12px;
-  transform: translateX(28px) translateY(-32px);
-  max-width: 45%;
-}
-
 #FAQ {
   color: black;
   padding-bottom: 40px;
@@ -310,6 +293,24 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   max-width: 95%;
   margin: 1.25%
 }
+
+.commentBox {
+  padding: 16px;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+  border: 3.5px solid black;
+  background-color: white;
+  color: black;
+  width: 75%;
+} 
+.comment_message {
+  position: absolute;
+  color: black;
+  font-size: 12px;
+  transform: translateX(28px) translateY(-32px);
+  max-width: 45%;
+}
+
 
 .fontMedium {
   font-size: 30px;
