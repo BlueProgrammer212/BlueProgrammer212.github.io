@@ -1,4 +1,4 @@
-var googleUser = {};
+(function(){var googleUser = {};
 let firestore;
 let template_elem = document.getElementById("template_comment"), 
     parent = document.getElementById("comment_section");
@@ -222,6 +222,7 @@ document.getElementById("post_comment").addEventListener("input", () => {
    }, 500)
 });
 
+
 let posts;
 let loadedComments = false;
 let mx_;
@@ -265,4 +266,4 @@ window.addEventListener("load", () => {
     }, 2100);
     document.getElementById("post_comment").value = window.localStorage.getItem("prev_text") 
     console.log(`Loading client content... ${document.images}`)
-})
+})}())
