@@ -43,7 +43,8 @@ class CommentManager {
               this.child = this.template.content.cloneNode(true);
               this.parent.appendChild(this.child);  
           }).then((cb) => {
-             img[img.length - 1].setAttribute("src", comm[j].pfp_link);
+             if (img[img.length]) 
+                img[img.length].setAttribute("src", comm[j].pfp_link);
           });
       }
    }
