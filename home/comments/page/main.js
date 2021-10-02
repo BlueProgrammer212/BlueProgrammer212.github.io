@@ -37,8 +37,9 @@ class CommentManager {
    }
 
    async add(comm = []) {
-      let img = document.getElementsByClassName("profile_picture_32x32");
-      let name = document.getElementsByClassName("pfp_name");
+      let img = document.getElementsByClassName("profile_picture_32x32"),
+          name = document.getElementsByClassName("pfp_name"),
+          comment_msg = document.getElementsByClassName("comment_message");
       for (let j = 0; j < comm.length; ++j) {
           await timeout(10, () => {
               this.child = this.template.content.cloneNode(true);
@@ -49,6 +50,11 @@ class CommentManager {
              } else {
                 name[name.length - 1].innerHTML = comm[j].name;
              }
+            if (comment_msg[comment_msg.length]) {
+                comment_msg[comment_msg.length].innerHTML = comm[j].content;
+            } else {
+                comment_msg[comment_msg.length - 1].innerHTML = comm[j].content;
+            }
              if (img[img.length]) {
                 img[img.length].setAttribute("src", comm[j].pfp_link);
              } else {
