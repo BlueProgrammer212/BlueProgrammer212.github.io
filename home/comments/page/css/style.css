@@ -263,7 +263,7 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
 
 .pfp_name {
   position: absolute;
-  transform: translateX(28px) translateY(-56px);
+  transform: translateX(28px) translateY(-52px);
   color: black;
   font-size: 14px;
 }
