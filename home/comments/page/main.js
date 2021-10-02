@@ -7,7 +7,8 @@ function clearDatabase() {
   if (prompt("PIN:")===`#9576`) {
     firestore.collection('comments').get().then(querySnapshot => {
       querySnapshot.docs.forEach(snapshot => {
-          snapshot.ref.delete();
+          console.log(snapshot)
+         // snapshot.ref.delete();
       })
     })
   }
