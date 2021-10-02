@@ -263,8 +263,16 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
 
 .pfp_name {
   position: absolute;
-  transform: translateX(56px) translateY(-32px);
+  transform: translateX(32px) translateY(-48px);
+  font-size: 18px;
 }
+.commentBox {
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 3.5px solid black;
+  background-color: white;
+  color: black;
+} 
 
 #FAQ {
   color: black;
