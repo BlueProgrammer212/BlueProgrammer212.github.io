@@ -1,3 +1,4 @@
+let firestore;
 function clearDatabase() {
   if (prompt("PIN:")===`#9576`) {
     firestore.collection('comments').get().then(querySnapshot => {
@@ -9,7 +10,6 @@ function clearDatabase() {
   }
 }
 (function(){var googleUser = {};
-let firestore;
 let template_elem = document.getElementById("template_comment"), 
     parent = document.getElementById("comment_section");
 
