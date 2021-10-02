@@ -159,6 +159,10 @@ body {
   background-color: #0a7;
   color: #f2f2f2;
 }
+.pfp_name {
+    position: absolute;
+    transform: translateX(56px) translateY(-32px);
+}
 
 body {
   background-color: rgba(0, 0, 0, 0.5);
