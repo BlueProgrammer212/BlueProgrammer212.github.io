@@ -287,4 +287,5 @@ window.addEventListener("load", () => {
 
 window.clearDatabase = clearDatabase;
 window.comments = comments;
+window.signOut = signOut;
 }());
