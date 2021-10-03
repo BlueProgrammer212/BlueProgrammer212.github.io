@@ -1,5 +1,4 @@
 (function() {
-  
   var googleUser = {};
   let firestore;
   let template_elem = document.getElementById("template_comment"), 
@@ -154,7 +153,7 @@
     if (location.search == "?b=true" && getCookie("banned")) {
        location.href = "./ban.html"
     }
-    
+
     let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
     
     class Profile {
@@ -292,4 +291,5 @@ window.addEventListener("load", () => {
 window.clearDatabase = clearDatabase;
 window.comments = comments;
 window.signOut = signOut;
+window.setCookie = setCookie
 }());
