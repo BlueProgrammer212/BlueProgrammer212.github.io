@@ -294,6 +294,16 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   margin: 1.25%
 }
 
+#post_btn {
+  position:absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+#post_comment {
+  display: block;
+}
+
 .commentBox {
   padding: 16px;
   padding-bottom: 25px;
@@ -310,7 +320,6 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   transform: translateX(28px) translateY(-32px);
   max-width: 75%;
 }
-
 
 .fontMedium {
   font-size: 30px;
