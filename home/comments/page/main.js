@@ -1,10 +1,14 @@
+(function() {
+
 var googleUser = {};
 let firestore;
 let template_elem = document.getElementById("template_comment"), 
     parent = document.getElementById("comment_section");
 
-for (let i = 0; i < document.images.length; i++) {
-   document.images[i].setAttribute("draggable", false);
+function disableDrag() {
+  for (let i = 0; i < document.images.length; i++) {
+    document.images[i].setAttribute("draggable", false);
+  }
 }
 
 function clearDatabase() {
@@ -280,3 +284,4 @@ window.addEventListener("load", () => {
     document.getElementById("post_comment").value = window.localStorage.getItem("prev_text") 
     console.log(`Loading client content... ${document.images}`)
 })
+}());
