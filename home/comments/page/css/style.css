@@ -304,6 +304,11 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   display: block;
 }
 
+#post_section {
+  display:inline-block;
+  position:relative;
+}
+
 .commentBox {
   padding: 16px;
   padding-bottom: 25px;
