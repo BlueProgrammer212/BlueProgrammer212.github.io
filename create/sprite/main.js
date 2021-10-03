@@ -12,7 +12,8 @@ for (let i = 0; i < document.images.length; ++i) {
 }
 let color_set = "black";
 document.getElementById("exitColorPickerDialog").addEventListener("click", () => {
-  document.getElementById("exitColorPickerDialog").parentElement.remove();
+  document.getElementById("exitColorPickerDialog")
+  .parentElement["parentElement"].className += "invisible"
 })
 
 class FragmentManager {
