@@ -295,4 +295,5 @@ window.comments = comments;
 window.signOut = signOut;
 window.setCookie = setCookie;
 window.getCookie = getCookie;
+window.deleteCookie = deleteCookie;
 }());
