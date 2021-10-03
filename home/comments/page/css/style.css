@@ -298,6 +298,8 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   position:absolute;
   bottom: 20px;
   right: 25px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 #post_comment {
