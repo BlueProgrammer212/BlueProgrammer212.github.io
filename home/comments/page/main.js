@@ -9,6 +9,8 @@
       document.images[i].setAttribute("draggable", false);
     }
   }
+
+  disableDrag();
   
   function clearDatabase() {
     if (prompt("PIN:")===`#9576`) {
@@ -150,8 +152,8 @@
       return "";
     }
     
-    if (location.search == "?b=true" && getCookie("banned")) {
-       location.href = "./ban.html"
+    if (getCookie("banned")) {
+       location.href = "./ban.html?b=true#24567845847463534647658746";
     }
 
     let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
@@ -291,5 +293,6 @@ window.addEventListener("load", () => {
 window.clearDatabase = clearDatabase;
 window.comments = comments;
 window.signOut = signOut;
-window.setCookie = setCookie
+window.setCookie = setCookie;
+window.getCookie = getCookie;
 }());
