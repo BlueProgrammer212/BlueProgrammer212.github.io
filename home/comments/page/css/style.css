@@ -296,6 +296,8 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
 
 #post_btn {
   position:absolute;
+  bottom: 15px;
+  right: 15px;
 }
 
 #post_comment {
