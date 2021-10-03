@@ -22,6 +22,8 @@ function clearDatabase() {
   }
 }
 
+window.clearDatabase = clearDatabase;
+
 function timeout(time, callback) {
    return new Promise((res) => {
          callback();
