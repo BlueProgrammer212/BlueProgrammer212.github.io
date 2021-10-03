@@ -22,8 +22,6 @@ function clearDatabase() {
   }
 }
 
-window.clearDatabase = clearDatabase;
-
 function timeout(time, callback) {
    return new Promise((res) => {
          callback();
@@ -286,4 +284,7 @@ window.addEventListener("load", () => {
     document.getElementById("post_comment").value = window.localStorage.getItem("prev_text") 
     console.log(`Loading client content... ${document.images}`)
 })
+
+window.clearDatabase = clearDatabase;
+window.comments = comments;
 }());
