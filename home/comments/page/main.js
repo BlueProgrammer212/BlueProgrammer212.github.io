@@ -229,6 +229,8 @@ document.getElementById("post_btn").addEventListener("click", () => {
   slug: 'pixcel', content: document.getElementById("post_comment").value, pld: null, 
   pfp_link: getCookie("pfp_url"), name: getCookie("pf_name")});
   document.getElementById("post_comment").value = "";
+  window.localStorage.setItem("prev_text", "");
+  window.location.reload();
 })
 
 document.getElementById("post_comment").addEventListener("input", () => {
