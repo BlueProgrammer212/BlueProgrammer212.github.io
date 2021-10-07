@@ -52,8 +52,12 @@
       comment_msg = document.getElementsByClassName("comment_message");
       for (let j = 0; j < comm.length; ++j) {
         await timeout(10, () => {
-          if (!img[j]) {this.child = this.template.content.cloneNode(true);
-            this.parent.appendChild(this.child); }
+          if (!img[j]) {
+            this.child = this.template.content.cloneNode(true);
+            this.parent.appendChild(this.child); 
+          } else {
+            window.location.reload();
+          }
           }).then((cb) => {
             if (name[name.length]) {
               name[name.length].innerHTML = comm[j].name;
@@ -78,7 +82,6 @@
         if (data.content !== "") {
           firestore.collection(`comments`).add(data).then((a) => {
             console.log(a)
-            window.location.reload();
           }).catch(err => {
             console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
           })
