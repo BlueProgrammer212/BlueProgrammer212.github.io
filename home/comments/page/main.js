@@ -76,7 +76,10 @@
       
       post(data) {
         if (data.content !== "") {
-          firestore.collection(`comments`).add(data).catch(err => {
+          firestore.collection(`comments`).add(data).then((a) => {
+            console.log(a)
+            window.location.reload();
+          }).catch(err => {
             console.error(new Error(`Server failed to add comment, ${data}. ${err}`))
           })
         }
@@ -276,7 +279,6 @@ window.addEventListener("load", () => {
             });          
             console.log(`Loading comments 0%... ${JSON.stringify(posts)}`)
             comments.add(posts)  
-            window.location.reload();
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
