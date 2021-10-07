@@ -232,7 +232,7 @@ document.getElementById("post_btn").addEventListener("click", () => {
   window.localStorage.setItem("prev_text", "");
   setTimeout(() => {
     window.location.reload();
-  }, 200);
+  }, 600);
 })
 
 document.getElementById("post_comment").addEventListener("input", () => {
