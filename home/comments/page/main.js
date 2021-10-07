@@ -287,7 +287,7 @@ window.addEventListener("load", () => {
         console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
         console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
        }());
-    }, 2100);
+    }, 100);
     document.getElementById("post_comment").value = window.localStorage.getItem("prev_text") 
     console.log(`Loading client content... ${document.images}`)
 })
