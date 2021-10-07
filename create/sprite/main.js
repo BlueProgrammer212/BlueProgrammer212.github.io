@@ -14,7 +14,7 @@ let color_set = "black";
 document.getElementById("exitColorPickerDialog").addEventListener("click", () => {
   document.getElementById("exitColorPickerDialog")
   .parentElement["parentElement"].className += "invisible"
-})
+});
 
 class FragmentManager {
   constructor(template) {

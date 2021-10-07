@@ -248,6 +248,8 @@ function initBot() {
 let posts;
 let loadedComments = false;
 let mx_;
+document.body.style = "";
+
 
 window.addEventListener("load", () => {
     setTimeout(() => {
@@ -262,8 +264,6 @@ window.addEventListener("load", () => {
         console.log(`Loading profile picture ${image_url}...`) 
 
         pfp_img_elem.setAttribute("src", image_url);
-        document.body.style = "";
-
         firebase.initializeApp(firebaseConfig);
         firestore = firebase.firestore();
 

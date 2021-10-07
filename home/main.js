@@ -46,6 +46,8 @@ function includeHTML() {
 function hashChangeCallback() {
     if (window.location.hash == "#856764344573547") {
         window.location.href = "./comments"
+    } else if (window.location.hash == "#help") {
+        window.location.href = "blueprogrammer213.github.io/help"
     }
 }
 
