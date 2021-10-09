@@ -48,7 +48,7 @@ function hashChangeCallback() {
         window.location.href = "./comments"
     } else if (window.location.hash == "#help") {
         window.location.href = "blueprogrammer213.github.io/help"
-    } else if (window.location.hash = "#community") {
+    } else if (window.location.hash == "#community") {
         window.location.href = "./community?r=as";
     }
 }
