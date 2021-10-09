@@ -1,46 +1,46 @@
 const regExpression = /|([^|]*)|/g
 /*
 if (window.location.host !== "blueprogrammer212.github.io") {
-    window.location.href = "https://blueprogrammer212.github.io/home"
+  window.location.href = "https://blueprogrammer212.github.io/home"
 }
 */
 
 if ("getElementsByTagName" in document) {
-    let images = document.getElementsByTagName("img");
-    for (let i = 0; i < images.length; ++i) {
-        images[i].addEventListener("contextmenu", () => {
-            return false;
-        });
-        images[i].setAttribute("draggable", "false");
-        //Emoji size
-        if (images[i].classList.contains("emoji")) {
-            images[i].width = "20"
-            images[i].height = "20"
-        }
-    }
+  let images = document.getElementsByTagName("img");
+  for (let i = 0; i < images.length; ++i) {
+      images[i].addEventListener("contextmenu", () => {
+          return false;
+      });
+      images[i].setAttribute("draggable", "false");
+      //Emoji size
+      if (images[i].classList.contains("emoji")) {
+          images[i].width = "20"
+          images[i].height = "20"
+      }
+  }
 }
 
 function includeHTML() {
-    var z, i, elmnt, file, xhttp;
-    z = document.getElementsByTagName("*");
-    for (i = 0; i < z.length; i++) {
-        elmnt = z[i];
-        file = elmnt.getAttribute("w3-include-html");
-        if (file) {
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4) {
-            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-            elmnt.removeAttribute("w3-include-html");
-            includeHTML();
-            }
-        }
-        xhttp.open("GET", file, true);
-        xhttp.send();
-        return;
-        }
-    }
+  var z, i, elmnt, file, xhttp;
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+      elmnt = z[i];
+      file = elmnt.getAttribute("w3-include-html");
+      if (file) {
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+          }
+      }
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      return;
+      }
+  }
 }
 
 function hashChangeCallback() {
@@ -48,6 +48,8 @@ function hashChangeCallback() {
         window.location.href = "./comments"
     } else if (window.location.hash == "#help") {
         window.location.href = "blueprogrammer213.github.io/help"
+    } else if (window.location.hash = "#community") {
+        window.location.href = "./community?r=as";
     }
 }
 

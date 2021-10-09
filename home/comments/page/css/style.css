@@ -250,6 +250,10 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   text-shadow: 1px 3px 1px gray;
 }
 
+a {
+  color: blue;
+}
+
 .row:after {
   content: "";
   display: table;
