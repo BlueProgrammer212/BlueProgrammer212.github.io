@@ -55,8 +55,6 @@
           if (!img[j]) {
             this.child = this.template.content.cloneNode(true);
             this.parent.appendChild(this.child); 
-          } else {
-            window.location.reload();
           }
           }).then((cb) => {
             if (name[name.length]) {
