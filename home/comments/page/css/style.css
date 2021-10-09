@@ -271,6 +271,10 @@ p, a, span, h1, h2, h3, h4, h5, h6, label {
   padding: 10px;
 }
 
+body {
+  cursor: url(https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/images%2FMouseCursor56x84.png?alt=media&token=da48e663-fe92-4858-bb83-370fbdd45558), auto;
+}
+
 #FAQ {
   color: black;
   padding-bottom: 40px;
