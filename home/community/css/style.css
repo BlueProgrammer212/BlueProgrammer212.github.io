@@ -82,7 +82,7 @@ body {
 
 @font-face {
   font-family: Pixel;
-  src: url("../assets/Pixel.ttf");
+  src: url("../../assets/Pixel.ttf");
 }
 
 *:focus {
@@ -161,10 +161,10 @@ body {
 
 body {
   background-color: rgba(0, 0, 0, 0.5);
-  background-image: url("../assets/bg_icon (4).png");
+  background-image: url("../../assets/bg_icon (4).png");
 }
 #main_content {
-  background-image: url("../assets/Background.png");
+  background-image: url("../../assets/Background.png");
 }
 
 .checkbox {
