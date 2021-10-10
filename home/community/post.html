@@ -68,7 +68,7 @@
             <div id='titles'>
                 <h1 class="align-left">Posts</h1>
                 <p class="align-left">Note: This post will be archived in 1 day. <a class="blue">Learn more</a></p> 
-                <input class="align-left" placeholder="Say something..." />
+                <textarea type="search" id="post_content" class="align-left" placeholder="Add a comment..."></textarea>
                 <p class="align-left invisible red" id="errcode0x923264">This field is required!</p>
                 <p class="align-left invisible red" id="errcode0x923265">Your post contains innapropriate slurs! This is against our community guidelines!</p>
                 <p class="align-left invisible red" id="errcode0x923266">The photo you uploaded is too big! 16kb maxinum!</p> 
@@ -77,12 +77,12 @@
                 <p class="align-left invisible red" id="errcode0x923269">You are currently rate limited!</p> 
 
                 <navbar id="edit">
-                  <input type="file" accept="image/*" capture="camera" id="uploadImage">
+                    <input type="file" accept="image/*" capture="camera" id="uploadImage">
                     <button class="align-left">Bold text</button>
                     <button class="align-left">Font color</button>
                     <button class="align-left">Font size</button>
                 </navbar>
-                <button  class="align-left">Post</button>
+                <button class="align-left">Post</button>
                 <div class="eop"></div>
                 <p class="align-left">This feature is in development.</p> 
                 <p class="align-left">With the use of our service, you are agreeing to our <a class="blue">terms of service</a></p>
@@ -90,7 +90,7 @@
         </div>
         </div>
         <script src="./main.js" async defer></script>
-        <script type="text/typescript" src="./fileUpload.ts"></script>
+        <script type="text/typescript" src="./main.ts"></script>
         <script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
         <script src="https://rawgit.com/basarat/typescript-script/master/transpiler.js"></script>
     </body>

@@ -194,18 +194,7 @@ body {
   transform: translateX(10px) translateY(-8px) scale(4);
 }
 
-#proceed {
-  margin-left: 85%;
-  margin-top: 20px;
-  font-family: Pixel;
-  padding: 10px;
-  padding-left: 15px;
-  color: white;
-  padding-right: 15px;
-  background-color: green;
-}
-
-#post_comment {
+#post_content {
    border: 3.5px solid black;
    font-family: Pixel; 
    width: 850px;

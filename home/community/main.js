@@ -133,6 +133,14 @@
     }
   }
 
+  function generateName(len = 10, char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890") {
+      let string;
+      while (--len > 0) {
+         string += char[Math.round(Math.random() * len)];
+      }
+      return string;
+  }
+
   window.addEventListener("load", () => {
       setTimeout(() => {
         if (auth2.isSignedIn.get()) {
@@ -148,6 +156,13 @@
           pfp_img_elem.setAttribute("src", image_url);
           firebase.initializeApp(firebaseConfig);
           firestore = firebase.firestore();
+          let storageRef = firebase.storage().ref(`uploads/${generateName()}.png`)
+          let fileUpload = document.getElementById("uploadImage")
+        
+          fileUpload.addEventListener('change', function(evt) {
+              let imageUpload = evt.target.files[0] // upload the first file only
+              let uploadTask = storageRef.put(imageUpload);
+          })
 
         } else {
             window.location.href = "https://blueprogrammer212.github.io/home/comments";
