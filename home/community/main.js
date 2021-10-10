@@ -165,7 +165,10 @@
               let uploadTask = storageRef.put(imageUpload);
               uploadTask.then((snapshot) => { 
                   console.log("Succesfully uploaded image: ", snapshot);
-                  let img_link = `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${generatedFileName}.png?alt=media`.link();
+                  let img_link = `${generatedFileName}.png`.link(
+                    `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${generatedFileName}.png?alt=media`
+                  );
+                  img_link.className += " blue";
                   document.getElementById("post_content").value += img_link;
               }).catch((err) => {
                   console.error(`Failed to upload image to cloud: ${JSON.stringify(err)}`);
