@@ -160,8 +160,7 @@
         
           fileUpload.addEventListener('change', function(evt) {
               let generatedFileName = generateName();
-              
-              let storageRef = firebase.storage().ref(`uploads/${generateFileName}.png`)
+              let storageRef = firebase.storage().ref(`uploads/${generatedFileName}.png`)
               let imageUpload = evt.target.files[0];
               let uploadTask = storageRef.put(imageUpload);
               uploadTask.then((snapshot) => { 
