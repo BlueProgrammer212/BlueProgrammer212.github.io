@@ -64,16 +64,25 @@
         <div id="main_content">
             <div id='titles'>
                 <h1 class="align-left">Posts</h1>
-                <p>Note: This post will be archived in 1 day. <a class="blue">Learn more</a></p> 
-                <textarea class="align-left" placeholder="Say something..."></textarea>
-                <button class="align-left">Insert photo</button>
-                <button class="align-left">Bold text</button>
-                <button class="align-left">Font color</button>
-                <button class="align-left">Font size</button>
-                <button class="align-left">Post</button>
+                <p class="align-left">Note: This post will be archived in 1 day. <a class="blue">Learn more</a></p> 
+                <input class="align-left" placeholder="Say something..." />
+                <p class="align-left invisible red" id="errcode0x923264">This field is required!</p>
+                <p class="align-left invisible red" id="errcode0x923265">Your post contains innapropriate slurs! This is against our community guidelines!</p>
+                <p class="align-left invisible red" id="errcode0x923266">The photo you uploaded is too big! 16kb maxinum!</p> 
+                <p class="align-left invisible red" id="errcode0x923267">Your post contains a phishing link! This is against our community guidelines!</p>
+                <p class="align-left invisible red" id="errcode0x923268">Your post contains explicit content. This is against our community guidelines!</p> 
+                <p class="align-left invisible red" id="errcode0x923269">You are currently rate limited!</p> 
+                
+                <navbar id="edit" style="display: inline;">
+                    <button class="align-left">Insert photo</button>
+                    <button class="align-left">Bold text</button>
+                    <button class="align-left">Font color</button>
+                    <button class="align-left">Font size</button>
+                </navbar>
+                <button  class="align-left">Post</button>
                 <div class="eop"></div>
-                <p>This feature is in development.</p> 
-                <p>With the use of our service, you are agreeing to our <a class="blue">terms of service</a></p>
+                <p class="align-left">This feature is in development.</p> 
+                <p class="align-left">With the use of our service, you are agreeing to our <a class="blue">terms of service</a></p>
             </div>
         </div>
         </div>
