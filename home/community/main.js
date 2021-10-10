@@ -156,12 +156,13 @@
           pfp_img_elem.setAttribute("src", image_url);
           firebase.initializeApp(firebaseConfig);
           firestore = firebase.firestore();
-          let storageRef = firebase.storage().ref(`uploads/${generateName()}.png`)
+          let storageRef = firebase.storage().ref(`uploads/test`)
           let fileUpload = document.getElementById("uploadImage")
         
           fileUpload.addEventListener('change', function(evt) {
-              let imageUpload = evt.target.files[0] // upload the first file only
+              let imageUpload = evt.target.files[0];
               let uploadTask = storageRef.put(imageUpload);
+              console.log(uploadTask);
           })
 
         } else {
