@@ -165,6 +165,7 @@
               let uploadTask = storageRef.put(imageUpload);
               uploadTask.then((snapshot) => { 
                   console.log("Succesfully uploaded image: ", snapshot);
+                  document.getElementById("post_content").value += `\n uploadImg(https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${generatedFileName}?alt=media&token=44f31826-aab1-4a79-bef3-526ed94c91cd)`
               }).catch((err) => {
                   console.error(`Failed to upload image to cloud: ${JSON.stringify(err)}`);
               })
