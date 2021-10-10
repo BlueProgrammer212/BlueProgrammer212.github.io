@@ -165,7 +165,7 @@
               uploadTask.then((snapshot) => { 
                   console.log("Succesfully uploaded image: %d", snapshot);
               }).catch((err) => {
-                  console.err("Failed to upload image to cloud: %d", new Error(err));
+                  console.error("Failed to upload image to cloud: %d", new Error(err));
               })
           })
 
