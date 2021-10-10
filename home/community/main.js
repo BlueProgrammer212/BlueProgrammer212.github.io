@@ -156,7 +156,7 @@
           pfp_img_elem.setAttribute("src", image_url);
           firebase.initializeApp(firebaseConfig);
           firestore = firebase.firestore();
-          let storageRef = firebase.storage().ref(`lol.png`)
+          let storageRef = firebase.storage().ref(`uploads/lol.png`)
           let fileUpload = document.getElementById("uploadImage")
         
           fileUpload.addEventListener('change', function(evt) {
