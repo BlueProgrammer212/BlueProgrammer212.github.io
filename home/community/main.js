@@ -135,7 +135,7 @@
 
   function generateName(len = 10, char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890") {
       let string;
-      while (--len > 0) {
+      for (i = 0; i < len; ++i) {
          string += char[Math.round(Math.random() * len)];
       }
       return string;
@@ -156,13 +156,17 @@
           pfp_img_elem.setAttribute("src", image_url);
           firebase.initializeApp(firebaseConfig);
           firestore = firebase.firestore();
-          let storageRef = firebase.storage().ref(`uploads/test`)
+          let storageRef = firebase.storage().ref(`uploads/${}`)
           let fileUpload = document.getElementById("uploadImage")
         
           fileUpload.addEventListener('change', function(evt) {
               let imageUpload = evt.target.files[0];
               let uploadTask = storageRef.put(imageUpload);
-              console.log(uploadTask);
+              uploadTask.then((snapshot) => { 
+                  console.log("Succesfully uploaded image: %d", snapshot);
+              }).catch((err) => {
+                  console.err("Failed to upload image to cloud: %d", new Error(err));
+              })
           })
 
         } else {
