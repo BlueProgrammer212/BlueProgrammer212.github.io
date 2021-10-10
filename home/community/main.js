@@ -1,8 +1,6 @@
 (function() {
     var googleUser = {};
     let firestore;
-    let template_elem = document.getElementById("template_comment"), 
-    parent = document.getElementById("comment_section");
     
     function disableDrag() {
       for (let i = 0; i < document.images.length; i++) {
@@ -11,43 +9,25 @@
     }
   
     disableDrag();
-    
-    function clearDatabase() {
-      if (prompt("PIN:")===`#9576`) {
-        firestore.collection('comments').get().then(querySnapshot => {
-          querySnapshot.docs.forEach(snapshot => {
-            // console.log(snapshot)
-            snapshot.ref.delete();
-          })
-        })
-      }
-    }
-    
-    function timeout(time, callback) {
-      return new Promise((res) => {
-        callback();
-        setTimeout(res, time, callback);
-      })
-    }
       
     const firebaseConfig = {
-    apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
-    authDomain: "pixcel-272e8.firebaseapp.com",
-    projectId: "pixcel-272e8",
-    storageBucket: "pixcel-272e8.appspot.com",
-    messagingSenderId: "527485563587",
-    appId: "1:527485563587:web:59c6c095e772a028802876",
-    measurementId: "G-49V48L8TZR",
-    databaseURL: "https://pixcel-272e8-default-rtdb.firebaseio.com"
+        apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
+        authDomain: "pixcel-272e8.firebaseapp.com",
+        projectId: "pixcel-272e8",
+        storageBucket: "pixcel-272e8.appspot.com",
+        messagingSenderId: "527485563587",
+        appId: "1:527485563587:web:59c6c095e772a028802876",
+        measurementId: "G-49V48L8TZR",
+        databaseURL: "https://pixcel-272e8-default-rtdb.firebaseio.com"
     };
     
-    var startApp = function() {
-    gapi.load('auth2', function(){
-        auth2 = gapi.auth2.init({
-        client_id: '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin'
+    const startApp = () => {
+        gapi.load('auth2', function () {
+            auth2 = gapi.auth2.init({
+                client_id: '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com',
+                cookiepolicy: 'single_host_origin'
+            });
         });
-    });
     };
     
     startApp()
@@ -60,25 +40,25 @@
     }
     
     function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile(),
-    id = profile.getId(), 
-    image_url = profile.getImageUrl(),
-    name = profile.getName(),
-    email = profile.getEmail();
-    
-    let pfp_elem = document.getElementsByClassName("pfp_img")[0];
-    
-    pfp_elem.setAttribute("src", image_url)
-    
-    console.log('ID: ' + id);
-    console.log('Name: ' + name);
-    console.log('Image URL: ' + image_url);
-    console.log('Email: ' + email);
-    
-    setCookie("pfp_url", image_url, 365)
-    setCookie("pf_id", id.toString(), 365)
-    setCookie("pf_name", name, 365)
-    setCookie("pf_email", email, 365);
+        var profile = googleUser.getBasicProfile(),
+        id = profile.getId(), 
+        image_url = profile.getImageUrl(),
+        name = profile.getName(),
+        email = profile.getEmail();
+
+        let pfp_elem = document.getElementsByClassName("pfp_img")[0];
+
+        pfp_elem.setAttribute("src", image_url)
+
+        console.log('ID: ' + id);
+        console.log('Name: ' + name);
+        console.log('Image URL: ' + image_url);
+        console.log('Email: ' + email);
+
+        setCookie("pfp_url", image_url, 365)
+        setCookie("pf_id", id.toString(), 365)
+        setCookie("pf_name", name, 365)
+        setCookie("pf_email", email, 365);
     }
     
     function getCookie(cname) {
@@ -98,7 +78,7 @@
     }
     
     if (getCookie("banned")) {
-        location.href = "./ban.html?b=true#24567845847463534647658746";
+        location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html?b=true#24567845847463534647658746";
     }
 
     let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
@@ -152,23 +132,7 @@
       return false;
     }
   }
-  
-  let slug = "pixcel";
-  
-  function initBot() {
-    if (prompt("PIN: ") === "#9576") {
-      comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
-      slug: 'pixcel', content: "Please follow our community guidelines.", pld: null, 
-      pfp_link: "https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/32x32_toxicbotpfp.png?alt=media&token=ceb9c7bb-4761-4366-b75f-e13d019e3c03", name: "ToxicAdmin6969 (Bot)"})
-    }
-  }
-  
-  let posts;
-  let loadedComments = false;
-  let mx_;
-  document.body.style = "";
-  
-  
+
   window.addEventListener("load", () => {
       setTimeout(() => {
         if (auth2.isSignedIn.get()) {
@@ -176,10 +140,10 @@
           name = getCookie("pf_name"),
           id = getCookie("pf_id");
   
-          console.log(`Loading profile... ${JSON.stringify(new Profile(image_url, id, name))}`)
-          console.log(`Loading username... Name:${name}`)
-          console.log(`Loading UserID... Id:<${id}>`)
-          console.log(`Loading profile picture ${image_url}...`) 
+          console.log(`Loading profile... ${JSON.stringify(new Profile(image_url, id, name))}`);
+          console.log(`Loading username... Name:${name}`);
+          console.log(`Loading UserID... Id:<${id}>`);
+          console.log(`Loading profile picture ${image_url}...`);
   
           pfp_img_elem.setAttribute("src", image_url);
           firebase.initializeApp(firebaseConfig);
@@ -198,11 +162,5 @@
       document.getElementById("post_comment").value = window.localStorage.getItem("prev_text") 
       console.log(`Loading client content... ${document.images}`)
   })
-  
-  window.clearDatabase = clearDatabase;
-  window.comments = comments;
-  window.signOut = signOut;
-  window.setCookie = setCookie;
-  window.getCookie = getCookie;
-  window.deleteCookie = deleteCookie;
+
 }());
