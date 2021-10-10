@@ -135,7 +135,7 @@
 
   function generateName(len = 10, char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890") {
       let string;
-      for (i = 1s; i < len; ++i) {
+      for (i = 1; i < len; ++i) {
          string += char[Math.round(Math.random() * len) + 1];
       }
       return string;
