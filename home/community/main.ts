@@ -1,9 +1,3 @@
-const slug : string = "post_pixcel_as";
+declare let firebase : any;
 
-interface Message {
-    message : string
-}
-
-class Posts {
-    
-}
+console.log(firebase);

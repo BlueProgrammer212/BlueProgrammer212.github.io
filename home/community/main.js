@@ -173,6 +173,7 @@
           });
 
           document.getElementById("posts").addEventListener("click", () => {
+              
               window.location.href = "."
           })
 
