@@ -19,8 +19,6 @@
       <script src="https://apis.google.com/js/api:client.js"></script>
       <script src="https://apis.google.com/js/platform.js" async defer></script>
       <script src="../js/openSideBar.js" async defer></script>
-      <script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
-      <script src="https://rawgit.com/basarat/typescript-script/master/transpiler.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"></script>
@@ -78,8 +76,8 @@
                 <p class="align-left invisible red" id="errcode0x923268">Your post contains explicit content. This is against our community guidelines!</p> 
                 <p class="align-left invisible red" id="errcode0x923269">You are currently rate limited!</p> 
 
-                <navbar id="edit" style="display: inline;">
-                  <input type="file" accept="image/*" capture="camera" id="cameraInput">
+                <navbar id="edit">
+                  <input type="file" accept="image/*" capture="camera" id="uploadImage">
                     <button class="align-left">Bold text</button>
                     <button class="align-left">Font color</button>
                     <button class="align-left">Font size</button>
@@ -92,6 +90,8 @@
         </div>
         </div>
         <script src="./main.js" async defer></script>
-        <script src="./main.ts" type="text/typescript"></script>
+        <script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
+        <script src="https://rawgit.com/basarat/typescript-script/master/transpiler.js"></script>
+        <script src="./fileUpload.ts" type="text/typescript"></script>
     </body>
 </html>
