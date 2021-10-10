@@ -178,4 +178,4 @@ window.addEventListener("load", () => {
     }, 2000)
     console.log(`Loading client content... ${document.body}`)
 })
-console.log("Wanna be a developer?")
+console.log("%cWanna be a developer?", "font-size: 15px;")
