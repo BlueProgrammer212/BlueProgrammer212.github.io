@@ -19,6 +19,8 @@
       <script src="https://apis.google.com/js/api:client.js"></script>
       <script src="https://apis.google.com/js/platform.js" async defer></script>
       <script src="../js/openSideBar.js" async defer></script>
+      <script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
+      <script src="https://rawgit.com/basarat/typescript-script/master/transpiler.js"></script>
     </head>
     <body>
       <template id="template_comment">
@@ -72,7 +74,7 @@
                 <p class="align-left invisible red" id="errcode0x923267">Your post contains a phishing link! This is against our community guidelines!</p>
                 <p class="align-left invisible red" id="errcode0x923268">Your post contains explicit content. This is against our community guidelines!</p> 
                 <p class="align-left invisible red" id="errcode0x923269">You are currently rate limited!</p> 
-                
+
                 <navbar id="edit" style="display: inline;">
                     <button class="align-left">Insert photo</button>
                     <button class="align-left">Bold text</button>
@@ -87,5 +89,6 @@
         </div>
         </div>
         <script src="./main.js" async defer></script>
+        <script src="./main.ts" type="text/typescript" async defer></script>
     </body>
 </html>
