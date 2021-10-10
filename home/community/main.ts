@@ -14,4 +14,4 @@ class Posts implements PostsInterface {
 }
 
 let posts : PostsInterface = new Posts("lol");
-console.log(posts.msg("lol"));
+alert(posts.msg("lol"));
