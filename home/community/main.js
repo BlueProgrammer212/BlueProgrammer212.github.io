@@ -156,14 +156,14 @@
           pfp_img_elem.setAttribute("src", image_url);
           firebase.initializeApp(firebaseConfig);
           firestore = firebase.firestore();
-          let storageRef = firebase.storage().ref(`uploads/lol.png`)
+          let storageRef = firebase.storage().ref(`uploads/54.png`)
           let fileUpload = document.getElementById("uploadImage")
         
           fileUpload.addEventListener('change', function(evt) {
               let imageUpload = evt.target.files[0];
               let uploadTask = storageRef.put(imageUpload);
               uploadTask.then((snapshot) => { 
-                  console.log("Succesfully uploaded image: %d", snapshot);
+                  console.log("Succesfully uploaded image: ", snapshot);
               }).catch((err) => {
                   console.error(`Failed to upload image to cloud: ${JSON.stringify(err)}`);
               })
