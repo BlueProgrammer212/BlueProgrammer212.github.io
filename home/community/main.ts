@@ -42,3 +42,6 @@ class PostsManager extends Posts {
         this.firestore = firebase.firestore();
     }
 }
+
+let INITIALIZE_POSTS_MANAGER : PostsManager 
+    = new PostsManager("353463462233", "posts");
