@@ -43,5 +43,9 @@ class PostsManager extends Posts {
     }
 }
 
-let INITIALIZE_POSTS_MANAGER : PostsManager 
-    = new PostsManager("353463462233", "posts");
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        let INITIALIZE_POSTS_MANAGER : PostsManager 
+            = new PostsManager("353463462233", "posts");
+    }, 1000);
+});
