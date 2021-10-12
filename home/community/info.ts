@@ -10,8 +10,10 @@ class FragmentManager {
     }
 }
 
+let loaded = new Timer(1000);
+
 window.addEventListener("load", () => {
-   load.start().then(() => {    
+    loaded.start().then(() => {    
         firestore = firebase.firestore();
         firestore.collection("posts").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
