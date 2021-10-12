@@ -1,9 +1,6 @@
 {
     "compilerOptions": {
-         "target": "es5",
-         "noImplicitAny": false,
-         "sourceMap": true,
-         "outDir": "scripts/"
+         "target": "es6",
     },
     "exclude": [
         "node_modules"
