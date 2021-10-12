@@ -10,15 +10,13 @@ class FragmentManager {
     }
 }
 
-let loaded = new Timer(1000);
-
 window.addEventListener("load", () => {
-    loaded.start().then(() => {    
+    setTimeout(() => {  
         firestore = firebase.firestore();
         firestore.collection("posts").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 console.trace(doc);
             });
         });
-    });
+    }, 1000);
 })
