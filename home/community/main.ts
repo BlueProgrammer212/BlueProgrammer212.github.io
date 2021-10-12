@@ -86,7 +86,6 @@ class PostsManager extends Posts {
             await this.add({
                 message: "Test message", region: "AS"
             }).then((info) => {
-                console.log(`Processed raw data to ${JSON.stringify(info)} in 2s`);
                 window.location.href = ".";
             })
         });
