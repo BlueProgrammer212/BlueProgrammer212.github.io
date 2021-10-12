@@ -11,6 +11,7 @@ class FragmentManager {
 }
 
 window.addEventListener("load", () => {
+    firestore = firebase.firestore();
     firestore.collection("posts").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             console.trace(doc);
