@@ -1,6 +1,23 @@
 declare let firebase : any;
 
 class Cookie {
+    getCookie(
+        cname: String
+    ): any {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+    }
     async setCookie(
         cname: String, 
         cvalue: any,
@@ -12,9 +29,6 @@ class Cookie {
             let expires = "expires="+ d.toUTCString();
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         });
-    }
-    constructor() {
-        
     }
 }
 
@@ -61,7 +75,8 @@ class PostsManager extends Posts {
     protected async init(btn_id : string): Promise<void> {
         document.getElementById(btn_id).addEventListener("click", async () => {
             await this.add({message: "Test message"}).then((info) => {
-                console.log(`Processed raw data to ${info} in 2s`);
+                console.log(`Processed raw data to ${JSON.stringify(info)} in 2s`);
+                window.location.href = "."
             });
         });
     }
