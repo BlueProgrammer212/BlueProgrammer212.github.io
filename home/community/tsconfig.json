@@ -1,9 +1,11 @@
 {
     "compilerOptions": {
-        "module": "ESNext",
-        "target": "ESNext"
-    },
-    "exclude": [
-        "node_modules"
-    ]
+         "target": "es5",
+         "noImplicitAny": false,
+         "sourceMap": true,
+         "outDir": "scripts/"
+     },
+     "exclude": [
+         "node_modules"
+     ]
  }
