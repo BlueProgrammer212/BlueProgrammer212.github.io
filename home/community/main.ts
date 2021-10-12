@@ -34,8 +34,14 @@ class Cookie {
 
 class Posts {
     id: string;
+    profile_link: string;
+    name: string;
+    cookie: Cookie;
     constructor(id: string) {
         this.id = id;
+        this.cookie = new Cookie();
+        this.profile_link = this.cookie.getCookie("pfp_url");
+        this.name = this.cookie.getCookie("pf_name");
     }
 }
 
@@ -50,6 +56,13 @@ class Timer {
         })
     }
 }
+
+function loadJSON(filepath : string): any {
+    return fetch(filepath)
+           .then(data => data.json())
+           .then(info => console.log(`[Loaded] ${filepath} is loaded under 5s, ${info}`));
+}
+
 class PostsManager extends Posts {
     id : string;
     protected firestore : any;
@@ -57,8 +70,10 @@ class PostsManager extends Posts {
     public readonly template : any;
     public readonly message : String;
     protected add(data : Object): any {
-        return new Promise((res, rej) => {
-            setTimeout(res, 2000, data);
+        return new Promise((resolve, reject) => {
+            this.firestore.collection("posts").add(data).then(b => resolve(b)).catch(error => {
+                reject(new Error(error));
+            });
         })
     }
     protected remove(name : String, slug : String): any {
@@ -68,9 +83,13 @@ class PostsManager extends Posts {
     }
     protected async init(btn_id : string): Promise<void> {
         document.getElementById(btn_id).addEventListener("click", async () => {
-            await this.add({message: "Test message"}).then((info) => {
+            await this.add({
+                message: "Test message", region: "AS"
+            }).then((info) => {
                 console.log(`Processed raw data to ${JSON.stringify(info)} in 2s`);
                 window.location.href = "."
+            }).catch(error => {
+                console.error(`Something went wrong. ${error}`)
             });
         });
     }
