@@ -34,17 +34,6 @@ class Cookie {
 
 class Posts {
     id: string;
-    public generateKey(len : number, chars : String | Number): String {
-        let string : String;
-        for (let i : number = 0; i < len; ++i)
-            string += chars[Math.round(Math.random() * len)];
-        if (string.startsWith("undefined")) {
-            for (let k : number = 0; k < "undefined".length; ++k) { 
-                string = chars[Math.round(Math.random() * len)]; 
-            }   
-        }
-        return string;
-    }
     constructor(id: string) {
         this.id = id;
     }
@@ -70,6 +59,11 @@ class PostsManager extends Posts {
     protected add(data : Object): any {
         return new Promise((res, rej) => {
             setTimeout(res, 2000, data);
+        })
+    }
+    protected remove(name : String, slug : String): any {
+        return new Promise((res, rej) => {
+            setTimeout(res, 2000, {res, rej});
         })
     }
     protected async init(btn_id : string): Promise<void> {
