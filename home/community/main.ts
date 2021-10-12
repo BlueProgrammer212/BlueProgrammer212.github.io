@@ -87,10 +87,8 @@ class PostsManager extends Posts {
                 message: "Test message", region: "AS"
             }).then((info) => {
                 console.log(`Processed raw data to ${JSON.stringify(info)} in 2s`);
-                window.location.href = "."
-            }).catch(error => {
-                console.error(`Something went wrong. ${error}`)
-            });
+                window.location.href = ".";
+            })
         });
     }
     constructor(id : string, btn_id : string, firestore : any) {
