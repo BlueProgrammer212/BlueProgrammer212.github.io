@@ -12,8 +12,12 @@ class FragmentManager {
 
 window.addEventListener("load", () => {
     setTimeout(() => {  
+        let noPosts : any = document.getElementById("noPosts");
         firestore = firebase.firestore();
         firestore.collection("posts").get().then((querySnapshot) => {
+            if (!noPosts.className.includes("invisible")) {
+                noPosts.className += " invisible";
+            };
             querySnapshot.forEach((doc) => {
                 console.log(doc.data());
             });
