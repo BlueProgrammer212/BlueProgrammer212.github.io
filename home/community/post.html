@@ -19,6 +19,8 @@
       <script src="https://apis.google.com/js/api:client.js"></script>
       <script src="https://apis.google.com/js/platform.js" async defer></script>
       <script>var exports = {"__esModule": true};</script>
+      <script src="systemjs/dist/system.js"></script>
+      <script>var config = {baseURL:"/",packages:{".":{defaultExtension:'js'}}};SystemJS.config(config);SystemJS.import("./main.js")</script>
       <script src="../js/openSideBar.js" async defer></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -90,6 +92,7 @@
             </div>
         </div>
         </div>
+        <script src="node_modules/systemjs/dist/system.js"></script>
         <script src="./main.js" async defer></script>     
         <script type="text/typescript" src="./main.ts"></script>
         <script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
