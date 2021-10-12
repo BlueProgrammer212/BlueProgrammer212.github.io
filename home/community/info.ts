@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
         firestore = firebase.firestore();
         firestore.collection("posts").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                console.trace(doc);
+                console.log(doc.data());
             });
         });
     }, 1000);

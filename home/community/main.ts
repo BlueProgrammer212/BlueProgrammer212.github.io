@@ -84,7 +84,7 @@ class PostsManager extends Posts {
     protected async init(btn_id : string): Promise<void> {
         document.getElementById(btn_id).addEventListener("click", async () => {
             await this.add({
-                message: "Test message", region: "AS"
+                message: document.getElementById("post_content")["value"], region: "AS"
             }).then((info) => {
                 window.location.href = ".";
             })
