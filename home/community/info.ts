@@ -6,15 +6,17 @@ class FragmentManager {
          this.template_element = document.getElementById(this.template_id)
     } 
     add(data : Object) {
-       
+        console.log(data);
     }
 }
 
 window.addEventListener("load", () => {
-    firestore = firebase.firestore();
-    firestore.collection("posts").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.trace(doc);
+   load.start().then(() => {    
+        firestore = firebase.firestore();
+        firestore.collection("posts").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.trace(doc);
+            });
         });
     });
 })
