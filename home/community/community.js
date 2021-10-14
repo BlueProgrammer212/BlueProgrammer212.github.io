@@ -45,6 +45,14 @@
         image_url = profile.getImageUrl(),
         name = profile.getName(),
         email = profile.getEmail();
+        var id_token = googleUser.getAuthResponse().id_token;
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://blueprogrammer212.github.io/home/comments');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          console.log('Signed in as: ' + xhr.responseText);
+        };
+        xhr.send('idtoken=' + id_token);
 
         let pfp_elem = document.getElementsByClassName("pfp_img")[0];
 
@@ -156,7 +164,6 @@
           pfp_img_elem.setAttribute("src", image_url);
           firebase.initializeApp(firebaseConfig);
           firestore = firebase.firestore();
-
         } else {
             window.location.href = "https://blueprogrammer212.github.io/home/comments";
         }

@@ -1,12 +1,14 @@
 class FragmentManager {
     protected template_id : string;
     protected template_element : any;
+    public template_element_clone : any;
     constructor(template_id : string) {
          this.template_id = template_id;
          this.template_element = document.getElementById(this.template_id)
     } 
     add(data : Object) {
-        console.log(data);
+        this.template_element_clone = document.importNode
+        (this.template_element.content, true).children[0];
     }
 }
 
