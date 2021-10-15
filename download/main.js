@@ -5,6 +5,8 @@ if (window.location.host !== "blueprogrammer212.github.io") {
 }
 */
 
+console.log("Initializing download content...")
+
 if ("getElementsByTagName" in document) {
   let images = document.getElementsByTagName("img");
   for (let i = 0; i < images.length; ++i) {
