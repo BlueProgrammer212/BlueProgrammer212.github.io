@@ -12,13 +12,13 @@ class FragmentManager {
         document.getElementById("titles").appendChild(this.template_element_clone);
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             if (document.getElementsByClassName("comment_message")[i].innerHTML.length == 0 &&
-                !data.message.startsWith("/uploadImg[")) {
+                !document.getElementsByClassName("comment_message")[i].innerHTML.startsWith("/uploadImg[")) {
                  document.getElementsByClassName("comment_message")[i].innerHTML = data.message;
-            } else if (data.message.startsWith("/uploadImg[") && !document.
-                getElementsByClassName("img_upload")[i].getAttribute("src")) {
+            } else if (document.getElementsByClassName("comment_message")[i].innerHTML.startsWith("/uploadImg[") 
+            && !document.getElementsByClassName("img_upload")[i].getAttribute("src")) {
                 document.getElementsByClassName("img_upload")[i].setAttribute("src", 
                 document.getElementsByClassName("comment_message")[i].innerHTML.substr("/uploadImg[".length,
-                 data.message.length - 1));
+                 document.getElementsByClassName("comment_message")[i].innerHTML.length - 1));
             }
             if (document.getElementsByClassName("pfp_img_elem")[i].getAttribute("src")
                  == "../assets/default_pfp_16x16.png") {
