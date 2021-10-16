@@ -30,19 +30,21 @@ class FragmentManager {
         }
     } 
     add(data) {
+        const {pfp_link, message} = data;
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
         this.image_upload = document.getElementsByClassName("img_upload");
         document.getElementById("titles").appendChild(this.template_element_clone);
+
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
-              this.setMessage(data.message);
-            } else if (inputBox.startsWith("/uploadImg[")) {
+              this.setMessage(message);
+            } else if (inputBox.startsWith("/uploadImg[") && !this.image_upload.getAttribute("src")) {
                 this.image_upload[i].setAttribute("src", regexp_parameter.exec(inputBox)[1]);
             }
         }
-        this.setImage(data.pfp_link);
+        this.setImage(pfp_link);
     }
 }
 
