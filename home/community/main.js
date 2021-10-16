@@ -1,3 +1,4 @@
+let image_url_ = "../assets/default_pfp_16x16.png";
 (function() {
     var googleUser = {};
     let firestore;
@@ -144,8 +145,8 @@
   window.addEventListener("load", () => {
       setTimeout(() => {
         if (auth2.isSignedIn.get()) {
-          let image_url = getCookie("pfp_url"), 
-          name = getCookie("pf_name"),
+          image_url = getCookie("pfp_url");
+          let name = getCookie("pf_name"),
           id = getCookie("pf_id");
   
           console.log(`Loading profile... ${JSON.stringify(new Profile(image_url, id, name))}`);
