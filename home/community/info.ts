@@ -33,14 +33,13 @@ class FragmentManager {
         const {pfp_link, message} = data;
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
-        this.image_upload = document.getElementsByClassName("img_upload");
         document.getElementById("titles").appendChild(this.template_element_clone);
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(message);
-              this.image_upload[i].setAttribute("src", inputBox.substr(0, 10));
+              document.getElementsByClassName("img_upload")[i].setAttribute("src", inputBox.substr(0, 10));
               console.log(inputBox.substr("/uploadImg".length + 1, inputBox.length - 1))
             }
         }
