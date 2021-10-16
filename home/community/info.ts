@@ -12,6 +12,8 @@ class FragmentManager {
     }
 }
 
+let fragmentInstance = new FragmentManager("template_posts");
+
 window.addEventListener("load", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
@@ -21,7 +23,8 @@ window.addEventListener("load", () => {
                 noPosts.className += " invisible";
             };
             querySnapshot.forEach((doc) => {
-                console.log(doc.data());
+                console.log(doc.data()); 
+                fragmentInstance.add(doc.data());
             });
         });
     }, 1000);
