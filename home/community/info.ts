@@ -29,19 +29,18 @@ class FragmentManager {
         }
     } 
     add(data) {
-        const {pfp_link, message} = data;
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
         document.getElementById("titles").appendChild(this.template_element_clone);
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length !== 0 && !inputBox.startsWith("/uploadImg[")) {
-              this.setMessage(message);
+              this.setMessage(data.message);
               inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
               document.getElementsByClassName("img_upload")[i].setAttribute("src", document.getElementsByClassName("comment_message")[i].innerHTML);
             }
         }
-        this.setImage(pfp_link);
+        this.setImage(data.pfp_link);
     }
 }
 
