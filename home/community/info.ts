@@ -41,8 +41,8 @@ class FragmentManager {
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(message);
             }
-            this.image_upload[i].setAttribute("src", regexp_parameter.exec(inputBox)[1]);
-            console.log(regexp_parameter.exec(inputBox)[1])
+            this.image_upload[i].setAttribute("src", regexp_parameter.exec(inputBox)[0]);
+            console.log(regexp_parameter.exec(inputBox)[0])
         }
         this.setImage(pfp_link);
     }
