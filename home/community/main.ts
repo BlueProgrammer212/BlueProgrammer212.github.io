@@ -1,4 +1,5 @@
 declare let firebase : any;
+declare let image_url: any;
 
 class Cookie {
     getCookie(
@@ -84,7 +85,8 @@ class PostsManager extends Posts {
     protected async init(btn_id : string): Promise<void> {
         document.getElementById(btn_id).addEventListener("click", async () => {
             await this.add({
-                message: document.getElementById("post_content")["value"], region: "AS"
+                message: document.getElementById("post_content")["value"], region: "AS",
+                pfp_link: image_url
             }).then((info) => {
                 window.location.href = ".";
             })
