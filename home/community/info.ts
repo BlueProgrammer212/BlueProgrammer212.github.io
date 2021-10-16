@@ -39,7 +39,7 @@ class FragmentManager {
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(message);
               document.getElementsByClassName("img_upload")[i].setAttribute("src",
-              inputBox.replace( /(^.*\[|\].*$)/g, '' ););
+              inputBox.replace( /(^.*\[|\].*$)/g, ''));
             }
         }
         this.setImage(pfp_link);
