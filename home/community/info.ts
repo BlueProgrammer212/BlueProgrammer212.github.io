@@ -32,9 +32,9 @@ class FragmentManager {
     protected messageManager(data) {
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
-            if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
+            if (inputBox.length == 0 && !inputBox.includes("/uploadImg[")) {
               this.setMessage(data.message);
-            } else if (inputBox.startsWith("/uploadImg[") && !this.image_upload[i].getAttribute("src")) {
+            } else if (inputBox.includes("/uploadImg[") && !this.image_upload[i].getAttribute("src")) {
                 this.image_upload[i].setAttribute("src", regexp_parameter.exec(inputBox)[1]);
             }
         }
