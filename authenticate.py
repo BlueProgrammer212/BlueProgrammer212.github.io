@@ -9,8 +9,7 @@ header = {}
 url = 'https://blueprogrammer212.github.io/home/comments' 
 response = requests.get(url = url, headers=header, data=json.dumps({}));      
 
-print("Application ran succesfully.");
-print(response.json())
+print(response.headers)
 
 process : bool = True;
 

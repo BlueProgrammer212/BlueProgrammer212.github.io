@@ -40,6 +40,14 @@ function onSignIn(googleUser) {
         image_url = profile.getImageUrl(),
         name = profile.getName(),
         email = profile.getEmail();
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://blueprogrammer212.github.io/home/comments');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+      console.log('Signed in as: ' + xhr.responseText);
+    };
+    xhr.send('idtoken=' + id_token);
       
     let pfp_elem = document.getElementsByClassName("pfp_img")[0];
 
@@ -72,14 +80,6 @@ function getCookie(cname) {
   }
   return "";
 }
-
-var xhr = new XMLHttpRequest();
-xhr.open('POST', 'https://blueprogrammer212.github.io/home/comments');
-xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-xhr.onload = function() {
-  console.log('Signed in as: ' + xhr.responseText);
-};
-xhr.send('idtoken=' + "ur mom");
 
 let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
 
