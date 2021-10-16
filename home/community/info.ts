@@ -10,7 +10,11 @@ class FragmentManager {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
         document.getElementById("main_content").appendChild(this.template_element_clone);
-        document.getElementsByClassName("comment_message")[0].innerHTML = data.message;
+        for (let i = 0; i < document.getElementsByClassName("comment_message").length; ++i) {
+            if (document.getElementsByClassName("comment_message")[i].innerHTML.length == 0) {
+                 document.getElementsByClassName("comment_message")[i].innerHTML = data.message;
+            }
+        }
     }
 }
 
