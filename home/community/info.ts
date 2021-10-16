@@ -1,36 +1,56 @@
 let regexp_parameter = /\[(.*?)\]/;
+let inputBox : string;
+
 class FragmentManager {
     protected template_id : string;
     protected template_element : any;
     public template_element_clone : any;
-    constructor(template_id : string) {
+    public image_upload : any;
+    protected comment_message : any;
+    protected defaultPfp : String;
+    protected pfp_element : any;
+    constructor(template_id : string, defaultPfp_ : String) {
          this.template_id = template_id;
-         this.template_element = document.getElementById(this.template_id)
+         this.template_element = document.getElementById(this.template_id);
+         this.image_upload = document.getElementsByClassName("img_upload");
+         this.comment_message = document.getElementsByClassName("comment_message");
+         this.defaultPfp = defaultPfp_;
+         this.pfp_element = document.getElementsByClassName("pfp_img_elem");
     } 
+    protected setMessage(message : String) {
+        for (let i = 0; i < this.comment_message.length; ++i) {
+            this.comment_message[i].innerHTML = message;
+        }
+    }
+    protected setImage(link : string) {
+        for (let i = 0; i < this.pfp_element.length; ++i) {
+            if (this.pfp_element[i].getAttribute("src") == this.defaultPfp) {
+                document.getElementsByClassName("pfp_img_elem")[i].setAttribute("src", link);
+            }
+        }
+    } 
+    protected messageManager(data) {
+        const {message} = data;
+        for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
+            inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
+            if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
+              this.setMessage(message);
+            } else if (inputBox.startsWith("/uploadImg[") && !this.image_upload.getAttribute("src")) {
+                this.image_upload[i].setAttribute("src", regexp_parameter.exec(inputBox)[1]);
+            }
+        }
+    }
     add(data) {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
+        this.image_upload = document.getElementsByClassName("img_upload");
         document.getElementById("titles").appendChild(this.template_element_clone);
-        for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
-            if (document.getElementsByClassName("comment_message")[i].innerHTML.length == 0 &&
-                !document.getElementsByClassName("comment_message")[i].innerHTML.startsWith("/uploadImg[")) {
-                 document.getElementsByClassName("comment_message")[i].innerHTML = data.message;
-            } else if (document.getElementsByClassName("comment_message")[i].innerHTML.startsWith("/uploadImg[") 
-            && !document.getElementsByClassName("img_upload")[i].getAttribute("src")) {
-                document.getElementsByClassName("img_upload")[i].setAttribute("style", "transform: scale(0.5);");
-                document.getElementsByClassName("img_upload")[i].setAttribute("src", 
-                regexp_parameter.exec(document.getElementsByClassName("comment_message")[i].innerHTML)[1]);
-            }
-            if (document.getElementsByClassName("pfp_img_elem")[i].getAttribute("src")
-                 == "../assets/default_pfp_16x16.png") {
-                document.getElementsByClassName("pfp_img_elem")[i]
-                .setAttribute("src", data.pfp_link);
-           }
-        }
+        this.messageManager(data);
+        this.setImage(data.pfp_link);
     }
 }
 
-let fragmentInstance = new FragmentManager("template_posts");
+let fragmentInstance = new FragmentManager("template_posts", "../assets/default_pfp_16x16.png");
 
 window.addEventListener("load", () => {
     setTimeout(() => {  
