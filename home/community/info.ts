@@ -38,9 +38,7 @@ class FragmentManager {
             if (inputBox.length !== 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(message);
               inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
-              document.getElementsByClassName("img_upload")[i].setAttribute("src",
-              inputBox.match(/\[(.*?)\]/)[1]);
-              console.log(inputBox.match(/\[(.*?)\]/)[1])
+              document.getElementsByClassName("img_upload")[i].setAttribute("src", document.getElementsByClassName("comment_message")[i].innerHTML);
             }
         }
         this.setImage(pfp_link);
