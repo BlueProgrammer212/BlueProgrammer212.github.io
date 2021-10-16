@@ -30,11 +30,10 @@ class FragmentManager {
         }
     } 
     protected messageManager(data) {
-        const {message} = data;
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
-              this.setMessage(message);
+              this.setMessage(data.message);
             } else if (inputBox.startsWith("/uploadImg[") && !this.image_upload[i].getAttribute("src")) {
                 this.image_upload[i].setAttribute("src", regexp_parameter.exec(inputBox)[1]);
             }
