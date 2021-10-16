@@ -4,12 +4,11 @@ from google.auth.transport import requests
 import requests
 
 url = 'https://blueprogrammer212.github.io/home/comments' 
-response = requests.get(url)        # To execute get request 
-print(response.status_code)     # To print http response code  
-print(response.text)     
+response = requests.get(url);      
 
 try:
-   print("Getting tortured by a Python snake")
+   print("Application ran succesfully.");
+   print(response.json())
 except ValueError:
-    # Invalid token
-    pass
+   print("An error has occured during execution process.");
+   pass;
