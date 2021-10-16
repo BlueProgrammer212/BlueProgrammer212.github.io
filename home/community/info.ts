@@ -29,7 +29,12 @@ class FragmentManager {
             }
         }
     } 
-    protected messageManager(data) {
+    add(data) {
+        this.template_element_clone = document.importNode
+        (this.template_element.content, true).children[0];
+        this.image_upload = document.getElementsByClassName("img_upload");
+        document.getElementById("titles").appendChild(this.template_element_clone);
+        this.messageManager(data);
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
@@ -38,13 +43,6 @@ class FragmentManager {
                 this.image_upload[i].setAttribute("src", regexp_parameter.exec(inputBox)[1]);
             }
         }
-    }
-    add(data) {
-        this.template_element_clone = document.importNode
-        (this.template_element.content, true).children[0];
-        this.image_upload = document.getElementsByClassName("img_upload");
-        document.getElementById("titles").appendChild(this.template_element_clone);
-        this.messageManager(data);
         this.setImage(data.pfp_link);
     }
 }
