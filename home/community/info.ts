@@ -1,5 +1,4 @@
-let regexp_parameter = /\[(.*?)\]/;
-let inputBox : String;
+let inputBox : any;
 
 class FragmentManager {
     protected template_id : string;
@@ -39,7 +38,7 @@ class FragmentManager {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(message);
-              document.getElementsByClassName("img_upload")[i].setAttribute("src", inputBox.substr(0, 10));
+              document.getElementsByClassName("img_upload")[i].setAttribute("src", "https:///www.github.io");
               console.log(inputBox.substr(0, 10))
             }
         }
