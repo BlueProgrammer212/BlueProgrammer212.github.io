@@ -41,6 +41,7 @@ function onSignIn(googleUser) {
         name = profile.getName(),
         email = profile.getEmail();
 
+    var id_token = googleUser.getAuthResponse().id_token;
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'https://blueprogrammer212.github.io/home/comments');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
