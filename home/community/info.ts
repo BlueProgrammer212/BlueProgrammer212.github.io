@@ -9,6 +9,7 @@ class FragmentManager {
     add(data) {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
+        document.getElementById("main_content").appendChild(this.template_element_clone);
         document.getElementsByClassName("comment_message")[0].innerHTML = data.message;
     }
 }
