@@ -1,4 +1,4 @@
-let image_url = "../assets/default_pfp_16x16.png";
+let image_url_ = "../assets/default_pfp_16x16.png";
 (function() {
     var googleUser = {};
     let firestore;
@@ -54,7 +54,7 @@ let image_url = "../assets/default_pfp_16x16.png";
           console.log('Signed in as: ' + xhr.responseText);
         };
         xhr.send('idtoken=' + id_token);
-        window.image_url = image_url;
+        image_url_ = image_url;
 
         let pfp_elem = document.getElementsByClassName("pfp_img")[0];
 

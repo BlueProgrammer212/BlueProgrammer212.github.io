@@ -1,5 +1,5 @@
 declare let firebase : any;
-declare let image_url: any;
+declare let image_url_: any;
 
 class Cookie {
     getCookie(
