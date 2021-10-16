@@ -16,9 +16,9 @@ class FragmentManager {
                  document.getElementsByClassName("comment_message")[i].innerHTML = data.message;
             } else if (document.getElementsByClassName("comment_message")[i].innerHTML.startsWith("/uploadImg[") 
             && !document.getElementsByClassName("img_upload")[i].getAttribute("src")) {
-                document.getElementsByClassName("img_upload")[i].src = 
+                document.getElementsByClassName("img_upload")[i].setAttribute("src", 
                 document.getElementsByClassName("comment_message")[i].innerHTML.substr("/uploadImg[".length,
-                 document.getElementsByClassName("comment_message")[i].innerHTML.length)
+                 document.getElementsByClassName("comment_message")[i].innerHTML.length));
             }
             if (document.getElementsByClassName("pfp_img_elem")[i].getAttribute("src")
                  == "../assets/default_pfp_16x16.png") {
