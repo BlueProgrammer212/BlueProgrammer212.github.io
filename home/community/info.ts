@@ -5,7 +5,7 @@ class FragmentManager {
     protected template_id : string;
     protected template_element : any;
     public template_element_clone : any;
-    protected image_upload : any;
+    public image_upload : any;
     protected comment_message : any;
     protected defaultPfp : String;
     protected pfp_element : any;
