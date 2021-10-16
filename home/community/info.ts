@@ -1,4 +1,4 @@
-let regexp_parameter = /\\[.*?]/;
+let regexp_parameter = /\[(.*?)\]/;
 let inputBox : string;
 
 class FragmentManager {
@@ -40,10 +40,7 @@ class FragmentManager {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(message);
-            }
-            if (inputBox.match(regexp_parameter)) {
-                this.image_upload[i].setAttribute("src", inputBox.match(regexp_parameter)[1]);
-                console.log(inputBox.match(regexp_parameter)[1])
+              this.image_upload[i].setAttribute("src", inputBox.substring("/uploadImg[".length, inputBox.length - 1));
             }
         }
         this.setImage(pfp_link);
