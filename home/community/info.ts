@@ -39,8 +39,7 @@ class FragmentManager {
               this.setMessage(message);
               inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
               document.getElementsByClassName("img_upload")[i].setAttribute("src",
-              inputBox.replace( /(^.*\[|\].*$)/g, ''));
-              console.log(inputBox.replace( /(^.*\[|\].*$)/g, ''))
+              inputBox.match(/\[(.*?)\]/)[1]);
             }
         }
         this.setImage(pfp_link);
