@@ -42,7 +42,7 @@ class FragmentManager {
               if (matches) {
                   console.log(matches[1])
               }
-              document.getElementsByClassName("img_upload")[i].setAttribute("src", );
+              document.getElementsByClassName("img_upload")[i].setAttribute("src", matches[1]);
             }
         }
         this.setImage(pfp_link);
