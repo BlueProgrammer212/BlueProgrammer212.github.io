@@ -16,9 +16,9 @@ class FragmentManager {
          this.defaultPfp = defaultPfp_;
          this.pfp_element = document.getElementsByClassName("pfp_img_elem");
     } 
-    protected setMessage(message : String) {
-        for (let i = 0; i < this.comment_message.length; ++i) {
-            this.comment_message[i].innerHTML = message;
+    protected setMessage(message : string) {
+        for (let i = 0; i < document.getElementsByClassName("comment_message").length; ++i) {
+            document.getElementsByClassName("comment_message")[i].innerHTML = message;
         }
     }
     protected setImage(link : string) {
