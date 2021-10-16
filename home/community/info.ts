@@ -1,5 +1,5 @@
 let regexp_parameter = /\[(.*?)\]/;
-let inputBox : string;
+let inputBox : String;
 
 class FragmentManager {
     protected template_id : string;
