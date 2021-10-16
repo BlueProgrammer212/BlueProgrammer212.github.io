@@ -41,7 +41,7 @@ class FragmentManager {
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(message);
             }
-            if (inputBox.match(regexp_parameter).length !== 0) {
+            if (inputBox.match(regexp_parameter)) {
                 this.image_upload[i].setAttribute("src", inputBox.match(regexp_parameter)[1]);
                 console.log(inputBox.match(regexp_parameter)[1])
             }
