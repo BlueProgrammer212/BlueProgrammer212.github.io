@@ -33,9 +33,9 @@ class FragmentManager {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
         document.getElementById("titles").appendChild(this.template_element_clone);
-
+        inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
-            if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
+            if (inputBox.length !== 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(message);
               inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
               document.getElementsByClassName("img_upload")[i].setAttribute("src",
