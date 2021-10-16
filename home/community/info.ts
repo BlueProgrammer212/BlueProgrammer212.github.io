@@ -17,6 +17,7 @@ class FragmentManager {
                  document.getElementsByClassName("comment_message")[i].innerHTML = data.message;
             } else if (document.getElementsByClassName("comment_message")[i].innerHTML.startsWith("/uploadImg[") 
             && !document.getElementsByClassName("img_upload")[i].getAttribute("src")) {
+                document.getElementsByClassName("img_upload")[i].setAttribute("style", "transform: scale(0.5);");
                 document.getElementsByClassName("img_upload")[i].setAttribute("src", 
                 regexp_parameter.exec(document.getElementsByClassName("comment_message")[i].innerHTML)[1]);
             }
