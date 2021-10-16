@@ -38,8 +38,11 @@ class FragmentManager {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(message);
-              document.getElementsByClassName("img_upload")[i].setAttribute("src", "https:///www.github.io");
-              console.log(inputBox.substr(0, 10))
+              var matches = inputBox.match(/\[(.*?)\]/);
+              if (matches) {
+                  console.log(matches[1])
+              }
+              document.getElementsByClassName("img_upload")[i].setAttribute("src", );
             }
         }
         this.setImage(pfp_link);
