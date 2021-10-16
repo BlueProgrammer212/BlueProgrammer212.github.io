@@ -9,7 +9,7 @@ class FragmentManager {
     add(data) {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
-        document.getElementById("title").appendChild(this.template_element_clone);
+        document.getElementById("titles").appendChild(this.template_element_clone);
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             if (document.getElementsByClassName("comment_message")[i].innerHTML.length == 0) {
                  document.getElementsByClassName("comment_message")[i].innerHTML = data.message;
