@@ -38,7 +38,7 @@ class FragmentManager {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(data.message);
-            } else if (inputBox.startsWith("/uploadImg[") && this.image_upload[i].src.length <= 0) {
+            } else if (inputBox.startsWith("/uploadImg[")) {
                 this.image_upload[i].setAttribute("src", regexp_parameter.exec(inputBox)[1]);
             }
         }
