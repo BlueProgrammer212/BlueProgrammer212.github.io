@@ -29,7 +29,7 @@ class FragmentManager {
         document.getElementById("titles").appendChild(this.template_element_clone);
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
-            if (inputBox.length !== 0 && !inputBox.startsWith("/uploadImg[")) {
+            if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
                 document.getElementsByClassName("comment_message")[i].innerHTML = data.message;
               inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
               document.getElementsByClassName("img_upload")[i].setAttribute("src", document.getElementsByClassName("comment_message")[i].innerHTML);
