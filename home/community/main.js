@@ -1,4 +1,4 @@
-let image_url_ = "../assets/default_pfp_16x16.png";
+let image_url_ =  getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
 (function() {
     var googleUser = {};
     let firestore;
