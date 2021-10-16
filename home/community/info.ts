@@ -40,7 +40,7 @@ class FragmentManager {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
               this.setMessage(message);
-              this.image_upload[i].setAttribute("src", inputBox.substring("/uploadImg[".length, inputBox.length - 1));
+              this.image_upload[i].setAttribute("src", inputBox.substr("/uploadImg[".length, inputBox.length - 1));
             }
         }
         this.setImage(pfp_link);
