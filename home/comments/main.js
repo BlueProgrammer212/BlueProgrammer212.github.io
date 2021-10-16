@@ -73,6 +73,14 @@ function getCookie(cname) {
   return "";
 }
 
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'https://blueprogrammer212.github.io/home/comments');
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+xhr.onload = function() {
+  console.log('Signed in as: ' + xhr.responseText);
+};
+xhr.send('idtoken=' + "ur mom");
+
 let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
 
 class Profile {
