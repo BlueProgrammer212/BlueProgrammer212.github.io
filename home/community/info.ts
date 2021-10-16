@@ -16,11 +16,6 @@ class FragmentManager {
          this.defaultPfp = defaultPfp_;
          this.pfp_element = document.getElementsByClassName("pfp_img_elem");
     } 
-    protected setMessage(message : string) {
-        for (let i = 0; i < document.getElementsByClassName("comment_message").length; ++i) {
-            document.getElementsByClassName("comment_message")[i].innerHTML = message;
-        }
-    }
     protected setImage(link : string) {
         for (let i = 0; i < this.pfp_element.length; ++i) {
             if (this.pfp_element[i].getAttribute("src") == this.defaultPfp) {
@@ -35,7 +30,7 @@ class FragmentManager {
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length !== 0 && !inputBox.startsWith("/uploadImg[")) {
-              this.setMessage(data.message);
+                document.getElementsByClassName("comment_message")[i].innerHTML = data.message;
               inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
               document.getElementsByClassName("img_upload")[i].setAttribute("src", document.getElementsByClassName("comment_message")[i].innerHTML);
             }
