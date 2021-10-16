@@ -1,4 +1,4 @@
-let regexp_parameter = /\[(.*?)\]/;
+let regexp_parameter = /\\[.*?]/;
 let inputBox : string;
 
 class FragmentManager {
