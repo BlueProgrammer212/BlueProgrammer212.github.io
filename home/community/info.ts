@@ -34,7 +34,6 @@ class FragmentManager {
         (this.template_element.content, true).children[0];
         this.image_upload = document.getElementsByClassName("img_upload");
         document.getElementById("titles").appendChild(this.template_element_clone);
-        this.messageManager(data);
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
