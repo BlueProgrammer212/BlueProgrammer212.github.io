@@ -276,7 +276,7 @@ window.addEventListener("load", () => {
             snapshot.docChanges().forEach(snap => {
               if (snap.type == "added") {
                 comments.add(snap.docs);
-                console.log(snap);
+                console.log(snap.docs);
               }
            })
         })
