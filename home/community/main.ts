@@ -4,7 +4,7 @@ declare let image_url_: any;
 const customFileUploadBtn = document.getElementById("customUploadImage"),
       uploadImage = document.getElementById("uploadImage");
 
-customFileUploadBtn.addEventListener("click", uploadImage.click)
+customFileUploadBtn.addEventListener("click", () => uploadImage.click())
 
 class Cookie {
     getCookie(
