@@ -264,6 +264,15 @@ a {
   padding: 100px;
 }
 
+#customUploadImage {
+    border: none;
+    font-family: Pixel;
+    color: white;
+    background-color: #0c9;
+    font-size: 15px;
+    width: 300px;
+    height: 100px;
+}
 
 body {
   cursor: url(https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/images%2FMouseCursor56x84.png?alt=media&token=8fb3123e-70dd-491b-b1d7-0a5df700f3a1), auto;
