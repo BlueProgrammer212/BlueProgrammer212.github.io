@@ -323,10 +323,10 @@ a {
   height: 50px;
 }
 
-#edit {
-  margin-top: 10px;
-  top: 40px;
-  padding-top: 20px;
+#edit::before {
+    content: "\a";
+    white-space: pre;
+    padding: 10px;
 }
 
 
