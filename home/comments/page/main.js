@@ -275,16 +275,11 @@ window.addEventListener("load", () => {
         firestore.collection(`comments`).onSnapshot(snapshot => {        
             snapshot.docChanges().forEach(snap => {
               if (snap.type == "added") {
-                comments.add(snap.docs
-                .filter(doc => doc.data().slug === slug)
-                .map(doc => {
+                posts = snap.docs.filter(doc => doc.data().slug === slug).map(doc => {
                   return { id: doc.id, ...doc.data() }
-                }));
-                console.log(snap.docs
-                  .filter(doc => doc.data().slug === slug)
-                  .map(doc => {
-                    return { id: doc.id, ...doc.data() }
-                  }))
+                });
+                comments.add(posts);
+                console.log(posts);
               }
            })
         })
