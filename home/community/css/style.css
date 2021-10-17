@@ -323,6 +323,46 @@ a {
   height: 50px;
 }
 
+#fontSize {
+  border: none;
+  font-family: Pixel;
+  color: white;
+  background-color: #0c9;
+  font-size: 15px;
+  width: 200px;
+  height: 50px;
+}
+
+#fontSize:hover {
+  border: none;
+  font-family: Pixel;
+  color: white;
+  background-color: #e44;
+  font-size: 15px;
+  width: 200px;
+  height: 50px;
+}
+
+#posts {
+  border: none;
+  font-family: Pixel;
+  color: white;
+  background-color: #0c9;
+  font-size: 15px;
+  width: 200px;
+  height: 50px;
+}
+
+#posts:hover {
+  border: none;
+  font-family: Pixel;
+  color: white;
+  background-color: #e44;
+  font-size: 15px;
+  width: 200px;
+  height: 50px;
+}
+
 #edit::before {
     content: "\a";
     white-space: pre;
