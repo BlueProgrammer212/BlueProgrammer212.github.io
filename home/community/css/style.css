@@ -353,6 +353,11 @@ a {
   height: 50px;
 }
 
+#postsBox {
+  background-color: white;
+  border: 3.5px solid black;
+}
+
 #posts:hover {
   border: none;
   font-family: Pixel;
