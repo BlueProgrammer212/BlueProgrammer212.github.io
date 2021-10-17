@@ -1,7 +1,5 @@
 let inputBox : any;
 
-console.log(firebase)
-
 interface Fragment {
     template_id : string,
     template_element: any,
@@ -40,29 +38,33 @@ interface FragmentExtension {
     readonly parent: any,
 }
 
-interface FileSystemInstance {
-    data: any 
+interface Data {
+     message: string; pfp_link: string; 
 }
 
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
-    protected remove(fs : FileSystemInstance, name : string): Promise<void> {
+    public map : Map<"m","b">;
+
+    remove(fs, name: string): Promise<void> {
         return new Promise(async (res) => {
-            await fs.data.firestore.collection("posts").doc(name).delete().then(() => {
+            await fs.collection("posts").doc(name).delete().then(() => {
                 setTimeout(res, 1000, undefined);
             }).catch(err => console.error(new Error(err)));
-            console.log("[System] %c Removed posts in 1.6s", "color: violet;");
+            console.log("[System]%c Removed posts in 1.6s", "color: violet;font-style: bold;");
             
         });
     }
     constructor(template_id : string, defaultPfp_ : String) {
          super(template_id, defaultPfp_);
          this.parent = document.getElementById("titles");
+         this.map = new Map();
     } 
 
-    add(data) {
+    add(data: Data) {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
+        this.map.set("m", "b")
         this.parent.appendChild(this.template_element_clone);
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
@@ -86,7 +88,7 @@ window.addEventListener("load", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
         firestore = firebase.firestore();
-        firestore.collection("posts").get().then((querySnapshot) => {
+        firestore.collection("posts").where("region", "==", "AS").onSnapshot((querySnapshot) => {
             if (!noPosts.className.includes("invisible")) {
                 noPosts.className += " invisible";
             };
