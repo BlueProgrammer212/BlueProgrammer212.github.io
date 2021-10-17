@@ -353,6 +353,16 @@ a {
   height: 50px;
 }
 
+#posts:disabled {
+  border: 0.1px solid black;
+  font-family: Pixel;
+  color: lightgray;
+  background-color: gray;
+  font-size: 15px;
+  width: 200px;
+  height: 50px;
+}
+
 .postsBox {
   background-color: white;
   border: 3.5px solid black;
