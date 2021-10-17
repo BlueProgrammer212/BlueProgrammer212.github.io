@@ -360,6 +360,10 @@ a {
 .pfp_img_elem {
   transform: scale(1.5);
 }
+#postsBoxContent {
+    margin-top: 5%;
+    margin-left: 5%;
+}
 
 .postsBox > .img_upload {
   transform: scale(0.5) translateX(-50%) translateY(-50%);
