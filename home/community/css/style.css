@@ -283,6 +283,27 @@ a {
   height: 50px;
 }
 
+#boldText {
+  border: none;
+  font-family: Pixel;
+  color: white;
+  background-color: rgb(224, 250, 110);
+  font-size: 15px;
+  width: 200px;
+  height: 50px;
+}
+
+#boldText:hover {
+  border: none;
+  font-family: Pixel;
+  color: white;
+  background-color: rgb(110, 250, 117);
+  font-size: 15px;
+  width: 200px;
+  height: 50px;
+}
+
+
 body {
   cursor: url(https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/images%2FMouseCursor56x84.png?alt=media&token=8fb3123e-70dd-491b-b1d7-0a5df700f3a1), auto;
 }
