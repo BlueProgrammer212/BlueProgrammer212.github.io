@@ -275,8 +275,8 @@ window.addEventListener("load", () => {
         firestore.collection(`comments`).onSnapshot(snapshot => {        
             snapshot.docChanges().forEach(snap => {
               if (snap.type == "added") {
-                comments.add(snap.docs);
-                console.log(snap.docs);
+                comments.add([snap.doc.data()]);
+                console.log(snap.doc.data());
               }
            })
         })
