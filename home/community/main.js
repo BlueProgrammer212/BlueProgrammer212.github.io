@@ -164,6 +164,9 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
               let imageUpload = evt.target.files[0];
               let uploadTask = storageRef.put(imageUpload);
               document.getElementById("uploadedFileLayer").className = "";
+              document.getElementById("uploadedFileLayer").addEventListener("mousewheel", (e) => {
+                e.preventDefault();
+              })
               uploadTask.then((snapshot) => { 
                 console.log("Succesfully uploaded image: ", snapshot);
                 document.getElementById("uploadedFileLayer").className = "invisible";
