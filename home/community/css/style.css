@@ -361,8 +361,8 @@ a {
   transform: scale(1.5);
 }
 #postsBoxContent {
-    margin-top: 5%;
-    margin-left: 5%;
+    margin-top: 2.5%;
+    margin-left: 2.5%;
 }
 
 .postsBox > .img_upload {

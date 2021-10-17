@@ -39,7 +39,9 @@ interface FragmentExtension {
 }
 
 interface Data {
-     message: string; pfp_link: string; 
+     message: string;
+     pfp_link: string;
+     name: string; 
 }
 
 class FragmentManager extends FragmentInstance implements FragmentExtension {
@@ -65,6 +67,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
         this.parent.appendChild(this.template_element_clone);
+        for (let j = 0; j < document.getElementsByClassName("pfp_name").length; ++j) {
+            document.getElementsByClassName("pfp_name")[j].innerHTML = data.name;
+        }
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;

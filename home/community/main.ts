@@ -91,9 +91,10 @@ class PostsManager extends Posts {
         document.getElementById(btn_id).addEventListener("click", async () => {
             await this.add({
                 message: document.getElementById("post_content")["value"], region: "AS",
-                pfp_link: image_url_
+                pfp_link: image_url_, name: this.name
             }).then((info) => {
                 window.location.href = ".";
+                console.log(info)
             })
         });
     }
