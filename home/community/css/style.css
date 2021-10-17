@@ -357,6 +357,10 @@ a {
   background-color: white;
   border: 3.5px solid black;
 }
+.pfp_img_elem {
+  transform: scale(1.5);
+}
+
 .postsBox > .img_upload {
   transform: scale(0.5) translateX(-50%) translateY(-50%);
 }
