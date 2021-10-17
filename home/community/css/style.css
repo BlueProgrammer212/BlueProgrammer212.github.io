@@ -368,6 +368,9 @@ a {
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
 }
 
 #uploadedFileLayer > h2 {
@@ -375,8 +378,6 @@ a {
   color: white;
   font-family: Pixel;
   font-size: 25px;
-  width: 100%;
-  height: 100%;
 }
 
 .postsBox {
