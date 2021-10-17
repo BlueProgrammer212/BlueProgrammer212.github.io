@@ -44,7 +44,7 @@ interface Data {
 
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
-    public map : Map<"m","b">;
+    public set : any;
 
     remove(fs, name: string): Promise<void> {
         return new Promise(async (res) => {
@@ -58,13 +58,12 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     constructor(template_id : string, defaultPfp_ : String) {
          super(template_id, defaultPfp_);
          this.parent = document.getElementById("titles");
-         this.map = new Map();
+         this.set = new Set();
     } 
 
     add(data: Data) {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
-        this.map.set("m", "b")
         this.parent.appendChild(this.template_element_clone);
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
@@ -92,9 +91,13 @@ window.addEventListener("load", () => {
             if (!noPosts.className.includes("invisible")) {
                 noPosts.className += " invisible";
             };
+            querySnapshot.docChanges().forEach(change => {
+                if (change.type == "added") {
+                    fragmentInstance.add(change.doc.data());
+                }
+            });
             querySnapshot.forEach((doc) => {
                 console.log(doc.data()); 
-                fragmentInstance.add(doc.data());
             });
         });
     }, 1000);
