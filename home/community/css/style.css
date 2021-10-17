@@ -287,7 +287,7 @@ a {
   border: none;
   font-family: Pixel;
   color: white;
-  background-color: rgb(224, 250, 110);
+  background-color: #0c9;
   font-size: 15px;
   width: 200px;
   height: 50px;
@@ -297,7 +297,7 @@ a {
   border: none;
   font-family: Pixel;
   color: white;
-  background-color: rgb(110, 250, 250);
+  background-color: #e44;
   font-size: 15px;
   width: 200px;
   height: 50px;
@@ -307,7 +307,7 @@ a {
   border: none;
   font-family: Pixel;
   color: white;
-  background-color: rgb(250, 110, 110);
+  background-color: #0c9;
   font-size: 15px;
   width: 200px;
   height: 50px;
@@ -317,7 +317,7 @@ a {
   border: none;
   font-family: Pixel;
   color: white;
-  background-color: rgb(110, 171, 250);
+  background-color: #e44;
   font-size: 15px;
   width: 200px;
   height: 50px;
