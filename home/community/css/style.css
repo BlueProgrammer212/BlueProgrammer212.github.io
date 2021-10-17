@@ -323,6 +323,10 @@ a {
   height: 50px;
 }
 
+#edit {
+  margin-top: 50px;
+}
+
 
 body {
   cursor: url(https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/images%2FMouseCursor56x84.png?alt=media&token=8fb3123e-70dd-491b-b1d7-0a5df700f3a1), auto;
