@@ -46,34 +46,27 @@
       return string;
     }
     
-    async add(comm = []) {
+    async add(comm) {
       let img = document.getElementsByClassName("profile_picture_32x32"),
       name = document.getElementsByClassName("pfp_name"),
       comment_msg = document.getElementsByClassName("comment_message");
-      for (let j = 0; j < comm.length; ++j) {
-        await timeout(10, () => {
-          if (!img[j]) {
-            this.child = this.template.content.cloneNode(true);
-            this.parent.appendChild(this.child); 
-          }
-          }).then((cb) => {
-            if (name[name.length]) {
-              name[name.length].innerHTML = comm[j].name;
-            } else {
-              name[name.length - 1].innerHTML = comm[j].name;
-            }
-            if (comment_msg[comment_msg.length]) {
-              comment_msg[comment_msg.length].innerHTML = comm[j].content;
-            } else {
-              comment_msg[comment_msg.length - 1].innerHTML = comm[j].content;
-            }
-            if (img[img.length]) {
-              img[img.length].setAttribute("src", comm[j].pfp_link);
-            } else {
-              img[img.length - 1].setAttribute("src", comm[j].pfp_link);
-            }
-          });
-        }
+      this.child = this.template.content.cloneNode(true);
+      this.parent.appendChild(this.child); 
+      if (name[name.length]) {
+        name[name.length].innerHTML = comm.name;
+      } else {
+        name[name.length - 1].innerHTML = comm.name;
+      }
+      if (comment_msg[comment_msg.length]) {
+        comment_msg[comment_msg.length].innerHTML = comm.content;
+      } else {
+        comment_msg[comment_msg.length - 1].innerHTML = comm.content;
+      }
+      if (img[img.length]) {
+        img[img.length].setAttribute("src", comm.pfp_link);
+      } else {
+        img[img.length - 1].setAttribute("src", comm.pfp_link);
+      }
       }
       
       post(data) {
@@ -275,7 +268,7 @@ window.addEventListener("load", () => {
         firestore.collection(`comments`).onSnapshot(snapshot => {        
             snapshot.docChanges().forEach(snap => {
               if (snap.type == "added") {
-                comments.add([snap.doc.data()]);
+                comments.add(snap.doc.data());
                 console.log(snap.doc.data());
               }
            })
