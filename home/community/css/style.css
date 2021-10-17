@@ -357,6 +357,13 @@ a {
   background-color: white;
   border: 3.5px solid black;
 }
+.postsBox > .img_upload {
+  transform: scale(0.5);
+}
+
+#comment_message {
+  color: black;
+}
 
 #posts:hover {
   border: none;
