@@ -361,7 +361,7 @@ a {
   transform: scale(0.5);
 }
 
-#comment_message {
+.comment_message {
   color: black;
 }
 
