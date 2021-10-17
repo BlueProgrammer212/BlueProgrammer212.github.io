@@ -163,10 +163,12 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
               let storageRef = firebase.storage().ref(`uploads/${generatedFileName}.png`)
               let imageUpload = evt.target.files[0];
               let uploadTask = storageRef.put(imageUpload);
+              document.getElementById("uploadedFileLayer").className = "";
               uploadTask.then((snapshot) => { 
-                  console.log("Succesfully uploaded image: ", snapshot);
-                   let img_link = `/uploadImg[https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${generatedFileName}.png?alt=media]`
-                  document.getElementById("post_content").value += img_link;
+                console.log("Succesfully uploaded image: ", snapshot);
+                document.getElementById("uploadedFileLayer").className = "invisible";
+                let img_link = `/uploadImg[https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${generatedFileName}.png?alt=media]`
+                document.getElementById("post_content").value += img_link;
               }).catch((err) => {
                   console.error(`Failed to upload image to cloud: ${JSON.stringify(err)}`);
               })
