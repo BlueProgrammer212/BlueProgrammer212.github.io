@@ -272,13 +272,21 @@ window.addEventListener("load", () => {
         firebase.initializeApp(firebaseConfig);
         firestore = firebase.firestore();
 
-        firestore.collection(`comments`).onSnapshot(snapshot => {
+        firestore.collection(`comments`).onSnapshot(snapshot => {        
             snapshot.docChanges().forEach(snap => {
-               if (snap.type == "added") {
-                comments.add([snap.doc.data()])  
-                console.log(snap.doc.data());
-               }
-            })  
+              if (snap.type == "added") {
+                comments.add(snap.docs
+                .filter(doc => doc.data().slug === slug)
+                .map(doc => {
+                  return { id: doc.id, ...doc.data() }
+                }));
+                console.log(snap.docs
+                  .filter(doc => doc.data().slug === slug)
+                  .map(doc => {
+                    return { id: doc.id, ...doc.data() }
+                  }))
+              }
+           })
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
