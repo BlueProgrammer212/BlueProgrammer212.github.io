@@ -1,13 +1,24 @@
 let inputBox : any;
 
-class FragmentManager {
-    protected template_id : string;
-    protected template_element : any;
-    public template_element_clone : any;
-    public image_upload : any;
-    protected comment_message : any;
-    protected defaultPfp : String;
-    protected pfp_element : any;
+console.log(firebase)
+
+interface Fragment {
+    template_id : string,
+    template_element: any,
+    image_upload: any,
+    comment_message: any,
+    defaultPfp: String,
+    pfp_element: any
+}
+
+class FragmentInstance implements Fragment {
+    template_id : string;
+    template_element : any;
+    template_element_clone : any;
+    image_upload : any;
+    comment_message : any;
+    defaultPfp : String;
+    pfp_element : any;
     constructor(template_id : string, defaultPfp_ : String) {
          this.template_id = template_id;
          this.template_element = document.getElementById(this.template_id);
@@ -23,18 +34,47 @@ class FragmentManager {
             }
         }
     } 
+}
+
+interface FragmentExtension {
+    readonly parent: any,
+}
+
+interface FileSystemInstance {
+    data: any 
+}
+
+class FragmentManager extends FragmentInstance implements FragmentExtension {
+    public readonly parent : any;
+    protected remove(fs : FileSystemInstance, name : string): Promise<void> {
+        return new Promise(async (res) => {
+            await fs.data.firestore.collection("posts").doc(name).delete().then(() => {
+                setTimeout(res, 1000, undefined);
+            }).catch(err => console.error(new Error(err)));
+            console.log("[System] %c Removed posts in 1.6s", "color: violet;");
+            
+        });
+    }
+    constructor(template_id : string, defaultPfp_ : String) {
+         super(template_id, defaultPfp_);
+         this.parent = document.getElementById("titles");
+    } 
+
     add(data) {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
-        document.getElementById("titles").appendChild(this.template_element_clone);
+        this.parent.appendChild(this.template_element_clone);
+
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
+
             if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
                 document.getElementsByClassName("comment_message")[i].innerHTML = data.message;
-              inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
-              document.getElementsByClassName("img_upload")[i].setAttribute("src", 
-              document.getElementsByClassName("comment_message")[i].innerHTML.match(/\[(.*?)\]/)[1]);
+                inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
+                document.getElementsByClassName("img_upload")[i].setAttribute("src", 
+                inputBox.match(/\[(.*?)\]/)[1]);
             }
+            
         }
         this.setImage(data.pfp_link);
     }
