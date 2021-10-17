@@ -273,13 +273,12 @@ window.addEventListener("load", () => {
         firestore = firebase.firestore();
 
         firestore.collection(`comments`).onSnapshot(snapshot => {
-            posts = snapshot.docs
-            .filter(doc => doc.data().slug === slug)
-            .map(doc => {
-              return { id: doc.id, ...doc.data() }
-            });          
-            console.log(`Loading comments 0%... ${JSON.stringify(posts)}`)
-            comments.add(posts)  
+            snapshot.docChanges().forEach(snap => {
+               if (snap.type == "added") {
+                comments.add(snap.doc.data())  
+                console.log(snap.doc.data());
+               }
+            })  
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
