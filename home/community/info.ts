@@ -67,6 +67,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     } 
 
     add(data: Data) {
+        console.log(`[System]%c Loading posts... ${data}`, "color: violet;font-style: bold;");
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
         this.parent.appendChild(this.template_element_clone);
