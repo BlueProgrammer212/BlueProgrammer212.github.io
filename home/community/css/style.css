@@ -255,7 +255,7 @@ a {
 }
 
 .pfp_name {
-  position: absolute;
+  transform: translateX(2.2vw) translateY(6vw);
   color: black;
   font-size: 14px;
 }
@@ -401,7 +401,6 @@ a {
 }
 
 .comment_message {
-  position: absolute;
   color: black;
   font-size: 14px;
   transform: translateX(2vw) translateY(3vw);
@@ -409,7 +408,6 @@ a {
 
 .timeStamp {
    color: rgb(66, 66, 66);
-   position: absolute;
    font-size: 14px;
    transform: translateX(2.2vw) translateY(2.5vw);
 }
