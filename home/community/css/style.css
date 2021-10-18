@@ -418,6 +418,10 @@ a {
    transform: translateY(-7.2vw);
 }
 
+img.rounded-corners {
+  border-radius: 30px;
+}
+
 #posts:hover {
   border: none;
   font-family: Pixel;
