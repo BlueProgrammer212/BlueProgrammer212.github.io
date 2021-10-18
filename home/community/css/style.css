@@ -385,6 +385,7 @@ a {
 .postsBox {
   background-color: white;
   border: 3.5px solid black;
+  padding-bottom: 5px;
 }
 .pfp_img_elem {
   width: 4vw;
