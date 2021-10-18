@@ -256,7 +256,7 @@ a {
 
 .pfp_name {
   position: absolute;
-  transform: translateX(5%) translateY(-48px);
+  transform: translateX(1.5vw) translateY(1.5vw);
   color: black;
   font-size: 1.5vw;
 }
@@ -386,8 +386,8 @@ a {
   border: 3.5px solid black;
 }
 .pfp_img_elem {
-  width: 5%;
-  height: 5%;
+  width: 3%;
+  height: 3%;
 }
 #postsBoxContent {
     margin-top: 2.5%;
