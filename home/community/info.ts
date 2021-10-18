@@ -36,7 +36,7 @@ class FragmentInstance implements Fragment {
         document.getElementsByClassName("comment_message")[i].innerHTML = msg;
     }
     protected setTime(time : string, i : number) {
-        document.getElementsByClassName("timeStamp")[i].innerHTML = time;
+        document.getElementsByClassName("timeStamp")[i].innerHTML = `Published on ${time}`;
     }
 }
 

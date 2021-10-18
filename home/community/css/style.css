@@ -410,7 +410,7 @@ a {
 .timeStamp {
    color: rgb(66, 66, 66);
    position: absolute;
-   transform: translateX(2vw) translateY(-2vw);
+   transform: translateX(2vw) translateY(-3vw);
    font-size: 1.5vw;
 }
 
