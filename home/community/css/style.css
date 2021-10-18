@@ -407,6 +407,13 @@ a {
   font-size: 1.5vw;
 }
 
+.timeStamp {
+   color: rgb(66, 66, 66);
+   position: absolute;
+   transform: translateX(2vw) translateY(-2vw);
+   font-size: 1.5vw;
+}
+
 #posts:hover {
   border: none;
   font-family: Pixel;

@@ -35,6 +35,9 @@ class FragmentInstance implements Fragment {
     protected setMessage(msg : string, i : number) {
         document.getElementsByClassName("comment_message")[i].innerHTML = msg;
     }
+    protected setTime(time : string, i : number) {
+        document.getElementsByClassName("timeStamp")[i].innerHTML = time;
+    }
 }
 
 interface FragmentExtension {
@@ -45,6 +48,7 @@ interface Data {
      message: string;
      pfp_link: string;
      name: string; 
+     date_published: string;
 }
 
 class FragmentManager extends FragmentInstance implements FragmentExtension {
@@ -80,6 +84,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
             if (inputBox.length == 0 && !data.message.startsWith("!uploadImg[")) {
                 this.setMessage(data.message, i);
+                this.setTime(data.date_published, i);
             } else if (data.message.startsWith("!uploadImg[")) {
                 this.setMessage(data.message, i);
                 inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
