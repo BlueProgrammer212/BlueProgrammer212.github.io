@@ -401,7 +401,10 @@ a {
 }
 
 .comment_message {
+  position: absolute;
+  transform: translateX(2vw) translateY(-3vw);
   color: black;
+  font-size: 1.5vw;
 }
 
 #posts:hover {
