@@ -386,8 +386,8 @@ a {
   border: 3.5px solid black;
 }
 .pfp_img_elem {
-  width: 0.5%;
-  height: 0.5%;
+  width: 10%;
+  height: 10%;
 }
 #postsBoxContent {
     margin-top: 2.5%;
