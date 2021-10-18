@@ -2,6 +2,8 @@ import FragmentManager from "./ts/FragmentManager.js";
 
 let fragmentInstance = new FragmentManager("template_posts", "../assets/default_pfp_16x16.png");
 
+console.log("lol")
+
 window.addEventListener("load", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
