@@ -389,7 +389,7 @@ a {
 .pfp_img_elem {
   width: 4vw;
   height: 4vw;
-  transform: translateX(-1.5vw) translateY(-1.5vw);
+  transform: translateX(-1.5vw) translateY(-6.5vw);
 }
 #postsBoxContent {
     margin-top: 2.5%;
