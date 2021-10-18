@@ -75,6 +75,7 @@ class PostsManager extends Posts {
     public readonly btn_id : String;
     public readonly template : any;
     public readonly message : String;
+    public readonly now: Date;
     protected add(data : Object): any {
         return new Promise((resolve, reject) => {
             this.firestore.collection("posts").add(data).then(b => resolve(b)).catch(error => {
@@ -91,7 +92,7 @@ class PostsManager extends Posts {
         document.getElementById(btn_id).addEventListener("click", async () => {
             await this.add({
                 message: document.getElementById("post_content")["value"], region: "AS",
-                pfp_link: image_url_, name: this.name
+                pfp_link: image_url_, name: this.name, date_published: this.now.getFullYear()+'/'+(this.now.getMonth()+1)+'/'+this.now.getDate();
             }).then((info) => {
                 window.location.href = ".";
                 console.log(info)
@@ -102,6 +103,7 @@ class PostsManager extends Posts {
         super(id);
         this.init(btn_id);
         this.firestore = firestore;
+        this.now = new Date();
     }
 }
 
