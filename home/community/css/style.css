@@ -444,7 +444,7 @@ body {
       width: 100%;
   }
   .pfp_name {
-    font-size: 3vw;
+    font-size : clamp(0.5em, 1.5vw, 1.5em);
   }
   .pfp_img_elem {
     width: 4vw;
