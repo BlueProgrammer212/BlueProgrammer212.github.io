@@ -413,6 +413,11 @@ a {
    transform: translateX(3.2vw) translateY(-7.5vw);
 }
 
+#postsBoxContent > .img_upload {
+   border: 3.5px solid black;
+   transform: translateY(-7.2vw);
+}
+
 #posts:hover {
   border: none;
   font-family: Pixel;
