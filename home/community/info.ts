@@ -83,8 +83,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             } else if (data.message.startsWith("!uploadImg[")) {
                 this.setMessage(data.message, i);
                 inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
-                document.getElementsByClassName("img_upload")[i].setAttribute("src", 
-                inputBox.match(/\[(.*?)\]/)[1]);
+                document.getElementsByClassName("img_upload")[i].setAttribute("src", inputBox.match(/\[(.*?)\]/)[1]);
             }
             
         }
