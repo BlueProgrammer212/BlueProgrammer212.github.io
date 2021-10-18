@@ -255,7 +255,7 @@ a {
 }
 
 .pfp_name {
-  transform: translateX(2.2vw) translateY(6vw);
+  transform: translateX(2.2vw) translateY(-7vw);
   color: black;
   font-size: 14px;
 }
@@ -392,7 +392,7 @@ a {
   transform: translateX(-1.5vw) translateY(-1.5vw);
 }
 #postsBoxContent {
-    margin-top: 1.5%;
+    margin-top: 2.5%;
     margin-left: 2.5%;
 }
 
@@ -403,14 +403,14 @@ a {
 .comment_message {
   color: black;
   font-size: 14px;
-  transform: translateX(2vw) translateY(3vw);
+  transform: translateX(2vw) translateY(-3vw);
   margin-bottom: 20px;
 }
 
 .timeStamp {
    color: rgb(66, 66, 66);
    font-size: 14px;
-   transform: translateX(2.2vw) translateY(2.5vw);
+   transform: translateX(2.2vw) translateY(-2.5vw);
 }
 
 #posts:hover {
