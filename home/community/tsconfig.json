@@ -3,7 +3,8 @@
          "target": "es6",
          "noImplicitAny": false,
          "sourceMap": true,
-         "outDir": "scripts/"
+         "outDir": "scripts/",
+         "module": "ES6"
      },
      "exclude": [
          "node_modules"
