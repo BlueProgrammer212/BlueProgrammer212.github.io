@@ -258,7 +258,7 @@ a {
   position: absolute;
   transform: translateX(5%) translateY(-48px);
   color: black;
-  font-size: 0.5vw;
+  font-size: 2vw;
 }
 .eop {
   padding: 100px;
