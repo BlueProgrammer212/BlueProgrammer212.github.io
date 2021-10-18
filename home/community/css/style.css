@@ -256,7 +256,7 @@ a {
 
 .pfp_name {
   position: absolute;
-  transform: translateX(1.5vw) translateY(-4vw);
+  transform: translateX(2vw) translateY(-4vw);
   color: black;
   font-size: 1.5vw;
 }
