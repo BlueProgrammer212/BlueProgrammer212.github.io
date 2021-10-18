@@ -405,14 +405,14 @@ a {
   position: absolute;
   transform: translateX(2vw) translateY(-2.5vw);
   color: black;
-  font-size: clamp(1.5vw, 11px, 14px);
+  font-size: 14px;
 }
 
 .timeStamp {
    color: rgb(66, 66, 66);
    position: absolute;
    transform: translateX(3vw) translateY(-5vw);
-   font-size: clamp(1.5vw, 11px, 14px);
+   font-size: 14px;
 }
 
 #posts:hover {
