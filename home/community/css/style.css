@@ -457,3 +457,7 @@ body {
       font-size : clamp(0.5em, 1.5vw, 1.5em);
   }
 }
+
+.pfp_name {
+  font-size : clamp(0.5em, 1.5vw, 1.5em);
+}
