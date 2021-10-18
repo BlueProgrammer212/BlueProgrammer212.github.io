@@ -387,8 +387,9 @@ a {
   border: 3.5px solid black;
 }
 .pfp_img_elem {
-  width: 2vw;
-  height: 2vw;
+  width: 1vw;
+  height: 1vw;
+  transform: translate(1vw);
 }
 #postsBoxContent {
     margin-top: 2.5%;
@@ -444,20 +445,12 @@ body {
       width: 100%;
   }
   .pfp_name {
-    font-size : clamp(0.5em, 1.5vw, 1.5em);
-  }
-  .pfp_img_elem {
-    width: 4vw;
-    height: 4vw;
+    font-size: 3vw;
   }
 }
 
 @media screen and (min-width: 601px) {
   .pfp_name {
-      font-size : clamp(0.5em, 1.5vw, 1.5em);
+    font-size: 1.5vw;
   }
-}
-
-.pfp_name {
-  font-size : clamp(0.5em, 1.5vw, 1.5em);
 }
