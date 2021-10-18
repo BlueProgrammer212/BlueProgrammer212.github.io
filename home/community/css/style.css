@@ -387,8 +387,8 @@ a {
   border: 3.5px solid black;
 }
 .pfp_img_elem {
-  width: 1vw;
-  height: 1vw;
+  width: 2vw;
+  height: 2vw;
   transform: translate(1vw);
 }
 #postsBoxContent {
