@@ -439,10 +439,6 @@ body {
   font-size: 30px;
 }
 
-h2, h3, h4, h5, h6 {
-  font-size : clamp(2rem, 10vw, 5rem);
-}
-
 @media screen and (max-width:600px) {
   .column {
       width: 100%;
@@ -458,6 +454,6 @@ h2, h3, h4, h5, h6 {
 
 @media screen and (min-width: 601px) {
   .pfp_name {
-    font-size: 1.5vw;
+      font-size : clamp(0.5em, 1.5vw, 1.5em);
   }
 }
