@@ -256,9 +256,9 @@ a {
 
 .pfp_name {
   position: absolute;
-  transform: translateX(32px) translateY(-48px);
+  transform: translateX(5%) translateY(-48px);
   color: black;
-  font-size: 14px;
+  font-size: 5%;
 }
 .eop {
   padding: 100px;
