@@ -392,7 +392,7 @@ a {
   transform: translateX(-1.5vw) translateY(-1.5vw);
 }
 #postsBoxContent {
-    margin-top: 2.5%;
+    margin-top: 1.5%;
     margin-left: 2.5%;
 }
 
@@ -404,7 +404,7 @@ a {
   color: black;
   font-size: 14px;
   transform: translateX(2vw) translateY(3vw);
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .timeStamp {
