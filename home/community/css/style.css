@@ -404,6 +404,7 @@ a {
   color: black;
   font-size: 14px;
   transform: translateX(2vw) translateY(3vw);
+  margin-bottom: 10px;
 }
 
 .timeStamp {
