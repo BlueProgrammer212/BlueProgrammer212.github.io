@@ -32,6 +32,9 @@ class FragmentInstance implements Fragment {
             }
         }
     } 
+    protected setMessage(msg : string, i : number) {
+        document.getElementsByClassName("comment_message")[i].innerHTML = msg;
+    }
 }
 
 interface FragmentExtension {
@@ -74,8 +77,10 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
 
-            if (inputBox.length == 0 && !inputBox.startsWith("/uploadImg[")) {
-                document.getElementsByClassName("comment_message")[i].innerHTML = data.message;
+            if (inputBox.length == 0 && !data.message.startsWith("!uploadImg[")) {
+                this.setMessage(data.message, i);
+            } else if (data.message.startsWith("!uploadImg[")) {
+                this.setMessage(data.message, i);
                 inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
                 document.getElementsByClassName("img_upload")[i].setAttribute("src", 
                 inputBox.match(/\[(.*?)\]/)[1]);
