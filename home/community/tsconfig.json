@@ -1,12 +1,6 @@
 {
     "compilerOptions": {
-         "target": "es6",
-         "noImplicitAny": false,
-         "sourceMap": true,
-         "outDir": "scripts/",
-         "module": "none"
-     },
-     "exclude": [
-         "node_modules"
-     ]
- }
+      "target": "es2015",
+      "module": "es2015",
+    }
+}
