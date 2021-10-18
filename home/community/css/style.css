@@ -261,18 +261,6 @@ a {
   font-size: 1.5vw;
 }
 
-@media screen and (min-width: 601px) {
-  .pfp_name {
-    font-size: 1.5vw;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .pfp_name {
-    font-size: 4vw;
-  }
-}
-
 .eop {
   padding: 100px;
 }
@@ -399,8 +387,8 @@ a {
   border: 3.5px solid black;
 }
 .pfp_img_elem {
-  width: 3%;
-  height: 3%;
+  width: 2vw;
+  height: 2vw;
 }
 #postsBoxContent {
     margin-top: 2.5%;
@@ -454,5 +442,18 @@ body {
 @media screen and (max-width:600px) {
   .column {
       width: 100%;
+  }
+  .pfp_name {
+    font-size: 3vw;
+  }
+  .pfp_img_elem {
+    width: 4vw;
+    height: 4vw;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .pfp_name {
+    font-size: 1.5vw;
   }
 }
