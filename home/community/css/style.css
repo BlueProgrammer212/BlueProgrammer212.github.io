@@ -403,14 +403,14 @@ a {
 .comment_message {
   color: black;
   font-size: 14px;
-  transform: translateX(2vw) translateY(-3vw);
+  transform: translateX(2vw) translateY(-6vw);
   margin-bottom: 20px;
 }
 
 .timeStamp {
    color: rgb(66, 66, 66);
    font-size: 14px;
-   transform: translateX(2.2vw) translateY(-2.5vw);
+   transform: translateX(3.2vw) translateY(-6vw);
 }
 
 #posts:hover {
