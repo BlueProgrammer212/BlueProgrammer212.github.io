@@ -4,7 +4,7 @@
          "noImplicitAny": false,
          "sourceMap": true,
          "outDir": "scripts/",
-         "module": "CommonJS"
+         "module": "none"
      },
      "exclude": [
          "node_modules"
