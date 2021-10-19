@@ -395,7 +395,7 @@ a {
     margin-left: 2.5%;
 }
 
-.postsBox > .img_button_div > .img_upload {
+.img_upload {
   display: block;
   max-width:230px;
   max-height:95px;
