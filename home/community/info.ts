@@ -119,6 +119,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             this.setPosts(data, i);
+            document.getElementsByClassName("img_button_div")[i].addEventListener("click", () => {
+                window.location.search = `?preview=${data.message.match(/\[(.*?)\]/)[1]}`;
+            })
         }
         this.setImage(data.pfp_link);
     }

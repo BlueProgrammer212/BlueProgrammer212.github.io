@@ -384,7 +384,6 @@ a {
 .postsBox {
   background-color: white;
   border: 3.5px solid black;
-  padding-bottom: -10px;
 }
 .pfp_img_elem {
   width: 4vw;
@@ -396,7 +395,7 @@ a {
     margin-left: 2.5%;
 }
 
-.postsBox > .img_upload {
+.postsBox > .img_button_div > .img_upload {
   display: block;
   max-width:230px;
   max-height:95px;
