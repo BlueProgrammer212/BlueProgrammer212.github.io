@@ -414,6 +414,7 @@ a {
 #img_prev {
   display: block;
   max-width:40vw;
+  margin: auto;
   max-height:40vw;
   width: auto;
   height: auto;
