@@ -62,6 +62,7 @@ interface Data {
      date_published: string;
 }
 
+
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
     public set : any;
