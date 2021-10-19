@@ -413,8 +413,8 @@ a {
 
 #img_prev {
   display: block;
-  max-width:50vw;
-  max-height:50vw;
+  max-width:20vw;
+  max-height:20vw;
   width: auto;
   height: auto;
   border: 3.5px solid black;
