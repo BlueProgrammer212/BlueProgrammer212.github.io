@@ -89,13 +89,13 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
     setPosts(data : Data, i : number) {
         this.update(i);
-        if (this.msg.length == 0 && !data.message.startsWith("!uploadImg[")) {
+        if (this.msg.length == 0 && !data.message.startsWith("/uploadImg[")) {
             this.setMessage(data.message, i);
             this.setTime(data.date_published, i);
             this.setName(data.name, i);
         }
-
-        if (this.msg.length == 0 && data.message.startsWith("!uploadImg")) {
+        this.update(i);
+        if (this.msg.length == 0 && data.message.startsWith("/uploadImg[")) {
             this.setMessage(data.message, i);
             this.setTime(data.date_published, i);
             this.setName(data.name, i);
