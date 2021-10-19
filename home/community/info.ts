@@ -32,16 +32,16 @@ class FragmentInstance implements Fragment {
             }
         }
     } 
-    protected setMessage(msg : string, i : number): void {
+    setMessage(msg : string, i : number): void {
         document.getElementsByClassName("comment_message")[i].innerHTML = msg;
     }
-    protected setTime(time : string, i : number): void {
+    setTime(time : string, i : number): void {
         document.getElementsByClassName("timeStamp")[i].innerHTML = `Published on ${time}`;
     }
-    protected setName(name : string, i : number): void {
+    setName(name : string, i : number): void {
         document.getElementsByClassName("pfp_name")[i].innerHTML = name;
     }
-    protected loadImage(src : string, i: number): Promise<void> {
+    loadImage(src : string, i: number): Promise<void> {
         return new Promise((resolve) => {
             document.getElementsByClassName("img_upload")[i].setAttribute("src", src);
 
@@ -88,7 +88,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.parent.appendChild(this.template_element_clone);
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
-            if (data.message.length == 0 && !data.message.startsWith("!uploadImg[")) {
+            if (!data.message.startsWith("!uploadImg[")) {
                 this.setMessage(data.message, i);
                 this.setTime(data.date_published, i);
                 this.setName(data.name, i);
