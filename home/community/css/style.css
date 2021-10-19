@@ -414,12 +414,16 @@ a {
 #img_prev {
   display: block;
   max-width:40vw;
-  margin: auto;
   max-height:40vw;
   width: auto;
   height: auto;
   border: 3.5px solid black;
   z-index: 1010;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
 }
 
 .img_upload {
