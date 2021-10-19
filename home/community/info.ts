@@ -38,6 +38,9 @@ class FragmentInstance implements Fragment {
     protected setTime(time : string, i : number) {
         document.getElementsByClassName("timeStamp")[i].innerHTML = `Published on ${time}`;
     }
+    protected setName(name : string, i : number) {
+        document.getElementsByClassName("pfp_name")[i].innerHTML = name;
+    }
 }
 
 interface FragmentExtension {
@@ -75,9 +78,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
         this.parent.appendChild(this.template_element_clone);
-        for (let j = 0; j < document.getElementsByClassName("pfp_name").length; ++j) {
-            document.getElementsByClassName("pfp_name")[j].innerHTML = data.name;
-        }
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
@@ -85,6 +85,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             if (inputBox.length == 0 && !data.message.startsWith("!uploadImg[")) {
                 this.setMessage(data.message, i);
                 this.setTime(data.date_published, i);
+                this.setName(data.name, j);
                 inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
                 document.getElementsByClassName("img_upload")[i].setAttribute("src", inputBox.match(/\[(.*?)\]/)[1]);
             }
