@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+.invisible.img_upload {
+  display: none;
+  border: none;
+}
+
 ::-webkit-scrollbar {
   width: 15px;
 }
@@ -496,9 +501,4 @@ body {
 
 .fontMedium {
   font-size: 30px;
-}
-
-.invisible.img_upload {
-  display: none;
-  border: none;
 }
