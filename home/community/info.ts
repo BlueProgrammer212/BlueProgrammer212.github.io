@@ -65,6 +65,7 @@ interface Data {
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
     public set : any;
+    public msg: any;
 
     remove(fs, name: string): Promise<void> {
         return new Promise(async (res) => {
@@ -75,11 +76,38 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             
         });
     }
+    
+    protected update(i : number): void {
+        this.msg = document.getElementsByClassName("comment_message")[i].innerHTML;
+    }
+    
     constructor(template_id : string, defaultPfp_ : String) {
          super(template_id, defaultPfp_);
          this.parent = document.getElementById("titles");
          this.set = new Set();
     } 
+
+    setPosts(data : Data, i : number) {
+        this.update(i);
+        if (this.msg.length == 0 && !data.message.startsWith("!uploadImg[")) {
+            this.setMessage(data.message, i);
+            this.setTime(data.date_published, i);
+            this.setName(data.name, i);
+        }
+
+        if (this.msg.length == 0 && data.message.startsWith("!uploadImg")) {
+            this.setMessage(data.message, i);
+            this.setTime(data.date_published, i);
+            this.setName(data.name, i);
+
+            console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 0, "color: white;");
+            this.loadImage(data.message.match(/\[(.*?)\]/)[1], i).then(() => {
+                console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 100, "color: white;");
+            })
+            console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
+
+        }
+    }
 
     add(data: Data) {
         console.log(`%c[System] ` + `%cLoading posts... ${JSON.stringify(data)}`, "color: violet;font-style: bold;", "");
@@ -88,20 +116,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.parent.appendChild(this.template_element_clone);
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
-            if (!data.message.startsWith("!uploadImg[")) {
-                this.setMessage(data.message, i);
-                this.setTime(data.date_published, i);
-                this.setName(data.name, i);
-            }
-
-            if (data.message.startsWith("!uploadImg")) {
-                console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 0, "color: white;");
-                this.loadImage(data.message.match(/\[(.*?)\]/)[1], i).then(() => {
-                    console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 100, "color: white;");
-                })
-                console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
-            }
-            
+            this.setPosts(data, i);
         }
         this.setImage(data.pfp_link);
     }
