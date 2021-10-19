@@ -448,6 +448,8 @@ a {
 }
 
 .like_button_parent {
+  width: 17px;
+  transform: scale(2);
   background-image: url("../assets/LikeBtn51x51.png") 0 0;
 }
 
