@@ -456,7 +456,6 @@ a {
 #postsBoxContent > .img_upload {
    border: 3.5px solid black;
    transform: translateY(-7.2vw);
-   display: block;
    max-width:500px;
    max-height:500px;
    width: auto;
