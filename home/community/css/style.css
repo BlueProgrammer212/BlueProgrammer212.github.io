@@ -395,6 +395,12 @@ a {
     margin-left: 2.5%;
 }
 
+.img_button_div {
+  display: block;
+  width: inherit;
+  height: inherit;
+}
+
 .img_upload {
   display: block;
   max-width:230px;
