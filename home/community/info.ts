@@ -81,7 +81,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
          this.set = new Set();
     } 
 
-    async add(data: Data): Promise<void> {
+    add(data: Data) {
         console.log(`%c[System] ` + `%cLoading posts... ${JSON.stringify(data)}`, "color: violet;font-style: bold;", "");
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
@@ -96,7 +96,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
             if (data.message.startsWith("!uploadImg")) {
                 console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 0, "color: white;");
-                await this.loadImage(data.message.match(/\[(.*?)\]/)[1], i).then(() => {
+                this.loadImage(data.message.match(/\[(.*?)\]/)[1], i).then(() => {
                     console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 100, "color: white;");
                 })
                 console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
