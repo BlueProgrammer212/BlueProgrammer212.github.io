@@ -43,10 +43,12 @@ class FragmentInstance implements Fragment {
     }
     loadImage(src : string, i: number): Promise<void> {
         return new Promise((resolve) => {
-            document.getElementsByClassName("img_upload")[i].setAttribute("src", src);
+            if (document.getElementsByClassName("img_upload")[i]) {
+                document.getElementsByClassName("img_upload")[i].setAttribute("src", src);
+            }
 
             document.getElementsByClassName("img_upload")[i]
-                    .addEventListener("load", () => setTimeout(resolve, 100, null));
+                    .addEventListener("load", () => setTimeout(resolve, 0, null));
         })
     }
 }
@@ -108,9 +110,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             this.setTime(data.date_published, i);
             this.setName(data.name, i);
 
-            console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 0, "color: white;");
+            console.log("[System]%c", "Loading resource image... 0pc %c", "color: violet;", "color: white;");
             this.loadImage(data.message.match(/\[(.*?)\]/)[1], i).then(() => {
-                console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 100, "color: white;");
+                console.log("[System]%c", "Loading resource image... 100% pc%c", "color: violet;", 100, "color: white;");
             })
             console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
