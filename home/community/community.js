@@ -174,7 +174,7 @@
           console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
           console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
          }());
-      }, 100);
+      }, 300);
       console.log(`Loading client content... ${document.images}`)
   })
 
