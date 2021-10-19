@@ -447,6 +447,10 @@ a {
   margin-bottom: 20px;
 }
 
+.like_button_parent {
+  background-image: url("../assets/LikeBtn51x51.png") 0 0;
+}
+
 .timeStamp {
    color: rgb(66, 66, 66);
    font-size: 14px;
