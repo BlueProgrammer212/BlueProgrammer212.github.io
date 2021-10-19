@@ -5,7 +5,7 @@ interface Position {
 
 interface Render {
     gl: WebGLRenderingContext,
-    canvas: HTMLCanvasElement
+    canvas: any
 }
 
 class Vector2 implements Position {
@@ -46,13 +46,17 @@ class Body2d extends Vector2 {
 
 class Renderer extends Body2d implements Render {
     public gl: WebGLRenderingContext;
-    public canvas: HTMLCanvasElement;
-    constructor(canvas: HTMLCanvasElement) {
+    public canvas : any;
+    constructor(canvas: any) {
         super();
         this.canvas = canvas;
         this.gl = this.canvas.getContext("webgl");       
     }
-    renderBox(x = 0, y = 0, w = 100, h = 100): void {
+    renderBackground(x = 0, y = 0, w = 100, h = 100): void {
+        if (!this.gl) {
+            console.log("Your browser does not support WebGL");
+            return;
+        }
         this.set(x, y);
         this.box(w, h, this.gl);
     }
@@ -60,7 +64,9 @@ class Renderer extends Body2d implements Render {
 
 
 function main() {
-    
+    const canvas : any = document.getElementById("main_canvas");
+    let renderer = new Renderer(canvas);
+    renderer.renderBackground(0, 0, 100, 100);
 }
 
 window.addEventListener("load", main);

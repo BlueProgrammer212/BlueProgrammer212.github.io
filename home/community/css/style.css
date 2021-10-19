@@ -197,7 +197,7 @@ body {
 #post_content {
    border: 3.5px solid black;
    font-family: Pixel; 
-   width: 850px;
+   width: 90vw;
    height: 200px;
    resize: none;
    font-size: 16px; 
@@ -397,7 +397,11 @@ a {
 }
 
 .postsBox > .img_upload {
-  transform: scale(0.5) translateX(-50%) translateY(-50%);
+  display: block;
+  max-width:230px;
+  max-height:95px;
+  width: auto;
+  height: auto;
 }
 
 .comment_message {
