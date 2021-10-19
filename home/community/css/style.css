@@ -189,11 +189,6 @@ body {
   border: none;
 }
 
-.invisible.img_upload {
-  display: none;
-  border: none;
-}
-
 .checkbox > img {
   width: 8px;
   height: 8px;
@@ -501,4 +496,9 @@ body {
 
 .fontMedium {
   font-size: 30px;
+}
+
+.invisible.img_upload {
+  display: none;
+  border: none;
 }
