@@ -44,11 +44,11 @@ class FragmentInstance implements Fragment {
     loadImage(src : string, i: number): Promise<void> {
         return new Promise((resolve) => {
             if (document.getElementsByClassName("img_upload")[i]) {
-                document.getElementsByClassName("img_upload")[i].setAttribute("src", src);
-            }
+                document.getElementsByClassName("img_upload")[i].setAttribute("src", src)
 
             document.getElementsByClassName("img_upload")[i]
                     .addEventListener("load", () => setTimeout(resolve, 0, null));
+            }
         })
     }
 }
