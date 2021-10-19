@@ -403,18 +403,18 @@ a {
 
 #bg_prev {
   width: 100%;
-  position: absolute;
+  position: fixed;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  left: 0px;
-  right: 0px;
+  left: 0;
+  top: 0;
   z-index: 1009;
 }
 
 #img_prev {
   display: block;
-  max-width:800px;
-  max-height:600px;
+  max-width:50vw;
+  max-height:50vw;
   width: auto;
   height: auto;
   border: 3.5px solid black;
