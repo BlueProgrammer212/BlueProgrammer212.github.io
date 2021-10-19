@@ -32,14 +32,22 @@ class FragmentInstance implements Fragment {
             }
         }
     } 
-    protected setMessage(msg : string, i : number) {
+    protected setMessage(msg : string, i : number): void {
         document.getElementsByClassName("comment_message")[i].innerHTML = msg;
     }
-    protected setTime(time : string, i : number) {
+    protected setTime(time : string, i : number): void {
         document.getElementsByClassName("timeStamp")[i].innerHTML = `Published on ${time}`;
     }
-    protected setName(name : string, i : number) {
+    protected setName(name : string, i : number): void {
         document.getElementsByClassName("pfp_name")[i].innerHTML = name;
+    }
+    protected loadImage(src : string, i: number): Promise<void> {
+        return new Promise((resolve) => {
+            document.getElementsByClassName("img_upload")[i].setAttribute("src", src);
+
+            document.getElementsByClassName("img_upload")[i]
+                    .addEventListener("load", () => setTimeout(resolve, 100, null));
+        })
     }
 }
 
@@ -73,21 +81,25 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
          this.set = new Set();
     } 
 
-    add(data: Data) {
+    async add(data: Data): Promise<void> {
         console.log(`%c[System] ` + `%cLoading posts... ${JSON.stringify(data)}`, "color: violet;font-style: bold;", "");
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
         this.parent.appendChild(this.template_element_clone);
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
-            inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
-
-            if (inputBox.length == 0 && !data.message.startsWith("!uploadImg[")) {
+            if (data.message.length == 0 && !data.message.startsWith("!uploadImg[")) {
                 this.setMessage(data.message, i);
                 this.setTime(data.date_published, i);
                 this.setName(data.name, i);
-                inputBox = document.getElementsByClassName("comment_message")[i].innerHTML;
-                document.getElementsByClassName("img_upload")[i].setAttribute("src", inputBox.match(/\[(.*?)\]/)[1]);
+            }
+
+            if (data.message.startsWith("!uploadImg")) {
+                console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 0, "color: white;");
+                await this.loadImage(data.message.match(/\[(.*?)\]/)[1], i).then(() => {
+                    console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 100, "color: white;");
+                })
+                console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
             }
             
         }
