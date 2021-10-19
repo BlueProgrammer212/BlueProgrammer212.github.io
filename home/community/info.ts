@@ -115,8 +115,13 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 window.location.search = `?preview=${data.message.match(/\[(.*?)\]/)[1]}`;
-            })
-
+            });
+            if ("preview" in params) {
+                document.getElementById("bg_prev").className = "";
+                document.getElementById("img_prev").setAttribute("src", params.preview);
+            } else {
+                document.getElementById("bg_prev").className = "invisible";
+            }
         }
     }
 
@@ -152,5 +157,5 @@ window.addEventListener("load", () => {
                 console.log(doc.data()); 
             });
         });
-    }, 1000);
+    }, 100);
 })
