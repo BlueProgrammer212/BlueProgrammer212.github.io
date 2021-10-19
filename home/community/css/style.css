@@ -447,7 +447,7 @@ a {
   margin-bottom: 20px;
 }
 
-.like_button_parent {
+.likeBtn {
   width: 25.5px;
   transform: scale(2);
   background-image: url("../assets/LikeBtn51x51.png") 0 0;
