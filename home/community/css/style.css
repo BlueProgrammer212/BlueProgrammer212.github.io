@@ -420,6 +420,11 @@ a {
 #postsBoxContent > .img_upload {
    border: 3.5px solid black;
    transform: translateY(-7.2vw);
+   display: block;
+   max-width:230px;
+   max-height:95px;
+   width: auto;
+   height: auto;
 }
 
 img.rounded-corners {
