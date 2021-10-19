@@ -93,7 +93,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             this.setMessage(data.message, i);
             this.setTime(data.date_published, i);
             this.setName(data.name, i);
+            document.getElementsByClassName("img_upload")[i].remove();
         }
+
         this.update(i);
         if (this.msg.length == 0 && data.message.startsWith("/uploadImg[")) {
             this.setMessage(data.message, i);
