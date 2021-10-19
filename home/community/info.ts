@@ -157,5 +157,5 @@ window.addEventListener("load", () => {
                 console.log(doc.data()); 
             });
         });
-    }, 100);
+    }, 1000);
 })
