@@ -119,7 +119,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             if ("preview" in params) {
                 document.getElementById("bg_prev").className = "";
                 document.getElementById("img_prev").setAttribute("src", 
-                `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.preview}?alt=media`);
+                `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.preview.substr(
+                    params.preview.search("undefined"), 18
+                )}.png?alt=media`);
             } else {
                 document.getElementById("bg_prev").className = "invisible";
             }

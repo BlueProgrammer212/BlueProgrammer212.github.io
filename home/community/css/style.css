@@ -418,9 +418,6 @@ a {
   width: auto;
   height: auto;
   border: 3.5px solid black;
-  transform: translateX(50%) translateY(50%);
-  margin-top: -50%;
-  margin-left: -50%;
   z-index: 1010;
 }
 
