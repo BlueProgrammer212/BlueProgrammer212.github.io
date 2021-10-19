@@ -107,6 +107,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 console.log("[System]%c", "Loading resource image...%d pc%c", "color: violet;", 100, "color: white;");
             })
             console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
+            document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
+                window.location.search = `?preview=${data.message.match(/\[(.*?)\]/)[1]}`;
+            })
 
         }
     }
@@ -119,9 +122,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             this.setPosts(data, i);
-            document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
-                window.location.search = `?preview=${data.message.match(/\[(.*?)\]/)[1]}`;
-            })
         }
         this.setImage(data.pfp_link);
     }
