@@ -133,8 +133,8 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 document.getElementById("bg_prev").className = "invisible";
             }
         }
-        document.getElementsByClassName("like_button_parent")[i].addEventListener("click", () => {
-            document.getElementById("like_button_parent")[i].className += " likeBtnPressed"
+        document.getElementsByClassName("likeBtn")[i].addEventListener("click", () => {
+            document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed"
         })
     }
 
