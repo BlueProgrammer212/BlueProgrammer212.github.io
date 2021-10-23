@@ -162,6 +162,10 @@ document.getElementById("img_prev").addEventListener("click", (e) => {
     e.stopPropagation();
 })
 
+document.getElementById("like_button_parent").addEventListener("click", () => {
+    document.getElementById("like_button_parent").className += " likeBtnPressed"
+})
+
 window.addEventListener("load", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
