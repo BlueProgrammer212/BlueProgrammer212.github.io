@@ -151,7 +151,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
 let fragmentInstance = new FragmentManager("template_posts", "../assets/default_pfp_16x16.png");
 
-window.addEventListener("loadend", () => {
+window.addEventListener("load", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
         firestore = firebase.firestore();
