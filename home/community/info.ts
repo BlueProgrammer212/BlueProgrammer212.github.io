@@ -64,8 +64,12 @@ interface Data {
      date_published: string;
 }
 
+
+
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
+
+/*
 const canvas = document.getElementsByClassName("canvas_webgl");
 
 interface WebGLInterface {
@@ -104,6 +108,7 @@ class Renderer extends Shaders implements WebGLInterface {
     readonly vertexProgram: Promise<string>;
     readonly fragmentProgram: Promise<string>;
     readonly canvas: any;
+    readonly texCoordLocation: any;
 
     async loadProgram(data): Promise<string> {
         return fetch(`./shaders/${data}`, {mode: 'no-cors'}).then(info => info.text()); 
@@ -111,6 +116,22 @@ class Renderer extends Shaders implements WebGLInterface {
 
     drawImage(url: string) {
         
+    }
+
+    async createProgram() {
+        await Promise.all([this.vertexProgram, this.fragmentProgram]).then(([vs, fs]) => {
+             let vprogram = document.createElement("script");
+             vprogram.innerHTML = vs;
+             vprogram.type = "notjs";
+             vprogram.id = "vertex-shader";
+             document.getElementById("glsd").appendChild(vprogram);
+
+             let fprogram = document.createElement("script");
+             fprogram.innerHTML = fs;
+             fprogram.type = "notjs";
+             fprogram.id = "fragment-shader";
+             document.getElementById("glsd").appendChild(fprogram);
+        })
     }
 
     constructor(canvas_id: any) {
@@ -142,13 +163,12 @@ class Renderer extends Shaders implements WebGLInterface {
             console.log("Failed to load shader programs.");
         })
     }
-}
+}*/
 
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
     public set : any;
     public msg: any;
-    public WEBGL_INSTANCE: any;
 
     remove(fs, name: string): Promise<void> {
         return new Promise(async (res) => {
@@ -168,7 +188,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
          super(template_id, defaultPfp_);
          this.parent = document.getElementById("titles");
          this.set = new Set();
-         this.WEBGL_INSTANCE = new Renderer("img_prev");
     } 
 
     setPosts(data : Data, i : number) {
@@ -197,8 +216,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             });
             if ("p" in params) {
                 document.getElementById("bg_prev").className = "";
-                fetch(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`, {mode: 'no-cors'})
-                .then(r => r.blob()).then(blob => this.WEBGL_INSTANCE.drawImage(URL.createObjectURL(blob)))
+                fetch(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F
+                ${params.p}.png?alt=media`, {mode: "no-cors"}).then(r => r.blob())
+                .then(pr => URL.createObjectURL(pr)).then(inf => document.getElementById("img_prev").setAttribute("src", inf));
             } else {
                 document.getElementById("bg_prev").className = "invisible";
             }

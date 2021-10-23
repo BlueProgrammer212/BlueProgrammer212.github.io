@@ -417,7 +417,7 @@ a {
   z-index: 1009;
 }
 
-.canvas_webgl {
+#img_prev {
   display: block;
   max-width:40vw;
   max-height:40vw;
