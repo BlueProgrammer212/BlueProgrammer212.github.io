@@ -419,8 +419,8 @@ a {
 
 #img_prev {
   display: block;
-  max-width:40vw;
-  max-height:40vw;
+  max-width:70vw;
+  max-height:70vw;
   width: auto;
   height: auto;
   border: 3.5px solid black;
