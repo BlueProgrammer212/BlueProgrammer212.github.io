@@ -106,7 +106,11 @@ class Renderer extends Shaders implements WebGLInterface {
     readonly canvas: any;
 
     async loadProgram(data): Promise<string> {
-        return fetch(`../shaders/${data}`, {mode: 'no-cors'}).then(info => info.text()); 
+        return fetch(`./shaders/${data}`, {mode: 'no-cors'}).then(info => info.text()); 
+    }
+
+    drawImage(url: string) {
+        
     }
 
     constructor(canvas_id: any) {
@@ -128,7 +132,8 @@ class Renderer extends Shaders implements WebGLInterface {
             this.gl.compileShader(this.vshader);
             this.gl.compileShader(this.fshader);
 
-            if (this.gl.getShaderParameter(this.vshader, this.gl.COMPILE_STATUS) && this.gl.getShaderParameter(this.fshader, this.gl.COMPILE_STATUS)) {
+            if (this.gl.getShaderParameter(this.vshader, this.gl.COMPILE_STATUS)
+                && this.gl.getShaderParameter(this.fshader, this.gl.COMPILE_STATUS)) {
                 console.log("Compiled vertex shader successfully.");
             }
 
