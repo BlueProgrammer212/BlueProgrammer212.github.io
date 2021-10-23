@@ -122,6 +122,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 console.log("[System]%c", "Loading resource image... 100% pc%c", "color: violet;", 100, "color: white;");
             })
             console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
+            document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("click", `
+                 window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name.toLowerCase()}&pl=${data.pfp_link}"
+            `)
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 window.location.search = `?p=${data.message.match(/\[(.*?)\]/)[1].substr(
                 data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
