@@ -106,7 +106,7 @@ class Renderer extends Shaders implements WebGLInterface {
     readonly canvas: any;
 
     async loadProgram(data): Promise<string> {
-        return fetch(`../shaders/${data}`).then(info => info.text()); 
+        return fetch(`../shaders/${data}`, {mode: 'no-cors'}).then(info => info.text()); 
     }
 
     constructor(canvas_id: any) {
@@ -192,7 +192,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             });
             if ("p" in params) {
                 document.getElementById("bg_prev").className = "";
-                fetch(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`)
+                fetch(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`, {mode: 'no-cors'})
                 .then(r => r.blob()).then(blob => this.WEBGL_INSTANCE.drawImage(URL.createObjectURL(blob)))
             } else {
                 document.getElementById("bg_prev").className = "invisible";
