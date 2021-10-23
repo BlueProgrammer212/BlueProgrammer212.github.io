@@ -129,7 +129,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             if ("p" in params) {
                 document.getElementById("bg_prev").className = "";
                 fetch(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`, {mode: "no-cors"})
-                .then(r => r.blob()).then(pr => blobToBase64(pr)).then(out => URL.createObjectURL(out)).then(inf => document.getElementById("img_prev").setAttribute("src", inf));
+                .then(r => r.blob()).then(inf => document.getElementById("img_prev").setAttribute("src", URL.createObjectURL(inf)));
             } else {
                 document.getElementById("bg_prev").className = "invisible";
             }
