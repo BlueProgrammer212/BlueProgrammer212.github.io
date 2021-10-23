@@ -136,6 +136,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         document.getElementsByClassName("likeBtn")[i].addEventListener("click", () => {
             if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
                 document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed"
+                console.log(document.getElementsByClassName("likeBtn")[i]);
             } else {
                 document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
             }
