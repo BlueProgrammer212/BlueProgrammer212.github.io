@@ -133,6 +133,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 document.getElementById("bg_prev").className = "invisible";
             }
         }
+        document.getElementsByClassName("like_button_parent")[i].addEventListener("click", () => {
+            document.getElementById("like_button_parent")[i].className += " likeBtnPressed"
+        })
     }
 
     add(data: Data) {
@@ -160,10 +163,6 @@ document.getElementById("img_prev").parentElement.addEventListener("mousewheel",
 
 document.getElementById("img_prev").addEventListener("click", (e) => {
     e.stopPropagation();
-})
-
-document.getElementById("like_button_parent").addEventListener("click", () => {
-    document.getElementById("like_button_parent").className += " likeBtnPressed"
 })
 
 window.addEventListener("load", () => {
