@@ -127,12 +127,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}`;
             });
             if ("p" in params) {
-                document.getElementById("bg_prev").className = "";
-                fetch(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`, {mode: "no-cors"})
-                .then(function(r) {return r.blob()}).then(function(inf) {
-                    let url = URL.createObjectURL(inf);
-                    document.getElementById("img_prev").setAttribute("src", url);
-                });
+                document.getElementById("img_prev").setAttribute("src", `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`);
             } else {
                 document.getElementById("bg_prev").className = "invisible";
             }
