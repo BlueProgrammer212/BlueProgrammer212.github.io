@@ -144,6 +144,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             this.setPosts(data, i);
             document.getElementsByClassName("likeBtn")[i].setAttribute("onclick", `
+                document.getElementsByClassName("dislikeBtn")[${i}].className = "dislikeBtn";
                 if (!document.getElementsByClassName("likeBtn")[${i}].className.includes("likeBtnPressed")) {
                     document.getElementsByClassName("likeBtn")[${i}].className += " likeBtnPressed"
                     console.log(document.getElementsByClassName("likeBtn")[${i}]);
@@ -152,6 +153,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 }
             `);
             document.getElementsByClassName("dislikeBtn")[i].setAttribute("onclick", `
+                document.getElementsByClassName("likeBtn")[${i}].className = "likeBtn";
                 if (!document.getElementsByClassName("dislikeBtn")[${i}].className.includes("dislikeBtnPressed")) {
                     document.getElementsByClassName("dislikeBtn")[${i}].className += " dislikeBtnPressed"
                     console.log(document.getElementsByClassName("dislikeBtn")[${i}]);
