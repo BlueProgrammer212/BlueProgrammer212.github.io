@@ -179,5 +179,5 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log(doc.data()); 
             });
         });
-    }, 1000);
+    }, 2000);
 })
