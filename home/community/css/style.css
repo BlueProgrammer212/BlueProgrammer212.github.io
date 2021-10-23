@@ -450,13 +450,13 @@ a {
 .likeBtn {
   width: 51px;
   height: 51px;
-  transform: scale(0.9) translateY(-51px);
+  transform: scale(0.9) translateY(-81px);
   background: url("../assets/LikeBtn51x51.png") 0px 0px;
 }
 .dislikeBtn {
   width: 51px;
   height: 51px;
-  transform: scale(0.9) translateY(-51px);
+  transform: scale(0.9) translateY(-81px);
   margin-top: -51px;
   margin-left: 85px;
   background: url("../assets/LikeBtn51x51.png") 0px 51px;
