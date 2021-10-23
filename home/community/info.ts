@@ -124,9 +124,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 window.location.search = `?p=${data.message.match(/\[(.*?)\]/)[1].substr(
-                data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}`;
+                data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
             });
-            if ("p" in params) {
+            if ("r" in params && params.r == "AS" && "p" in params) {
                 document.getElementById("bg_prev").className = "";
                 document.getElementById("img_prev").setAttribute("src", `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`);
             } else {
