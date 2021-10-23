@@ -9,6 +9,14 @@ interface Fragment {
     pfp_element: any
 }
 
+function blobToBase64(blob) {
+    return new Promise((resolve, _) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+    });
+}
+
 class FragmentInstance implements Fragment {
     template_id : string;
     template_element : any;
@@ -120,8 +128,8 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             });
             if ("p" in params) {
                 document.getElementById("bg_prev").className = "";
-                fetch(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`, {mode: "no-cors"}).then(r => r.blob())
-                .then(pr => URL.createObjectURL(pr)).then(inf => document.getElementById("img_prev").setAttribute("src", inf));
+                fetch(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`, {mode: "no-cors"})
+                .then(r => r.blob()).then(pr => blobToBase64(pr)).then(out => URL.createObjectURL(out)).then(inf => document.getElementById("img_prev").setAttribute("src", inf));
             } else {
                 document.getElementById("bg_prev").className = "invisible";
             }
@@ -143,7 +151,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
 let fragmentInstance = new FragmentManager("template_posts", "../assets/default_pfp_16x16.png");
 
-window.addEventListener("load", () => {
+window.addEventListener("loadend", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
         firestore = firebase.firestore();
