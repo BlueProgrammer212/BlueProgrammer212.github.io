@@ -419,7 +419,9 @@ a {
 
 #img_prev {
   display: block;
-  width: 80vw;
+  max-width:50vw;
+  max-height:50vw;
+  width: 50vw;
   height: auto;
   border: 3.5px solid black;
   z-index: 1010;
