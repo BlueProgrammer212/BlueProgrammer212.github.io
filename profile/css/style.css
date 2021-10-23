@@ -100,6 +100,11 @@ body {
   padding: 10;
 }
 
+#img_pfp {
+  width: 20vw;
+  height: 20vw;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #0c9;
