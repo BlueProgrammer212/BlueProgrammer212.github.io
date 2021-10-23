@@ -461,6 +461,22 @@ a {
   margin-left: 85px;
   background: url("../assets/LikeBtn51x51.png") 0px 51px;
 }
+.dislikeBtn:active {
+  width: 51px;
+  height: 51px;
+  transform: scale(0.9) translateY(-81px);
+  margin-top: -51px;
+  margin-left: 85px;
+  background: url("../assets/LikeBtn51x51.png") 51px 0px;
+}
+.likeBtn:active {
+  width: 51px;
+  height: 51px;
+  transform: scale(0.9) translateY(-81px);
+  margin-top: -51px;
+  margin-left: 85px;
+  background: url("../assets/LikeBtn51x51.png") 51px 51px;
+}
 
 .timeStamp {
    color: rgb(66, 66, 66);
