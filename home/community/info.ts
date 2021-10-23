@@ -162,7 +162,7 @@ document.getElementById("img_prev").addEventListener("click", (e) => {
     e.stopPropagation();
 })
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
         firestore = firebase.firestore();
