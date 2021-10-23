@@ -143,15 +143,14 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             this.setPosts(data, i);
-            document.getElementsByClassName("likeBtn")[i].addEventListener("click", () => {
+            document.getElementsByClassName("likeBtn")[i].setAttribute("onclick", `
                 if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
                     document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed"
                     console.log(document.getElementsByClassName("likeBtn")[i]);
                 } else {
                     document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
                 }
-    
-            })
+            `);
         }
         this.setImage(data.pfp_link);
     }
