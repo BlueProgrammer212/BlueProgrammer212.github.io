@@ -151,10 +151,18 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 let fragmentInstance = new FragmentManager("template_posts", "../assets/default_pfp_16x16.png");
 
 document.getElementById("img_prev").parentElement.addEventListener("click", () => {
-    document.getElementById("img_prev").parentElement.className = "invisible"
+    document.getElementById("img_prev").parentElement.className = "invisible";
 })
 
-window.addEventListener("load", () => {
+document.getElementById("img_prev").parentElement.addEventListener("mousewheel", (e) => {
+     e.preventDefault();
+})
+
+document.getElementById("img_prev").addEventListener("click", (e) => {
+    e.stopPropagation();
+})
+
+document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
         firestore = firebase.firestore();
