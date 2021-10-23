@@ -450,7 +450,7 @@ a {
 .likeBtn {
   width: 51px;
   height: 51px;
-  transform: scale(0.9);
+  transform: scale(0.9) translateY(-51px);
   background: url("../assets/LikeBtn51x51.png") 0px 0px;
 }
 .dislikeBtn {
