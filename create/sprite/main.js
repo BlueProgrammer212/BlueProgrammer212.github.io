@@ -16,11 +16,14 @@ document.getElementById("exitColorPickerDialog").addEventListener("click", () =>
   .parentElement["parentElement"].className += "invisible"
 });
 
+let is_eraser_selected = false;
+
 class FragmentManager {
   constructor(template) {
       this.template = template;
   }
   appendTo(element, colors) {
+      is_eraser_selected = true;
       this.emoji = document.importNode(this.template.content, true).children[0];
       this.emoji.setAttribute("style", `background-color: ${colors}`)
       this.emoji.addEventListener("click", () => {

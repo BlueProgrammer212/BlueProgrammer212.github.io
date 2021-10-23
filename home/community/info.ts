@@ -64,16 +64,86 @@ interface Data {
      date_published: string;
 }
 
-
-
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
+const canvas = document.getElementsByClassName("canvas_webgl");
 
+interface WebGLInterface {
+    gl: any;
+    vertexProgram: Promise<string>;
+    fragmentProgram: Promise<string>;
+    readonly canvas: any;
+} 
+ 
+class Shaders {
+    public fshader: any;
+    public vshader: any;
+    constructor(fs, vs) {
+        this.fshader = fs;
+        this.vshader = vs;
+    }
+    setFragmentShader(gl) {
+        this.fshader = gl.createShader(gl.FRAGMENT_SHADER);
+    }
+    setVertexShader(gl) {
+        this.vshader = gl.createShader(gl.VERTEX_SHADER);
+    }
+}
+
+class ShaderInstance {
+    vs: any;
+    fs: any;
+    constructor(vs, fs) {
+        this.vs = vs;
+        this.fs = fs;
+    }
+}
+
+class Renderer extends Shaders implements WebGLInterface {
+    gl: any;
+    readonly vertexProgram: Promise<string>;
+    readonly fragmentProgram: Promise<string>;
+    readonly canvas: any;
+
+    async loadProgram(data): Promise<string> {
+        return fetch(data).then(info => info.text()); 
+    }
+
+    constructor(canvas_id: any) {
+        super(null, null);
+        this.canvas = document.getElementById(canvas_id);
+        this.gl = this.canvas.getContext("webgl");
+        this.vertexProgram = this.loadProgram("basic_vertex.vs");
+        this.fragmentProgram = this.loadProgram("basic_fragment.fs");
+    }
+    protected async createShader(): Promise<any> {
+        await Promise.all([this.vertexProgram, this.fragmentProgram]).then(([vs, fs]) => { 
+            console.log("Loaded shader programs succesfully.");
+            this.setVertexShader(this.gl);
+            this.setFragmentShader(this.gl);
+
+            this.gl.shaderSource(this.vshader, vs);
+            this.gl.shaderSource(this.fshader, fs);
+            
+            this.gl.compileShader(this.vshader);
+            this.gl.compileShader(this.fshader);
+
+            if (this.gl.getShaderParameter(this.vshader, this.gl.COMPILE_STATUS) && this.gl.getShaderParameter(this.fshader, this.gl.COMPILE_STATUS)) {
+                console.log("Compiled vertex shader successfully.");
+            }
+            
+            return new ShaderInstance(this.vshader, this.fshader)
+        }).catch(([vserr, fserr]) => {
+            console.log("Failed to load shader programs.");
+        })
+    }
+}
 
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
     public set : any;
     public msg: any;
+    public WEBGL_INSTANCE: any;
 
     remove(fs, name: string): Promise<void> {
         return new Promise(async (res) => {
@@ -93,6 +163,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
          super(template_id, defaultPfp_);
          this.parent = document.getElementById("titles");
          this.set = new Set();
+         this.WEBGL_INSTANCE = new Renderer("img_prev");
     } 
 
     setPosts(data : Data, i : number) {
@@ -116,13 +187,13 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             })
             console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
-                window.location.search = `?preview=${data.message.match(/\[(.*?)\]/)[1].substr(
+                window.location.search = `?p=${data.message.match(/\[(.*?)\]/)[1].substr(
                 data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}`;
             });
-            if ("preview" in params) {
+            if ("p" in params) {
                 document.getElementById("bg_prev").className = "";
-                document.getElementById("img_prev").setAttribute("src", 
-                `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.preview}.png?alt=media`);
+                fetch(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`)
+                .then(r => r.blob()).then(blob => this.WEBGL_INSTANCE.drawImage(URL.createObjectURL(blob)))
             } else {
                 document.getElementById("bg_prev").className = "invisible";
             }
