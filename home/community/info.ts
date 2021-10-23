@@ -187,5 +187,5 @@ window.addEventListener("load", () => {
                 console.log(doc.data()); 
             });
         });
-    }, 2000);
+    }, 5000);
 })
