@@ -145,6 +145,10 @@ body {
 }
 #date_pfp {
   color: black;
+  margin-top: -40px;
+  position: relative;
+  margin-left: 65px;
+  top: -25px;
 }
 
 #profile_container {
