@@ -4,3 +4,6 @@ const params = Object.fromEntries(urlSearchParams.entries());
 if ("pl" in params) {
     main_img.src = params.pl;
 }
+if ("p" in params) { 
+    document.getElementById("name_pfp").innerHTML = params.p;
+}

@@ -105,6 +105,10 @@ body {
   height: 56px;
 }
 
+#name_pfp {
+  font-size: 15px;
+}
+
 #profile_container {
   width: 400px;
   height: 500px;
