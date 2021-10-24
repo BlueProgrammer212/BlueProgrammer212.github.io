@@ -191,6 +191,7 @@ body {
   border-right: none;
   border-left: none;
   border-bottom: 3.5px solid red;
+  margin-left: 10px;
   font-size: 16px;
   padding: 10px;
 }
