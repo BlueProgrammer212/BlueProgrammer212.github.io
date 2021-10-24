@@ -196,6 +196,7 @@ body {
   margin-left: 10px;
   font-size: 16px;
   padding: 10px;
+  z-index: 1001;
 }
 
 .pixel.search {
