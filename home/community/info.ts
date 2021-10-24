@@ -80,15 +80,88 @@ interface Renderer {
     gl: any;
 }
 
+interface ProgramInfo {
+    gl: any;
+    attribLocations: any;
+    uniformLocations: any;
+}
+
+class WebGLProgramInfo implements ProgramInfo {
+    gl: any;
+    attribLocations: any;
+    uniformLocations: any;
+    shaderProgram: any;
+    constructor(gl, program) {
+        this.gl = gl;
+        this.shaderProgram = program;
+        this.attribLocations = {};
+        this.attribLocations.vertexPosition = this.gl.getAttribLocation(this.shaderProgram, 'aVertexPosition')
+        this.uniformLocations = {};
+        this.uniformLocations.projectionMatrix = this.gl.getUniformLocation(this.shaderProgram, 'uProjectionMatrix');
+        this.uniformLocations.modelViewMatrix =  this.gl.getUniformLocation(this.shaderProgram, 'uModelViewMatrix');
+    }
+}
+
 class WebGL implements Renderer {
     canvas: any; 
     gl: any;
+    vsource: Promise<string>;
+    fsource: Promise<string>;
+    vshader: any;
+    program: any;
+    fshader: any;
+
     public async loadProgram(name: string): Promise<any> {
         return fetch(`./shader/${name}`).then(data => data.text());
     }
+    public loadShader(type, source) {
+        let shader = this.gl.createShader(type);
+        this.gl.shaderSource(shader, source);
+        this.gl.compileShader(shader);
+        if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)) {
+            console.error(`An error occurred compiling the shaders: ${this.gl.getShaderInfoLog(shader)}`);
+            this.gl.deleteShader(shader);
+            return null;
+          }
+          return shader;
+    }
+
+    public initializeBuffer(): object {
+        const positionBuffer = this.gl.createBuffer();
+        const PLANE_COORDINATES: number[] = [
+            -1.0, 1.0, 
+             1.0, 1.0,
+            -1.0, -1.0,
+             1.0, -1.0
+        ];
+        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+        this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(PLANE_COORDINATES), this.gl.STATIC_DRAW);
+        return {position: positionBuffer};
+    }
+    
+    public initializeShaderProgram() {
+        this.vshader = this.loadShader(this.gl.VERTEX_SHADER, this.vsource);
+        this.fshader = this.loadShader(this.gl.FRAGMENT_SHADER, this.fsource);
+        if (this.vshader === void 0 || this.fshader === void 0) return null;
+        const shaderProgram = this.gl.createProgram();
+        this.gl.attachShader(shaderProgram, this.vshader);
+        this.gl.attachShader(shaderProgram, this.fshader);
+        this.gl.linkProgram(shaderProgram);
+        if (!this.gl.getProgramParameter(shaderProgram, this.gl.LINK_STATUS)) {
+            alert(`Unable to initialize the shader program: ${this.gl.getProgramInfoLog(shaderProgram)}`);
+            return null;
+        }
+        return shaderProgram;
+    }
+    public drawScene(programInfo: WebGLProgramInfo, buffers) {
+        
+    }
     constructor(canvas_id: string) {
-        this.canvas = document.getElementById(canvas_id)
+        this.canvas = document.getElementById(canvas_id);
         this.gl = this.canvas.getContext("webgl");
+        this.vsource = this.loadProgram("basic_vertex.vs");
+        this.fsource = this.loadProgram("basic_fragment.fs");
+        this.program = this.initializeShaderProgram();
         if (this.gl == null) {
             console.log("Your browser does not support WebGL");
         }
@@ -105,6 +178,10 @@ interface Axis {
 class Vector2<Axis> {
     x: number;
     y: number;
+    static ZERO(): any {
+        return new Vector2;
+    }
+
     constructor(x = 0, y = 0) {
         this.x = x;
         this.y = y;
@@ -145,8 +222,8 @@ class ImageRenderer extends WebGL {
     }
     
     public drawImage(pos: Vector2<Axis>, size: Vector2<Axis>): Promise<void> {
-         this.pos = new Vector2(0, 0);
-         this.size = new Vector2(0, 0);
+         this.pos = new Vector2;
+         this.size = new Vector2;
          this.pos.setVector(pos);
          this.size.setVector(size);
          return new Promise((res, _) => {
