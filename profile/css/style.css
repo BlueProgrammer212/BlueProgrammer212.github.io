@@ -178,6 +178,7 @@ body {
 
 #works {
   padding: 10px;
+  padding-right: 50px;
   position: relative;
   top: -500px;
   left: 450px;
@@ -193,7 +194,7 @@ body {
   border-right: none;
   border-left: none;
   border-bottom: 3.5px solid red;
-  margin-left: 10px;
+  margin-left: 50px;
   font-size: 16px;
   padding: 10px;
 }
