@@ -193,10 +193,12 @@ body {
   border-top: none;
   border-right: none;
   border-left: none;
-  border-bottom: 3.5px solid red;
   margin-left: 50px;
   font-size: 16px;
   padding: 10px;
+}
+#works > button.selected {
+  border-bottom: 3.5px solid red;
 }
 
 .pixel.search {
