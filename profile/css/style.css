@@ -151,6 +151,10 @@ body {
   top: -25px;
 }
 
+#aboutMe {
+  color: black;
+}
+
 #profile_container {
   width: 400px;
   height: 500px;
