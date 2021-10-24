@@ -177,10 +177,12 @@ body {
 }
 
 #works {
-  padding: 20px;
+  padding: 10px;
   position: relative;
   top: -500px;
   left: 450px;
+  background-color: white;
+  border: 3.5px solid black;
 }
 
 #works > button {
