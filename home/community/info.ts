@@ -72,9 +72,7 @@ interface Data {
      date_published: string;
 }
 
-
-
-const urlSearchParams = new URLSearchParams(window.location.search);
+const urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
 class FragmentManager extends FragmentInstance implements FragmentExtension {
