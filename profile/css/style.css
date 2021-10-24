@@ -198,7 +198,7 @@ body {
   padding: 10px;
 }
 #works > button.selected {
-  border-bottom: 3.5px solid red;
+  border-bottom: 3.5px solid #ff7d7d;
 }
 
 .pixel.search {
