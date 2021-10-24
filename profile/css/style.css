@@ -105,6 +105,13 @@ body {
   height: 5vw;
 }
 
+#profile_container {
+  width: 10vw;
+  height: 15vw;
+  background-color: white;
+  border: 3.5px solid black;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #0c9;
