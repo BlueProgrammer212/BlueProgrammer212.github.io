@@ -143,6 +143,9 @@ body {
   margin-left: 5px;
   margin-top: -105px;
 }
+#date_pfp {
+  color: black;
+}
 
 #profile_container {
   width: 400px;
