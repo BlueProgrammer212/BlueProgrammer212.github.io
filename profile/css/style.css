@@ -123,6 +123,26 @@ body {
   margin-left: 5px;
   margin-top: 20px;
 }
+#BlockUser {
+  background-color: lightcoral;
+  font-family: 'Pixel';
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-top: 40px;
+}
+#ReportUser {
+  background-color: lightcoral;
+  font-family: 'Pixel';
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-top: 60px;
+}
 
 #profile_container {
   width: 400px;
