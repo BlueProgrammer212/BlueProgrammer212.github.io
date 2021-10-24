@@ -178,6 +178,21 @@ body {
 
 #works {
   padding: 20px;
+  position: relative;
+  top: -500px;
+  left: 450px;
+}
+
+#works > button {
+  background: none;
+  font-family: 'Pixel';
+  color: white;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 3.5px solid red;
+  font-size: 16px;
+  padding: 10px;
 }
 
 .pixel.search {
