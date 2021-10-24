@@ -110,7 +110,14 @@ body {
   transform: translate(60px, -70px);
 }
 #AddFriend {
-  background-color: azure;
+  background-color: lightgreen;
+  font-family: 'Pixel';
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 10px;
+  margin-left: 5px;
+  margin-top: -10px;
 }
 
 #profile_container {
