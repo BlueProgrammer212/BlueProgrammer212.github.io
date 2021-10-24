@@ -53,7 +53,7 @@
               <a href="https://blueprogrammer212.github.io/download">Downloads</a>
               <a href="https://blueprogrammer212.github.io/create/sprite/?session_id=97654532">Get started</a>
               <a href="https://discord.gg/cfEJbCrhtK">Join our discord server!</a>
-              <div role="button" class="btnclnctxmenu" id="ctx_btn_menu" onclick="console.log('Loading context menu content...')" oncontextmenu="return false;">
+              <div role="button" class="btnclnctxmenu" id="ctx_btn_menu" oncontextmenu="return false;">
                 <img src="https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/default_pfp_16x16.png?alt=media&token=3f9e0294-d318-4afb-b6ea-1c161670d597" width="32" height="32" 
                 draggable="false" class="pfp_img" id="pfp_img_id" alt="PROFILE_PIC_16x16" />
               </div>
@@ -83,6 +83,16 @@
         <script src="./community.js" async defer></script>
         <div id="bg_prev" class="invisible" role="button">
             <img id="img_prev" />
+        </div>
+        <noscript>Javascript is not supported in your browser. Error: 0x903231</noscript>
+        <div id="pfp_edit_img" class="invisible blackColorRectBg">
+           <canvas id="profile_img" class="pfp_img_256x256" width="256" height="256">
+              Sorry but your browser does not support WebGL.
+           </canvas>
+           <button id="brush_tool">Brush</button>
+           <button id="eraser_tool">Eraser</button>
+           <button id="save_img">Save</button>
+           <button id="text_tool">Add a text</button>
         </div>
         <script type="text/typescript" src="./info.ts"></script>
         <script src="https://raw.githack.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>

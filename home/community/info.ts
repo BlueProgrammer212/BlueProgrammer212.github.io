@@ -75,6 +75,89 @@ interface Data {
 const urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
+interface Renderer {
+    canvas: any;
+    gl: any;
+}
+
+class WebGL implements Renderer {
+    canvas: any; 
+    gl: any;
+    public async loadProgram(name: string): Promise<any> {
+        return fetch(`./shader/${name}`).then(data => data.text());
+    }
+    constructor(canvas_id: string) {
+        this.canvas = document.getElementById(canvas_id)
+        this.gl = this.canvas.getContext("webgl");
+        if (this.gl == null) {
+            console.log("Your browser does not support WebGL");
+        }
+        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.gl.clear(this.gl.COLOR_BUFFER_BIT);
+    }
+}
+
+interface Axis {
+    x: number;
+    y: number;
+}
+
+class Vector2<Axis> {
+    x: number;
+    y: number;
+    constructor(x = 0, y = 0) {
+        this.x = x;
+        this.y = y;
+    }
+    public scalar(s: number): object {
+        this.x = this.x + s;
+        this.y = this.y + s;
+        let {x, y} = this;
+        return {x, y};
+    }
+    get magnitude(): number {
+       return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+    }
+    public set(x = 0, y = 0) {
+        this.x = x;
+        this.y = y;
+    }
+    public setVector(b: Vector2<Axis>): Vector2<Axis> {
+        this.x = b.x;
+        this.y = b.y; 
+        return b;
+    }
+}
+
+class ImageRenderer extends WebGL {
+    url: string;
+    size: Vector2<Axis>;
+    pos: Vector2<Axis>;
+    public image: typeof Image;
+    public loadImage(url: string): Promise<typeof Image> {
+        const image = new Image();
+        return new Promise((resolve, _) => {
+            image.src = url;
+            image.addEventListener("load", () => {
+                setTimeout(resolve, 1000, image);
+            })
+        })
+    }
+    
+    public drawImage(pos: Vector2<Axis>, size: Vector2<Axis>): Promise<void> {
+         this.pos = new Vector2(0, 0);
+         this.size = new Vector2(0, 0);
+         this.pos.setVector(pos);
+         this.size.setVector(size);
+         return new Promise((res, _) => {
+            
+         })
+    }
+    constructor(canvas_id: string) {
+        super(canvas_id);
+    }
+}
+
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
     public set : any;
@@ -121,7 +204,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             })
             console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
             document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("onclick", `
-                 window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name.toLowerCase()}&pl=${data.pfp_link}"
+                 window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name}&pl=${data.pfp_link}"
             `)
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 window.location.search = `?p=${data.message.match(/\[(.*?)\]/)[1].substr(
