@@ -176,6 +176,10 @@ body {
   z-index: 100;
 }
 
+#works {
+  padding: 20px;
+}
+
 .pixel.search {
   border: 3.5px solid black;
   display: inline-flex;
