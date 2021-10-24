@@ -109,6 +109,9 @@ body {
   color: black;
   transform: translate(60px, -70px);
 }
+#section_break {
+  margin-top: -10px;
+}
 #AddFriend {
   background-color: lightgreen;
   font-family: 'Pixel';
