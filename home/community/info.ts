@@ -158,6 +158,8 @@ class ImageRenderer extends WebGL {
     }
 }
 
+let WebGLInstance = new ImageRenderer("profile_img");
+
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
     public set : any;
