@@ -35,6 +35,8 @@ class User extends FirebaseSetup {
     }
 }
 
+let a = new User(null);
+
 if ("pl" in params) {
     main_img.src = `https://lh3.googleusercontent.com/a-/${params.pl}`;
 }
