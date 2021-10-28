@@ -239,6 +239,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
     public set : any;
     public msg: any;
+    public prefix_url: any;
 
     remove(fs, name: string): Promise<void> {
         return new Promise(async (res) => {
@@ -258,6 +259,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
          super(template_id, defaultPfp_);
          this.parent = document.getElementById("titles");
          this.set = new Set();
+         this.prefix_url = "https://lh3.googleusercontent.com/a-/";
     } 
 
     setPosts(data : Data, i : number) {
@@ -281,7 +283,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             })
             console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
             document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("onclick", `
-                 window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name}&pl=${data.pfp_link}"
+                 window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name}&pl=${this.prefix_url+data.pfp_link.slice(this.prefix_url.length)}"
             `)
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 window.location.search = `?p=${data.message.match(/\[(.*?)\]/)[1].substr(
