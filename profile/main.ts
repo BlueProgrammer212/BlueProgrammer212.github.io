@@ -5,7 +5,7 @@ if ("pl" in params) {
     main_img.src = params.pl;
 }
 if ("p" in params) { 
-    document.getElementById("name_pfp").innerHTML = params.p;
+    document.getElementById("name_pfp").innerHTML = `https://lh3.googleusercontent.com/a-/${params.p}`;
 }
 
 let ids : string[] = ["comment_pagination", "mutual_friends_pagination", "posts_pagination"];
