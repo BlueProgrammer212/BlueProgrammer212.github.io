@@ -434,11 +434,9 @@ a {
 }
 
 .img_upload {
-  display: block;
-  max-width:230px;
-  max-height:95px;
-  width: auto;
-  height: auto;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .blackColorRectBg {
