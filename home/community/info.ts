@@ -361,7 +361,8 @@ window.addEventListener("load", () => {
             querySnapshot.docChanges().forEach(change => {
                 if (change.type == "added") {
                     fragmentInstance.add(change.doc.data());
-                }
+                };
+                console.log(change.type);
             });
             querySnapshot.forEach((doc) => {
                 console.log(doc.data()); 
