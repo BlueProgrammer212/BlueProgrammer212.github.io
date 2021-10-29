@@ -433,11 +433,6 @@ a {
   transform: translate(-50%, -50%);
 }
 
-.img_upload {
-  width: auto; 
-  max-height: 100%; 
-}
-
 .blackColorRectBg {
   width: 100%;
   position: fixed;
