@@ -294,6 +294,9 @@ a {
 .likeLabel {
   font-family: Pixel;
   font-size: 14px;
+  position: relative;
+  top: -11.5758369028vw;
+  left: 45px;
   color: black;
 }
 
