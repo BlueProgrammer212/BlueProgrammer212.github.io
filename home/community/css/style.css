@@ -394,6 +394,8 @@ a {
 
 .view_comments {
   margin-top: -30px;
+  position: relative;
+  top: -4vw;
 }
 
 .pfp_img_elem {
@@ -468,13 +470,13 @@ a {
 .likeBtn {
   width: 51px;
   height: 51px;
-  transform: scale(0.9) translateY(-81px);
+  transform: scale(0.9) translateY(-9vw);
   background: url("../assets/LikeBtn51x51.png") 0px 0px;
 }
 .dislikeBtn {
   width: 51px;
   height: 51px;
-  transform: scale(0.9) translateY(-81px);
+  transform: scale(0.9) translateY(-9vw);
   margin-top: -51px;
   margin-left: 85px;
   background: url("../assets/LikeBtn51x51.png") 0px 51px;
@@ -482,7 +484,7 @@ a {
 .dislikeBtnPressed {
   width: 51px;
   height: 51px;
-  transform: scale(0.9) translateY(-81px);
+  transform: scale(0.9) translateY(-9vw);
   margin-top: -51px;
   margin-left: 85px;
   background: url("../assets/LikeBtn51x51.png") 51px 0px;
@@ -490,7 +492,7 @@ a {
 .likeBtnPressed {
   width: 51px;
   height: 51px;
-  transform: scale(0.9) translateY(-81px);
+  transform: scale(0.9) translateY(-9vw);
   background: url("../assets/LikeBtn51x51.png") 51px 51px;
 }
 
