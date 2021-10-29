@@ -314,6 +314,11 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         }
         this.setImage(data.pfp_link);
     }
+    update_likes(data : Data) {
+        for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
+            document.getElementsByClassName("likeLabel")[i].innerHTML = data.likes;
+        }   
+    }
     setButton(i: number) {
         document.getElementsByClassName("likeBtn")[i].setAttribute("onclick", `
             document.getElementsByClassName("dislikeBtn")[${i}].className = "dislikeBtn";
@@ -363,7 +368,7 @@ window.addEventListener("load", () => {
                     fragmentInstance.add(change.doc.data());
                 };
                 if (change.type == "modified") {
-                    fragmentInstance.setPosts(change.doc.data(), 0);
+                    fragmentInstance.update_likes(change.doc.data());
                 }
             });
             querySnapshot.forEach((doc) => {
