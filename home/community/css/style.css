@@ -506,8 +506,8 @@ a {
    transform: translateY(-7.2vw);
    max-width:500px;
    max-height:500px;
-   width: auto;
-   height: auto;
+   width: 85%;
+   height: 85%;
 }
 
 img.rounded-corners {
