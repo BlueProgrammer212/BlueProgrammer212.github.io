@@ -1,3 +1,4 @@
+let acc_id;
 (function() {
     var googleUser = {};
     let firestore;
@@ -54,7 +55,8 @@
         };
         xhr.send('idtoken=' + id_token);
         image_url_ = image_url;
-
+        acc_id = id;
+        
         let pfp_elem = document.getElementsByClassName("pfp_img")[0];
 
         pfp_elem.setAttribute("src", image_url)

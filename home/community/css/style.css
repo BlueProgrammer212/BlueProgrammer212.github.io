@@ -389,8 +389,9 @@ a {
 
 .postsBox {
   background-color: white;
-  border: 3.5px solid black;
+  border: 3.5px solid rgb(172, 172, 172);
 }
+
 .pfp_img_elem {
   width: 4vw;
   height: 4vw;
@@ -465,6 +466,7 @@ a {
   font-size: 14px;
   transform: translateX(2vw) translateY(-7.4vw);
   margin-bottom: 20px;
+  word-break: break-all;
 }
 
 .likeBtn {
