@@ -262,7 +262,6 @@ a {
 
 .pfp_name {
   position: relative;
-  transform: translateX(2.2vw) translateY(-7vw);
   color: black;
   font-size: 14px;
   padding-left: 20px;
