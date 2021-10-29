@@ -299,7 +299,8 @@ body {
 
 .align-left {
   max-width: 95%;
-  margin: 1.25%
+  margin: 1.25%;
+  word-break: break-all;
 }
 
 #post_btn {
@@ -317,6 +318,7 @@ body {
 #post_section {
   display:inline-block;
   position:relative;
+  width: 95%;
 }
 
 .commentBox {
