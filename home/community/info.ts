@@ -324,9 +324,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             document.getElementsByClassName("dislikeBtn")[${i}].className = "dislikeBtn";
             if (!document.getElementsByClassName("likeBtn")[${i}].className.includes("likeBtnPressed")) {
                 document.getElementsByClassName("likeBtn")[${i}].className += " likeBtnPressed"
-                firestore.collection("posts").where("region", "==", "AS").update({
-                    "likes": document.getElementsByClassName("likeLabel")[${i}].innerHTML + 1
-                })
                 console.log(document.getElementsByClassName("likeBtn")[${i}]);
             } else {
                 document.getElementsByClassName("likeBtn")[${i}].className = "likeBtn";
