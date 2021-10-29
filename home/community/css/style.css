@@ -392,6 +392,10 @@ a {
   border: 3.5px solid rgb(172, 172, 172);
 }
 
+.view_comments {
+  margin-top: -30px;
+}
+
 .pfp_img_elem {
   width: 4vw;
   height: 4vw;
