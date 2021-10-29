@@ -393,8 +393,8 @@ a {
 }
 
 .pfp_img_elem {
-  width: 4vw;
-  height: 4vw;
+  width: 64px;
+  height: 64px;
   transform: translateX(-1.5vw) translateY(-1.5vw);
 }
 #postsBoxContent {
