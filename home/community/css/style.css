@@ -261,9 +261,12 @@ a {
 }
 
 .pfp_name {
+  position: relative;
   transform: translateX(2.2vw) translateY(-7vw);
   color: black;
   font-size: 14px;
+  padding-left: 20px;
+  top: -7vw;
 }
 
 .eop {
@@ -399,6 +402,8 @@ a {
 }
 
 .pfp_img_elem {
+  min-width: 32px;
+  min-height: 32px;;
   width: 4vw;
   height: 4vw;
   transform: translateX(-1.5vw) translateY(-1.5vw);
