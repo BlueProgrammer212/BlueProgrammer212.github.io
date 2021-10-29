@@ -291,6 +291,12 @@ a {
   height: 50px;
 }
 
+.likeLabel {
+  font-family: Pixel;
+  font-size: 14px;
+  color: black;
+}
+
 #boldText {
   border: none;
   font-family: Pixel;
