@@ -362,7 +362,9 @@ window.addEventListener("load", () => {
                 if (change.type == "added") {
                     fragmentInstance.add(change.doc.data());
                 };
-                console.log(change.type);
+                if (change.type == "modified") {
+                    fragmentInstance.setPosts(change.doc.data(), 0);
+                }
             });
             querySnapshot.forEach((doc) => {
                 console.log(doc.data()); 
