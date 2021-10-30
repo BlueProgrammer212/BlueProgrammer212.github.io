@@ -312,7 +312,8 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             this.setPosts(data, i);
-            this.setButton(i);
+            this.setButton(i);              
+            this.update_likes(i);
         }
         this.setImage(data.pfp_link);
     }
@@ -366,7 +367,6 @@ window.addEventListener("load", () => {
             querySnapshot.docChanges().forEach(change => {
                 if (change.type == "added") {
                     fragmentInstance.add(change.doc.data());
-                    fragmentInstance.update_likes(change.doc.data());
                 };
                 if (change.type == "modified") {
                     fragmentInstance.update_likes(change.doc.data());
