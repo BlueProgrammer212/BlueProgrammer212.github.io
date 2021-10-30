@@ -354,7 +354,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                     for (let o = 0; o < this.a.length; ++o) {
                         if (docs.data().id == this.a[o]) {
                             firestore.collection("posts").doc(docs.id).update({likes: data.likes-1})
-                            data.likes = data.likes + 1;
+                            data.likes = data.likes - 1;
                         }
                     }
                 })
@@ -362,6 +362,15 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         };
         dislike[i].onclick = () => {
             document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
+            this.q.forEach(docs => {
+                console.log(`Checking ID <${docs.data().id}>`)
+                for (let o = 0; o < this.a.length; ++o) {
+                    if (docs.data().id == this.a[o]) {
+                        firestore.collection("posts").doc(docs.id).update({likes: data.likes-1})
+                        data.likes = data.likes - 1;
+                    }
+                }
+            })
             if (!document.getElementsByClassName("dislikeBtn")[i].className.includes("dislikeBtnPressed")) {
                 document.getElementsByClassName("dislikeBtn")[i].className += " dislikeBtnPressed"
             } else {
