@@ -321,7 +321,11 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         document.getElementById(data.id).children[0].children[7].innerHTML = data.likes;
     }
     setButton(i: number) {
-        let like : HTMLCollectionOf<HTMLElement> = document.getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>;
+        let like : HTMLCollectionOf<HTMLElement> = document.
+            getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>,
+            dislike : HTMLCollectionOf<HTMLElement> = document.
+            getElementsByClassName("dislikeBtn") as HTMLCollectionOf<HTMLElement>;
+
         like[i].onclick = () => { 
             document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
             if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
@@ -330,14 +334,14 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
             }
         };
-        document.getElementsByClassName("dislikeBtn")[i].addEventListener("click", () => {
+        dislike[i].onclick = () => {
             document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
             if (!document.getElementsByClassName("dislikeBtn")[i].className.includes("dislikeBtnPressed")) {
                 document.getElementsByClassName("dislikeBtn")[i].className += " dislikeBtnPressed"
             } else {
                 document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
             }
-        });
+        };
     }
 }
 
