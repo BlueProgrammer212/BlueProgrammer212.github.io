@@ -325,6 +325,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         console.log(`Processing data to information, <${data.id}>`);
         document.getElementById(data.id).children[0].children[7].innerHTML = data.likes;
     }
+    updateQuery(q) {
+        this.q = q;
+    }
     setButton(data, i: number) {
         let like : HTMLCollectionOf<HTMLElement> = document.
             getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>,
@@ -392,6 +395,7 @@ window.addEventListener("load", () => {
             });
             querySnapshot.forEach((doc) => {
                 console.log(doc.data()); 
+                fragmentInstance.updateQuery(querySnapshot);
             });
         });
     }, 5000);
