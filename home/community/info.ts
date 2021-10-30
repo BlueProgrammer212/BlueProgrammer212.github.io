@@ -389,7 +389,8 @@ window.addEventListener("load", () => {
         firestore.collection("posts").where("region", "==", "AS").onSnapshot((querySnapshot) => {
             if (!noPosts.className.includes("invisible")) {
                 noPosts.className += " invisible";
-            };
+            }
+            document.getElementById("loading_posts").innerHTML = "It's quiet for now. <a class='blue' href='post.html'>Wanna make a noise?</a>"
             querySnapshot.docChanges().forEach(change => {
                 if (change.type == "added") {
                     fragmentInstance.add(change.doc.data(), querySnapshot);
@@ -403,5 +404,5 @@ window.addEventListener("load", () => {
                 fragmentInstance.updateQuery(querySnapshot);
             });
         });
-    }, 5000);
+    }, 1000);
 })
