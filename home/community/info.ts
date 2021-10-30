@@ -321,14 +321,15 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         document.getElementById(data.id).children[0].children[7].innerHTML = data.likes;
     }
     setButton(i: number) {
-        document.getElementsByClassName("likeBtn")[i].addEventListener("click", () => { 
+        let like : HTMLCollectionOf<HTMLElement> = document.getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>;
+        like[i].onclick = () => { 
             document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
             if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
                 document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed"
             } else {
                 document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
             }
-        });
+        };
         document.getElementsByClassName("dislikeBtn")[i].addEventListener("click", () => {
             document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
             if (!document.getElementsByClassName("dislikeBtn")[i].className.includes("dislikeBtnPressed")) {
