@@ -337,6 +337,8 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                     if (docs.data().id == data.id) {
                         console.log(`Updating data... <${docs.id}>`)
                         firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
+                    } else {
+                        console.log("Posts doesn't much the id")
                     }
                 })
             } else {
