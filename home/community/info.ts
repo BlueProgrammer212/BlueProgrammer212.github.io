@@ -267,6 +267,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
          this.parent = document.getElementById("titles");
          this.set = new Set();
          this.prefix_url = "https://lh3.googleusercontent.com/a-/";
+         this.a = [];
     } 
 
     setPosts(data : Data, i : number) {
