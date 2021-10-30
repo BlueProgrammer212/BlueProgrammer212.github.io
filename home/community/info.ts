@@ -73,6 +73,7 @@ interface Data {
      dislikes: any;
      comments: any;
      likes: any;
+     id: any;
 }
 
 const urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
@@ -306,6 +307,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         console.log(`%c[System] ` + `%cLoading posts... ${JSON.stringify(data)}`, "color: violet;font-style: bold;", "");
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
+        this.template_element_clone.id = data.id;
         this.parent.appendChild(this.template_element_clone);
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
@@ -315,9 +317,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.setImage(data.pfp_link);
     }
     update_likes(data : Data) {
-        for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
-            document.getElementsByClassName("likeLabel")[i].innerHTML = data.likes;
-        }   
+        document.getElementById(data.id).innerHTML = data.likes;
     }
     setButton(i: number) {
         document.getElementsByClassName("likeBtn")[i].setAttribute("onclick", `
