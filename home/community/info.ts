@@ -307,6 +307,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
         this.template_element_clone.id = data.id;
+        this.update_likes(data)
         this.parent.appendChild(this.template_element_clone);
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
