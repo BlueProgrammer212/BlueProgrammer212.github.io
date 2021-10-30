@@ -310,6 +310,10 @@ a {
   height: 50px;
 }
 
+#section_content_break {
+  border: 3.5px solid #000000;
+}
+
 #boldText:hover {
   border: none;
   font-family: Pixel;
