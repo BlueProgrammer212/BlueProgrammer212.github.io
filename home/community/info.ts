@@ -314,6 +314,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.parent.appendChild(this.template_element_clone);
         this.update_likes(data);
         this.updateQuery(q);
+        this.a.push(data.id);
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             this.setPosts(data, i);
@@ -327,7 +328,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     }
     updateQuery(q) {
         this.q = q;
-        console.log(`Updated snapshot, ${this.q}`)
     }
     setButton(data, i: number) {
         let like : HTMLCollectionOf<HTMLElement> = document.
@@ -340,9 +340,11 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed";  
                 this.q.forEach(docs => {
                     console.log(`Checking ID <${docs.data().id}>`)
-                    if (docs.data().id.match(data.id)) {
-                        firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
-                        data.likes = data.likes + 1;
+                    for (let o = 0; o < this.a.length; ++o) {
+                        if (docs.data().id.match(this.a[o])) {
+                            firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
+                            data.likes = data.likes + 1;
+                        }
                     }
                 })
             } else {
