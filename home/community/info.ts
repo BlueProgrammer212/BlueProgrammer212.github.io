@@ -1,4 +1,5 @@
 let inputBox : any;
+let firestore;
 
 interface Fragment {
     template_id : string,
@@ -244,6 +245,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     public set : any;
     public msg: any;
     public prefix_url: any;
+    q: any;
 
     remove(fs, name: string): Promise<void> {
         return new Promise(async (res) => {
@@ -302,7 +304,8 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         }
     }
 
-    add(data: Data) {
+    add(data: Data, q) {
+        this.q = q;
         console.log(`%c[System] ` + `%cLoading posts... ${JSON.stringify(data)}`, "color: violet;font-style: bold;", "");
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
@@ -312,7 +315,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             this.setPosts(data, i);
-            this.setButton(i);              
+            this.setButton(data, i);              
         }
         this.setImage(data.pfp_link);
     }
@@ -320,7 +323,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         console.log(`Processing data to information, <${data.id}>`);
         document.getElementById(data.id).children[0].children[7].innerHTML = data.likes;
     }
-    setButton(i: number) {
+    setButton(data, i: number) {
         let like : HTMLCollectionOf<HTMLElement> = document.
             getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>,
             dislike : HTMLCollectionOf<HTMLElement> = document.
@@ -330,6 +333,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
             if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
                 document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed"
+                this.q.forEach(docs => {if (docs.data().id == data.id) firestore.collection("posts").doc(docs.id).update({likes: data.likes})})
             } else {
                 document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
             }
@@ -369,7 +373,7 @@ window.addEventListener("load", () => {
             };
             querySnapshot.docChanges().forEach(change => {
                 if (change.type == "added") {
-                    fragmentInstance.add(change.doc.data());
+                    fragmentInstance.add(change.doc.data(), querySnapshot);
                 };
                 if (change.type == "modified") {
                     fragmentInstance.update_likes(change.doc.data());

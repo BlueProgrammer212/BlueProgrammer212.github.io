@@ -107,8 +107,6 @@ class PostsManager extends Posts {
         this.now = new Date();
     }
 }
-
-let firestore;
 let load = new Timer(1000);
 
 window.addEventListener("load", () => {
