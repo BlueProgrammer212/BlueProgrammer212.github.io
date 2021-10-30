@@ -307,7 +307,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         console.log(`%c[System] ` + `%cLoading posts... ${JSON.stringify(data)}`, "color: violet;font-style: bold;", "");
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
-        this.template_element_clone.setAttribute("id", data.id);
+     
         console.log(`Successfully renamed the id for posts, <${data.id}>`)
         this.parent.appendChild(this.template_element_clone);
         this.update_likes(data);
