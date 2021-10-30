@@ -316,25 +316,27 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         }
         this.setImage(data.pfp_link);
     }
-    protected addEvent(id : string, id2 : string, i : number) {
-        document.getElementsByClassName(id)[i].addEventListener("click", () => { 
-            document.getElementsByClassName(id2)[i].className = id2;
-            
-            if (!document.getElementsByClassName(id)[i].className.includes(`${id}Pressed`))
-                document.getElementsByClassName(id)[i].className += id+"Pressed";
-            else 
-                document.getElementsByClassName(id)[i].className = id;
-        });
-    }
     update_likes(data : Data) {
         console.log(`Processing data to information, <${data.id}>`);
         document.getElementById(data.id).children[0].children[7].innerHTML = data.likes;
     }
     setButton(i: number) {
-        const l_id = "likeBtn", 
-              d_id = "dislikeBtn";
-        this.addEvent(l_id, d_id, i);
-        this.addEvent(d_id, l_id, i);
+        document.getElementsByClassName("likeBtn")[i].addEventListener("click", () => { 
+            document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
+            if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
+                document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed"
+            } else {
+                document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
+            }
+        });
+        document.getElementsByClassName("dislikeBtn")[i].addEventListener("click", () => {
+            document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
+            if (!document.getElementsByClassName("dislikeBtn")[i].className.includes("dislikeBtnPressed")) {
+                document.getElementsByClassName("dislikeBtn")[i].className += " dislikeBtnPressed"
+            } else {
+                document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
+            }
+        });
     }
 }
 
