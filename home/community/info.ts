@@ -307,7 +307,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     }
 
     add(data: Data, q) {
-        console.log(`%c[System] ` + `%cLoading posts... ${JSON.stringify(data)}`, "color: violet;font-style: bold;", "");
+        console.log(`%c[System] ` + `%cLoading posts... ${data}`, "color: violet;font-style: bold;", "");
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
         this.template_element_clone.id = data.id;
