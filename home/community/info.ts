@@ -313,9 +313,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.template_element_clone.id = data.id;
         this.parent.appendChild(this.template_element_clone);
         this.update_likes(data)
+        this.q = q;
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
-            this.a[i] = q;
             this.setPosts(data, i);
             this.setButton(data, i);              
         }
@@ -330,22 +330,25 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>,
             dislike : HTMLCollectionOf<HTMLElement> = document.
             getElementsByClassName("dislikeBtn") as HTMLCollectionOf<HTMLElement>;
-        this.a[i].forEach(docs => {
-            like[i].onclick = () => { 
-                document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
-                if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
-                    document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed"
-                    
-                        if (docs.data().id == data.id) {
-                            console.log(data.likes)
-                            firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
-                        }
-                } else {
-                    document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
-                    firestore.collection("posts").doc(docs.id).update({likes: data.likes-1})
-                }
-            };
-        })
+        like[i].onclick = () => { 
+            document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
+            if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
+                document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed";  
+                console.log(data.likes)
+                this.q.forEach(docs => {
+                    if (docs.data().id == data.id) {
+                        firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
+                    }
+                })
+            } else {
+                document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
+                this.q.forEach(docs => {
+                    if (docs.data().id == data.id) {
+                        firestore.collection("posts").doc(docs.id).update({likes: data.likes-1})
+                    }
+                });
+            }
+        };
         dislike[i].onclick = () => {
             document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
             if (!document.getElementsByClassName("dislikeBtn")[i].className.includes("dislikeBtnPressed")) {
