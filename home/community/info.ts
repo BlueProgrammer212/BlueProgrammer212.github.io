@@ -26,6 +26,8 @@ class FragmentInstance implements Fragment {
     comment_message : any;
     defaultPfp : String;
     pfp_element : any;
+    a: Array<any>;
+    q: any;
     constructor(template_id : string, defaultPfp_ : String) {
          this.template_id = template_id;
          this.template_element = document.getElementById(this.template_id);
@@ -33,6 +35,7 @@ class FragmentInstance implements Fragment {
          this.comment_message = document.getElementsByClassName("comment_message");
          this.defaultPfp = defaultPfp_;
          this.pfp_element = document.getElementsByClassName("pfp_img_elem");
+         this.a = [];
     } 
     protected setImage(link : string) {
         for (let i = 0; i < this.pfp_element.length; ++i) {
@@ -59,6 +62,50 @@ class FragmentInstance implements Fragment {
                     .addEventListener("load", () => setTimeout(resolve, 0, null));
             }
         })
+    }
+    updateLikeField(data, integer: number) {
+        this.q.forEach(docs => {
+            console.log(`Checking ID <${docs.data().id}>`)
+            for (let o = 0; o < this.a.length; ++o) {
+                if (docs.data().id == this.a[o]) {
+                    firestore.collection("posts").doc(docs.id).update({likes: data.likes+integer})
+                    data.likes = data.likes + integer;
+                }
+            }
+        })
+    }
+    update_likes(data : Data) {
+        console.log(`Processing data to information, <${data.id}>`);
+        document.getElementById(data.id).children[0].children[7].innerHTML = data.likes;
+    }
+    updateQuery(q) {
+        this.q = q;
+    }
+    setButton(data, i: number) {
+        let like : HTMLCollectionOf<HTMLElement> = document.
+            getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>,
+            dislike : HTMLCollectionOf<HTMLElement> = document.
+            getElementsByClassName("dislikeBtn") as HTMLCollectionOf<HTMLElement>;
+        like[i].onclick = () => { 
+           dislike[i].className = "dislikeBtn";
+            if (!like[i].className.includes("likeBtnPressed")) {
+                like[i].className += " likeBtnPressed";  
+                this.updateLikeField(data, 1)
+            } else {
+                like[i].className = "likeBtn";
+                if (data.likes > 0) this.updateLikeField(data, -1)
+            }
+        };
+        dislike[i].onclick = () => {
+            dislike[i].className = "likeBtn";
+            if (data.likes > 0) this.updateLikeField(data, -1)
+            if (!dislike[i].className.includes("dislikeBtnPressed")) {
+                dislike[i].className += " dislikeBtnPressed"
+            } else {
+                dislike[i].className = "dislikeBtn";
+                this.updateLikeField(data, 1);
+            }
+        };
     }
 }
 
@@ -131,14 +178,12 @@ class WebGL implements Renderer {
           return shader;
     }
 
-    public initializeBuffer(): object {
+    public initializeBuffer(): object  {
+        if (!("createBuffer" in this.gl)) return {};
         const positionBuffer = this.gl.createBuffer();
-        const PLANE_COORDINATES: number[] = [
-            -1.0, 1.0, 
-             1.0, 1.0,
-            -1.0, -1.0,
-             1.0, -1.0
-        ];
+        const PLANE_COORDINATES: number[] | Array<number> = [
+            -1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0
+        ] as Array<number>;
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
         this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(PLANE_COORDINATES), this.gl.STATIC_DRAW);
         return {position: positionBuffer};
@@ -153,7 +198,7 @@ class WebGL implements Renderer {
         this.gl.attachShader(shaderProgram, this.fshader);
         this.gl.linkProgram(shaderProgram);
         if (!this.gl.getProgramParameter(shaderProgram, this.gl.LINK_STATUS)) {
-            alert(`Unable to initialize the shader program: ${this.gl.getProgramInfoLog(shaderProgram)}`);
+            console.warn(`Unable to initialize the shader program: ${this.gl.getProgramInfoLog(shaderProgram)}`);
             return null;
         }
         return shaderProgram;
@@ -168,7 +213,8 @@ class WebGL implements Renderer {
         this.fsource = this.loadProgram("basic_fragment.fs");
         this.program = this.initializeShaderProgram();
         if (this.gl == null) {
-            console.log("Your browser does not support WebGL");
+            console.log("Your browser does not support WebGL.");
+            return;
         }
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT);
@@ -240,13 +286,13 @@ class ImageRenderer extends WebGL {
     }
 }
 
+let ImageRenderInstance = new ImageRenderer("profile_img");
+
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
     public set : any;
     public msg: any;
     public prefix_url: any;
-    q: any;
-    a: any;
 
     remove(fs, name: string): Promise<void> {
         return new Promise(async (res) => {
@@ -267,7 +313,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
          this.parent = document.getElementById("titles");
          this.set = new Set();
          this.prefix_url = "https://lh3.googleusercontent.com/a-/";
-         this.a = [];
     } 
 
     setPosts(data : Data, i : number) {
@@ -320,72 +365,8 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             this.setPosts(data, i);
             this.setButton(data, i);              
         }
+        if (!data.pfp_link.startsWith("https://")) return;
         this.setImage(data.pfp_link);
-    }
-    update_likes(data : Data) {
-        console.log(`Processing data to information, <${data.id}>`);
-        document.getElementById(data.id).children[0].children[7].innerHTML = data.likes;
-    }
-    updateQuery(q) {
-        this.q = q;
-    }
-    setButton(data, i: number) {
-        let like : HTMLCollectionOf<HTMLElement> = document.
-            getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>,
-            dislike : HTMLCollectionOf<HTMLElement> = document.
-            getElementsByClassName("dislikeBtn") as HTMLCollectionOf<HTMLElement>;
-        like[i].onclick = () => { 
-            document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
-            if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
-                document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed";  
-                this.q.forEach(docs => {
-                    console.log(`Checking ID <${docs.data().id}>`)
-                    for (let o = 0; o < this.a.length; ++o) {
-                        if (docs.data().id == this.a[o]) {
-                            firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
-                            data.likes = data.likes + 1;
-                        }
-                    }
-                })
-            } else {
-                document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
-                this.q.forEach(docs => {
-                    console.log(`Checking ID <${docs.data().id}>`)
-                    for (let o = 0; o < this.a.length; ++o) {
-                        if (docs.data().id == this.a[o]) {
-                            firestore.collection("posts").doc(docs.id).update({likes: data.likes-1})
-                            data.likes = data.likes - 1;
-                        }
-                    }
-                })
-            }
-        };
-        dislike[i].onclick = () => {
-            document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
-            this.q.forEach(docs => {
-                console.log(`Checking ID <${docs.data().id}>`)
-                for (let o = 0; o < this.a.length; ++o) {
-                    if (docs.data().id == this.a[o] && data.likes >= 0) {
-                        firestore.collection("posts").doc(docs.id).update({likes: data.likes-1})
-                        data.likes = data.likes - 1;
-                    }
-                }
-            })
-            if (!document.getElementsByClassName("dislikeBtn")[i].className.includes("dislikeBtnPressed")) {
-                document.getElementsByClassName("dislikeBtn")[i].className += " dislikeBtnPressed"
-            } else {
-                document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
-                this.q.forEach(docs => {
-                    console.log(`Checking ID <${docs.data().id}>`)
-                    for (let o = 0; o < this.a.length; ++o) {
-                        if (docs.data().id == this.a[o]) {
-                            firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
-                            data.likes = data.likes + 1;
-                        }
-                    }
-                })
-            }
-        };
     }
 }
 
