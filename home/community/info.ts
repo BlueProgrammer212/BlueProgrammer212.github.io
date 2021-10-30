@@ -276,7 +276,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         }
 
         this.update(i);
-        document.getElementsByClassName("likeLabel")[i].innerHTML = data.likes;
         if (this.msg.length == 0 && data.message.startsWith("/uploadImg[")) {
             this.setMessage(data.message, i);
             this.setTime(data.date_published, i);
