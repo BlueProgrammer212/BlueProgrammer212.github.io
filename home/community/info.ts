@@ -330,22 +330,22 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>,
             dislike : HTMLCollectionOf<HTMLElement> = document.
             getElementsByClassName("dislikeBtn") as HTMLCollectionOf<HTMLElement>;
-
-        like[i].onclick = () => { 
-            document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
-            if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
-                document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed"
-                this.a[i].forEach(docs => {
-                    if (docs.data().id == data.id) {
-                        console.log(data.likes)
-                        firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
-                    }
-                })
-            } else {
-                document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
-                firestore.collection("posts").doc(docs.id).update({likes: data.like-1})
-            }
-        };
+        this.a[i].forEach(docs => {
+            like[i].onclick = () => { 
+                document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
+                if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
+                    document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed"
+                    
+                        if (docs.data().id == data.id) {
+                            console.log(data.likes)
+                            firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
+                        }
+                } else {
+                    document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
+                    firestore.collection("posts").doc(docs.id).update({likes: data.like-1})
+                }
+            };
+        })
         dislike[i].onclick = () => {
             document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
             if (!document.getElementsByClassName("dislikeBtn")[i].className.includes("dislikeBtnPressed")) {
