@@ -313,7 +313,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             this.setPosts(data, i);
             this.setButton(i);              
-            this.update_likes(i);
         }
         this.setImage(data.pfp_link);
     }
