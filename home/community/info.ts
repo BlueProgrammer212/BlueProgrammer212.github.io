@@ -246,6 +246,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     public msg: any;
     public prefix_url: any;
     q: any;
+    a: any;
 
     remove(fs, name: string): Promise<void> {
         return new Promise(async (res) => {
@@ -305,7 +306,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     }
 
     add(data: Data, q) {
-        this.q = q;
         console.log(`%c[System] ` + `%cLoading posts... ${JSON.stringify(data)}`, "color: violet;font-style: bold;", "");
         this.template_element_clone = document.importNode
         (this.template_element.content, true).children[0];
@@ -314,6 +314,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.update_likes(data)
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
+            this.a[i] = q;
             this.setPosts(data, i);
             this.setButton(data, i);              
         }
@@ -333,7 +334,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
             if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
                 document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed"
-                this.q.forEach(docs => {
+                this.a[i].forEach(docs => {
                     if (docs.data().id == data.id) {
                         console.log(`Updating data... <${docs.id}>`)
                         firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
