@@ -327,6 +327,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     }
     updateQuery(q) {
         this.q = q;
+        console.log(`Updated snapshot, ${this.q}`)
     }
     setButton(data, i: number) {
         let like : HTMLCollectionOf<HTMLElement> = document.
