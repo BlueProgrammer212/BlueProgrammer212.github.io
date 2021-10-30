@@ -387,9 +387,6 @@ window.addEventListener("load", () => {
         let noPosts : any = document.getElementById("noPosts");
         firestore = firebase.firestore();
         firestore.collection("posts").where("region", "==", "AS").onSnapshot((querySnapshot) => {
-            if (!noPosts.className.includes("invisible")) {
-                noPosts.className += " invisible";
-            }
             document.getElementById("loading_posts").innerHTML = "It's quiet for now. <a class='blue' href='post.html'>Wanna make a noise?</a>"
             querySnapshot.docChanges().forEach(change => {
                 if (change.type == "added") {
@@ -400,6 +397,9 @@ window.addEventListener("load", () => {
                 }
             });
             querySnapshot.forEach((doc) => {
+                if (!noPosts.className.includes("invisible")) {
+                    noPosts.className += " invisible";
+                }
                 console.log(doc.data()); 
                 fragmentInstance.updateQuery(querySnapshot);
             });
