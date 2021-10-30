@@ -327,7 +327,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     }
     updateQuery(q) {
         this.q = q;
-        console.log(`Updated snapshot, ${this.q}`)
+        console.log(`Updated snapshot, ${JSON.stringify(this.q)}`)
     }
     setButton(data, i: number) {
         let like : HTMLCollectionOf<HTMLElement> = document.
@@ -338,7 +338,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             document.getElementsByClassName("dislikeBtn")[i].className = "dislikeBtn";
             if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
                 document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed";  
-                console.log(data.likes)
                 this.q.forEach(docs => {
                     if (docs.data().id == data.id) {
                         firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
@@ -348,7 +347,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 document.getElementsByClassName("likeBtn")[i].className = "likeBtn";
                 this.q.forEach(docs => {
                     if (docs.data().id == data.id) {
-                        firestore.collection("posts").doc(docs.id).update({likes: data.likes-1})
+                        firestore.collection("posts").doc(docs.id).update({likes: data.likes})
                     }
                 });
             }
