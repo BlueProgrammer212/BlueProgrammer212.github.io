@@ -317,7 +317,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.setImage(data.pfp_link);
     }
     update_likes(data : Data) {
-        document.getElementById(data.id).innerHTML = data.likes;
+        document.getElementById(data.id).children[0].children[7].innerHTML = data.likes;
     }
     setButton(i: number) {
         document.getElementsByClassName("likeBtn")[i].setAttribute("onclick", `
