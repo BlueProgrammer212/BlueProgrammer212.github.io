@@ -339,7 +339,8 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             if (!document.getElementsByClassName("likeBtn")[i].className.includes("likeBtnPressed")) {
                 document.getElementsByClassName("likeBtn")[i].className += " likeBtnPressed";  
                 this.q.forEach(docs => {
-                    if (docs.data().id == data.id) {
+                    console.log(`Checking ID <${docs.data().id}>`)
+                    if (docs.data().id.match(data.id)) {
                         firestore.collection("posts").doc(docs.id).update({likes: data.likes+1})
                         data.likes = data.likes + 1;
                     }
