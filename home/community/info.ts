@@ -249,6 +249,13 @@ class WebGL implements Renderer {
         const vertexCount : number = 4;
         this.gl.drawArrays(this.gl.TRIANGLE_STRIP, offset, vertexCount);
     }
+    async drawShape() {
+        let prog;
+        await this.program.then((a) => {
+            prog = a;
+        });
+        this.gl.drawScene(new WebGLProgramInfo(this.gl, prog), this.initializeBuffer());
+    }
     constructor(canvas_id: string) {
         this.canvas = document.getElementById(canvas_id);
         this.gl = this.canvas.getContext("webgl");
@@ -262,9 +269,7 @@ class WebGL implements Renderer {
         }
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT);
-        this.program.then((a) => {
-            this.gl.drawScene(new WebGLProgramInfo(this.gl, a), this.initializeBuffer());
-         });
+        this.drawShape();
     }
 }
 
