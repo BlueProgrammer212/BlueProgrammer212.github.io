@@ -88,7 +88,7 @@ class FragmentInstance implements Fragment {
             i = i++;
             console.log(`Checking ID <${docs.data().id}>`)
             var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data().id);  
-            if (uuid == data.id) {
+            if (uuid == this.a[i]) {
                 firestore.collection("posts").doc(docs.id).update({likes: data.likes+integer})
                 data.likes = data.likes + integer;
             }
