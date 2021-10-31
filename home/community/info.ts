@@ -262,6 +262,9 @@ class WebGL implements Renderer {
         }
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT);
+        this.program.then((a) => {
+            this.gl.drawScene(new WebGLProgramInfo(this.gl, a), this.initializeBuffer());
+         });
     }
 }
 
@@ -327,9 +330,6 @@ class ImageRenderer extends WebGL {
     }
     constructor(canvas_id: string) {
         super(canvas_id);
-        this.program.then((a) => {
-           this.gl.drawScene(new WebGLProgramInfo(this.gl, a), this.initializeBuffer());
-        });
     }
 }
 
