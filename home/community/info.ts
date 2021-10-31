@@ -484,6 +484,7 @@ window.addEventListener("load", () => {
                 if (change.type == "modified") {
                     fragmentInstance.update_likes(change.doc.data());
                 }
+                console.log(change.type)
             });
             querySnapshot.forEach((doc) => {
                 if (!noPosts.className.includes("invisible")) {
