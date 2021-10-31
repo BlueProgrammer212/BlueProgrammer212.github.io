@@ -2,8 +2,6 @@ let inputBox : any;
 let firestore;
 //Declaration of Javascript constants.
 declare let mat4: any;
-declare let profile_img: HTMLElement;
-declare let profile_img_webgl_canvas: HTMLElement;
 //////////////////////////////////////////////////
 
 interface Fragment {
@@ -342,6 +340,8 @@ class ImageRenderer extends WebGL {
     }
 }
 let btn_pfp = document.getElementById("ctx_btn_menu");
+let profile_img = document.getElementById("pfp_edit_img");
+let profile_img_webgl_canvas = document.getElementById("profile_img");
 
 (btn_pfp || document.getElementById("ctx_btn_menu")).addEventListener("click", () => {
     profile_img.className = "blackColorRectBg";
