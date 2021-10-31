@@ -437,6 +437,10 @@ a {
 .commentPostMessage {
   color: black;
 }
+.commentBoxPost {
+  padding: 20px;
+  position: relative;
+}
 
 .pfp_img_elem {
   min-width: 32px;
