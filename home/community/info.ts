@@ -2,7 +2,6 @@ let inputBox : any;
 let firestore;
 //Declaration of Javascript constants.
 declare let mat4: any;
-declare let btn_pfp: HTMLElement;
 declare let profile_img: HTMLElement;
 declare let profile_img_webgl_canvas: HTMLElement;
 //////////////////////////////////////////////////
@@ -342,6 +341,7 @@ class ImageRenderer extends WebGL {
         super(canvas_id);
     }
 }
+let btn_pfp = document.getElementById("ctx_btn_menu");
 
 (btn_pfp || document.getElementById("ctx_btn_menu")).addEventListener("click", () => {
     profile_img.className = "blackColorRectBg";
