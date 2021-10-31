@@ -417,6 +417,14 @@ a {
   position: relative;
   top: -7vw;
 }
+.comment-input {
+   font-family: Pixel;
+   border: 3.5px solid black;
+   font-size: 14px;
+   width: 85%;
+   height: 20px;
+   position: relative;
+}
 
 .pfp_img_elem {
   min-width: 32px;
