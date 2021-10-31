@@ -8,6 +8,8 @@ This the first initial release for Pixcel!
 -  Bugs hotfix
 
 Visit our [community](https://blueprogrammer212.github.io/home/community/?r=as)
+
 Homepage: https://blueprogrammer212.github.io/home
+
 Comments & Feedback: https://blueprogrammer212.github.io/home/comments
 
