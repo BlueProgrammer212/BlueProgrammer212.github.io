@@ -201,9 +201,10 @@ class WebGL implements Renderer {
             vertexLoadedProgram = v;
             fragmentLoadedProgram = f;
         });
+        console.log(vertexLoadedProgram);
+        console.log(fragmentLoadedProgram);
         this.vshader = this.loadShader(this.gl.VERTEX_SHADER, vertexLoadedProgram);
         this.fshader = this.loadShader(this.gl.FRAGMENT_SHADER, fragmentLoadedProgram);
-        if (this.vshader === void 0 || this.fshader === void 0) return null;
         this.gl.attachShader(shaderProgram, this.vshader);
         this.gl.attachShader(shaderProgram, this.fshader);
         this.gl.linkProgram(shaderProgram);
@@ -253,9 +254,6 @@ class WebGL implements Renderer {
         this.gl = this.canvas.getContext("webgl");
         this.vsource = this.loadProgram("basic_vertex.vs");
         this.fsource = this.loadProgram("basic_fragment.fs");
-        Promise.all([this.vsource, this.fsource]).then(([a, b]) => {
-            console.log(a, b);
-        })
         this.program = this.initializeShaderProgram();
         if (this.gl == null) {
             console.log("Your browser does not support WebGL.");
