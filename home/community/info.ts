@@ -254,7 +254,7 @@ class WebGL implements Renderer {
         await this.program.then((a) => {
             prog = a;
         });
-        this.gl.drawScene(new WebGLProgramInfo(this.gl, prog), this.initializeBuffer());
+        this.drawScene(new WebGLProgramInfo(this.gl, prog), this.initializeBuffer());
     }
     constructor(canvas_id: string) {
         this.canvas = document.getElementById(canvas_id);
