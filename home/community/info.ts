@@ -167,6 +167,7 @@ class WebGL implements Renderer {
         return fetch(`./shaders/${name}`).then(data => data.text());
     }
     public loadShader(type, source) {
+        if (!("createShader" in this.gl)) return;
         let shader = this.gl.createShader(type);
         this.gl.shaderSource(shader, source);
         this.gl.compileShader(shader);
@@ -182,18 +183,26 @@ class WebGL implements Renderer {
         if (!("createBuffer" in this.gl)) return {};
         const positionBuffer = this.gl.createBuffer();
         const PLANE_COORDINATES: number[] | Array<number> = [
-            -1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0
+            -1.0, 1.0,
+             1.0, 1.0, 
+            -1.0, 1.0,
+             1.0, -1.0
         ] as Array<number>;
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
         this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(PLANE_COORDINATES), this.gl.STATIC_DRAW);
         return {position: positionBuffer};
     }
     
-    public initializeShaderProgram() {
-        this.vshader = this.loadShader(this.gl.VERTEX_SHADER, this.vsource);
-        this.fshader = this.loadShader(this.gl.FRAGMENT_SHADER, this.fsource);
-        if (this.vshader === void 0 || this.fshader === void 0) return null;
+    public async initializeShaderProgram() {
         const shaderProgram = this.gl.createProgram();
+        let vertexLoadedProgram, fragmentLoadedProgram;
+        await Promise.all([this.vsource, this.fsource]).then(([v, f]) => {
+            vertexLoadedProgram = v;
+            fragmentLoadedProgram = f;
+        });
+        this.vshader = this.loadShader(this.gl.VERTEX_SHADER, vertexLoadedProgram);
+        this.fshader = this.loadShader(this.gl.FRAGMENT_SHADER, fragmentLoadedProgram);
+        if (this.vshader === void 0 || this.fshader === void 0) return null;
         this.gl.attachShader(shaderProgram, this.vshader);
         this.gl.attachShader(shaderProgram, this.fshader);
         this.gl.linkProgram(shaderProgram);
