@@ -97,10 +97,11 @@ class FragmentInstance implements Fragment {
         console.log(`Processing data to information, <${data.id}>`);
         document.getElementById(data.id).children[0].children[7].innerHTML = data.likes;
     }
-    updateQuery(q) {
+    updateQuery(q): typeof q {
         this.q = q;
+        return this.q;
     }
-    setButton(data, i: number) {
+    setButton(data, i: number): void {
         let like : HTMLCollectionOf<HTMLElement> = document.
             getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>,
             dislike : HTMLCollectionOf<HTMLElement> = document.
