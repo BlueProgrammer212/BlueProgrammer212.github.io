@@ -343,7 +343,7 @@ class ImageRenderer extends WebGL {
     }
 }
 
-btn_pfp.addEventListener("click", () => {
+(btn_pfp || document.getElementById("ctx_btn_menu")).addEventListener("click", () => {
     profile_img.className = "blackColorRectBg";
     let ImageRenderInstance = new ImageRenderer("profile_img");
 });
