@@ -164,7 +164,7 @@ class WebGL implements Renderer {
     fshader: any;
 
     public async loadProgram(name: string): Promise<any> {
-        return fetch(`./shader/${name}`).then(data => data.text());
+        return fetch(`./shaders/${name}`).then(data => data.text());
     }
     public loadShader(type, source) {
         let shader = this.gl.createShader(type);
