@@ -422,8 +422,13 @@ a {
    border: 3.5px solid black;
    font-size: 14px;
    width: 85%;
-   height: 20px;
+   min-height: 36px;
+   max-height: 36px;
+   height: 3vw;
    position: relative;
+   top: -11vw;
+   margin-right: -85%;
+   left: 60px;
 }
 
 .pfp_img_elem {
