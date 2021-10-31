@@ -7,19 +7,6 @@ declare let profile_img: HTMLElement;
 declare let profile_img_webgl_canvas: HTMLElement;
 //////////////////////////////////////////////////
 
-btn_pfp.addEventListener("click", () => {
-    profile_img.className = "blackColorRectBg";
-});
-
-profile_img_webgl_canvas.addEventListener("click", (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-})
-
-profile_img.addEventListener("click", () => {
-    profile_img.className = "blackColorRectBg invisible"
-})
-
 interface Fragment {
     template_id : string,
     template_element: any,
@@ -356,7 +343,19 @@ class ImageRenderer extends WebGL {
     }
 }
 
-let ImageRenderInstance = new ImageRenderer("profile_img");
+btn_pfp.addEventListener("click", () => {
+    profile_img.className = "blackColorRectBg";
+    let ImageRenderInstance = new ImageRenderer("profile_img");
+});
+
+profile_img_webgl_canvas.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+})
+
+profile_img.addEventListener("click", () => {
+    profile_img.className = "blackColorRectBg invisible"
+})
 
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
