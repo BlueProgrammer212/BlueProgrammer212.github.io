@@ -146,13 +146,12 @@ class WebGLProgramInfo implements ProgramInfo {
     uniformLocations: any;
     program: any;
     constructor(gl, program) {
-        this.gl = gl;
-        this.program = program;
         this.attribLocations = {};
-        this.attribLocations.vertexPosition = this.gl.getAttribLocation(this.program, 'aVertexPosition')
+        this.program = program
+        this.attribLocations.vertexPosition = gl.getAttribLocation(program, 'aVertexPosition')
         this.uniformLocations = {};
-        this.uniformLocations.projectionMatrix = this.gl.getUniformLocation(this.program, 'uProjectionMatrix');
-        this.uniformLocations.modelViewMatrix =  this.gl.getUniformLocation(this.program, 'uModelViewMatrix');
+        this.uniformLocations.projectionMatrix = gl.getUniformLocation(program, 'uProjectionMatrix');
+        this.uniformLocations.modelViewMatrix =  gl.getUniformLocation(program, 'uModelViewMatrix');
     }
 }
 
