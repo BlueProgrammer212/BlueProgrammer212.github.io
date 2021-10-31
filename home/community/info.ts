@@ -257,7 +257,7 @@ class WebGL implements Renderer {
     async drawShape() {
         let prog;
         await this.program.then((a) => {
-            prog = a;
+            prog = a; //Initialize shader program, then define the program local variable.
         });
         this.drawScene(new WebGLProgramInfo(this.gl, prog), this.initializeBuffer());
     }
