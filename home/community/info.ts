@@ -432,7 +432,8 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             this.setPosts(data, i);
-            this.setButton(data, i);              
+            this.setButton(data, i); 
+            document.getElementsByClassName("pfp_comment")[i].setAttribute("src", data.pfp_link);
         }
         if (!data.pfp_link.startsWith("https://")) return;
         this.setImage(data.pfp_link);
