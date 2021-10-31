@@ -255,6 +255,7 @@ class WebGL implements Renderer {
         this.vsource = this.loadProgram("basic_vertex.vs");
         this.fsource = this.loadProgram("basic_fragment.fs");
         this.program = this.initializeShaderProgram();
+        console.log(this.program)
         if (this.gl == null) {
             console.log("Your browser does not support WebGL.");
             return;
