@@ -1,6 +1,16 @@
 let inputBox : any;
 let firestore;
 declare let mat4: any;
+declare let btn_pfp: HTMLElement;
+declare let profile_img: HTMLElement;
+
+btn_pfp.addEventListener("click", () => {
+    profile_img.className = "blackColorRectBg";
+});
+
+profile_img.addEventListener("click", () => {
+    profile_img.className = "blackColorRectBg invisible"
+})
 
 interface Fragment {
     template_id : string,

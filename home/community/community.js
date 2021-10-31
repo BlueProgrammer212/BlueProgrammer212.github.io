@@ -1,4 +1,6 @@
 let acc_id;
+let btn_pfp = document.getElementById("ctx_btn_menu");
+let profile_img = document.getElementById("pfp_edit_img");
 (function() {
     var googleUser = {};
     let firestore;
