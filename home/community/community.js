@@ -1,4 +1,5 @@
 let acc_id;
+
 (function() {
     var googleUser = {};
     let firestore;
