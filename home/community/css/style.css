@@ -436,6 +436,9 @@ a {
 }
 .commentPostMessage {
   color: black;
+  position: relative;
+  left: 44px;
+  top: -145px;
 }
 .commentBoxPost {
   padding: 20px;
