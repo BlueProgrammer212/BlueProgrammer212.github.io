@@ -1,12 +1,20 @@
 let inputBox : any;
 let firestore;
+//Declaration of Javascript Elements.
 declare let mat4: any;
 declare let btn_pfp: HTMLElement;
 declare let profile_img: HTMLElement;
+declare let profile_img_webgl_canvas: HTMLElement;
+///////////////////////////////////////////////////////////////////
 
 btn_pfp.addEventListener("click", () => {
     profile_img.className = "blackColorRectBg";
 });
+
+profile_img_webgl_canvas.addEventListener("click", (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+})
 
 profile_img.addEventListener("click", () => {
     profile_img.className = "blackColorRectBg invisible"
