@@ -84,10 +84,12 @@ class FragmentInstance implements Fragment {
     }
     updateLikeField(data, integer: number) {
         this.q.forEach(docs => {
-            console.log(`Checking ID <${docs.data().id}>`);
-            if (docs.data().id.includes(this.a[this.q.indexOf(docs)])) {
-                firestore.collection("posts").doc(docs.id).update({likes: data.likes+integer})
-                data.likes = data.likes + integer;
+            console.log(`Checking ID <${docs.data().id}>`)
+            for (let o = 0; o < this.a.length; ++o) {
+                if (docs.data().id === this.a[o]) {
+                    firestore.collection("posts").doc(docs.id).update({likes: data.likes+integer})
+                    data.likes = data.likes + integer;
+                }
             }
         })
     }
