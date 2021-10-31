@@ -1,5 +1,6 @@
 let inputBox : any;
 let firestore;
+declare let mat4: any;
 
 interface Fragment {
     template_id : string,
@@ -136,21 +137,22 @@ interface ProgramInfo {
     gl: any;
     attribLocations: any;
     uniformLocations: any;
+    program: any;
 }
 
 class WebGLProgramInfo implements ProgramInfo {
     gl: any;
     attribLocations: any;
     uniformLocations: any;
-    shaderProgram: any;
+    program: any;
     constructor(gl, program) {
         this.gl = gl;
-        this.shaderProgram = program;
+        this.program = program;
         this.attribLocations = {};
-        this.attribLocations.vertexPosition = this.gl.getAttribLocation(this.shaderProgram, 'aVertexPosition')
+        this.attribLocations.vertexPosition = this.gl.getAttribLocation(this.program, 'aVertexPosition')
         this.uniformLocations = {};
-        this.uniformLocations.projectionMatrix = this.gl.getUniformLocation(this.shaderProgram, 'uProjectionMatrix');
-        this.uniformLocations.modelViewMatrix =  this.gl.getUniformLocation(this.shaderProgram, 'uModelViewMatrix');
+        this.uniformLocations.projectionMatrix = this.gl.getUniformLocation(this.program, 'uProjectionMatrix');
+        this.uniformLocations.modelViewMatrix =  this.gl.getUniformLocation(this.program, 'uModelViewMatrix');
     }
 }
 
@@ -213,7 +215,33 @@ class WebGL implements Renderer {
         return shaderProgram;
     }
     public drawScene(programInfo: WebGLProgramInfo, buffers) {
-        
+        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.gl.clearDepth(1.0);
+        this.gl.enable(this.gl.DEPTH_TEST);
+        this.gl.depthFunc(this.gl.LEQUAL);
+        this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+        const fov : number = 45 * Math.PI / 180;
+        const aspect : number= this.gl.canvas.clientWidth / this.gl.canvas.clientHeight;
+        const zNear : number = 0.1;
+        const zFar : number = 100.0;
+        const projectionMatrix = mat4.create();
+        mat4.perspective(projectionMatrix, fov, aspect, zNear, zFar);
+        const modelViewMatrix = mat4.create();
+        mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -6.0]); 
+        const numComponents : number = 2;
+        const type : number = this.gl.FLOAT;
+        const normalize : boolean = false;
+        const stride : number = 0;
+        const offset : number = 0;
+        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffers.position);
+        this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffers.position);
+        this.gl.vertexAttribPointer(programInfo.attribLocations.vertexPosition, numComponents, type, normalize, stride, offset);
+        this.gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+        this.gl.useProgram(programInfo.program);
+        this.gl.uniformMatrix4fv(programInfo.uniformLocations.projectionMatrix, false, projectionMatrix);
+        this.gl.uniformMatrix4fv(programInfo.uniformLocations.modelViewMatrix, false, modelViewMatrix);
+        const vertexCount : number = 4;
+        this.gl.drawArrays(this.gl.TRIANGLE_STRIP, offset, vertexCount);
     }
     constructor(canvas_id: string) {
         this.canvas = document.getElementById(canvas_id);
@@ -230,6 +258,7 @@ class WebGL implements Renderer {
         }
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT);
+        this.gl.drawScene(new WebGLProgramInfo(this.gl, this.program), this.initializeBuffer());
     }
 }
 
