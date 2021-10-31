@@ -327,7 +327,9 @@ class ImageRenderer extends WebGL {
     }
     constructor(canvas_id: string) {
         super(canvas_id);
-        this.gl.drawScene(new WebGLProgramInfo(this.gl, this.program), this.initializeBuffer());
+        this.program.then((a) => {
+           this.gl.drawScene(new WebGLProgramInfo(this.gl, a), this.initializeBuffer());
+        });
     }
 }
 
