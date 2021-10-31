@@ -439,7 +439,9 @@ a {
   position: relative;
   left: 44px;
   top: -145px;
+  margin-bottom: -35px;
 }
+
 .commentBoxPost {
   padding: 20px;
   position: relative;

@@ -31,8 +31,8 @@ class CommentManager {
     } 
     add(i, message) {
         this.clone = document.importNode(this.template_element.content, true).children[0];
+        this.clone.children[0].children[1].innerHTML = message;
         this.parent_element[i].appendChild(this.clone);
-        document.getElementsByClassName("commentPostMessage")[i].innerHTML = message;
     }
 }
 
