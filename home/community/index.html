@@ -28,6 +28,16 @@
       crossorigin="anonymous" defer></script>
     </head>
     <body>
+      <template id="template_comments_posts">
+         <div class="commentBoxPost align-left">
+            <div class="commentBoxPostContent">
+               <img role="button" class="commentPostImg align-left rounded-corners" 
+               width="32" height="32" src="../assets/default_pfp_16x16.png"
+               alt="PROFILE_PIC_COMMENT_BOX_16x16" draggable="false" data-id="0" data-slug="AS" />
+               <p class="commentPostMessage" data-id="0" data-slug="AS" data-theme="light"></p>
+            </div>
+         </div>
+      </template>
       <template id="template_posts">
           <div class="postsBox align-left">
              <div id="postsBoxContent">
@@ -43,6 +53,7 @@
                 " width="32" height="32" alt="PROFILE_PIC_16x16" draggable="false" class="rounded-corners pfp_comment" />
                 <input class="comment-input" placeholder="Add a comment. (Under development)" />
                 <a href="javascript:toggleCommentVisibility()" class="align-left view_comments">View Comments (0)</a> 
+                <div class="comment_section_post invisible"></div>
                 <div class="invisible align-left commentsPost"></div>
               </div>
           </div>

@@ -21,6 +21,20 @@ function blobToBase64(blob) {
     });
 }
 
+class CommentManager {
+    parent_element: any;
+    clone: any;
+    public template_element: any;
+    constructor(parent_id) {
+        this.parent_element = document.getElementsByClassName(parent_id);
+        this.template_element = document.getElementById("template_comments_posts");
+    } 
+    add(i) {
+        this.clone = document.importNode(this.template_element.content, true).children[0];
+        this.parent_element[i].appendChild(this.clone);
+    }
+}
+
 class FragmentInstance implements Fragment {
     template_id : string;
     template_element : any;
