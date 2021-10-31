@@ -430,6 +430,10 @@ a {
    margin-right: -85%;
    left: 60px;
 }
+.commentPostImg {
+  position: relative;
+  top: -10vw;
+}
 
 .pfp_img_elem {
   min-width: 32px;
