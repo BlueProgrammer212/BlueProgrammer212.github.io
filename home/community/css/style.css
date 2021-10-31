@@ -434,6 +434,9 @@ a {
   position: relative;
   top: -8vw;
 }
+.commentPostMessage {
+  color: black;
+}
 
 .pfp_img_elem {
   min-width: 32px;

@@ -29,8 +29,9 @@ class CommentManager {
         this.parent_element = document.getElementsByClassName(parent_id);
         this.template_element = document.getElementById("template_comments_posts");
     } 
-    add(i) {
+    add(i, message) {
         this.clone = document.importNode(this.template_element.content, true).children[0];
+        document.getElementsByClassName("commentPostMessage")[i].innerHTML = message;
         this.parent_element[i].appendChild(this.clone);
     }
 }
