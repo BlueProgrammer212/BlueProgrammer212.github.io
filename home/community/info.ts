@@ -82,15 +82,13 @@ class FragmentInstance implements Fragment {
             }
         })
     }
-    updateLikeField(data, integer: number) {
-        let i: number = 0;
+    updateLikeField(data, integer: number, i) {
         this.q.forEach(async (docs) => {
-            i = i++;
             console.log(`Checking ID <${docs.data().id}>`)
-            var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data().id);  
-            if (uuid == this.a[i]) {
-                firestore.collection("posts").doc(docs.id).update({likes: data.likes+integer})
-                data.likes = data.likes + integer;
+            var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
+            if (uuid.id == this.a[i]) {
+                firestore.collection("posts").doc(docs.id).update({likes: uuid.likes+integer})
+                data.likes = uuid.likes + integer;
             }
         })
     }
@@ -111,20 +109,20 @@ class FragmentInstance implements Fragment {
            dislike[i].className = "dislikeBtn";
             if (!like[i].className.includes("likeBtnPressed")) {
                 like[i].className += " likeBtnPressed";  
-                this.updateLikeField(data, 1)
+                this.updateLikeField(data, 1, i)
             } else {
                 like[i].className = "likeBtn";
-                if (data.likes > 0) this.updateLikeField(data, -1)
+                if (data.likes > 0) this.updateLikeField(data, -1, i)
             }
         };
         dislike[i].onclick = () => {
             like[i].className = "likeBtn";
-            if (data.likes > 0) this.updateLikeField(data, -1)
+            if (data.likes > 0) this.updateLikeField(data, -1, i)
             if (!dislike[i].className.includes("dislikeBtnPressed")) {
                 dislike[i].className += " dislikeBtnPressed"
             } else {
                 dislike[i].className = "dislikeBtn";
-                this.updateLikeField(data, 1);
+                this.updateLikeField(data, 1, i);
             }
         };
     }
