@@ -407,6 +407,11 @@ a {
   border: 3.5px solid rgb(172, 172, 172);
 }
 
+.pfp_comment {
+  position: relative;
+  top: -100px;
+}
+
 .view_comments {
   position: relative;
   top: -7vw;
