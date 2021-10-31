@@ -478,6 +478,7 @@ window.addEventListener("load", () => {
             querySnapshot.docChanges().forEach(change => {
                 if (change.type == "added") {
                     fragmentInstance.add(change.doc.data(), querySnapshot);
+                    fragmentInstance.updateQuery(querySnapshot);
                 };
                 if (change.type == "modified") {
                     fragmentInstance.update_likes(change.doc.data());
@@ -488,7 +489,6 @@ window.addEventListener("load", () => {
                     noPosts.className += " invisible";
                 }
                 console.log(doc.data()); 
-                fragmentInstance.updateQuery(querySnapshot);
             });
         });
     }, 1000);
