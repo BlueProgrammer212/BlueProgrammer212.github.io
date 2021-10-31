@@ -116,7 +116,7 @@ class FragmentInstance implements Fragment {
             }
         };
         dislike[i].onclick = () => {
-            dislike[i].className = "likeBtn";
+            like[i].className = "likeBtn";
             if (data.likes > 0) this.updateLikeField(data, -1)
             if (!dislike[i].className.includes("dislikeBtnPressed")) {
                 dislike[i].className += " dislikeBtnPressed"
