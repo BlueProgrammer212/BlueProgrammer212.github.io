@@ -109,7 +109,7 @@ class FragmentInstance implements Fragment {
             comment = document.getElementsByClassName("comment-input") as HTMLCollectionOf<HTMLElement>;
             if (e.key == "Enter") {
                 commentManagerInstance.add(i, comment[i]["value"], data.pfp_link);
-                console.log(`Sending message ${{c: i, a: [comment[i].getAttribute("value")], b: [data.pfp_link]}}`)
+                comment[i]["value"] =  "";
             }
         }
         let like : HTMLCollectionOf<HTMLElement> = document.
