@@ -1,6 +1,8 @@
 let sidebar = document.getElementsByClassName("sidebar")[0]; 
-sidebar.style.transform = "translateX(-500px)";
-sidebar.style.opacity = 0;
+if (sidebar && "style" in sidebar) {
+    sidebar.style.transform = "translateX(-500px)";
+    sidebar.style.opacity = 0;
+}
 
 function openTab(url) {
     window.open(url)
