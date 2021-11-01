@@ -93,7 +93,7 @@ class FragmentInstance implements Fragment {
             console.log(`Checking ID <${docs.data().id}>`)
             var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
             if (uuid.id == this.a[i]) {
-                firestore.collection("posts").doc(docs.id).update({likes: uuid.likes+integer})
+                firestore.collection("posts").doc(docs.id).update({likes: firebase.firestore.FieldValue.increment(integer)})
                 data.likes = uuid.likes + integer;
             }
         })
@@ -108,12 +108,19 @@ class FragmentInstance implements Fragment {
     }
     setButton(data, i: number): void {
         const prop : string = "value";
-        let commentManagerInstance = this.commentManager;
+        
         let comment : HTMLCollectionOf<HTMLElement> = document.getElementsByClassName("comment-input") as HTMLCollectionOf<HTMLElement>;
-        comment[i].onkeydown = function(e) {
+        comment[i].onkeydown = (e) => {
             if (e.key == "Enter") {
-                commentManagerInstance.add(i, comment[i][prop], data.pfp_link);
+                this.commentManager.add(i, comment[i][prop], data.pfp_link);
                 comment[i][prop] = ""
+                this.q.forEach(async (docs) => {
+                    console.log(`Checking ID <${docs.data().id}>`)
+                    var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
+                    if (uuid.id == this.a[i]) {
+                        firestore.collection("posts").doc(docs.id).update({comments: firebase.firestore.FieldValue.arrayUnion("nice")})
+                    }
+                })
             }
         }
         let like : HTMLCollectionOf<HTMLElement> = document.
