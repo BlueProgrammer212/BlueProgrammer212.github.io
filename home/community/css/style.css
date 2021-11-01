@@ -413,6 +413,10 @@ a {
   margin-right: -50px;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 .view_comments {
   position: relative;
   top: -7vw;
