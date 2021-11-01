@@ -116,7 +116,7 @@ class FragmentInstance implements Fragment {
         let comment : HTMLCollectionOf<HTMLElement> = document.getElementsByClassName("comment-input") as HTMLCollectionOf<HTMLElement>;
         comment[i].onkeydown = (e) => {
             if (e.key == "Enter") {
-                this.commentManager.add(i, comment[i][prop], data.pfp_link)
+                this.commentManager.add(i, comment[i][prop], getCookie("pfp_url"))
                 this.q.forEach(async (docs) => {
                     console.log(`Checking ID <${docs.data().id}>`)
                     var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
