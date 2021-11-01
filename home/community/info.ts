@@ -110,11 +110,10 @@ class FragmentInstance implements Fragment {
     updateComments(data) {
         for (let i = 0; i < data.comments.length; ++i) {
             for (let k = 0; k < oldCommentSet.length; ++k) {
-                 if (oldCommentSet[k] == data.comments[i] && data.comments[i]) {
-                    data.comments.splice(i, 1);
+                 if (!oldCommentSet[k] == data.comments[i] && data.comments[i]) {
+                  this.commentManager.add(data.comments[i].post_index, data.comments[i].message, data.comments[i].pfp);
                  }
             }
-            this.commentManager.add(data.comments[i].post_index, data.comments[i].message, data.comments[i].pfp);
         }
     }
     setButton(data, i: number): void {
