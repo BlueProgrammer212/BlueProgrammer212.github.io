@@ -46,6 +46,7 @@ class FragmentInstance implements Fragment {
     defaultPfp : String;
     pfp_element : any;
     a: Array<any>;
+    commentManager: any;
     q: any;
     constructor(template_id : string, defaultPfp_ : String) {
          this.template_id = template_id;
@@ -55,6 +56,7 @@ class FragmentInstance implements Fragment {
          this.defaultPfp = defaultPfp_;
          this.pfp_element = document.getElementsByClassName("pfp_img_elem");
          this.a = [];
+         this.commentManager = new CommentManager("comment_section_post");
     } 
     protected setImage(link : string) {
         for (let i = 0; i < this.pfp_element.length; ++i) {
@@ -101,6 +103,14 @@ class FragmentInstance implements Fragment {
         return this.q;
     }
     setButton(data, i: number): void {
+        let commentManagerInstance = this.commentManager;
+        let comment :HTMLCollectionOf<HTMLElement> = document.getElementsByClassName("comment-input") as HTMLCollectionOf<HTMLElement>;
+        comment[i].onkeydown = function(e) {
+            if (e.key == "Enter") {
+                commentManagerInstance.add(i, comment[i].getAttribute("value"), data.pfp_link);
+                console.log(`Sending message ${{c: i, a: [comment[i].getAttribute("value")], b: [data.pfp_link]}}`)
+            }
+        }
         let like : HTMLCollectionOf<HTMLElement> = document.
             getElementsByClassName("likeBtn") as HTMLCollectionOf<HTMLElement>,
             dislike : HTMLCollectionOf<HTMLElement> = document.
