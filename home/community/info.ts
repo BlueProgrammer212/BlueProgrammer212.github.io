@@ -106,12 +106,16 @@ class FragmentInstance implements Fragment {
         this.q = q;
         return this.q;
     }
+    updateComments(data) {
+        for (let i = 0; i < data.comments.length; ++i) {
+            this.commentManager.add(data.comments[i].post_index, data.comments[i].message, data.comments[i].pfp);
+        }
+    }
     setButton(data, i: number): void {
         const prop : string = "value";
         let comment : HTMLCollectionOf<HTMLElement> = document.getElementsByClassName("comment-input") as HTMLCollectionOf<HTMLElement>;
         comment[i].onkeydown = (e) => {
             if (e.key == "Enter") {
-                this.commentManager.add(i, comment[i][prop], data.pfp_link);
                 this.q.forEach(async (docs) => {
                     console.log(`Checking ID <${docs.data().id}>`)
                     var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
@@ -505,6 +509,7 @@ window.addEventListener("load", () => {
                 };
                 if (change.type == "modified") {
                     fragmentInstance.update_likes(change.doc.data());
+                    fragmentInstance.updateComments(change.doc.data());
                 }
             });
             querySnapshot.forEach((doc) => {
