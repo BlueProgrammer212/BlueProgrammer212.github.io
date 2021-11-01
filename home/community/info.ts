@@ -109,6 +109,7 @@ class FragmentInstance implements Fragment {
         comment[i].onkeydown = function(e) {
             if (e.key == "Enter") {
                 commentManagerInstance.add(i, comment[i][prop], data.pfp_link);
+                comment[i][prop] = ""
             }
         }
         let like : HTMLCollectionOf<HTMLElement> = document.
