@@ -30,12 +30,14 @@ class CommentManager {
         this.template_element = document.getElementById("template_comments_posts");
     } 
     add(i, message, image) {
-        this.clone = document.importNode(this.template_element.content, true).children[0];
-        this.clone.children[0].children[1].innerHTML = message;
-        this.clone.children[0].children[0].src = image;
-        let patt = /\((\d)\)/;
-        document.getElementsByClassName("view_comments")[i].innerHTML = `View Comments (${Number(document.getElementsByClassName("view_comments")[i].innerHTML.match(patt)[1])+1})`
-        this.parent_element[i].appendChild(this.clone);
+        if (message.length > 0) {
+            this.clone = document.importNode(this.template_element.content, true).children[0];
+            this.clone.children[0].children[1].innerHTML = message;
+            this.clone.children[0].children[0].src = image;
+            let patt = /\((\d+)\)/;
+            document.getElementsByClassName("view_comments")[i].innerHTML = `View Comments (${Number(document.getElementsByClassName("view_comments")[i].innerHTML.match(patt)[1])+1})`
+            this.parent_element[i].appendChild(this.clone);
+        }
     }
 }
 
