@@ -126,10 +126,9 @@ class FragmentInstance implements Fragment {
                     console.log(`Checking ID <${docs.data().id}>`)
                     var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
                     if (uuid.id == this.a[i]) {
-                        comment[i].setAttribute("disabled", "true");
                         firestore.collection("posts").doc(docs.id).update({comments: firebase.firestore.FieldValue.arrayUnion(
                             {"message": comment[i][prop], "pfp": data.pfp_link, "post_index": i}
-                        )}).then(a => {comment[i].setAttribute("disabled", "false");comment[i][prop] = "";});
+                        )}).then(a => {comment[i][prop] = "";});
                      }
                 })
             }
