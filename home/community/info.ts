@@ -118,10 +118,9 @@ class FragmentInstance implements Fragment {
                     if (uuid.id == this.a[i]) {
                         firestore.collection("posts").doc(docs.id).update({comments: firebase.firestore.FieldValue.arrayUnion(
                             {"message": comment[i][prop], "pfp": data.pfp_link, "post_index": i}
-                            )})
-                        }
-                    })
-                comment[i][prop] = ""
+                        )}).then(a => comment[i][prop] = "");
+                     }
+                })
             }
         }
         let like : HTMLCollectionOf<HTMLElement> = document.
