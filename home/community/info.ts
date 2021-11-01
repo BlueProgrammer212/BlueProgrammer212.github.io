@@ -34,7 +34,7 @@ class CommentManager {
         this.clone.children[0].children[1].innerHTML = message;
         this.clone.children[0].children[0].src = image;
         let patt = /\((\d)\)/;
-        document.getElementsByClassName("view_comments")[i].innerHTML = `View Comments (${document.getElementsByClassName("view_comments")[i].innerHTML.match(patt)[1]+1})`
+        document.getElementsByClassName("view_comments")[i].innerHTML = `View Comments (${Number(document.getElementsByClassName("view_comments")[i].innerHTML.match(patt)[1])+1})`
         this.parent_element[i].appendChild(this.clone);
     }
 }
