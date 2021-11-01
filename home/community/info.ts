@@ -3,7 +3,6 @@ let firestore;
 //Declaration of Javascript constants.
 declare let mat4: any;
 //////////////////////////////////////////////////
-let oldCommentSet = [];
 
 interface Fragment {
     template_id : string,
@@ -109,11 +108,7 @@ class FragmentInstance implements Fragment {
     }
     updateComments(data) {
         for (let i = 0; i < data.comments.length; ++i) {
-            for (let k = 0; k < oldCommentSet.length; ++k) {
-                 if (!oldCommentSet[k] == data.comments[i] && data.comments[i]) {
-                  this.commentManager.add(data.comments[i].post_index, data.comments[i].message, data.comments[i].pfp);
-                 }
-            }
+            
         }
     }
     setButton(data, i: number): void {
@@ -126,7 +121,7 @@ class FragmentInstance implements Fragment {
                     var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
                     if (uuid.id == this.a[i]) {
                         firestore.collection("posts").doc(docs.id).update({comments: firebase.firestore.FieldValue.arrayUnion(
-                            {"message": comment[i][prop], "pfp": data.pfp_link, "post_index": i}
+                            {"message": comment[i][prop], "pfp": data.pfp_link, "post_index": i, "region_id": 876971236}
                         )}).then(a => {comment[i][prop] = "";});
                      }
                 })
@@ -515,8 +510,6 @@ window.addEventListener("load", () => {
                 };
                 if (change.type == "modified") {
                     fragmentInstance.update_likes(change.doc.data());
-                    fragmentInstance.updateComments(change.doc.data());
-                    oldCommentSet = change.doc.data().comments;
                 }
             });
             querySnapshot.forEach((doc) => {
