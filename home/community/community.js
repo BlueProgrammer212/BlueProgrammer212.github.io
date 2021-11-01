@@ -1,4 +1,5 @@
 let acc_id;
+let image_url_;
 
 (function() {
     var googleUser = {};

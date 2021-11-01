@@ -2,7 +2,7 @@ let inputBox : any;
 let firestore;
 //Declaration of Javascript constants.
 declare let mat4: any;
-//////////////////////////////////////////////////
+//////////////////////////////////////
 
 interface Fragment {
     template_id : string,
@@ -122,7 +122,7 @@ class FragmentInstance implements Fragment {
                     var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
                     if (uuid.id == this.a[i]) {
                         firestore.collection("posts").doc(docs.id).update({comments: firebase.firestore.FieldValue.arrayUnion(
-                            {"message": comment[i][prop], "pfp": data.pfp_link, "post_index": i, "region-uuid": Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
+                            {"message": comment[i][prop], "pfp":  getCookie("pfp_url"), "post_index": i, "region-uuid": Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
                         )}).then(a => {comment[i][prop] = "";});
                      }
                 })
@@ -318,6 +318,22 @@ class WebGL implements Renderer {
     }
 }
 
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 interface Axis {
     x: number;
     y: number;
@@ -476,7 +492,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
             this.setPosts(data, i);
             this.setButton(data, i); 
-            document.getElementsByClassName("pfp_comment")[i].setAttribute("src", data.pfp_link);
+            document.getElementsByClassName("pfp_comment")[i].setAttribute("src", getCookie("pfp_url"));
         }
         if (!data.pfp_link.startsWith("https://")) return;
         this.setImage(data.pfp_link);
