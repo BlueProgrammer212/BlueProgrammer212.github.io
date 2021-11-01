@@ -122,7 +122,7 @@ class FragmentInstance implements Fragment {
                     var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
                     if (uuid.id == this.a[i]) {
                         firestore.collection("posts").doc(docs.id).update({comments: firebase.firestore.FieldValue.arrayUnion(
-                            {"message": comment[i][prop], "pfp": data.pfp_link, "post_index": i, "region-id": 84564321}
+                            {"message": comment[i][prop], "pfp": data.pfp_link, "post_index": i, "region-uuid": Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
                         )}).then(a => {comment[i][prop] = "";});
                      }
                 })
