@@ -84,6 +84,12 @@ class FragmentInstance implements Fragment {
             }
         })
     }
+    updateComments(data) {
+        for (let i = 0; i < data.comments.length; ++i) {
+            let parsed = JSON.parse(data.comments[i]);
+            this.commentManager.add(parsed.post_index, parsed.message, parsed.pfp);
+        }
+    }
     updateLikeField(data, integer: number, i) {
         this.q.forEach(async (docs) => {
             console.log(`Checking ID <${docs.data().id}>`)
@@ -102,13 +108,25 @@ class FragmentInstance implements Fragment {
         this.q = q;
         return this.q;
     }
+    updateCommentField(data, comment, i) {
+        this.q.forEach(async (docs) => {
+            console.log(`Checking ID <${docs.data().id}>`)
+            var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
+            if (uuid.id == this.a[i]) {
+                firestore.collection("posts").doc(docs.id).update({comments: uuid.comments.push({
+                    "message": comment[i]["value"], "pfp": data.pfp_link, "post_index": i
+                })})
+            }
+        })
+    }
     setButton(data, i: number): void {
         let commentManagerInstance = this.commentManager;
+        let updateCommentFieldStatic = this.updateCommentField;
         let comment :HTMLCollectionOf<HTMLElement> = document.getElementsByClassName("comment-input") as HTMLCollectionOf<HTMLElement>;
         comment[i].onkeydown = function(e) {
             comment = document.getElementsByClassName("comment-input") as HTMLCollectionOf<HTMLElement>;
             if (e.key == "Enter") {
-                commentManagerInstance.add(i, comment[i]["value"], data.pfp_link);
+                updateCommentFieldStatic(data, comment, i);
                 comment[i]["value"] =  "";
             }
         }
@@ -494,6 +512,7 @@ window.addEventListener("load", () => {
                 };
                 if (change.type == "modified") {
                     fragmentInstance.update_likes(change.doc.data());
+                    fragmentInstance.updateComments(change.doc.data())
                 }
             });
             querySnapshot.forEach((doc) => {
