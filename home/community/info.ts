@@ -3,6 +3,7 @@ let firestore;
 //Declaration of Javascript constants.
 declare let mat4: any;
 //////////////////////////////////////////////////
+let oldCommentSet = [];
 
 interface Fragment {
     template_id : string,
@@ -108,6 +109,11 @@ class FragmentInstance implements Fragment {
     }
     updateComments(data) {
         for (let i = 0; i < data.comments.length; ++i) {
+            for (let k = 0; k < oldCommentSet.length; ++k) {
+                 if (oldCommentSet[k] == data.comments[i] && data.comments[i]) {
+                    data.comments.splice(i, 1);
+                 }
+            }
             this.commentManager.add(data.comments[i].post_index, data.comments[i].message, data.comments[i].pfp);
         }
     }
@@ -120,9 +126,10 @@ class FragmentInstance implements Fragment {
                     console.log(`Checking ID <${docs.data().id}>`)
                     var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
                     if (uuid.id == this.a[i]) {
+                        comment[i].setAttribute("disabled", "true");
                         firestore.collection("posts").doc(docs.id).update({comments: firebase.firestore.FieldValue.arrayUnion(
                             {"message": comment[i][prop], "pfp": data.pfp_link, "post_index": i}
-                        )}).then(a => comment[i][prop] = "");
+                        )}).then(a => {comment[i].setAttribute("disabled", "false");comment[i][prop] = "";});
                      }
                 })
             }
@@ -505,11 +512,13 @@ window.addEventListener("load", () => {
             querySnapshot.docChanges().forEach(change => {
                 if (change.type == "added") {
                     fragmentInstance.add(change.doc.data(), querySnapshot);
+                    fragmentInstance.updateComments(change.doc.data());
                     fragmentInstance.updateQuery(querySnapshot);
                 };
                 if (change.type == "modified") {
                     fragmentInstance.update_likes(change.doc.data());
                     fragmentInstance.updateComments(change.doc.data());
+                    oldCommentSet = change.doc.data().comments;
                 }
             });
             querySnapshot.forEach((doc) => {
