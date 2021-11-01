@@ -458,11 +458,11 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             this.setTime(data.date_published, i);
             this.setName(data.name, i);
 
-            console.log("[System]%c", "Loading resource image... 0pc %c", "color: violet;", "color: white;");
+            console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
             this.loadImage(data.message.match(/\[(.*?)\]/)[1], i).then(() => {
-                console.log("[System]%c", "Loading resource image... 100% pc%c", "color: violet;", 100, "color: white;");
+                console.log("%c[System]" + "%c Loading resource image... 100%", "color: violet;", "color: white;");
             })
-            console.log("[System]%c", "Loaded image resource successfully%c", "color: violet;", "color: white;");
+            console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
             document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("onclick", `
                  window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name}&pl=${data.pfp_link.slice(this.prefix_url.length)}&id=0"
             `)
