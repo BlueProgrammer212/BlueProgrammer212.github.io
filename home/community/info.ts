@@ -112,16 +112,16 @@ class FragmentInstance implements Fragment {
         comment[i].onkeydown = (e) => {
             if (e.key == "Enter") {
                 this.commentManager.add(i, comment[i][prop], data.pfp_link);
-                comment[i][prop] = ""
                 this.q.forEach(async (docs) => {
                     console.log(`Checking ID <${docs.data().id}>`)
                     var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
                     if (uuid.id == this.a[i]) {
                         firestore.collection("posts").doc(docs.id).update({comments: firebase.firestore.FieldValue.arrayUnion(
                             {"message": comment[i][prop], "pfp": data.pfp_link, "post_index": i}
-                        )})
-                    }
-                })
+                            )})
+                        }
+                    })
+                comment[i][prop] = ""
             }
         }
         let like : HTMLCollectionOf<HTMLElement> = document.
