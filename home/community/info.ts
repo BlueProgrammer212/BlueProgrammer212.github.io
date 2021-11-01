@@ -108,7 +108,7 @@ class FragmentInstance implements Fragment {
         comment[i].onkeydown = function(e) {
             comment = document.getElementsByClassName("comment-input") as HTMLCollectionOf<HTMLElement>;
             if (e.key == "Enter") {
-                commentManagerInstance.add(i, comment[i].getAttribute("value"), data.pfp_link);
+                commentManagerInstance.add(i, comment[i]["value"], data.pfp_link);
                 console.log(`Sending message ${{c: i, a: [comment[i].getAttribute("value")], b: [data.pfp_link]}}`)
             }
         }
