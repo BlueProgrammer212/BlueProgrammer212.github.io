@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+    <head>
+        <title>Pixcel: Draw, Share, Publish</title>
+        <meta name="viewport" content="user-scalable=no,initial-scale=1.0" />
+        <meta name="license" content="http://creativecommons.org/license/" /> 
+        <link rel="stylesheet" href="css/style.css" />
+        <meta author="Gian Marlo M. Tullao" /> 
+        <meta property="og:title" content="BlueProgrammer212.github.io" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="description" content="A 2d pixel art app" />
+        <meta property="og:description" content="A 2d pixel art app" />
+        <link rel="canonical" href="https://blueprogrammer212.github.io/" />
+        <meta property="og:url" content="https://blueprogrammer212.github.io/" />
+        <meta property="og:site_name" content="BlueProgrammer212.github.io" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="twitter:title" content="A 2D pixel app for talented pixel artists" />
+        <meta name="google-signin-client_id" content="730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/api:client.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+    </head>
+    <body style="display: none">
+      <div class="sidebar">
+        <a class="active" href="#home">Contact us!</a>
+        <a href="#wiki">Visit our wikipage!</a>
+        <a href="#community">Community</a>
+        <a href="#856764344573547">Comments and Feedbacks</a>
+        <a href="#about-us">About us</a>
+      </div>
+        <nav class="topnav" role="navigation">
+            <a href="javascript:toggleSideBar()">
+                <img src="assets/Sidebar.png" width="18" height="16" />
+            </a>
+            <a href="https://blueprogrammer212.github.io/download">Downloads</a>
+            <a href="https://blueprogrammer212.github.io/create/sprite/?session_id=97654532">Get started</a>
+            <a href="https://discord.gg/jFGryQKRTC">Join our discord server!</a>
+            <div role="button" onclick="console.log('Loading context menu content....')">
+               <img src="assets/default_pfp_16x16.png" width="32" height="32" 
+                    draggable="false" class="pfp_img" id="pfp_img_id" alt="PROFILE_PIC_16x16"/>  
+            </div>
+            </nav>
+        <nav id="offline" class="topnav" role="navigation" style="display: none; background-color: yellow;">
+          <p>You are offline. Retrying to connect in 5s</p>
+        </nav>
+        <div class="header">
+          <div id="background-layer"></div>
+          <h1 class="fontBig" id="title_container">    
+            <img id="logo_icon" alt="logo_icon" data-set-width="false" data-id="642" src="assets/logo_icon.png" width="72" height="72" /> 
+                Pixcel
+          </h1>
+        </div>
+        <div id="main_content">
+          <div class="titles">
+            <h2 draggable="false" class="fontMedium align-left">Welcome to Pixcel!<h2>
+          </div>
+          <template id="emoji_heart">
+            <img referrerpolicy="origin" src="assets/Heart.png" alt="heart.png"
+            draggable="false" class="emoji image" width="20" height="20" style="transform: translateY(5px);" />
+          </template>
+          <div class="row">
+            <div class="column">
+              <h2 translate="no">Publish your work!</h2>
+              <p translate="no">Publish your beautiful artworks to the whole world!</p>
+            </div>
+            
+            <div class="column">
+              <h2 translate="no">Collaborate with your friends!</h2>
+              <p>Help your friends to make gorgeous artworks!</p>
+            </div>
+            
+            <div class="column">
+              <h2 draggable="false">Share your magnificent work!</h2>
+              <p draggable="false">Share your impressive artworks to your friends and family!</p>
+            </div>
+          </div>
+        <div class="titles">
+            <h2 draggable="false" class="fontMedium align-left">What is Pixcel?<h2>
+            <p id="p-id-1" class="fontSmall paragraph align-left" draggable="false" translate="no">
+                Pixcel is a free pixel art application for talented pixel artists and game developers. We would love to hear from your suggestions and feedback!
+            </p>
+        </div>
+      </div>
+      <script src="main.js" async defer></script>
+      <script src="./js/openSideBar.js"></script>
+   </body>
+</html>
