@@ -271,6 +271,7 @@ body {
   background-color: rgba(0, 128, 198, 0.5);
   padding-bottom: 10px;
   width: 100%;
+  z-index: 1001;
   white-space: nowrap;
 }
 
