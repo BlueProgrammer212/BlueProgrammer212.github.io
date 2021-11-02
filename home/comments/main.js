@@ -146,12 +146,12 @@ const firebaseConfig = {
 
 window.addEventListener("load", () => {
     setTimeout(() => {
+      firebase.initializeApp(firebaseConfig);
+      firestore = firebase.firestore();
       if (auth2.isSignedIn.get()) {
         let image_url = getCookie("pfp_url"), 
         name = getCookie("pf_name"),
         id = getCookie("pf_id");
-        firebase.initializeApp(firebaseConfig);
-        firestore = firebase.firestore();
         firestore.collection("profiles").doc(id).set({id: id, name: name, image_url: image_url, description: null});
         console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
         console.log(`Loading username... NAME:${name}`)
@@ -162,7 +162,7 @@ window.addEventListener("load", () => {
       } else {
         document.body.style = ""
       }
-    }, 2000);
+    }, 4000);
     auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
       console.error('An error occured:', JSON.stringify(error, undefined, 2));
       document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
