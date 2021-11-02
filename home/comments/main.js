@@ -48,6 +48,7 @@ function onSignIn(googleUser) {
     xhr.onload = function() {
       console.log('Signed in as: ' + xhr.responseText);
     };
+    firestore.collection("profiles").doc(id).set({id: id, name: name, image_url: image_url, description: null});
     xhr.send('idtoken=' + id_token);
       
     let pfp_elem = document.getElementsByClassName("pfp_img")[0];
@@ -151,7 +152,7 @@ window.addEventListener("load", () => {
         id = getCookie("pf_id");
         firebase.initializeApp(firebaseConfig);
         firestore = firebase.firestore();
-        this.firestore.collection("profiles").doc(id).set({id: id, name: name, image_url: image_url, description: null});
+        firestore.collection("profiles").doc(id).set({id: id, name: name, image_url: image_url, description: null});
         console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
         console.log(`Loading username... NAME:${name}`)
         console.log(`Loading UserID... ID:<${id}>`)
