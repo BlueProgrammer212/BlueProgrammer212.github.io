@@ -45,11 +45,11 @@ function includeHTML() {
 
 function hashChangeCallback() {
     if (window.location.hash == "#856764344573547") {
-        window.location.href = "./comments"
+        window.location.href = "../home/comments"
     } else if (window.location.hash == "#help") {
-        window.location.href = "blueprogrammer213.github.io/help"
+        window.location.href = "blueprogrammer212.github.io/help"
     } else if (window.location.hash == "#community") {
-        window.location.href = "./community?r=as";
+        window.location.href = "../home/community?r=as";
     }
 }
 
