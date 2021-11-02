@@ -168,7 +168,7 @@ window.addEventListener("load", () => {
       } else {
         document.body.style = ""
       }
-    }, 4000);
+    }, 2000);
     console.log(`Loading client content... ${document.body}`)
 })
 
