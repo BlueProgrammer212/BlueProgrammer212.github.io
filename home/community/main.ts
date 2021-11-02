@@ -1,6 +1,6 @@
 declare let firebase : any;
-declare let image_url_: any;
 declare let id_: any;
+declare let image_url_: any;
 
 const customFileUploadBtn = document.getElementById("customUploadImage"),
       uploadImage = document.getElementById("uploadImage");

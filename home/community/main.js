@@ -1,4 +1,3 @@
-let id_;
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
@@ -13,7 +12,8 @@ function getCookie(cname) {
       }
   }
   return "";
-  }
+}
+let id_ = getCookie("pf_id") || "userNotFound"
 let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
 (function() {
     var googleUser = {};
