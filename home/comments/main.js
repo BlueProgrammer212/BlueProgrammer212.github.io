@@ -145,6 +145,11 @@ const firebaseConfig = {
 
 
 window.addEventListener("load", () => {
+    auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
+      console.error('An error occured:', JSON.stringify(error, undefined, 2));
+      document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
+      document.getElementById("invalid").className = document.getElementById("invalid").className.removeClass("invisible");
+    });
     setTimeout(() => {
       firebase.initializeApp(firebaseConfig);
       firestore = firebase.firestore();
@@ -152,11 +157,9 @@ window.addEventListener("load", () => {
         let image_url = getCookie("pfp_url"), 
         name = getCookie("pf_name"),
         id = getCookie("pf_id");
-        if (id && id.length !== 0) {
-            firestore.collection("profiles").doc(id).set({id: id, name: name, image_url: image_url, description: null}).then(() => {
-              window.location.href="https://blueprogrammer212.github.io/home/comments/page"
-            })
-        }
+        firestore.collection("profiles").doc(id).set({id: id, name: name, image_url: image_url, description: null}).then(() => {
+          window.location.href="https://blueprogrammer212.github.io/home/comments/page"
+        })
         console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
         console.log(`Loading username... NAME:${name}`)
         console.log(`Loading UserID... ID:<${id}>`)
@@ -166,11 +169,6 @@ window.addEventListener("load", () => {
         document.body.style = ""
       }
     }, 4000);
-    auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
-      console.error('An error occured:', JSON.stringify(error, undefined, 2));
-      document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
-      document.getElementById("invalid").className = document.getElementById("invalid").className.removeClass("invisible");
-    });
     console.log(`Loading client content... ${document.body}`)
 })
 
