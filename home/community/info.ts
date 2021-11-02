@@ -451,6 +451,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             this.setName(data.name, i);
             document.getElementsByClassName("img_upload")[i].setAttribute("class", "invisible img_upload")
         }
+        document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("onclick", `
+                 window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name}&pl=${data.pfp_link.slice(this.prefix_url.length)}&id=0"
+        `)
 
         this.update(i);
         if (this.msg.length == 0 && data.message.startsWith("/uploadImg[")) {
@@ -463,9 +466,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 console.log("%c[System]" + "%c Loading resource image... 100%", "color: violet;", "color: white;");
             })
             console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
-            document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("onclick", `
-                 window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name}&pl=${data.pfp_link.slice(this.prefix_url.length)}&id=0"
-            `)
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 window.location.search = `?p=${data.message.match(/\[(.*?)\]/)[1].substr(
                 data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
