@@ -29,14 +29,14 @@ class CommentManager {
         this.parent_element = document.getElementsByClassName(parent_id);
         this.template_element = document.getElementById("template_comments_posts");
     } 
-    add(i, message, image) {
+    add(id, message, image) {
         if (message.length > 0) {
             this.clone = document.importNode(this.template_element.content, true).children[0];
             this.clone.children[0].children[1].innerHTML = message;
             this.clone.children[0].children[0].src = image;
             let patt = /\((\d+)\)/;
-            document.getElementsByClassName("view_comments")[i].innerHTML = `View Comments (${Number(document.getElementsByClassName("view_comments")[i].innerHTML.match(patt)[1])+1})`
-            this.parent_element[i].appendChild(this.clone);
+            document.getElementById(id).children[0].children[10].innerHTML = `View Comments (${Number(document.getElementById(id).children[0].children[10].innerHTML.match(patt)[1])+1})`
+            document.getElementById(id).children[0].children[11].appendChild(this.clone);
         }
     }
 }
@@ -108,7 +108,7 @@ class FragmentInstance implements Fragment {
     }
     updateComments(data) {
         for (let i = 0; i < data.comments.length; ++i) {
-            this.commentManager.add(data.comments[i].post_index, data.comments[i].message, data.comments[i].pfp);
+            this.commentManager.add(data.id, data.comments[i].message, data.comments[i].pfp);
         }
     }
     setButton(data, i: number): void {
@@ -116,7 +116,7 @@ class FragmentInstance implements Fragment {
         let comment : HTMLCollectionOf<HTMLElement> = document.getElementsByClassName("comment-input") as HTMLCollectionOf<HTMLElement>;
         comment[i].onkeydown = (e) => {
             if (e.key == "Enter") {
-                this.commentManager.add(i, comment[i][prop], getCookie("pfp_url"))
+                this.commentManager.add(data.id, comment[i][prop], getCookie("pfp_url"))
                 this.q.forEach(async (docs) => {
                     console.log(`Checking ID <${docs.data().id}>`)
                     var uuid = await firestore.collection("posts").doc(docs.id).get().then(a => a.data());  
