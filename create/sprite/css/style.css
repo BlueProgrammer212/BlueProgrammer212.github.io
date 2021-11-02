@@ -184,6 +184,7 @@ body {
     margin-right: -50%;
     transform: translate(-50%, -46%);
     aspect-ratio: 100 / 100;
+    z-index: -1;
 }
 .column {
   float: left;
