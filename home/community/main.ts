@@ -1,5 +1,6 @@
 declare let firebase : any;
 declare let image_url_: any;
+declare let id_: any;
 
 const customFileUploadBtn = document.getElementById("customUploadImage"),
       uploadImage = document.getElementById("uploadImage");
@@ -94,6 +95,7 @@ class PostsManager extends Posts {
                 message: document.getElementById("post_content")["value"], region: "AS",
                 pfp_link: image_url_, name: this.name, date_published: this.now.getFullYear()+'/'+(this.now.getMonth()+1)+'/'+this.now.getDate()
                 , comments: [], likes: 0, dislikes: 0, id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+                , profile_id: id_
             }).then((info) => {
                 window.location.href = ".";
                 console.log(info)

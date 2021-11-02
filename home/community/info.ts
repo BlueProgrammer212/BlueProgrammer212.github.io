@@ -160,14 +160,15 @@ interface FragmentExtension {
 }
 
 interface Data {
-     message: string;
-     pfp_link: string;
-     name: string; 
-     date_published: string;
+     readonly message: string;
+     readonly pfp_link: string;
+     readonly name: string; 
+     readonly date_published: string;
      dislikes: any;
      comments: any;
      likes: any;
-     id: any;
+     readonly id: any;
+     readonly profile_id: any;
 }
 
 const urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
@@ -451,9 +452,11 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             this.setName(data.name, i);
             document.getElementsByClassName("img_upload")[i].setAttribute("class", "invisible img_upload")
         }
+
+        //Send profile data to https://blueprogrammer212.github.io/profile
         document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("onclick", `
-                 window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name}&pl=${data.pfp_link.slice(this.prefix_url.length)}&id=0"
-        `)
+             window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name}&pl=${data.pfp_link.slice(this.prefix_url.length)}&id=${data.profile_id}"
+        `);
 
         this.update(i);
         if (this.msg.length == 0 && data.message.startsWith("/uploadImg[")) {

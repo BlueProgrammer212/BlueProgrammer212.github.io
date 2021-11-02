@@ -1,3 +1,4 @@
+let id_;
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
@@ -61,6 +62,8 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
         image_url = profile.getImageUrl(),
         name = profile.getName(),
         email = profile.getEmail();
+
+        id_ = id;
 
         let pfp_elem = document.getElementsByClassName("pfp_img")[0];
 
