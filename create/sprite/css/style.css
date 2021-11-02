@@ -264,13 +264,14 @@ body {
 }
 
 #bg-color-pallete {
-  display: grid;
   animation: openPallete 1s ease 0s 1 alternate forwards;
   grid-template-columns: auto auto auto auto auto;
   border: 3.5px solid black;
   background-color: rgba(0, 128, 198, 0.5);
   padding-bottom: 400px;
-  width: 350px;
+  width: 80px;
+  z-index: 1001;
+  height: 100%;
   white-space: nowrap;
 }
 
