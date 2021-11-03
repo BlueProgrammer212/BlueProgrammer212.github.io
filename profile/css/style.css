@@ -89,6 +89,16 @@ textarea#aboutMeEdit {
   height: 25%;
 }
 
+button#save_desc {
+   color: rgb(255, 255, 255);
+   background-color: #0c9;
+   font-size: 14px;
+   position: relative;
+   font-family: Pixel;
+   padding: 10px;
+  top: -20px;
+}
+
 p#aboutMeSection {
   color: black;
   position: relative;
