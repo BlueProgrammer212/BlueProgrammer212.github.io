@@ -200,6 +200,10 @@ window.addEventListener("load", () => {
               document.getElementById("user_req").remove();
               document.getElementById("parent_editProfile").className = "align-left";
               document.getElementById("aboutMeEdit").value = a.data().description;
+              document.getElementById("mutual_friends_pagination").innerHTML = "Friend Requests"
+              document.getElementById("mutual_friends_pagination").onclick = function() {
+                  
+              }
               document.getElementById("save_desc").onclick = function() {
                 firestore.collection("profiles").doc(params_.id).update({description: document.getElementById("aboutMeEdit").value})
               }
