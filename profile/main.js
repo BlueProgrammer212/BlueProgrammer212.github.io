@@ -188,7 +188,7 @@ window.addEventListener("load", () => {
             console.log(a);
             document.getElementById("name_pfp").innerHTML = a.data().name;
             if (a.data().id == getCookie("pf_id")) {
-              document.getElementById("invisible").className = "align-left"
+              document.getElementById("parent_editProfile").className = "align-left"
               document.getElementById("aboutMeEdit").innerHTML = a.data().description;
               document.getElementById("save_desc").onclick = function() {
                 firestore.collection("profiles").doc(params_.id).update({description: document.getElementById("aboutMeEdit").innerHTML})
