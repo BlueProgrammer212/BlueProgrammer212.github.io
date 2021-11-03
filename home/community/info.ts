@@ -455,7 +455,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
         //Send profile data to https://blueprogrammer212.github.io/profile
         document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("onclick", `
-             window.location.href = "https://blueprogrammer212.github.io/profile?p=${data.name}&pl=${data.pfp_link.slice(this.prefix_url.length)}&id=${data.profile_id}"
+             window.location.href = "https://blueprogrammer212.github.io/profile?id=${data.profile_id}"
         `);
 
         this.update(i);

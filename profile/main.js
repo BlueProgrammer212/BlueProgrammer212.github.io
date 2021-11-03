@@ -4,6 +4,8 @@ if (window.location.host !== "blueprogrammer212.github.io") {
   window.location.href = "https://blueprogrammer212.github.io/home"
 }
 */
+const urlSearchParams_ = new URLSearchParams(window.location.search);
+const params_ = Object.fromEntries(urlSearchParams.entries());
 
 if ("getElementsByTagName" in document) {
   let images = document.getElementsByTagName("img");
@@ -19,6 +21,17 @@ if ("getElementsByTagName" in document) {
       }
   }
 }
+const firebaseConfig = {
+  apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
+  authDomain: "pixcel-272e8.firebaseapp.com",
+  projectId: "pixcel-272e8",
+  storageBucket: "pixcel-272e8.appspot.com",
+  messagingSenderId: "527485563587",
+  appId: "1:527485563587:web:59c6c095e772a028802876",
+  measurementId: "G-49V48L8TZR",
+  databaseURL: "https://pixcel-272e8-default-rtdb.firebaseio.com"
+};
+let firestore;
 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
@@ -164,15 +177,24 @@ function loadInformation() {
 
 window.addEventListener("load", () => {
     setTimeout(() => { 
+      firebase.initializeApp(firebaseConfig);
+      firestore = firebase.firestore();
       if (auth2.isSignedIn.get()) {
         let image_url = getCookie("pfp_url"), 
         name = getCookie("pf_name"),
         id = getCookie("pf_id");
         console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
+        if ("id" in params) firestore.collection("profiles").doc(params.id).get().then((a) => {
+            console.log(a);
+            document.getElementById("name_pfp").innerHTML = a.data().name;
+            document.getElementById("img_pfp").innerHTML = a.data().image_url;  
+        });
         console.log(`Loading username... NAME:${name}`)
         console.log(`Loading UserID... ID:<${id}>`)
         console.log(`Loading profile picture ${image_url}...`)  
         pfp_img_elem.setAttribute("src", image_url);
+      } else {
+        window.location.href = "https://blueprogrammer212.github.io/home/comments"
       }
       document.body.style = "";
     }, 2000)
