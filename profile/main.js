@@ -191,7 +191,7 @@ window.addEventListener("load", () => {
               document.getElementById("parent_editProfile").className = "align-left"
               document.getElementById("aboutMeEdit").innerHTML = a.data().description;
               document.getElementById("save_desc").onclick = function() {
-                firestore.collection("profiles").doc(params_.id).update({description: document.getElementById("aboutMeEdit").innerHTML})
+                firestore.collection("profiles").doc(params_.id).update({description: document.getElementById("aboutMeEdit").value})
               }
             } else {
               document.getElementById("aboutMeSection").className = "align-left"
