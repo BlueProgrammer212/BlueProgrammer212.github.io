@@ -72,6 +72,12 @@ body {
    font-size: 60px;
 }
 
+p#aboutMeSection {
+  color: black;
+  position: relative;
+  top: -190px;
+}
+
 .footer {
   border-top: 3.5px solid black;
   padding: 15px;
