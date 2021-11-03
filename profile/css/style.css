@@ -375,8 +375,13 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
   font-size: 30px;
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:900px) {
   .column {
       width: 100%;
+  }
+  #works {
+    padding: 10px;
+    background-color: rgb(138, 255, 144);
+    border: 3.5px solid black;
   }
 }
