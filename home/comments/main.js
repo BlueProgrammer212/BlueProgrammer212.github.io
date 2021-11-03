@@ -52,6 +52,8 @@ async function onSignIn(googleUser) {
       firestore.collection("profiles").doc(id).set({friends: [], pending_friend_requests: [], id: id, name: name, image_url: image_url, description: null, date_joined: date_joined["date_joined"]}).then(() => {
         window.location.href="https://blueprogrammer212.github.io/home/comments/page"
       });
+    } else {
+      window.location.href="https://blueprogrammer212.github.io/home/comments/page"
     }
       
     let pfp_elem = document.getElementsByClassName("pfp_img")[0];
