@@ -205,7 +205,7 @@ window.addEventListener("load", () => {
               }
             } else {
               document.getElementById("AddFriend").addEventListener("click", () => {
-                firestore.collection("profiles").doc(id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
+                firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
                     "profile_id": getCookie("pf_id")
                 })})
               })
