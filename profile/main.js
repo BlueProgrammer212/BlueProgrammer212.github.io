@@ -5,7 +5,7 @@ if (window.location.host !== "blueprogrammer212.github.io") {
 }
 */
 const urlSearchParams_ = new URLSearchParams(window.location.search);
-const params_ = Object.fromEntries(urlSearchParams.entries());
+const params_ = Object.fromEntries(urlSearchParams_.entries());
 
 if ("getElementsByTagName" in document) {
   let images = document.getElementsByTagName("img");
@@ -184,7 +184,7 @@ window.addEventListener("load", () => {
         name = getCookie("pf_name"),
         id = getCookie("pf_id");
         console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
-        if ("id" in params) firestore.collection("profiles").doc(params.id).get().then((a) => {
+        if ("id" in params_) firestore.collection("profiles").doc(params_.id).get().then((a) => {
             console.log(a);
             document.getElementById("name_pfp").innerHTML = a.data().name;
             document.getElementById("img_pfp").innerHTML = a.data().image_url;  
