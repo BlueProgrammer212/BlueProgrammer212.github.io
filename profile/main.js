@@ -204,8 +204,9 @@ window.addEventListener("load", () => {
                 firestore.collection("profiles").doc(params_.id).update({description: document.getElementById("aboutMeEdit").value})
               }
             } else {
-              document.getElementById("AddFriend").addEventListener("click", () => {
-                if (a["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
+              document.getElementById("AddFriend").addEventListener("click", async () => {
+                let info = await firestore.collection("profiles").doc(params_.id).get().then(ca => ca.data);
+                if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
                     firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
                         "profile_id": getCookie("pf_id")
                     })}).then(() => document.getElementById("AddFriend").innerHTML = "Cancel Friend Request");
