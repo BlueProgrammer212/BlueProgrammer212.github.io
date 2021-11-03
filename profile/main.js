@@ -205,9 +205,15 @@ window.addEventListener("load", () => {
               }
             } else {
               document.getElementById("AddFriend").addEventListener("click", () => {
-                firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
+                if (!a["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
+                    firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
+                        "profile_id": getCookie("pf_id")
+                    })}).then(() => document.getElementById("AddFriend").innerHTML = "Cancel Friend Request");
+                } else {
+                  firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayRemove({
                     "profile_id": getCookie("pf_id")
-                })})
+                  })}).then(() => document.getElementById("AddFriend").innerHTML = "Send Friend Request");
+                }
               })
               document.getElementById("aboutMeSection").className = "align-left"
               document.getElementById("aboutMeSection").innerHTML = a.data().description;
