@@ -76,7 +76,7 @@ body {
   display: none;
 }
 
-input#aboutMeEdit {
+textarea#aboutMeEdit {
   color: black;
   position: relative;
   top: -190px;
@@ -84,7 +84,8 @@ input#aboutMeEdit {
   border: 3.5px solid black;
   width: 90%;
   word-break: break-all;
-  height: 300px;
+  margin-bottom: -200px;
+  height: 25%;
 }
 
 p#aboutMeSection {

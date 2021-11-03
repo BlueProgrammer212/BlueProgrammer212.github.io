@@ -189,7 +189,7 @@ window.addEventListener("load", () => {
             document.getElementById("name_pfp").innerHTML = a.data().name;
             if (a.data().name == getCookie("pf_name")) {
               document.getElementById("aboutMeEdit").className = "align-left"
-              document.getElementById("aboutMeEdit").value = a.data().description;
+              document.getElementById("aboutMeEdit").innerHTML = a.data().description;
             } else {
               document.getElementById("aboutMeSection").className = "align-left"
               document.getElementById("aboutMeSection").innerHTML = a.data().description;
