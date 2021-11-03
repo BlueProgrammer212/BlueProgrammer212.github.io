@@ -197,6 +197,7 @@ window.addEventListener("load", () => {
             document.getElementById("name_pfp").innerHTML = a.data().name;
             document.getElementById("date_pfp").innerHTML = `Joined on ${a.data().date_joined}`;
             if (a.data().id == getCookie("pf_id")) {
+              document.getElementById("user_req").remove();
               document.getElementById("parent_editProfile").className = "align-left";
               document.getElementById("aboutMeEdit").value = a.data().description;
               document.getElementById("save_desc").onclick = function() {
