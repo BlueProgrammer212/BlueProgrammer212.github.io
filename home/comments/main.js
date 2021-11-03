@@ -52,7 +52,7 @@ async function onSignIn(googleUser) {
     let date_joined;
     let now = new Date();
     date_joined = {date_joined: now.getDate()+'/'+(now.getMonth()+1)+'/'+now.getFullYear()};
-    firestore.collection("profiles").doc(id).set({id: id, name: name, image_url: image_url, description: null, date_joined: date_joined["date_joined"]}).then(() => {
+    firestore.collection("profiles").doc(id).set({friends: [], id: id, name: name, image_url: image_url, description: null, date_joined: date_joined["date_joined"]}).then(() => {
       window.location.href="https://blueprogrammer212.github.io/home/comments/page"
     });
     xhr.send('idtoken=' + id_token);
@@ -149,11 +149,6 @@ const firebaseConfig = {
 
 
 window.addEventListener("load", () => {
-    auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
-      console.error('An error occured:', JSON.stringify(error, undefined, 2));
-      document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
-      document.getElementById("invalid").className = document.getElementById("invalid").className.removeClass("invisible");
-    });
     setTimeout(() => {
       firebase.initializeApp(firebaseConfig);
       firestore = firebase.firestore();
@@ -173,6 +168,11 @@ window.addEventListener("load", () => {
         document.body.style = ""
       }
     }, 2000);
+    auth2.attachClickHandler(proceed, {}, onSignIn, function(error) {
+      console.error('An error occured:', JSON.stringify(error, undefined, 2));
+      document.getElementById("invalid").innerHTML = "Sign in failed. Try Again";
+      document.getElementById("invalid").className = document.getElementById("invalid").className.removeClass("invisible");
+    });
     console.log(`Loading client content... ${document.body}`)
 })
 

@@ -204,6 +204,9 @@ window.addEventListener("load", () => {
                 firestore.collection("profiles").doc(params_.id).update({description: document.getElementById("aboutMeEdit").value})
               }
             } else {
+              document.getElementById("AddFriend").addEventListener("click", () => {
+                  
+              })
               document.getElementById("aboutMeSection").className = "align-left"
               document.getElementById("aboutMeSection").innerHTML = a.data().description;
             }
