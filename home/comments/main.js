@@ -44,11 +44,6 @@ async function onSignIn(googleUser) {
 
     var id_token = googleUser.getAuthResponse().id_token;
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://blueprogrammer212.github.io/home/comments');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-      console.log('Signed in as: ' + xhr.responseText);
-    };
     let date_joined;
     let now = new Date();
     date_joined = {date_joined: now.getDate()+'/'+(now.getMonth()+1)+'/'+now.getFullYear()};
@@ -58,7 +53,6 @@ async function onSignIn(googleUser) {
         window.location.href="https://blueprogrammer212.github.io/home/comments/page"
       });
     }
-    xhr.send('idtoken=' + id_token);
       
     let pfp_elem = document.getElementsByClassName("pfp_img")[0];
 
