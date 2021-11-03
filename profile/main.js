@@ -186,7 +186,7 @@ window.addEventListener("load", () => {
         console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
         if ("id" in params_) firestore.collection("profiles").doc(params_.id).get().then((a) => {
             if (!a.exists && params_.id === getCookie("pf_id")) {
-              alert("We're registering your profile. Please click ok and wait until your browser reloads.")
+              alert("We're registering your profile. Please click ok and wait until your browser reloads. This feature is intended for Indev 1.0.0 users.")
               firestore.collection("profiles").doc(params_.id).set({id: getCookie("pf_id"), name: getCookie("pf_name"), image_url: getCookie("pfp_url"), description: null}).then(() => {
                  window.location.reload();
               })
