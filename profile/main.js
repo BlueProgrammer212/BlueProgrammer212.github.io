@@ -191,6 +191,9 @@ window.addEventListener("load", () => {
                  window.location.reload();
               })
             }
+            if (params_.registerProfile == 'true') {
+              window.location.search = `?id=${getCookie("pf_id")}`
+            }
             document.getElementById("name_pfp").innerHTML = a.data().name;
             if (a.data().id == getCookie("pf_id")) {
               document.getElementById("parent_editProfile").className = "align-left"
