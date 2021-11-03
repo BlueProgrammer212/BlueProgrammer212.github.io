@@ -79,14 +79,20 @@ body {
 textarea#aboutMeEdit {
   color: black;
   position: relative;
-  top: -280px;
+  top: -360px;
   resize: none;
   font-family: Pixel;
   border: 3.5px solid black;
   width: 90%;
   word-break: break-all;
-  margin-bottom: -200px;
+  margin-bottom: -250px;
   height: 25%;
+}
+
+div#parent_editProfile {
+  height: 75%;
+  margin-bottom: -320px;
+
 }
 
 button#save_desc {
@@ -96,7 +102,7 @@ button#save_desc {
    position: relative;
    font-family: Pixel;
    padding: 10px;
-  top: -20px;
+  top: -50px;
 }
 
 p#aboutMeSection {
