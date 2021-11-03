@@ -188,9 +188,12 @@ window.addEventListener("load", () => {
             console.log(a);
             document.getElementById("name_pfp").innerHTML = a.data().name;
             if (a.data().name == getCookie("pf_name")) {
-              
+              document.getElementById("aboutMeEdit").className = "align-left"
+              document.getElementById("aboutMeEdit").innerHTML = a.data().description;
+            } else {
+              document.getElementById("aboutMeSection").className = "align-left"
+              document.getElementById("aboutMeSection").innerHTML = a.data().description;
             }
-            document.getElementById("aboutMeSection").innerHTML = a.data().description;
             document.getElementById("img_pfp").src = a.data().image_url;  
         });
         console.log(`Loading username... NAME:${name}`)
