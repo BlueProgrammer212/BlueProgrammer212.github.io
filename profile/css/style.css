@@ -380,12 +380,12 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
   }
   #works {
     padding: 1px;
-    padding-right: 50px;
+    padding-right: 25%;
     background-color: rgb(138, 255, 144);
     border: 3.5px solid black;
   }
   #profile_container {
-    width: 400px;
+    width: 75%;
     height: 500px;
     background-color: white;
     border: 3.5px solid black;
