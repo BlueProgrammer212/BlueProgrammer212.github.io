@@ -197,12 +197,12 @@ window.addEventListener("load", () => {
             document.getElementById("name_pfp").innerHTML = a.data().name;
             if (a.data().id == getCookie("pf_id")) {
               document.getElementById("parent_editProfile").className = "align-left";
-              document.getElementById("date_pfp").innerHTML = `Joined on ${a.data().date_joined}`;
               document.getElementById("aboutMeEdit").value = a.data().description;
               document.getElementById("save_desc").onclick = function() {
                 firestore.collection("profiles").doc(params_.id).update({description: document.getElementById("aboutMeEdit").value})
               }
             } else {
+              document.getElementById("date_pfp").innerHTML = `Joined on ${a.data().date_joined}`;
               document.getElementById("aboutMeSection").className = "align-left"
               document.getElementById("aboutMeSection").innerHTML = a.data().description;
             }
