@@ -52,9 +52,12 @@ async function onSignIn(googleUser) {
     let date_joined;
     let now = new Date();
     date_joined = {date_joined: now.getDate()+'/'+(now.getMonth()+1)+'/'+now.getFullYear()};
-    firestore.collection("profiles").doc(id).set({friends: [], pending_friend_requests: [], id: id, name: name, image_url: image_url, description: null, date_joined: date_joined["date_joined"]}).then(() => {
-      window.location.href="https://blueprogrammer212.github.io/home/comments/page"
-    });
+    let alreadyExists = await firestore.collection("profiles").doc(id).get().then(ca => ca.exists);
+    if (!alreadyExists) {
+      firestore.collection("profiles").doc(id).set({friends: [], pending_friend_requests: [], id: id, name: name, image_url: image_url, description: null, date_joined: date_joined["date_joined"]}).then(() => {
+        window.location.href="https://blueprogrammer212.github.io/home/comments/page"
+      });
+    }
     xhr.send('idtoken=' + id_token);
       
     let pfp_elem = document.getElementsByClassName("pfp_img")[0];
