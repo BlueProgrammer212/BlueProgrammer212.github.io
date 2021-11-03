@@ -187,7 +187,7 @@ window.addEventListener("load", () => {
         if ("id" in params_) firestore.collection("profiles").doc(params_.id).get().then((a) => {
             console.log(a);
             document.getElementById("name_pfp").innerHTML = a.data().name;
-            document.getElementById("img_pfp").innerHTML = a.data().image_url;  
+            document.getElementById("img_pfp").src = a.data().image_url;  
         });
         console.log(`Loading username... NAME:${name}`)
         console.log(`Loading UserID... ID:<${id}>`)
