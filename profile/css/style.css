@@ -72,6 +72,10 @@ body {
    font-size: 60px;
 }
 
+.invisible {
+  display: none;
+}
+
 input#aboutMeEdit {
   color: black;
   position: relative;
