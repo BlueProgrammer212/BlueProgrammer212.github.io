@@ -72,6 +72,17 @@ body {
    font-size: 60px;
 }
 
+input#aboutMeEdit {
+  color: black;
+  position: relative;
+  top: -190px;
+  font-family: Pixel;
+  border: 3.5px solid black;
+  width: 90%;
+  word-break: break-all;
+  height: 300px;
+}
+
 p#aboutMeSection {
   color: black;
   position: relative;
