@@ -49,7 +49,7 @@ function onSignIn(googleUser) {
     xhr.onload = function() {
       console.log('Signed in as: ' + xhr.responseText);
     };
-    firestore.collection("profiles").doc(id).update({id: id, name: name, image_url: image_url, description: null}).then(() => {
+    firestore.collection("profiles").doc(id).set({id: id, name: name, image_url: image_url, description: null}).then(() => {
       window.location.href="https://blueprogrammer212.github.io/home/comments/page"
     })
     xhr.send('idtoken=' + id_token);
