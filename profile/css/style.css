@@ -379,10 +379,13 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
       width: 100%;
   }
   #works {
-    padding: 1px;
+    padding: 10px;
     padding-right: 25%;
     background-color: rgb(138, 255, 144);
     border: 3.5px solid black;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
   #profile_container {
     width: 75%;
