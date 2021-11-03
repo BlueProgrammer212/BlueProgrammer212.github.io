@@ -35,7 +35,7 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-function onSignIn(googleUser) {
+async function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile(),
         id = profile.getId(), 
         image_url = profile.getImageUrl(),
@@ -49,9 +49,11 @@ function onSignIn(googleUser) {
     xhr.onload = function() {
       console.log('Signed in as: ' + xhr.responseText);
     };
-    firestore.collection("profiles").doc(id).set({id: id, name: name, image_url: image_url, description: null}).then(() => {
+    let date_joined = await firestore.collection("profiles").doc(id).get().then(a => {if (a.exists) a.data()});
+    if (!("date_joined" in date_joined)) date_joined = {date_joined: now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate()};
+    firestore.collection("profiles").doc(id).set({id: id, name: name, image_url: image_url, description: null, date_joined: date_joined["date_joined"]}).then(() => {
       window.location.href="https://blueprogrammer212.github.io/home/comments/page"
-    })
+    });
     xhr.send('idtoken=' + id_token);
       
     let pfp_elem = document.getElementsByClassName("pfp_img")[0];
