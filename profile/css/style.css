@@ -380,8 +380,20 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
       width: 100%;
   }
   #works {
-    padding: 10px;
+    padding: 1px;
+    padding-right: 50px;
+    position: absolute;
     background-color: rgb(138, 255, 144);
     border: 3.5px solid black;
+  }
+  #works > button {
+    background: none;
+    font-family: 'Pixel';
+    color: white;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-size: 13px;
+    padding: 10px;
   }
 }
