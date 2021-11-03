@@ -201,6 +201,7 @@ window.addEventListener("load", () => {
               document.getElementById("parent_editProfile").className = "align-left";
               document.getElementById("aboutMeEdit").value = a.data().description;
               document.getElementById("mutual_friends_pagination").innerHTML = "Friend Requests"
+              document.getElementById("friendReq").className = "";
               document.getElementById("mutual_friends_pagination").onclick = function() {
                   
               }

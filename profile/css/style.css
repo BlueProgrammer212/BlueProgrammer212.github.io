@@ -300,6 +300,12 @@ body {
   height: 800px;
 }
 
+.friendReq {
+  border: 3.5px solid black;
+  background-color: white;
+  padding: 30px;
+}
+
 .column {
   float: left;
   width: 33.33%;
