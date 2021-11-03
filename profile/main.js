@@ -205,7 +205,9 @@ window.addEventListener("load", () => {
               }
             } else {
               document.getElementById("AddFriend").addEventListener("click", () => {
-                  
+                firestore.collection("profiles").doc(id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
+                    "profile_id": getCookie("pf_id")
+                })})
               })
               document.getElementById("aboutMeSection").className = "align-left"
               document.getElementById("aboutMeSection").innerHTML = a.data().description;
