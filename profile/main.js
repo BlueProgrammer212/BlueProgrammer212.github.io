@@ -187,7 +187,7 @@ window.addEventListener("load", () => {
         if ("id" in params_) firestore.collection("profiles").doc(params_.id).get().then((a) => {
             console.log(a);
             document.getElementById("name_pfp").innerHTML = a.data().name;
-            if (a.data().name == getCookie("pf_name")) {
+            if (a.data().id == getCookie("pf_id")) {
               document.getElementById("aboutMeEdit").className = "align-left"
               document.getElementById("aboutMeEdit").innerHTML = a.data().description;
             } else {
