@@ -389,7 +389,7 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
     height: 500px;
     background-color: white;
     border: 3.5px solid black;
-    float: left;
+    float: inherit;
   }
   #works > button {
     background: none;
