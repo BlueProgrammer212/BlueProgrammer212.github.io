@@ -197,6 +197,13 @@ window.addEventListener("load", () => {
             document.getElementById("name_pfp").innerHTML = a.data().name;
             document.getElementById("date_pfp").innerHTML = `Joined on ${a.data().date_joined}`;
             if (a.data().id == getCookie("pf_id")) {
+              for (let i = 0; i < a.data().pending_friend_requests.length; ++i) {
+                document.getElementById("friendReq").appendChild(document.importNode(document.getElementById("temp_friend_req").content, true));
+                firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id).get().then((nf) => {
+                   document.getElementsByClassName("pf_img_friend_request")[i].src = nf.data().image_url;
+                   document.getElementsByClassName("name_tag")[i].innerHTML = nf.data().name;
+                })
+              }
               document.getElementById("user_req").remove();
               console.log("[System] The search id parameter matches with your cookie.");
               if (typeof getCookie("pf_id") ==- typeof void 0)  {
