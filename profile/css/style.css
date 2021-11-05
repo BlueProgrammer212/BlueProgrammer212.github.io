@@ -238,6 +238,12 @@ p#aboutMeSection {
   border-bottom: 3.5px solid #ff7d7d;
 }
 
+.friend_container_card {
+   padding: 10px;
+   background-color: white;
+   border: 3.5px solid #000000;
+}
+
 .pixel.search {
   border: 3.5px solid black;
   display: inline-flex;

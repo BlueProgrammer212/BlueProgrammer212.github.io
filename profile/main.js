@@ -198,11 +198,11 @@ window.addEventListener("load", () => {
             document.getElementById("date_pfp").innerHTML = `Joined on ${a.data().date_joined}`;
             if (a.data().id == getCookie("pf_id")) {
               document.getElementById("user_req").remove();
-              console.log("[System] The search id parameter matches with your cookie.")
+              console.log("[System] The search id parameter matches with your cookie.");
               if (typeof getCookie("pf_id") ==- typeof void 0)  {
                   console.error("The cookie ID is not defined.")
+                  alert("Your id is not verified. You can resolve this issue by signing out and signing in again.")
               }
-              if (a.data().name == "Blue Programmer") console.log("[System] Oh hi Mr. Developer");
               document.getElementById("parent_editProfile").className = "align-left";
               document.getElementById("aboutMeEdit").value = a.data().description;
               document.getElementById("mutual_friends_pagination").innerHTML = "Friend Requests"
