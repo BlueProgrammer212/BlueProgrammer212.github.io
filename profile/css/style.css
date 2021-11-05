@@ -242,6 +242,13 @@ p#aboutMeSection {
    padding: 10px;
    background-color: white;
    border: 3.5px solid #000000;
+   width: 85%;
+}
+.name_tag {
+  color:rgba(0, 0, 0, 1);
+}
+.friend_description {
+  color:rgba(0, 0, 0, 1);
 }
 
 .pixel.search {
