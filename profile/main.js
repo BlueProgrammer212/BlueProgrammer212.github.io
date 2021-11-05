@@ -201,6 +201,9 @@ window.addEventListener("load", () => {
                 document.getElementById("friendReq").appendChild(document.importNode(document.getElementById("temp_friend_req").content, true));
                 firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id).get().then((nf) => {
                    document.getElementsByClassName("pf_img_friend_request")[i].src = nf.data().image_url;
+                   document.getElementsByClassName("pf_img_friend_request")[i].onclick = function() {
+                        window.location.search = `?id=${a.data().pending_friend_requests[i].profile_id}`
+                   }
                    document.getElementsByClassName("name_tag")[i].innerHTML = nf.data().name;
                 })
               }
