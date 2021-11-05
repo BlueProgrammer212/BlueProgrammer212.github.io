@@ -243,6 +243,7 @@ p#aboutMeSection {
    background-color: white;
    border: 3.5px solid #000000;
    width: 85%;
+   margin-bottom: 20px;
 }
 .name_tag {
   color:rgba(0, 0, 0, 1);
