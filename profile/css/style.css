@@ -324,6 +324,10 @@ body {
   height: 475px;
 }
 
+button.accept_req:active {
+  background-color: #0b7;
+}
+
 button.accept_req {
   background-color: #0c9;
   color: white;
@@ -331,6 +335,10 @@ button.accept_req {
   border: none;
   padding: 10px;
   font-size: 15px;
+}
+
+button.delete_req:active {
+  background-color: rgb(220, 0, 0);
 }
 
 button.delete_req {
