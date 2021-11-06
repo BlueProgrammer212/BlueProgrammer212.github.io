@@ -202,13 +202,14 @@ window.addEventListener("load", () => {
                    document.getElementsByClassName("pf_img_friend_request")[i].onclick = function() {
                         window.location.search = `?id=${a.data().pending_friend_requests[i].profile_id}`;
                    };
-                   if (!("firestore") in firebase) return;
-                   document.getElementsByClassName("accept_req")[i].onclick = function() {
-                      console.log(this); //Initial commit 06/11/2021
-                      if ("id" in params_ && params_.id == getCookie("pf_id")) firestore.collection("profiles").doc(params_.id).update(
-                      {"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": a.data().pending_friend_requests[i].profile_id}), 
-                      "pending_friend_requests": firebase.firestore.FieldValue["arrayRemove"]({"profile_id": a.data().pending_friend_requests[i].profile_id})})
-                   };
+                   if (!("firestore") in firebase) return new Error("Firestore property is not defined.");
+                   document.getElementsByClassName("accept_req")[i].onclick = async function() { 
+                      if ("id" in params_ && params_.id == getCookie("pf_id")) await firestore.collection("profiles").doc(params_.id)
+                      .update({"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": a.data().
+                      pending_friend_requests[i].profile_id, "verified": true}), "pending_friend_requests": firebase.firestore.FieldValue
+                      ["arrayRemove"]({"profile_id": a.data().pending_friend_requests[i].profile_id})})
+                      .then((v) => document.getElementsByClassName("accept_req")[i]["parentElement"].remove());
+                    };
                    document.getElementsByClassName("name_tag")[i].innerHTML = nf.data().name;
                 })
               }
