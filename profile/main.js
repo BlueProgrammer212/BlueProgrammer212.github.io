@@ -202,8 +202,14 @@ window.addEventListener("load", () => {
                 firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id).get().then((nf) => {
                    document.getElementsByClassName("pf_img_friend_request")[i].src = nf.data().image_url;
                    document.getElementsByClassName("pf_img_friend_request")[i].onclick = function() {
-                        window.location.search = `?id=${a.data().pending_friend_requests[i].profile_id}`
-                   }
+                        window.location.search = `?id=${a.data().pending_friend_requests[i].profile_id}`;
+                   };
+                   document.getElementsByClassName("accept_req")[i].onclick = function() {
+                      console.log(this); //Initial commit 06/11/2021
+                      firestore.collection("profiles").doc(params_.id).get().update(
+                      {"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": a.data().pending_friend_requests[i].profile_id}), 
+                      "pending_friend_requests": firebase.firestore.FieldValue["arrayRemove"]({"profile_id": a.data().pending_friend_requests[i].profile_id})})
+                   };
                    document.getElementsByClassName("name_tag")[i].innerHTML = nf.data().name;
                 })
               }
