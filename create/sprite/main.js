@@ -1,9 +1,8 @@
 import { Vector2 } from "./js/Vector2.js";
-/*
+
 if (window.location.host !== "blueprogrammer212.github.io") {
     window.location.href = "https://blueprogrammer212.github.io/home"
 }
-*/
 
 for (let i = 0; i < document.images.length; ++i) {
     document.images[i].oncontextmenu = function() {
@@ -32,6 +31,7 @@ class FragmentManager {
       element.insertBefore(this.emoji, document.getElementsByClassName("add")[0])
   }
 }
+if (iro === void 0) window.location.reload();
 var colorPicker = new iro.ColorPicker(".colorPicker", {
   width: 280,
   color: "rgb(255, 0, 0)",
