@@ -135,6 +135,10 @@ console.log("%cPlease do not execute a malicious code here! You might give hacke
 console.log("%cSelf-XSS is a software attack to give hackers access to your account by convincing you to execute a malicious code into the developer console", "color:blue;font-size:16px");
 console.log("%cLearn more at https://blueprogrammer212.github.io/self-xss", "color:blue;font-size:16px");
 
+window.addEventListener("keypress", (e) => {
+    e.preventDefault();
+})
+
 const firebaseConfig = {
   apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
   authDomain: "pixcel-272e8.firebaseapp.com",
