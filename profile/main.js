@@ -234,7 +234,7 @@ window.addEventListener("load", () => {
                void async function init_information() {
                  info = await firestore.collection("profiles").doc(params_.id).get().then(ca => ca);
                  info_ = await firestore.collection("profiles").doc(getCookie("pf_id")).get().then(ca => ca);
-               }
+               }()
                if (info_.data().friends.some(function(x) {return x.profile_id === params_.id})) {
                  document.getElementById("AddFriend").innerHTML = `Unfriend ${info.data().name}?`;
                } else {
