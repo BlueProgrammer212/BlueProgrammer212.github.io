@@ -225,25 +225,28 @@ window.addEventListener("load", () => {
               document.getElementById("aboutMeEdit").value = a.data().description;
               document.getElementById("mutual_friends_pagination").innerHTML = "Friend Requests"
               document.getElementById("friendReq").className = "";
-              document.getElementById("mutual_friends_pagination").onclick = function() {
-                  
-              }
+              document.getElementById("mutual_friends_pagination").onclick = function() {}
               document.getElementById("save_desc").onclick = function() {
                 firestore.collection("profiles").doc(params_.id).update({description: document.getElementById("aboutMeEdit").value})
               }
             } else {
-              document.getElementById("AddFriend").addEventListener("click", async () => {
-                let info = await firestore.collection("profiles").doc(params_.id).get().then(ca => ca);
-                if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
-                    firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
-                        "profile_id": getCookie("pf_id")
-                    })}).then(() => document.getElementById("AddFriend").innerHTML = "Cancel Friend Request");
-                } else {
-                  firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayRemove({
-                    "profile_id": getCookie("pf_id")
-                  })}).then(() => document.getElementById("AddFriend").innerHTML = "Send Friend Request");
-                }
-              })
+              let info = await firestore.collection("profiles").doc(params_.id).get().then(ca => ca);
+              let info_ = await firestore.collection("profiles").doc(getCookie("pf_id")).get().then(ca => ca);
+              if (info_.data().friends.some(function(x) {return x.profile_id === params_.id})) {
+                 document.getElementById("AddFriend").innerHTML = `Unfriend ${info.data().name}?`;
+              } else {
+                document.getElementById("AddFriend").addEventListener("click", async () => {
+                  if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
+                      firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
+                          "profile_id": getCookie("pf_id")
+                      })}).then(() => document.getElementById("AddFriend").innerHTML = "Cancel Friend Request");
+                  } else {
+                    firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayRemove({
+                      "profile_id": getCookie("pf_id")
+                    })}).then(() => document.getElementById("AddFriend").innerHTML = "Send Friend Request");
+                  }
+                })
+              }
               document.getElementById("aboutMeSection").className = "align-left"
               document.getElementById("aboutMeSection").innerHTML = a.data().description;
             }
