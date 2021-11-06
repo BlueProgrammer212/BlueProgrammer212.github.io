@@ -191,10 +191,8 @@ window.addEventListener("load", () => {
                  window.location.reload();
               })
             }
-            if (params_.registerProfile == 'true') {
-              window.location.search = `?id=${getCookie("pf_id")}`
-            }
-            document.getElementById("name_pfp").innerHTML = a.data().name;
+            if ("registerProfile" in params_ && params_.registerProfile == 'true') window.location.search = `?id=${getCookie("pf_id")}`
+            if ("data" in a) document.getElementById("name_pfp")["innerHTML"] = a["data"]().name;
             document.getElementById("date_pfp").innerHTML = `Joined on ${a.data().date_joined}`;
             if (a.data().id == getCookie("pf_id")) {
               for (let i = 0; i < a.data().pending_friend_requests.length; ++i) {
@@ -204,9 +202,10 @@ window.addEventListener("load", () => {
                    document.getElementsByClassName("pf_img_friend_request")[i].onclick = function() {
                         window.location.search = `?id=${a.data().pending_friend_requests[i].profile_id}`;
                    };
+                   if (!("firestore") in firebase) return;
                    document.getElementsByClassName("accept_req")[i].onclick = function() {
                       console.log(this); //Initial commit 06/11/2021
-                      firestore.collection("profiles").doc(params_.id).get().update(
+                      if ("id" in params_ && params_.id == getCookie("pf_id")) firestore.collection("profiles").doc(params_.id).update(
                       {"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": a.data().pending_friend_requests[i].profile_id}), 
                       "pending_friend_requests": firebase.firestore.FieldValue["arrayRemove"]({"profile_id": a.data().pending_friend_requests[i].profile_id})})
                    };
