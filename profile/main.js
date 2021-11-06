@@ -188,7 +188,7 @@ window.addEventListener("load", () => {
             if (!a.exists && params_.id === getCookie("pf_id")) {
               alert("We're registering your profile. Please click ok and wait until your browser reloads. This feature is intended for Indev 1.0.0 users.")
               firestore.collection("profiles").doc(params_.id).set({id: getCookie("pf_id"), name: getCookie("pf_name"), image_url: getCookie("pfp_url"), description: null}).then(() => {
-                 window.location.reload();
+                 window.location.reload(); //Reload the website after registering account uuid to the database.
               })
             }
             if ("registerProfile" in params_ && params_.registerProfile == 'true') window.location.search = `?id=${getCookie("pf_id")}`
@@ -216,7 +216,6 @@ window.addEventListener("load", () => {
                         if ("profile_id" in a.data().pending_friend_requests[i]) {
                           await firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id)
                           .update({"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": params_.id})})
-                          .then((a) => {console.log(a)});
                         }
 
                     };
