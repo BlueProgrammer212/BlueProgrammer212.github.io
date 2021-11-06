@@ -318,6 +318,8 @@ body {
   border: 3.5px solid black;
   background-color: white;
   padding: 30px;
+  overflow-y: auto;
+  height: 475px;
 }
 
 .column {
