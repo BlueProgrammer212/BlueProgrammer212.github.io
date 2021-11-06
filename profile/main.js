@@ -176,7 +176,7 @@ function loadInformation() {
 }
 
 window.addEventListener("load", () => {
-    setTimeout(() => { 
+    setTimeout(async () => { 
       firebase.initializeApp(firebaseConfig);
       firestore = firebase.firestore();
       if (auth2.isSignedIn.get()) {
