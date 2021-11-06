@@ -43,6 +43,7 @@ class Body2d extends Vector2 {
         gl.clear(gl.COLOR_BUFFER_BIT);
     }
 }
+console.log("[System] Initializing WebGL... 100%")
 
 class Renderer extends Body2d implements Render {
     public gl: WebGLRenderingContext;
