@@ -249,6 +249,8 @@ window.addEventListener("load", () => {
                  if (info_.data().friends.some(function(x) {return x.profile_id === params_.id})) {
                    document.getElementById(b).innerHTML = `Unfriend ${info.data().name}?`;
                    document.getElementById(b).addEventListener("click", async () => {
+                    firestore.collection("profiles").doc(getCookie("pf_id")).update({friends: 
+                      firebase.firestore.FieldValue.arrayRemove({"profile_id": params_.id})})
                     firestore.collection("profiles").doc(params_.id).update({friends: firebase.firestore.FieldValue.arrayRemove({
                       "profile_id": getCookie("pf_id")
                     })}).then(() => document.getElementById(b).innerHTML = "Send Friend Request");
