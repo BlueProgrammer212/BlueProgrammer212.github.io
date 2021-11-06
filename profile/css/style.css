@@ -311,8 +311,10 @@ body {
 #main_content {
   background-image: url("../assets/Background.png");
   padding: 15px;
-  height: 800px;
+  height: 100%;
+  padding-bottom: 200px;
 }
+
 
 #friendReq {
   border: 3.5px solid black;
@@ -320,6 +322,24 @@ body {
   padding: 30px;
   overflow-y: auto;
   height: 475px;
+}
+
+button.accept_req {
+  background-color: #0c9;
+  color: white;
+  font-family: 'Pixel';
+  border: none;
+  padding: 10px;
+  font-size: 15px;
+}
+
+button.delete_req {
+  background-color: red;
+  font-size: 15px;
+  padding: 10px;
+  border: none;
+  font-family: 'Pixel';
+  color: white;
 }
 
 .column {
