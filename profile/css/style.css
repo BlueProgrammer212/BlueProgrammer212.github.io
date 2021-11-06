@@ -315,6 +315,13 @@ body {
   padding-bottom: 200px;
 }
 
+img#dropdown_ui_options {
+  float: right;
+  position: relative;
+  left: -10px;
+  top: 10px;
+}
+
 
 #friendReq {
   border: 3.5px solid black;
