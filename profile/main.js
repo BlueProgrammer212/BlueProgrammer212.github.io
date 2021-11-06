@@ -208,14 +208,14 @@ window.addEventListener("load", () => {
                     document.getElementsByClassName("accept_req")[i].onclick = async function() { 
 
                         if ("id" in params_ && params_.id == getCookie("pf_id")) {
-                          await firestore.collection("profiles").doc(params_.id).update({"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": a.data().pending_friend_requests[i].profile_id, "verified": true}), "pending_friend_requests": 
+                          await firestore.collection("profiles").doc(params_.id).update({"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": a.data().pending_friend_requests[i].profile_id}), "pending_friend_requests": 
                           firebase.firestore.FieldValue["arrayRemove"]({"profile_id": a.data().pending_friend_requests[i].profile_id})})
                           .then((v) => document.getElementsByClassName("accept_req")[i]["parentElement"].remove());
                         }
 
                         if ("profile_id" in a.data().pending_friend_requests[i]) {
                           await firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id)
-                          .update({"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": params_.id, "verified": true})})
+                          .update({"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": params_.id})})
                           .then((a) => {console.log(a)});
                         }
 
