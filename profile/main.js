@@ -198,10 +198,9 @@ window.addEventListener("load", () => {
               for (let i = 0; i < a.data().pending_friend_requests.length; ++i) {
                 document.getElementById("friendReq").appendChild(document.importNode(document.getElementById("temp_friend_req").content, true));
                 firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id).get().then((nf) => {
-                   document.getElementsByClassName("pf_img_friend_request")[i].src = nf.data().image_url;
+                   document.getElementsByClassName("pf_img_friend_request")[i].setAttribute("src", nf.data().image_url);
                    document.getElementsByClassName("pf_img_friend_request")[i].onclick = function() {
-                        window.location.search = `?id=${a.data().pending_friend_requests[i].profile_id}`;
-                   };
+                        window.location.search = `?id=${a.data().pending_friend_requests[i].profile_id}`;};
                    if (!("firestore") in firebase) return new Error("Firestore property is not defined.");
                    document.getElementsByClassName("accept_req")[i].onclick = async function() { 
                       if ("id" in params_ && params_.id == getCookie("pf_id")) await firestore.collection("profiles").doc(params_.id)
@@ -209,6 +208,9 @@ window.addEventListener("load", () => {
                       pending_friend_requests[i].profile_id, "verified": true}), "pending_friend_requests": firebase.firestore.FieldValue
                       ["arrayRemove"]({"profile_id": a.data().pending_friend_requests[i].profile_id})})
                       .then((v) => document.getElementsByClassName("accept_req")[i]["parentElement"].remove());
+                      if ("profile_id" in a.data().pending_friend_requests[i])  await firestore.collection("profiles")
+                      .doc(a.data().pending_friend_requests[i].profile_id).update({"friends": firebase.firestore.FieldValue["arrayUnion"]
+                      ({"profile_id": params_.id, "verified": true})}).then((a) => {console.log(a)});
                     };
                    document.getElementsByClassName("name_tag")[i].innerHTML = nf.data().name;
                 })
