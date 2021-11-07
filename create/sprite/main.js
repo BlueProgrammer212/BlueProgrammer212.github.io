@@ -9,6 +9,10 @@ class Vector2 {
   }
 }
 
+window.addEventListener("keypress", (e) => {
+   e.preventDefault();
+})
+
 if (window.location.host !== "blueprogrammer212.github.io") {
     window.location.href = "https://blueprogrammer212.github.io/home"
 }
