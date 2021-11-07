@@ -125,8 +125,6 @@ function pointerPosition(pos, domNode) {
 function eventHandler(e) {
     let d = pointerPosition(e, canvas);
     drawPixel(canvas.getContext("2d"), d.x, d.y)
-    if (document.getElementById("coords").innerHTML !==`x: ${d.x}, y: ${d.y}`)
-        document.getElementById("coords").innerHTML = `x: ${d.x}, y: ${d.y}`
 }
 
 canvas.addEventListener("mousedown", (e) => {
@@ -148,6 +146,4 @@ canvas.addEventListener("touchmove", (e) => {
   e.stopPropagation();
   let d = pointerPosition(e.changedTouches[0], canvas);
   drawPixel(canvas.getContext("2d"), d.x, d.y)
-  if (document.getElementById("coords").innerHTML !==`x: ${d.x}, y: ${d.y}`)
-      document.getElementById("coords").innerHTML = `x: ${d.x}, y: ${d.y}`
 })
