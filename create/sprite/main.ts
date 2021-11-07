@@ -1,4 +1,4 @@
-import {Vector2} from "./js/Math.ts";
+import {Vector2} from "./js/Math";
 console.log(new Vector2(0, 1))
 
 const token_id : string = '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com';
