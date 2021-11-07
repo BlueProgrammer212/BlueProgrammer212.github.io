@@ -1,73 +1,10 @@
-interface Position {
-    x: number,
-    y: number
-}
+import {Vector2} from "./js/Math.ts";
+console.log(new Vector2(0, 1))
 
-interface Render {
-    gl: WebGLRenderingContext,
-    canvas: any
-}
+const token_id : string = '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com';
 
-class Vector2_ {
-    public x: number;
-    public y: number;
-    constructor(x = 0, y = 0) {
-        this.x = x;
-        this.y = y;
-    }
-    set(x = 0, y = 0) {
-        this.x = x;
-        this.y = y;
-    }
-  }
-
-class Box2 extends Vector2_ {
-    public w: number;
-    public h: number;
-    constructor(x = 0, y = 0, w = 100, h = 100) {
-        super(x, y);
-        this.h = h;
-        this.w = w;
-    }
-    setPosition(x = 0, y = 0) {
-        this.set(x, y);
-    }
-}
-
-class Body2d extends Vector2_ {
-    constructor(x = 0, y = 0) {
-        super(x, y);
-    }
-    box(w, h, gl: WebGLRenderingContext): void {
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
-        gl.clear(gl.COLOR_BUFFER_BIT);
-    }
-}
-console.log("[System] Initializing WebGL... 100%")
-
-class Renderer extends Body2d implements Render {
-    public gl: WebGLRenderingContext;
-    public canvas : any;
-    constructor(canvas: any) {
-        super();
-        this.canvas = canvas;
-        this.gl = this.canvas.getContext("webgl");       
-    }
-    renderBackground(x = 0, y = 0, w = 100, h = 100): void {
-        if (!this.gl) {
-            console.log("Your browser does not support WebGL");
-            return;
-        }
-        this.set(x, y);
-        this.box(w, h, this.gl);
-    }
+async function loadJSON(path : string): Promise<JSON> {
+    return fetch(path).then(a => a.json());
 }
 
 
-function main() {
-    const canvas : any = document.getElementById("main_canvas");
-    let renderer = new Renderer(canvas);
-    renderer.renderBackground(0, 0, 100, 100);
-}
-
-window.addEventListener("load", main);
