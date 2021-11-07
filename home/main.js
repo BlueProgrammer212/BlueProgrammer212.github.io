@@ -140,6 +140,8 @@ function getCookie(cname) {
   return "";
 }
 
+document.getElementById("profile_href").href = `https://blueprogrammer212.github.io/profile?id=${getCookie("pf_id")}`;
+
 let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
 
 class Profile {
