@@ -2,6 +2,7 @@ export interface Pos2 {
     x : number, 
     y : number;
 }
+console.log("Lol")
 
 export class Vector2 implements Pos2 {
     x : number;
@@ -14,7 +15,6 @@ export class Vector2 implements Pos2 {
             }
         }
         this.setPosition(x, y);
-        alert("Got called lol")
     }
     setPosition(x = 0, y = 0): Pos2 {
         this.x = x;

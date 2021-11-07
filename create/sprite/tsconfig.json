@@ -3,9 +3,5 @@
          "target": "es5",
          "noImplicitAny": false,
          "sourceMap": true,
-         "outDir": "scripts/"
-     },
-     "exclude": [
-         "node_modules"
-     ]
+     }
 } 
