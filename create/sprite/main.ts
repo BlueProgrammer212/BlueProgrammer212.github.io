@@ -8,19 +8,6 @@ interface Render {
     canvas: any
 }
 
-class Vector2 implements Position {
-    public x : number;
-    public y : number;
-    constructor(x = 0, y = 0) {
-        this.x = x;
-        this.y = y;
-    }
-    set(x = 0, y = 0) {
-        this.x = x;
-        this.y = y;
-    }
-}
-
 class Box2 extends Vector2 {
     public w: number;
     public h: number;
