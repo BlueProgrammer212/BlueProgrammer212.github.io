@@ -147,3 +147,45 @@ canvas.addEventListener("touchmove", (e) => {
   let d = pointerPosition(e.changedTouches[0], canvas);
   drawPixel(canvas.getContext("2d"), d.x, d.y)
 })
+
+document.getElementById("profile_href").href = `https://blueprogrammer212.github.io/profile?id=${getCookie("pf_id")}`;
+
+let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
+
+class Profile {
+  constructor(url, id, name) {
+      this.url = url;
+      this.id = id; 
+      this.name = name;
+  }
+}
+
+function loadInformation() {
+  return new Promise((res) => {
+    if (auth2.isSignedIn.get()) {
+      let image_url = getCookie("pfp_url"), 
+          name = getCookie("pf_name"),
+          id = getCookie("pf_id");
+      console.log(`Successfully loaded client content... ${document.body}`)
+      setTimeout(res, 2000, new Profile(image_url, id, name))
+    }
+  });
+}
+
+window.addEventListener("load", () => {
+    setTimeout(() => { 
+      if (auth2.isSignedIn.get()) {
+        let image_url = getCookie("pfp_url"), 
+        name = getCookie("pf_name"),
+        id = getCookie("pf_id");
+        console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
+        console.log(`Loading username... NAME:${name}`)
+        console.log(`Loading UserID... ID:<${id}>`)
+        console.log(`Loading profile picture ${image_url}...`)  
+        pfp_img_elem.setAttribute("src", image_url);
+      }
+      document.body.style = "";
+    }, 2000)
+    console.log(`Loading client content... ${document.body}`)
+})
+console.log("%cWanna be a developer?", "font-size: 15px;")
