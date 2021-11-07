@@ -1,14 +1,3 @@
-class Vector2 {
-  constructor(x = 0, y = 0) {
-      this.x = x;
-      this.y = y;
-  }
-  set(x = 0, y = 0) {
-      this.x = x;
-      this.y = y;
-  }
-}
-
 if (window.location.host !== "blueprogrammer212.github.io") {
     window.location.href = "https://blueprogrammer212.github.io/home"
 }

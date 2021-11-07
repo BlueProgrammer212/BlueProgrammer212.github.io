@@ -8,7 +8,18 @@ interface Render {
     canvas: any
 }
 
-class Box2 extends Vector2 {
+class Vector2_ {
+    constructor(x = 0, y = 0) {
+        this.x = x;
+        this.y = y;
+    }
+    set(x = 0, y = 0) {
+        this.x = x;
+        this.y = y;
+    }
+  }
+
+class Box2 extends Vector2_ {
     public w: number;
     public h: number;
     constructor(x = 0, y = 0, w = 100, h = 100) {
@@ -21,7 +32,7 @@ class Box2 extends Vector2 {
     }
 }
 
-class Body2d extends Vector2 {
+class Body2d extends Vector2_ {
     constructor(x = 0, y = 0) {
         super(x, y);
     }
