@@ -12,6 +12,8 @@
   border-radius: 0px;
 }
 
+img#pfp_img_id {display: flex;position: absolute;left: 90%;align-items: center;margin: -0.5%;}
+
 ::-webkit-scrollbar-thumb {
   background: grey;
   border: 3.5px solid black;
