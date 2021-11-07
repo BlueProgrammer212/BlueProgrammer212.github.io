@@ -267,7 +267,7 @@ body {
 }
 
 #bg-color-pallete {
-  display: inline-flex;
+  display: flex;
   animation: openPallete 1s ease 0s 1 alternate forwards;
   grid-template-columns: auto auto;
   border: 3.5px solid black;
@@ -276,6 +276,8 @@ body {
   width: 100%;
   z-index: 1001;
   white-space: nowrap;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 #coords {
