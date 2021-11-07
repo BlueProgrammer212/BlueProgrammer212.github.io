@@ -172,6 +172,14 @@ body {
 #main_content {
   background-image: url("../assets/Background.png");
 }
+a#profile_href {
+  display: flex;
+  margin: -1%;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+}
+
 
 .column {
   float: left;
