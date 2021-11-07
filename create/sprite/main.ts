@@ -1,5 +1,5 @@
 import {Vector2} from "./js/Math";
-console.log("lol")
+console.log(new Vector2(0,0))
 
 const token_id : string = '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com';
 
