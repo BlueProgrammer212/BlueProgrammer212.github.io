@@ -28,4 +28,4 @@ class Vector2 implements Pos2 {
     }
 }
 
-
+console.log("Hi")
