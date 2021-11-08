@@ -178,6 +178,24 @@ namespace WebGL {
                             [-0.0, 0.0, -6.0]);  
             
             {
+                const numComponents = 2; 
+                const type = this.gl.FLOAT;    
+                const normalize = false;  
+                const stride = 0;      
+                const offset = 0;    
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffers.position);
+                this.gl.vertexAttribPointer(
+                    programInfo.attribLocations.vertexPosition,
+                    numComponents,
+                    type,
+                    normalize,
+                    stride,
+                    offset);
+                this.gl.enableVertexAttribArray(
+                    programInfo.attribLocations.vertexPosition);
+            }
+
+            {
                 const numComponents = 4;
                 const type = this.gl.FLOAT;
                 const normalize = false;
