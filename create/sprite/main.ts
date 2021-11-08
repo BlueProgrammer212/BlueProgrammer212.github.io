@@ -155,6 +155,7 @@ namespace WEBGL {
                 uniformLocations: {
                   projectionMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
                   modelViewMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uModelViewMatrix'),
+                  u_xformMatrix: this.gl.getUniformLocation(this.shaderProgram, 'u_xformMatrix')
                 },
             };
             
@@ -196,8 +197,7 @@ namespace WEBGL {
                 0.0,  0.0,  0.0,  1.0  
             ]);
 
-            var u_xformMatrix = this.gl.getUniformLocation(programInfo.shaderProgram, 'u_xformMatrix');
-            this.gl.uniformMatrix4fv(u_xformMatrix, false, xformMatrix);
+            this.gl.uniformMatrix4fv(programInfo.uniformLocations.u_xformMatrix, false, xformMatrix);
             
             {
                 const numComponents = 2; 
