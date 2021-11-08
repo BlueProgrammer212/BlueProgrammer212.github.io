@@ -1,357 +1,175 @@
-const token_id : string = '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com';
+const canvas = document.querySelector("canvas");
+const gl = canvas.getContext("webgl");
 
-declare let mat4: any;
+const compileProgram = ({ vertexShader, fragmentShader }): any => {
+  // Compile vertex shader
+  const vs = gl.createShader(gl.VERTEX_SHADER);
+  gl.shaderSource(vs, vertexShader);
+  gl.compileShader(vs);
 
-console.log("[System] Initializing shaders, buffers and running fragment and vertex shader programs.")
+  // Compile fragment shader
+  const fs = gl.createShader(gl.FRAGMENT_SHADER);
+  gl.shaderSource(fs, fragmentShader);
+  gl.compileShader(fs);
 
-const vsSource : string = `
-    attribute vec4 aVertexPosition;
-    attribute vec4 aVertexColor;
+  // Create and launch the WebGL program
+  const program = gl.createProgram();
+  gl.attachShader(program, vs);
+  gl.attachShader(program, fs);
+  gl.linkProgram(program);
 
-    uniform mat4 uModelViewMatrix;
-    uniform mat4 uProjectionMatrix;
-
-    varying lowp vec4 vColor;
-
-    void main(void) {
-        gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
-        vColor = aVertexColor;
-    }
-`;
-
-const fsSource : string = `
-    varying lowp vec4 vColor;
-
-    void main(void) {
-       gl_FragColor = vColor;
-    }
-`;
-
-async function loadJSON(path : string): Promise<JSON> {
-    return fetch(path).then(a => a.json());
+  // Clear the canvas
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  return program;
+};
+const gridProgram = compileProgram({
+  vertexShader: `
+attribute vec4 position;
+void main() {
+  gl_Position = position;
 }
+`,
 
-async function loadImage(path : string): Promise<ImageBitmap> {
-    const image = new Image();
-    return new Promise((resolve) => {
-        image.src = path;
-        image.addEventListener("load", () => {
-            setTimeout(resolve, 5000, image);
-        })
-    })
+  fragmentShader: `
+precision mediump float;
+uniform float size;
+
+void main() {
+  if(
+   mod(gl_FragCoord.x,size)<1.0 ||
+   mod(gl_FragCoord.y,size)<1.0
+  ){
+    gl_FragColor = vec4(0.0, 0.0, 0.0, 0.8);
+  }else {discard;}                      
 }
+`
+});
 
-namespace WebGL {  
+const drawingProgram = compileProgram({
+  vertexShader: `
+                attribute vec4 position;
+                attribute vec4 color;
+                varying vec4 v_color;
+                uniform float size;
+                void main() {
+                    gl_Position = position;
+                    v_color = color;
+                    gl_PointSize = size;
+                }`,
+  fragmentShader: `
+                precision mediump float;
+                varying vec4 v_color;
+                void main() {
+                    gl_FragColor = v_color;
+                }`
+});
 
-    export class Engine {
-        
-        canvas: any;
-        gl: WebGL2RenderingContext;
-        shaderProgram: any;
-        programInfo: any;
-        buffer: any;
+const pixels = [
+  [0, 0, "#ff0000"],
+  [1, 1, "#ffaa00"],
+  [2, 2, "#ffff00"],
+  [3, 3, "#00ff00"],
+  [4, 4, "#00ffaa"],
+  [5, 5, "#00ffff"],
+  [6, 6, "#0000ff"],
+  [7, 7, "#ff00aa"],
+  [8, 8, "#ff00ff"]
+];
 
-        protected loadShader(type, source): any {
-            const shader = this.gl.createShader(type);
-          
-            this.gl.shaderSource(shader, source);
-            this.gl.compileShader(shader);
-          
-            if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)) {
-              alert('An error occurred compiling the shaders: ' + this.gl.getShaderInfoLog(shader));
-              this.gl.deleteShader(shader);
-              return null;
-            }
-          
-            return shader;
-          }
+const hex2rgb = (hex) => {
+  return [
+    parseInt(hex.slice(1, 3), 16) / 255,
+    parseInt(hex.slice(3, 5), 16) / 255,
+    parseInt(hex.slice(5, 8), 16) / 255
+  ];
+};
 
-        protected initProgram(vsSource : string, fsSource : string): any {
-            const vertexShader = this.loadShader(this.gl.VERTEX_SHADER, vsSource);
-            const fragmentShader = this.loadShader(this.gl.FRAGMENT_SHADER, fsSource);
-          
-            const shaderProgram = this.gl.createProgram();
-            this.gl.attachShader(shaderProgram, vertexShader);
-            this.gl.attachShader(shaderProgram, fragmentShader);
-            this.gl.linkProgram(shaderProgram);
-          
-            if (!this.gl.getProgramParameter(shaderProgram, this.gl.LINK_STATUS)) {
-              alert('Unable to initialize the shader program: ' + this.gl.getProgramInfoLog(shaderProgram));
-              return null;
-            }
-          
-            return shaderProgram;
-        }
+const normalize = (cx, cy) => {
+  const mid = 8 / 2;
+  const x = (cx - mid) / mid + 1 / 8;
+  const y = (mid - cy) / mid - 1 / 8;
+  return [x, y, 0];
+};
 
-        protected initBuffer() {
+const pointsColors = new Float32Array([
+  ...pixels.map(([x, y, hex]) => [...normalize(x, y), ...hex2rgb(hex)]).flat()
+]);
 
-            const positionBuffer = this.gl.createBuffer();
-            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+{
+  gl.useProgram(drawingProgram);
+  const FSIZE = pointsColors.BYTES_PER_ELEMENT;
+  // Create a buffer object
+  const buffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, pointsColors, gl.STATIC_DRAW);
 
-            const positions : number[] = [ //Real number position matrix  
-                -1.0,  1.0,
-                1.0,  1.0,
-                -1.0, -1.0,
-                1.0, -1.0,
-            ];
+  // Bind the attribute position to the 1st, 2nd and 3rd floats in every chunk of 6 floats in the buffer
+  const position = gl.getAttribLocation(drawingProgram, "position");
+  gl.vertexAttribPointer(
+    position, // target
+    3, // interleaved data size
+    gl.FLOAT, // type
+    false, // normalize
+    FSIZE * 6, // stride (chunk size)
+    0 // offset (position of interleaved data in chunk)
+  );
+  gl.enableVertexAttribArray(position);
 
-            /*[
-                //Correct Format 
-                r, g, b, a, 
-                r2, g2, b2, a2,
-                r3, g3, b3, a3,
-                r4, g4, b4, a4
-            ]*/
+  // Bind the attribute color to the 3rd, 4th and 5th float in every chunk
+  const color = gl.getAttribLocation(drawingProgram, "color");
+  gl.vertexAttribPointer(
+    color, // target
+    3, // interleaved chunk size
+    gl.FLOAT, // type
+    false, // normalize
+    FSIZE * 6, // stride
+    FSIZE * 3 // offset
+  );
+  gl.enableVertexAttribArray(color);
+  const size = gl.getUniformLocation(drawingProgram, "size");
+  gl.uniform1f(size, 32);
 
-            const colors: number[] = [
-                1.0,  0.0,  0.0,  1.0,
-                1.0,  0.0,  0.0,  1.0,
-                1.0,  0.0,  0.0,  1.0,
-                1.0,  0.0,  0.0,  1.0  
-            ]
-
-            this.gl.bufferData(this.gl.ARRAY_BUFFER,
-                            new Float32Array(positions),
-                            this.gl.STATIC_DRAW);
-
-            const colorBuffer = this.gl.createBuffer();
-            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, colorBuffer);
-            this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(colors), this.gl.STATIC_DRAW);
-            
-            return {
-                position: positionBuffer,
-                color: colorBuffer,
-            };
-        }
-
-        public constructor(cid : string) {
-            if (cid === void 0) return;
-
-            this.canvas = document.getElementById(cid);
-            this.gl = this.canvas.getContext("webgl");
-            this.shaderProgram = this.initProgram(vsSource, fsSource);
-            this.buffer = this.initBuffer();
-
-            if (this.gl === null) {
-                console.error(new Error("Unfortunately, your browser does not support WebGL. Please refresh the page if you think this is a glitch"));      
-                return;
-            }
-
-            this.programInfo = {
-                program: this.shaderProgram,
-                attribLocations: {
-                  vertexPosition: this.gl.getAttribLocation(this.shaderProgram, 'aVertexPosition'),
-                  vertexColor: this.gl.getAttribLocation(this.shaderProgram, 'aVertexColor'),
-                },
-                uniformLocations: {
-                  projectionMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
-                  modelViewMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uModelViewMatrix'),
-                },
-            };
-            
-            this.gl.clearColor(1.0, 1.0, 1.0, 1.0);
-            this.gl.clear(this.gl.COLOR_BUFFER_BIT);
-
-        }
-
-        public drawScene(programInfo, buffers) {
-            this.gl.clearColor(1.0, 1.0, 1.0, 1.0);  
-            this.gl.clearDepth(1.0);                 
-            this.gl.enable(this.gl.DEPTH_TEST);           
-            this.gl.depthFunc(this.gl.LEQUAL);            
-            this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-            
-            const fieldOfView = 45 * Math.PI / 180; 
-            const aspect = this.gl.canvas.clientWidth / this.gl.canvas.clientHeight;
-            const zNear = 0.1;
-            const zFar = 100.0;
-            const projectionMatrix = mat4.create();
-            
-            mat4.perspective(projectionMatrix,
-                                fieldOfView,
-                                aspect,
-                                zNear,
-                                zFar);
-            
-            const modelViewMatrix = mat4.create();
-            
-            mat4.translate(modelViewMatrix,     
-                            modelViewMatrix,     
-                            [-0.0, 0.0, -6.0]);  
-            
-            {
-                const numComponents = 2; 
-                const type = this.gl.FLOAT;    
-                const normalize = false;  
-                const stride = 0;      
-                const offset = 0;    
-                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffers.position);
-                this.gl.vertexAttribPointer(
-                    programInfo.attribLocations.vertexPosition,
-                    numComponents,
-                    type,
-                    normalize,
-                    stride,
-                    offset);
-                this.gl.enableVertexAttribArray(
-                    programInfo.attribLocations.vertexPosition);
-            }
-
-            {
-                const numComponents = 4;
-                const type = this.gl.FLOAT;
-                const normalize = false;
-                const stride = 0;
-                const offset = 0;
-                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffers.color);
-                this.gl.vertexAttribPointer(
-                    programInfo.attribLocations.vertexColor,
-                    numComponents,
-                    type,
-                    normalize,
-                    stride,
-                    offset);
-                this.gl.enableVertexAttribArray(
-                    programInfo.attribLocations.vertexColor);
-            }
-            
-            
-            this.gl.useProgram(programInfo.program);
-            
-            // Set the shader uniforms
-            
-            this.gl.uniformMatrix4fv(
-                programInfo.uniformLocations.projectionMatrix,
-                false,
-                projectionMatrix);
-            this.gl.uniformMatrix4fv(
-                programInfo.uniformLocations.modelViewMatrix,
-                false,
-                modelViewMatrix);
-            
-            {
-                const offset = 0;
-                const vertexCount = 4;
-                this.gl.drawArrays(this.gl.TRIANGLE_STRIP, offset, vertexCount);
-            }
-        }
-
-        public init(): void {
-            this.drawScene(this.programInfo, this.buffer)
-        }
-    }
-
+  gl.drawArrays(gl.POINTS, 0, pixels.length);
 }
+{
+  // Activate grid shaders
+  gl.useProgram(gridProgram);
 
-namespace Coordinates {
+  // Set size value
+  const size = gl.getUniformLocation(gridProgram, "size");
+  gl.uniform1f(size, 32); // Cell Size
 
-    export interface Pos2 {
-        x : number, 
-        y : number;
-    }
+  // Four vertices represent corners of the canvas
+  // Each row is x,y,z coordinate
+  // -1,-1 is left bottom, z is always zero, since we draw in 2d
+  const vertices = new Float32Array([
+    1.0, 1.0,
+    0.0, -1.0,
+    1.0, 0.0,
+    1.0, -1.0,
+    0.0, -1.0,
+    -1.0, 0.0
+  ]);
 
-    export class Vector2 implements Pos2 {
+  // Attach vertices to a buffer
+  const buffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
-        x : number;
-        y : number;
-        s: number;
+  // Set position to point to buffer
+  const position = gl.getAttribLocation(gridProgram, "position");
 
-        public constructor(x = 0, y = 0) {
-            for (let i = 0; i < arguments.length; ++i) {
-                if (arguments[i] === void 0) {
-                    this.setPosition();
-                    return;
-                }
-            }
-            this.setPosition(x, y);
-            this.setScalar(0)
-        }
+  gl.vertexAttribPointer(
+    position, // target
+    3, // x,y,z
+    gl.FLOAT, // type
+    false, // normalize
+    0, // buffer offset
+    0 // buffer offset
+  );
 
-        setPosition(x = 0, y = 0): Pos2 {
-            this.x = x;
-            this.y = y;
-            return this;
-        }
+  gl.enableVertexAttribArray(gridProgram);
 
-        setScalar(a : number): Pos2 {
-            this.x = this.x + a;
-            this.y = this.y + a;
-            this.s = a;
-            return this;
-        }
-
-        multiplyByScalar(a : number): Pos2 {
-            this.x = this.x * a;
-            this.y = this.y * a;
-            return this;
-        }
-
-        get euclideanNorm(): number {
-            return this.mag;
-        }
-
-        zero(): Pos2 {
-            this.x = 0;
-            this.y = 0;
-            this.s = 0;
-            return this;
-        }
-
-        negate(): Pos2 {
-        this.x = -Math.abs(this.x);
-        this.y = -Math.abs(this.y);
-        return this;
-        }
-
-        addVector(b : Pos2): Pos2 {
-            this.x = this.x + b.x;
-            this.y = this.y + b.y;
-            return this;
-        }
-
-        subVector(b : Pos2): Pos2 {
-            this.x = this.x - b.x;
-            this.y = this.y - b.y;
-            return this;
-        }
-
-        add(a : number, b : number): Pos2 {
-            this.x = this.x + a;
-            this.y = this.y + b;
-            return this;
-        }
-
-        sub(a : number, b : number): Pos2 {
-            this.x = this.x - a;
-            this.y = this.y - b;
-            return this;
-        }
-
-        clamp(b : number, c : number): Pos2 {
-            this.x = Math.min(Math.max(this.x, b), c);
-            this.y = Math.min(Math.max(this.y, b), c);
-            return this; 
-        }
-
-        clampVector(b : Pos2, c : Pos2): Pos2 {
-            this.x = Math.min(Math.max(this.x, b.x), b.y);
-            this.y = Math.min(Math.max(this.y, c.x), c.y);
-            return this;
-        }
-        
-        get mag(): number {
-            return Math.hypot(this.x, this.y);
-        }
-
-        get scalar(): number {
-            return this.s;
-        }
-
-    }
-
-}
-
-window.onload = function() {
-    let main = new WebGL.Engine("main_canvas");
-    main.init(); 
+  // Finally draw our 4 vertices
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 }
