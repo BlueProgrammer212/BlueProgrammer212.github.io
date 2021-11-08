@@ -2,17 +2,26 @@ const token_id : string = '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.go
 
 declare let mat4: any;
 
+namespace EVENTS {
+    export class TouchMove {
+        public constructor(elem, c) {
+           elem.addEventListener("touchmove", c) 
+        }
+    }
+}
+
 const vsSource : string = `
     attribute vec4 aVertexPosition;
     attribute vec4 aVertexColor;
 
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
+    uniform mat4 u_xformMatrix;
 
     varying lowp vec4 vColor;
 
     void main(void) {
-        gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+        gl_Position = u_xformMatrix * uProjectionMatrix * uModelViewMatrix * aVertexPosition;
         vColor = aVertexColor;
     }
 `;
@@ -39,7 +48,7 @@ async function loadImage(path : string): Promise<ImageBitmap> {
     })
 }
 
-namespace WebGL {  
+namespace WEBGL {  
 
     export class Engine {
         
@@ -105,7 +114,7 @@ namespace WebGL {
                 1.0,  0.0,  0.0,  1.0,
                 1.0,  0.0,  0.0,  1.0,
                 1.0,  0.0,  0.0,  1.0,
-                1.0,  0.0,  0.0,  1.0
+                1.0,  0.0,  0.0,  1.0  
             ]
 
             this.gl.bufferData(this.gl.ARRAY_BUFFER,
@@ -131,7 +140,7 @@ namespace WebGL {
             this.buffer = this.initBuffer();
 
             if (this.gl === null) {
-                console.error(new Error("Unfortunately your browser does not support WebGL"));      
+                console.error(new Error("Unfortunately, your browser does not support WebGL. Please refresh the page if you think this is a glitch"));      
                 return;
             }
 
@@ -176,6 +185,17 @@ namespace WebGL {
             mat4.translate(modelViewMatrix,     
                             modelViewMatrix,     
                             [-0.0, 0.0, -6.0]);  
+
+            var Sx = 1.0, Sy = 1.5, Sz = 1.0;
+            var xformMatrix = new Float32Array([
+                Sx,   0.0,  0.0,  0.0,
+                0.0,  Sy,   0.0,  0.0,
+                0.0,  0.0,  Sz,   0.0,
+                0.0,  0.0,  0.0,  1.0  
+            ]);
+
+            var u_xformMatrix = this.gl.getUniformLocation(programInfo.shaderProgram, 'u_xformMatrix');
+            this.gl.uniformMatrix4fv(u_xformMatrix, false, xformMatrix);
             
             {
                 const numComponents = 2; 
@@ -350,6 +370,6 @@ namespace Coordinates {
 }
 
 window.onload = function() {
-    let main = new WebGL.Engine("main_canvas");
+    let main = new WEBGL.Engine("main_canvas");
     main.init(); 
 }
