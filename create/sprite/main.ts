@@ -4,18 +4,24 @@ declare let mat4: any;
 
 const vsSource : string = `
     attribute vec4 aVertexPosition;
+    attribute vec4 aVertexColor;
 
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
 
-    void main() {
+    varying lowp vec4 vColor;
+
+    void main(void) {
         gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+        vColor = aVertexColor;
     }
 `;
 
 const fsSource : string = `
-    void main() {
-        gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+    varying lowp vec4 vColor;
+
+    void main(void) {
+       gl_FragColor = vColor;
     }
 `;
 
@@ -80,21 +86,40 @@ namespace WebGL {
             const positionBuffer = this.gl.createBuffer();
             this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
 
-            const positions : number[] = [ 
+            const positions : number[] = [ //Real number position matrix  
                 -1.0,  1.0,
                 1.0,  1.0,
                 -1.0, -1.0,
                 1.0, -1.0,
             ];
 
+            /*[
+                //Correct Format 
+                r, g, b, a, 
+                r2, g2, b2, a2,
+                r3, g3, b3, a3,
+                r4, g4, b4, a4
+            ]*/
+
+            const colors: number[] = [
+                1.0,  1.0,  1.0,  1.0, //#000000ff
+                1.0,  0.0,  0.0,  1.0, //#ff0000ff
+                0.0,  1.0,  0.0,  1.0, //#00ff00ff
+                0.0,  0.0,  1.0,  1.0, //#0000ffff
+            ]
+
             this.gl.bufferData(this.gl.ARRAY_BUFFER,
                             new Float32Array(positions),
                             this.gl.STATIC_DRAW);
 
+            const colorBuffer = this.gl.createBuffer();
+            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, colorBuffer);
+            this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array(colors), this.gl.STATIC_DRAW);
+            
             return {
                 position: positionBuffer,
+                color: colorBuffer,
             };
-
         }
 
         public constructor(cid : string) {
@@ -114,6 +139,7 @@ namespace WebGL {
                 program: this.shaderProgram,
                 attribLocations: {
                   vertexPosition: this.gl.getAttribLocation(this.shaderProgram, 'aVertexPosition'),
+                  vertexColor: this.gl.getAttribLocation(this.shaderProgram, 'aVertexColor'),
                 },
                 uniformLocations: {
                   projectionMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
@@ -152,21 +178,21 @@ namespace WebGL {
                             [-0.0, 0.0, -6.0]);  
             
             {
-                const numComponents = 2; 
-                const type = this.gl.FLOAT;    
-                const normalize = false;  
-                const stride = 0;      
-                const offset = 0;    
-                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffers.position);
+                const numComponents = 4;
+                const type = this.gl.FLOAT;
+                const normalize = false;
+                const stride = 0;
+                const offset = 0;
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffers.color);
                 this.gl.vertexAttribPointer(
-                    programInfo.attribLocations.vertexPosition,
+                    programInfo.attribLocations.vertexColor,
                     numComponents,
                     type,
                     normalize,
                     stride,
                     offset);
                 this.gl.enableVertexAttribArray(
-                    programInfo.attribLocations.vertexPosition);
+                    programInfo.attribLocations.vertexColor);
             }
             
             
