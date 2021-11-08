@@ -2,6 +2,8 @@ const token_id : string = '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.go
 
 declare let mat4: any;
 
+console.log("[System] Initializing shaders, buffers and running fragment and vertex shader programs.")
+
 const vsSource : string = `
     attribute vec4 aVertexPosition;
     attribute vec4 aVertexColor;
