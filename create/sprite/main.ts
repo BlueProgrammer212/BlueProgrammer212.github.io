@@ -104,8 +104,8 @@ namespace WebGL {
             const colors: number[] = [
                 1.0,  1.0,  1.0,  1.0, //#000000ff
                 1.0,  0.0,  0.0,  1.0, //#ff0000ff
-                0.0,  1.0,  0.0,  1.0, //#00ff00ff
-                0.0,  0.0,  1.0,  1.0, //#0000ffff
+                //0.0,  1.0,  0.0,  1.0, //#00ff00ff
+                //0.0,  0.0,  1.0,  1.0, //#0000ffff
             ]
 
             this.gl.bufferData(this.gl.ARRAY_BUFFER,
