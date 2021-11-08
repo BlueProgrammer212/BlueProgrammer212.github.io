@@ -1,5 +1,22 @@
 const token_id : string = '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com';
 
+const vsSource : string = `
+    attribute vec4 aVertexPosition;
+
+    uniform mat4 uModelViewMatrix;
+    uniform mat4 uProjectionMatrix;
+
+    void main() {
+        gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+    }
+`;
+
+const fsSource : string = `
+    void main() {
+        gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+    }
+`;
+
 async function loadJSON(path : string): Promise<JSON> {
     return fetch(path).then(a => a.json());
 }
@@ -20,12 +37,46 @@ namespace WebGL {
         
         canvas: any;
         gl: WebGL2RenderingContext;
+        shaderProgram: any;
+
+        protected loadShader(type, source) {
+            const shader = this.gl.createShader(type);
+          
+            this.gl.shaderSource(shader, source);
+            this.gl.compileShader(shader);
+          
+            if (!this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)) {
+              alert('An error occurred compiling the shaders: ' + this.gl.getShaderInfoLog(shader));
+              this.gl.deleteShader(shader);
+              return null;
+            }
+          
+            return shader;
+          }
+
+        protected initProgram(vsSource : string, fsSource : string) {
+            const vertexShader = this.loadShader(this.gl.VERTEX_SHADER, vsSource);
+            const fragmentShader = this.loadShader(this.gl.FRAGMENT_SHADER, fsSource);
+          
+            const shaderProgram = this.gl.createProgram();
+            this.gl.attachShader(shaderProgram, vertexShader);
+            this.gl.attachShader(shaderProgram, fragmentShader);
+            this.gl.linkProgram(shaderProgram);
+          
+            if (!this.gl.getProgramParameter(shaderProgram, this.gl.LINK_STATUS)) {
+              alert('Unable to initialize the shader program: ' + this.gl.getProgramInfoLog(shaderProgram));
+              return null;
+            }
+          
+            return shaderProgram;
+        }
 
         public constructor(cid : string) {
             if (cid === void 0) return;
-            
+
             this.canvas = document.getElementById(cid);
             this.gl = this.canvas.getContext("webgl");
+            this.shaderProgram = this.initProgram(vsSource, fsSource);
 
             if (this.gl === null) {
                 console.error(new Error("Unfortunately your browser does not support WebGL"));      
