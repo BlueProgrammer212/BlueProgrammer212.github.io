@@ -1,5 +1,7 @@
 const token_id : string = '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.googleusercontent.com';
 
+declare let mat4: any;
+
 const vsSource : string = `
     attribute vec4 aVertexPosition;
 
@@ -38,8 +40,10 @@ namespace WebGL {
         canvas: any;
         gl: WebGL2RenderingContext;
         shaderProgram: any;
+        programInfo: any;
+        buffer: any;
 
-        protected loadShader(type, source) {
+        protected loadShader(type, source): any {
             const shader = this.gl.createShader(type);
           
             this.gl.shaderSource(shader, source);
@@ -54,7 +58,7 @@ namespace WebGL {
             return shader;
           }
 
-        protected initProgram(vsSource : string, fsSource : string) {
+        protected initProgram(vsSource : string, fsSource : string): any {
             const vertexShader = this.loadShader(this.gl.VERTEX_SHADER, vsSource);
             const fragmentShader = this.loadShader(this.gl.FRAGMENT_SHADER, fsSource);
           
@@ -71,25 +75,123 @@ namespace WebGL {
             return shaderProgram;
         }
 
+        protected initBuffer() {
+
+            const positionBuffer = this.gl.createBuffer();
+            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+
+            const positions : number[] = [ 
+                -1.0,  1.0,
+                1.0,  1.0,
+                -1.0, -1.0,
+                1.0, -1.0,
+            ];
+
+            this.gl.bufferData(this.gl.ARRAY_BUFFER,
+                            new Float32Array(positions),
+                            this.gl.STATIC_DRAW);
+
+            return {
+                position: positionBuffer,
+            };
+
+        }
+
         public constructor(cid : string) {
             if (cid === void 0) return;
 
             this.canvas = document.getElementById(cid);
             this.gl = this.canvas.getContext("webgl");
             this.shaderProgram = this.initProgram(vsSource, fsSource);
+            this.buffer = this.initBuffer();
 
             if (this.gl === null) {
                 console.error(new Error("Unfortunately your browser does not support WebGL"));      
                 return;
             }
+
+            this.programInfo = {
+                program: this.shaderProgram,
+                attribLocations: {
+                  vertexPosition: this.gl.getAttribLocation(this.shaderProgram, 'aVertexPosition'),
+                },
+                uniformLocations: {
+                  projectionMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
+                  modelViewMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uModelViewMatrix'),
+                },
+            };
             
             this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
             this.gl.clear(this.gl.COLOR_BUFFER_BIT);
 
         }
 
-        public init(): void {
+        public drawScene(programInfo, buffers) {
+            this.gl.clearColor(0.0, 0.0, 0.0, 1.0);  
+            this.gl.clearDepth(1.0);                 
+            this.gl.enable(this.gl.DEPTH_TEST);           
+            this.gl.depthFunc(this.gl.LEQUAL);            
+            this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+            
+            const fieldOfView = 45 * Math.PI / 180; 
+            const aspect = this.gl.canvas.clientWidth / this.gl.canvas.clientHeight;
+            const zNear = 0.1;
+            const zFar = 100.0;
+            const projectionMatrix = mat4.create();
+            
+            mat4.perspective(projectionMatrix,
+                                fieldOfView,
+                                aspect,
+                                zNear,
+                                zFar);
+            
+            const modelViewMatrix = mat4.create();
+            
+            mat4.translate(modelViewMatrix,     
+                            modelViewMatrix,     
+                            [-0.0, 0.0, -6.0]);  
+            
+            {
+                const numComponents = 2; 
+                const type = this.gl.FLOAT;    
+                const normalize = false;  
+                const stride = 0;      
+                const offset = 0;    
+                this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffers.position);
+                this.gl.vertexAttribPointer(
+                    programInfo.attribLocations.vertexPosition,
+                    numComponents,
+                    type,
+                    normalize,
+                    stride,
+                    offset);
+                this.gl.enableVertexAttribArray(
+                    programInfo.attribLocations.vertexPosition);
+            }
+            
+            
+            this.gl.useProgram(programInfo.program);
+            
+            // Set the shader uniforms
+            
+            this.gl.uniformMatrix4fv(
+                programInfo.uniformLocations.projectionMatrix,
+                false,
+                projectionMatrix);
+            this.gl.uniformMatrix4fv(
+                programInfo.uniformLocations.modelViewMatrix,
+                false,
+                modelViewMatrix);
+            
+            {
+                const offset = 0;
+                const vertexCount = 4;
+                this.gl.drawArrays(this.gl.TRIANGLE_STRIP, offset, vertexCount);
+            }
+        }
 
+        public init(): void {
+            this.drawScene(this.programInfo, this.buffer)
         }
     }
 
