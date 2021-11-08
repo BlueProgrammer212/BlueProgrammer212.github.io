@@ -2,28 +2,17 @@ const token_id : string = '730868686856-lkanp3tois4cj938t2g794cebadtqkoo.apps.go
 
 declare let mat4: any;
 
-namespace EVENTS {
-    export class TouchMove {
-        public constructor(elem, c) {
-           elem.addEventListener("touchmove", c) 
-        }
-    }
-}
-
-console.log("[System] Initializing WebGL 2d...")
-
 const vsSource : string = `
     attribute vec4 aVertexPosition;
     attribute vec4 aVertexColor;
 
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
-    uniform mat4 u_xformMatrix;
 
     varying lowp vec4 vColor;
 
     void main(void) {
-        gl_Position = u_xformMatrix * uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+        gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
         vColor = aVertexColor;
     }
 `;
@@ -50,7 +39,7 @@ async function loadImage(path : string): Promise<ImageBitmap> {
     })
 }
 
-namespace WEBGL {  
+namespace WebGL {  
 
     export class Engine {
         
@@ -155,7 +144,6 @@ namespace WEBGL {
                 uniformLocations: {
                   projectionMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uProjectionMatrix'),
                   modelViewMatrix: this.gl.getUniformLocation(this.shaderProgram, 'uModelViewMatrix'),
-                  u_xformMatrix: this.gl.getUniformLocation(this.shaderProgram, 'u_xformMatrix')
                 },
             };
             
@@ -188,8 +176,6 @@ namespace WEBGL {
             mat4.translate(modelViewMatrix,     
                             modelViewMatrix,     
                             [-0.0, 0.0, -6.0]);  
-
-            var Sx = 1.0, Sy = 1.5, Sz = 1.0;
             
             {
                 const numComponents = 2; 
@@ -364,6 +350,6 @@ namespace Coordinates {
 }
 
 window.onload = function() {
-    let main = new WEBGL.Engine("main_canvas");
+    let main = new WebGL.Engine("main_canvas");
     main.init(); 
 }
