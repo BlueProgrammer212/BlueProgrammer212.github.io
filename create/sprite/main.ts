@@ -10,6 +10,8 @@ namespace EVENTS {
     }
 }
 
+console.log("[System] Initializing WebGL 2d...")
+
 const vsSource : string = `
     attribute vec4 aVertexPosition;
     attribute vec4 aVertexColor;
