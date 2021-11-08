@@ -190,14 +190,6 @@ namespace WEBGL {
                             [-0.0, 0.0, -6.0]);  
 
             var Sx = 1.0, Sy = 1.5, Sz = 1.0;
-            var xformMatrix = new Float32Array([
-                Sx,   0.0,  0.0,  0.0,
-                0.0,  Sy,   0.0,  0.0,
-                0.0,  0.0,  Sz,   0.0,
-                0.0,  0.0,  0.0,  1.0  
-            ]);
-
-            this.gl.uniformMatrix4fv(programInfo.uniformLocations.u_xformMatrix, false, xformMatrix);
             
             {
                 const numComponents = 2; 
