@@ -183,7 +183,7 @@ body {
 #main_canvas {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 53%;
     margin-right: -50%;
     transform: translate(-50%, -46%);
     aspect-ratio: 100 / 100;
