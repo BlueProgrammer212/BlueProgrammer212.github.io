@@ -32,6 +32,8 @@ class Renderer {
 };
 
 window.onload = function() {
-    let renderer = new Renderer();
-    renderer.init("main_canvas", 800, 800);
+    setTimeout(() => {
+        let renderer = new Renderer();
+        renderer.init("main_canvas", 800, 800);
+    }, 5000);
 }
