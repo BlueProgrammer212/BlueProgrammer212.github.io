@@ -109,14 +109,16 @@ function drawGrid(context) {
     }
 }
 
-window.addEventListener("resize", () => {
+/*window.addEventListener("resize", () => {
     drawGrid(context);
-})
+})*/
 
 let drawingProgram = new Pixcel.Main();
 drawingProgram.init(context);
 
+/*
 drawGrid(context);
+*/
 
 function drawPixel() {
     
