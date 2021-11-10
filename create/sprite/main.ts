@@ -33,6 +33,7 @@ function drawGrid(context) {
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.strokeStyle = "#333333"
+    context.lineWidth = "0.5px";
     for (let i = 0; i < context.canvas.width; i += PIXEL_SIZE) {
         context.moveTo(i, 0);
         context.lineTo(i, context.canvas.height);
