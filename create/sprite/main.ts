@@ -1,6 +1,15 @@
 const canvas : HTMLCanvasElement = document.getElementById("main_canvas") as HTMLCanvasElement,
       context = canvas.getContext("2d");
 
+const urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search),
+      params = Object.fromEntries(urlSearchParams.entries());
+
+if ("uuid" in params) {
+    console.log(`[System] Loading the project... <${params.uuid}>`)
+} else {
+    console.log(`[System] Creating new project... <>`)
+}
+
 namespace Position {
     export interface Render2D {
          x: number;
