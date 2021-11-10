@@ -1,5 +1,9 @@
 //Firebase implementation 
 
+Math.secant = function(x) {
+  return 1 / Math.cos(x)
+}
+
 var googleUser = {};
 var startApp = function() {
   gapi.load('auth2', function(){
