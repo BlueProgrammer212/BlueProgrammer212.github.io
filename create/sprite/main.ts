@@ -28,12 +28,14 @@ function drawGrid(context) {
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.strokeStyle = "#333333"
-    for (let x = 0; x < context.canvas.width - PIXEL_SIZE; x += PIXEL_SIZE) {
+    for (let x = 0; x < context.canvas.width / PIXEL_SIZE; x += PIXEL_SIZE) {
         context.moveTo(x, 0);
         context.lineTo(x, context.canvas.height);
         context.stroke();
     }
 }
+
+drawGrid(context);
 
 function drawPixel() {
     
