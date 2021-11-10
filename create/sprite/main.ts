@@ -9,7 +9,7 @@ namespace Position {
 }
 
 namespace Pixcel { 
-    export class Vector2 implements Position.Render2D {
+    export class Vector2i implements Position.Render2D {
         public x: number;
         public y: number;
         constructor(x : number, y : number) {
@@ -21,6 +21,11 @@ namespace Pixcel {
         }
     }
 }
+
+let canvas_size : Position.Render2D = new Pixcel.Vector2i(
+    context.canvas.width,
+    context.canvas.height
+);
 
 let PIXEL_SIZE : number = 32;
  
