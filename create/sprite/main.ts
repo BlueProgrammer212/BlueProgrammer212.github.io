@@ -54,6 +54,10 @@ function drawGrid(context) {
     }
 }
 
+window.addEventListener("resize", () => {
+    drawGrid(context);
+})
+
 drawGrid(context);
 
 function drawPixel() {
