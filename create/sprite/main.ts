@@ -36,8 +36,14 @@ namespace Pixcel {
     }
     export class Main {
         public context : CanvasRenderingContext2D;
+        static readonly canvas = context.canvas;
+        
         public constructor() {
             this.context = null;
+        }
+        public static clear(context): void {
+            let origin : Position.Render2D = new Pixcel.Vector2i(0, 0);
+            context.clearRect(origin.x, origin.y, context.canvas.width, context.canvas.height);
         }
         public init(context : CanvasRenderingContext2D): void {
             this.context = context;
@@ -45,8 +51,8 @@ namespace Pixcel {
                 let {x, y} = e;
                 let dx = x - this.context.canvas.getBoundingClientRect().x,
                     dy = y - this.context.canvas.getBoundingClientRect().y;
-                let px = Math.floor(dx / PIXEL_SIZE),
-                    py = Math.floor(dy / PIXEL_SIZE);
+                let px = Math.floor(dx),
+                    py = Math.floor(dy);
                 this.drawPixel(new Vector2i(px, py), PIXEL_SIZE, "#ff0000")
             })
         }
