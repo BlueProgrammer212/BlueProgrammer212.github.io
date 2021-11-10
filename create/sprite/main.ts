@@ -10,7 +10,7 @@ if ("uuid" in params) {
     console.log(`[System] Creating new project... <>`)
 }
 
-let PIXEL_SIZE : number = 16;
+let PIXEL_SIZE : number = 128;
 
 namespace Position {
     export interface Render2D {
@@ -36,20 +36,31 @@ namespace Pixcel {
             this.y = y;
         }
 
+        public getDistance(b : Position.Render2D): number {
+            let dx = this.x - b.x;
+            let dy = this.y - b.y;
+            return Math.hypot(dx, dy);
+        }
+        public getAngle(b : Position.Render2D): number {
+            let dx = this.x - b.x;
+            let dy = this.y - b.y;
+            return Math.atan2(dx, dy);
+        }
+
     }
     export class Main {
         public context : CanvasRenderingContext2D;
         public state: Pixcel.MouseState;
         static readonly canvas = context.canvas;
         static readonly DEFAULT_COLOR = "#ff0000";
+        static readonly ORIGIN : Position.Render2D = new Pixcel.Vector2i(0, 0);
         
         public constructor() {
             this.context = null;
             this.state = {down: false};
         }
         public static clear(context): void {
-            let origin : Position.Render2D = new Pixcel.Vector2i(0, 0);
-            context.clearRect(origin.x, origin.y, context.canvas.width, context.canvas.height);
+            context.clearRect(Main.ORIGIN.x, Main.ORIGIN.y, context.canvas.width, context.canvas.height);
         }
         public init(context : CanvasRenderingContext2D): void {
             this.context = context;
@@ -75,6 +86,7 @@ namespace Pixcel {
                         dy = y - this.context.canvas.getBoundingClientRect().y;
                     let px = Math.floor(dx / PIXEL_SIZE),
                         py = Math.floor(dy / PIXEL_SIZE);
+                        
                     this.drawPixel(new Vector2i(px, py), PIXEL_SIZE, Pixcel.Main.DEFAULT_COLOR)
                 }
             })
