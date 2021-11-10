@@ -1,39 +1,40 @@
-declare let PIXI: any;
+const canvas : HTMLCanvasElement = document.getElementById("main_canvas") as HTMLCanvasElement,
+      context = canvas.getContext("2d");
 
-class Renderer {
-
-    gameCanvas: any;
-    stage: any;
-    renderer: any;
-    gameWidth: number;
-    gameHeight: number;
-
-    constructor() {
-        this.gameCanvas = null;
-        this.stage = null;
-        this.renderer = null;
-        this.gameWidth = null;
-        this.gameHeight = null;
+namespace Position {
+    export interface Render2D {
+         x: number;
+         y: number;
     }
+}
 
-    printText(str : string, config = {font:"16px Arial", fill:"white", align:"center"}): void {
-        const example_text = new PIXI.Text(str, config);
-        this.stage.addChild(example_text)
+namespace Pixcel { 
+    export class Vector2 implements Position.Render2D {
+        public x: number;
+        public y: number;
+        constructor(x : number, y : number) {
+            this.set(x, y);
+        }        
+        public set(x, y): void {
+            this.x = x;
+            this.y = y;
+        }
+    } 
+}
+
+const PIXEL_SIZE : number = 16;
+ 
+function drawGrid(context) {
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.strokeStyle = "#333333"
+    for (let x = 0; x < context.canvas.width - PIXEL_SIZE; x += PIXEL_SIZE) {
+        context.moveTo(x, 0);
+        context.lineTo(x, context.canvas.height);
+        context.stroke();
     }
+}
 
-    init(cid : string, width = 800, height = 800): void {
-        this.gameCanvas = document.getElementById(cid);
-        this.stage = new PIXI.Stage(0x000000);
-        this.gameWidth = width;
-        this.gameHeight = height;
-        this.renderer = PIXI.autoDetectRenderer(this.gameWidth, this.gameHeight, this.gameCanvas);
-    }
-  
-};
-
-window.onload = function() {
-    setTimeout(() => {
-        let renderer = new Renderer();
-        renderer.init("main_canvas", 800, 800);
-    }, 5000);
+function drawPixel() {
+    
 }
