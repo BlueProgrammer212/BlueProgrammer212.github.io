@@ -10,7 +10,7 @@ if ("uuid" in params) {
     console.log(`[System] Creating new project... <>`)
 }
 
-let PIXEL_SIZE : number = 32;
+let PIXEL_SIZE : number = 16;
 
 namespace Position {
     export interface Render2D {
