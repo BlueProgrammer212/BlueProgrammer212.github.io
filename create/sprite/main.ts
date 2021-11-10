@@ -43,7 +43,9 @@ namespace Pixcel {
             this.context = context;
             this.context.canvas.addEventListener("mousemove", (e) => {
                 let {x, y} = e;
-                this.drawPixel(new Vector2i(e.x, e.y), PIXEL_SIZE)
+                let dx = x - this.context.canvas.getBoundingClientRect().x,
+                    dy = y - this.context.canvas.getBoundingClientRect().y;
+                this.drawPixel(new Vector2i(dx, dy), PIXEL_SIZE, "#ff0000")
             })
         }
         public drawPixel(pos : Position.Render2D, scale, color : string): void {
