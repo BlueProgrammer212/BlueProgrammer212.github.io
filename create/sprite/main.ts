@@ -20,6 +20,9 @@ namespace Position {
 }
 
 namespace Pixcel { 
+    export interface MouseState {
+        down: boolean;
+    }
     export class Vector2i implements Position.Render2D {
         public x: number;
         public y: number;
@@ -36,10 +39,13 @@ namespace Pixcel {
     }
     export class Main {
         public context : CanvasRenderingContext2D;
+        public state: Pixcel.MouseState;
         static readonly canvas = context.canvas;
+        static readonly DEFAULT_COLOR = "#ff0000";
         
         public constructor() {
             this.context = null;
+            this.state = {down: false};
         }
         public static clear(context): void {
             let origin : Position.Render2D = new Pixcel.Vector2i(0, 0);
@@ -47,14 +53,32 @@ namespace Pixcel {
         }
         public init(context : CanvasRenderingContext2D): void {
             this.context = context;
-            this.context.canvas.addEventListener("mousemove", (e) => {
-                let {x, y} = e;
-                let dx = x - this.context.canvas.getBoundingClientRect().x,
-                    dy = y - this.context.canvas.getBoundingClientRect().y;
-                let px = Math.floor(dx / PIXEL_SIZE),
-                    py = Math.floor(dy / PIXEL_SIZE);
-                this.drawPixel(new Vector2i(px, py), PIXEL_SIZE, "#ff0000")
+
+            this.context.canvas.addEventListener("mousedown", (e) => {
+                this.state.down = true;
+            });
+
+            this.context.canvas.addEventListener("mosueup", (e) => {
+                this.state.down = false;
             })
+            
+            this.context.canvas.addEventListener("pointerout", (e) => {
+                this.state.down = false;
+            })
+
+            this.context.canvas.addEventListener("mousemove", (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                if (this.state.down) {
+                    let {x, y} = e;
+                    let dx = x - this.context.canvas.getBoundingClientRect().x,
+                        dy = y - this.context.canvas.getBoundingClientRect().y;
+                    let px = Math.floor(dx / PIXEL_SIZE),
+                        py = Math.floor(dy / PIXEL_SIZE);
+                    this.drawPixel(new Vector2i(px, py), PIXEL_SIZE, Pixcel.Main.DEFAULT_COLOR)
+                }
+            })
+            
         }
         public drawPixel(pos : Position.Render2D, scale, color : string): void {
             this.context.fillStyle = color;
