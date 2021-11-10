@@ -10,6 +10,8 @@ if ("uuid" in params) {
     console.log(`[System] Creating new project... <>`)
 }
 
+let PIXEL_SIZE : number = 32;
+
 namespace Position {
     export interface Render2D {
          x: number;
@@ -21,12 +23,32 @@ namespace Pixcel {
     export class Vector2i implements Position.Render2D {
         public x: number;
         public y: number;
-        constructor(x : number, y : number) {
+        
+        public constructor(x : number, y : number) {
             this.set(x, y);
-        }        
+        }
+
         public set(x, y): void {
             this.x = x;
             this.y = y;
+        }
+
+    }
+    export class Main {
+        public context : CanvasRenderingContext2D;
+        public constructor() {
+            this.context = null;
+        }
+        public init(context : CanvasRenderingContext2D): void {
+            this.context = context;
+            this.context.canvas.addEventListener("mousemove", (e) => {
+                let {x, y} = e;
+                this.drawPixel(new Vector2i(e.x, e.y), PIXEL_SIZE)
+            })
+        }
+        public drawPixel(pos : Position.Render2D, scale, color : string): void {
+            this.context.fillStyle = color;
+            this.context.fillRect(pos.x, pos.y, scale, scale);
         }
     }
 }
@@ -36,7 +58,6 @@ let canvas_size : Position.Render2D = new Pixcel.Vector2i(
     context.canvas.height
 );
 
-let PIXEL_SIZE : number = 32;
  
 function drawGrid(context) {
     context.fillStyle = "#ffffff";
@@ -57,6 +78,9 @@ function drawGrid(context) {
 window.addEventListener("resize", () => {
     drawGrid(context);
 })
+
+let drawingProgram = new Pixcel.Main();
+drawingProgram.init(context);
 
 drawGrid(context);
 
