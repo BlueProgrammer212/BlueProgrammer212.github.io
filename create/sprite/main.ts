@@ -45,7 +45,9 @@ namespace Pixcel {
                 let {x, y} = e;
                 let dx = x - this.context.canvas.getBoundingClientRect().x,
                     dy = y - this.context.canvas.getBoundingClientRect().y;
-                this.drawPixel(new Vector2i(dx, dy), PIXEL_SIZE, "#ff0000")
+                let px = Math.floor(dx / PIXEL_SIZE),
+                    py = Math.floor(dy / PIXEL_SIZE);
+                this.drawPixel(new Vector2i(px, py), PIXEL_SIZE, "#ff0000")
             })
         }
         public drawPixel(pos : Position.Render2D, scale, color : string): void {
