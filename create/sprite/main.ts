@@ -96,16 +96,13 @@ let canvas_size : Position.Render2D = new Pixcel.Vector2i(
 function drawGrid(context) {
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, canvas.width, canvas.height);
-    context.strokeStyle = "#333333"
-    context.lineWidth = 0.5;
     for (let i = 0; i < context.canvas.width; i += PIXEL_SIZE) {
-        context.moveTo(i, 0);
-        context.lineTo(i, context.canvas.height);
-        context.stroke();
-
-        context.moveTo(0, i);
-        context.lineTo(context.canvas.width, i);
-        context.stroke();
+        context.fillStyle = "#333333";
+        context.rect(i, 0, PIXEL_SIZE, PIXEL_SIZE);
+        context.fill();
+        context.fillStyle = "#000000";
+        context.rect(0, i, PIXEL_SIZE, PIXEL_SIZE);
+        context.fill();
     }
 }
 
