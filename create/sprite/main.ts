@@ -51,8 +51,8 @@ namespace Pixcel {
                 let {x, y} = e;
                 let dx = x - this.context.canvas.getBoundingClientRect().x,
                     dy = y - this.context.canvas.getBoundingClientRect().y;
-                let px = Math.floor(dx),
-                    py = Math.floor(dy);
+                let px = Math.floor(dx * PIXEL_SIZE) / PIXEL_SIZE,
+                    py = Math.floor(dy * PIXEL_SIZE) / PIXEL_SIZE;
                 this.drawPixel(new Vector2i(px, py), PIXEL_SIZE, "#ff0000")
             })
         }
