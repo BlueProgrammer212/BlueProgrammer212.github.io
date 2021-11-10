@@ -19,18 +19,22 @@ namespace Pixcel {
             this.x = x;
             this.y = y;
         }
-    } 
+    }
 }
 
-const PIXEL_SIZE : number = 16;
+let PIXEL_SIZE : number = 32;
  
 function drawGrid(context) {
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.strokeStyle = "#333333"
-    for (let x = 0; x < context.canvas.width; x += PIXEL_SIZE) {
-        context.moveTo(x, 0);
-        context.lineTo(x, context.canvas.height);
+    for (let i = 0; i < context.canvas.width; i += PIXEL_SIZE) {
+        context.moveTo(i, 0);
+        context.lineTo(i, context.canvas.height);
+        context.stroke();
+
+        context.moveTo(0, i);
+        context.lineTo(context.canvas.width, i);
         context.stroke();
     }
 }
