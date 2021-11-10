@@ -58,7 +58,7 @@ namespace Pixcel {
                 this.state.down = true;
             });
 
-            this.context.canvas.addEventListener("mosueup", (e) => {
+            this.context.canvas.addEventListener("mouseup", (e) => {
                 this.state.down = false;
             })
             
@@ -78,7 +78,7 @@ namespace Pixcel {
                     this.drawPixel(new Vector2i(px, py), PIXEL_SIZE, Pixcel.Main.DEFAULT_COLOR)
                 }
             })
-            
+
         }
         public drawPixel(pos : Position.Render2D, scale, color : string): void {
             this.context.fillStyle = color;
