@@ -41,17 +41,6 @@ class CommentManager {
     }
 }
 
-//Prevent browser input defaults
-let EVENTS : string[] = [
-    "click", "keydown", "keypress", "pointerout", "touchmove", "touchstart"
-];
-
-if ("addEventListener" in Element.prototype) {
-     EVENTS.forEach(elem => window.addEventListener(elem, (e) => {
-        e.preventDefault()
-     }))
-}
-
 class FragmentInstance implements Fragment {
     template_id : string;
     template_element : any;

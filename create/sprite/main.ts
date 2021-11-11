@@ -91,7 +91,7 @@ namespace Pixcel {
                     let px = Math.floor(dx / PIXEL_SIZE),
                         py = Math.floor(dy / PIXEL_SIZE);
                         
-                    this.drawPixel(new Vector2i(px, py), PIXEL_SIZE, Pixcel.Main.DEFAULT_COLOR)
+                    this.drawPixel(new Vector2i(px, py), PIXEL_SIZE, "#ff0000")
                 }
             })
 
