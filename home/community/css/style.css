@@ -437,7 +437,7 @@ html {
 
 .commentPostImg {
   position: relative;
-  top: -8vw;
+  top: -9vw;
   float: left;
 }
 
@@ -445,7 +445,7 @@ html {
   color: black;
   position: relative;
   left: 10px;
-  top: -7.5vw;
+  top: -9vw;
   margin-bottom: -55px;
   font-size: 14px;
 }
