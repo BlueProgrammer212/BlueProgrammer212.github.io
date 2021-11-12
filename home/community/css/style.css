@@ -434,15 +434,18 @@ html {
    margin-right: -85%;
    left: 60px;
 }
+
 .commentPostImg {
   position: relative;
   top: -8vw;
+  float: left;
 }
+
 .commentPostMessage {
   color: black;
   position: relative;
-  left: 44px;
-  top: -12vw;
+  left: 10px;
+  top: -7.5vw;
   margin-bottom: -55px;
   font-size: 14px;
 }
