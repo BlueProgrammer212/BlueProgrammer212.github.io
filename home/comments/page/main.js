@@ -55,13 +55,9 @@
       firestore.collection("profiles").doc(comm.id).get().then((a) => {
         if (name[name.length]) {
           name[name.length].innerHTML = a.data().name;
-        } else {
-          name[name.length - 1].innerHTML = a.data().name;
         }
         if (img[img.length]) {
           img[img.length].setAttribute("src", a.data().image_url);
-        } else {
-          img[img.length - 1].setAttribute("src", a.data().image_url);
         }
       })
       if (comment_msg[comment_msg.length]) {
