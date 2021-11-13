@@ -50,12 +50,12 @@
       let img = document.getElementsByClassName("profile_picture_32x32"),
       name = document.getElementsByClassName("pfp_name"),
       comment_msg = document.getElementsByClassName("comment_message");
-      this.child = this.template.content.cloneNode(true);
-      this.parent.appendChild(this.child); 
       firestore.collection("profiles").doc(comm.id).get().then(a => a.data()).then(ol => {
           img = document.getElementsByClassName("profile_picture_32x32"),
           name = document.getElementsByClassName("pfp_name"),
           comment_msg = document.getElementsByClassName("comment_message");
+          this.child = this.template.content.cloneNode(true);
+          this.parent.appendChild(this.child); 
           name[name.length - 1].innerHTML = ol.name;
           img[img.length - 1].setAttribute("src", ol.image_url);
       })
