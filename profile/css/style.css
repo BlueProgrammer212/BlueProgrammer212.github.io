@@ -21,11 +21,16 @@
 }
 
 .camera_change_pfp_bg {
-  background-color: black;
-  z-index: 1001; 
-  position: relative;
-  width: 100px;
-  height: 100px;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  position: ;
+  display: flex;
+  /* top: -72px; */
+  width: 64px;
+  margin-bottom: -60px;
+  height: 64px;
+  justify-content: center;
+  align-items: center;
 }
 
 ::-webkit-scrollbar-thumb {
