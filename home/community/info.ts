@@ -290,7 +290,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             this.setTime(data.date_published, i);
         
             firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
-                this.setName(p_info.name, i);
+                this.setName(p_info.data().name, i);
             })
 
             console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
@@ -328,7 +328,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         }
         if (!data.pfp_link.startsWith("https://")) return;
         firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
-            this.setImage(p_info.image_url);
+            this.setImage(p_info.data().image_url);
         })
     }
 }
