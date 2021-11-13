@@ -291,7 +291,11 @@ window.addEventListener("load", () => {
         console.log(`Loading UserID... ID:<${id}>`)
         console.log(`Loading profile picture ${image_url}...`)  
         pfp_img_elem.setAttribute("src", image_url);
+<<<<<<< HEAD
          pfp_img_elem.addEventListener("click", () => {
+=======
+        pfp_img_elem.addEventListener("click", () => {
+>>>>>>> db85e9f42debd84c8cbaaf2d51db0f63587addbd
            window.location.href = `?id=${getCookie("pf_id")}`;
         })
       } else {
