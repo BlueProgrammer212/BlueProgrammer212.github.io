@@ -5,6 +5,6 @@
         "limit": 2000,
         "auto-clear-database": true,
         "rate-limit-time": 900,
-        "refresh_onsend": true
+        "refresh_onsend": false
     }
 }
