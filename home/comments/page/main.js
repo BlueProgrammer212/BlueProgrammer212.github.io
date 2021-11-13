@@ -47,12 +47,12 @@
     }
     
     async add(comm) {
+      let profile_informatiion = await firestore.collection("profiles").doc(comm.id).get().then(a => {
+        return {data: a.data(), name: a.data().name, image_url: a.data().image_url}});
       let img = document.getElementsByClassName("profile_picture_32x32"),
       name = document.getElementsByClassName("pfp_name"),
       comment_msg = document.getElementsByClassName("comment_message");
       this.child = this.template.content.cloneNode(true);
-      let profile_informatiion = await firestore.collection("profiles").doc(comm.id).get().then(a => {
-        return {data: a.data(), name: a.data().name, image_url: a.data().image_url}});
       this.parent.appendChild(this.child); 
       name[name.length - 1].innerHTML = profile_informatiion.name;
       img[img.length - 1].setAttribute("src", profile_informatiion.image_url);
