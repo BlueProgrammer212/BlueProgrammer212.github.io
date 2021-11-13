@@ -23,9 +23,9 @@
 .camera_change_pfp_bg {
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1001;
-  position: ;
+  position: relative;
   display: flex;
-  /* top: -72px; */
+  top: -72px
   width: 64px;
   margin-bottom: -60px;
   height: 64px;
