@@ -291,6 +291,9 @@ window.addEventListener("load", () => {
         console.log(`Loading UserID... ID:<${id}>`)
         console.log(`Loading profile picture ${image_url}...`)  
         pfp_img_elem.setAttribute("src", image_url);
+         pfp_img_elem.addEventListener("click", () => {
+           window.location.href = `?id=${getCookie("pf_id")}`;
+        })
       } else {
         window.location.href = "https://blueprogrammer212.github.io/home/comments"
       }
