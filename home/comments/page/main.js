@@ -54,6 +54,7 @@
       this.parent.appendChild(this.child); 
       firestore.collection("profiles").doc(comm.id).get().then(a => a.data()).then(ol => {
           name[name.length - 1].innerHTML = ol.name;
+          console.log("nice!")
           img[img.length - 1].setAttribute("src", ol.image_url);
       })
       if (comment_msg[comment_msg.length]) {
