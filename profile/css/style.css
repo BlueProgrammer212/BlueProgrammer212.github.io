@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+.camera_change_pfp_bg {
+  background-color: black;
+  z-index: 1001; 
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
 ::-webkit-scrollbar {
   width: 15px;
 }
@@ -10,6 +18,14 @@
   background-color: white;
   box-shadow: inset 0 0 5px black;
   border-radius: 0px;
+}
+
+.camera_change_pfp_bg {
+  background-color: black;
+  z-index: 1001; 
+  position: relative;
+  width: 100px;
+  height: 100px;
 }
 
 ::-webkit-scrollbar-thumb {
