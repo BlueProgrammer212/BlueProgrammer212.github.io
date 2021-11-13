@@ -259,8 +259,7 @@ let profile_img = document.getElementById("pfp_edit_img");
 let profile_img_webgl_canvas = document.getElementById("profile_img");
 
 (btn_pfp || document.getElementById("ctx_btn_menu")).addEventListener("click", () => {
-    profile_img.className = "blackColorRectBg";
-    let ImageRenderInstance = new ImageRenderer("profile_img");
+    window.location.href = `https://blueprogrammer212.github.io/profile?id=${getCookie("pf_id")}`
 });
 
 profile_img_webgl_canvas.addEventListener("click", (e) => {
