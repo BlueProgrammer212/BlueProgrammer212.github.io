@@ -226,34 +226,6 @@ class Vector2<Axis> {
     }
 }
 
-class ImageRenderer extends WebGL {
-    url: string;
-    size: Vector2<Axis>;
-    pos: Vector2<Axis>;
-    public image: typeof Image;
-    public loadImage(url: string): Promise<typeof Image> {
-        const image = new Image();
-        return new Promise((resolve, _) => {
-            image.src = url;
-            image.addEventListener("load", () => {
-                setTimeout(resolve, 1000, image);
-            })
-        })
-    }
-    
-    public drawImage(pos: Vector2<Axis>, size: Vector2<Axis>): Promise<void> {
-         this.pos = new Vector2;
-         this.size = new Vector2;
-         this.pos.setVector(pos);
-         this.size.setVector(size);
-         return new Promise((res, _) => {
-            
-         })
-    }
-    constructor(canvas_id: string) {
-        super(canvas_id);
-    }
-}
 let btn_pfp = document.getElementById("ctx_btn_menu");
 let profile_img = document.getElementById("pfp_edit_img");
 let profile_img_webgl_canvas = document.getElementById("profile_img");
