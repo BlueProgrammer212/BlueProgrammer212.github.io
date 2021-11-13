@@ -194,6 +194,9 @@ window.addEventListener("load", () => {
             if ("registerProfile" in params_ && params_.registerProfile == 'true') window.location.search = `?id=${getCookie("pf_id")}`
             if ("data" in a) document.getElementById("name_pfp")["innerHTML"] = a["data"]().name;
             document.getElementById("date_pfp").innerHTML = `Joined on ${a.data().date_joined}`; let p="data",l="length";
+            if (a.data().id != getCookie("pf_id")) {
+               document.getElementsByClassName("camera_change_pfp_bg")[0].className += " invisible"
+            }
             if (a.data().id == getCookie("pf_id")) {
               const st=!function(c=a,h=l){const g=c[p]().id;return (!(g[h]++>1)?1:0)}(a,l)==0?0:void 0;
               for (let i = 0; i < a.data().pending_friend_requests.length; ++i) {
