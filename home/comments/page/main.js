@@ -53,8 +53,8 @@
       this.child = this.template.content.cloneNode(true);
       this.parent.appendChild(this.child); 
       firestore.collection("profiles").doc(comm.id).get().then((a) => {
-          name[name.length].innerHTML = a.data().name;
-          img[img.length].setAttribute("src", a.data().image_url);
+          name[name.length - 1].innerHTML = a.data().name;
+          img[img.length - 1].setAttribute("src", a.data().image_url);
       })
       if (comment_msg[comment_msg.length]) {
         comment_msg[comment_msg.length].innerHTML = comm.content;
