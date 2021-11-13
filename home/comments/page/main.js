@@ -58,12 +58,8 @@
           this.parent.appendChild(this.child); 
           name[name.length - 1].innerHTML = ol.name;
           img[img.length - 1].setAttribute("src", ol.image_url);
+          comment_msg[comment_msg.length - 1].innerHTML = comm.content;
       })
-      if (comment_msg[comment_msg.length]) {
-        comment_msg[comment_msg.length].innerHTML = comm.content;
-      } else {
-        comment_msg[comment_msg.length - 1].innerHTML = comm.content;
-      }
       }
       
       post(data) {
