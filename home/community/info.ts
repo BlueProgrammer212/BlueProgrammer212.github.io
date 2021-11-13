@@ -288,7 +288,10 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         if (this.msg.length == 0 && data.message.startsWith("/uploadImg[")) {
             this.setMessage(data.message, i);
             this.setTime(data.date_published, i);
-            this.setName(data.name, i);
+        
+            firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
+                this.setName(p_info.name, i);
+            })
 
             console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
             this.loadImage(data.message.match(/\[(.*?)\]/)[1], i).then(() => {
@@ -324,7 +327,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             document.getElementsByClassName("pfp_comment")[i].setAttribute("src", getCookie("pfp_url"));
         }
         if (!data.pfp_link.startsWith("https://")) return;
-        this.setImage(data.pfp_link);
+        firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
+            this.setImage(p_info.image_url);
+        })
     }
 }
 
