@@ -52,20 +52,22 @@
       comment_msg = document.getElementsByClassName("comment_message");
       this.child = this.template.content.cloneNode(true);
       this.parent.appendChild(this.child); 
-      if (name[name.length]) {
-        name[name.length].innerHTML = comm.name;
-      } else {
-        name[name.length - 1].innerHTML = comm.name;
-      }
+      firestore.collection("profiles").doc(comm.id).get().then((a) => {
+        if (name[name.length]) {
+          name[name.length].innerHTML = a.name;
+        } else {
+          name[name.length - 1].innerHTML = a.name;
+        }
+        if (img[img.length]) {
+          img[img.length].setAttribute("src", a.pfp_link);
+        } else {
+          img[img.length - 1].setAttribute("src", a.pfp_link);
+        }
+      })
       if (comment_msg[comment_msg.length]) {
         comment_msg[comment_msg.length].innerHTML = comm.content;
       } else {
         comment_msg[comment_msg.length - 1].innerHTML = comm.content;
-      }
-      if (img[img.length]) {
-        img[img.length].setAttribute("src", comm.pfp_link);
-      } else {
-        img[img.length - 1].setAttribute("src", comm.pfp_link);
       }
       }
       
@@ -222,9 +224,7 @@ for (let i = 0; i < document.images.length; ++i) {
 let slug = "pixcel";
 
 document.getElementById("post_btn").addEventListener("click", () => {
-  comments.post({id: 'RZ4jQvrF0ea1i5sKkb6A', time: Date.now(), 
-  slug: 'pixcel', content: document.getElementById("post_comment").value, pld: null, 
-  pfp_link: getCookie("pfp_url"), name: getCookie("pf_name")});
+  comments.post({id: getCookie("pf_id"), slug: 'pixcel', content: document.getElementById("post_comment").value});
   document.getElementById("post_comment").value = "";
   window.localStorage.setItem("prev_text", "");
 })
