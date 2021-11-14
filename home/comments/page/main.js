@@ -13,13 +13,15 @@
   disableDrag();
   
   function clearDatabase() {
-    if (prompt("PIN:")===`#9576`) {
+    if (getCookie("pf_id")=="111296049109307608942") {
       firestore.collection('comments').get().then(querySnapshot => {
         querySnapshot.docs.forEach(snapshot => {
           // console.log(snapshot)
           snapshot.ref.delete();
         })
       })
+    } else {
+      alert("You are not authorized to perform that action. You are blocked from the server for security reasons.");
     }
   }
   
