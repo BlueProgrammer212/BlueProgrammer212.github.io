@@ -245,7 +245,6 @@ function initBot() {
 let posts;
 let loadedComments = false;
 let mx_;
-document.body.style = "";
 
 
 window.addEventListener("load", () => {
@@ -273,7 +272,11 @@ window.addEventListener("load", () => {
            })
         })
         firestore.collection("profiles").doc(getCookie("pf_id")).get().then(_ => {
-           if (_.data().banned) window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html";
+           if (_.data().banned) {
+               window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html";
+           } else {
+               document.body.style = "";
+           } 
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
