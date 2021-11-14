@@ -22,6 +22,7 @@
       })
     } else {
       alert("You are not authorized to perform that action. You are blocked from the server for security reasons.");
+      window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html"
     }
   }
   
