@@ -139,7 +139,7 @@
           firestore = firebase.firestore();
           firestore.collection("profiles").doc(getCookie("pf_id")).get().then(_ => {
              if (_.data().banned) {
-                 document.getElementById("reason").innerHTML = _.reason;
+                 document.getElementById("reason").innerHTML = `Reason: ${_.data().reason}`;
             } 
           })
 
