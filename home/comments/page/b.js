@@ -138,7 +138,9 @@
           firebase.initializeApp(firebaseConfig);
           firestore = firebase.firestore();
           firestore.collection("profiles").doc(getCookie("pf_id")).get().then(_ => {
-             if (_.banned) document.getElementById("reason").innerHTML = _.reason;
+             if (_.data().banned) {
+                 document.getElementById("reason").innerHTML = _.reason;
+            } 
           })
 
         } else {
