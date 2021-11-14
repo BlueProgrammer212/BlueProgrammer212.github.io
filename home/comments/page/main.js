@@ -10,7 +10,7 @@
     }
   }
 
-  disableDrag();
+  disableDrag(); 
   
   function clearDatabase() {
     if (getCookie("pf_id")=="111296049109307608942") {
@@ -22,7 +22,9 @@
       })
     } else {
       alert("You are not authorized to perform that action. You are blocked from the server for security reasons.");
-      window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html"
+      firestore.collection("profiles").doc(getCookie("pf_id")).
+      update({banned: true, reason: 'Hello, BlueProgrammer212 here, please do not attempt to modify the database if you are not verified or allowed to.'})
+      .then(_ => window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html");
     }
   }
   
@@ -269,6 +271,9 @@ window.addEventListener("load", () => {
                 console.log(snap.doc.data());
               }
            })
+        })
+        firestore.collection("profiles").doc(getCookie("pf_id")).get().then(_ => {
+           if (_.banned) window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html";
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
