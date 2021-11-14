@@ -59,7 +59,7 @@
           name[name.length - 1].innerHTML = ol.name;
           img[img.length - 1].setAttribute("src", ol.image_url);
           img[img.length - 1].addEventListener("click", () => {
-            window.location.href = `https://blueprogrammer212.github.io/profile?id=${getCookie("pf_id")}`
+            window.location.href = `https://blueprogrammer212.github.io/profile?id=${comm.id}`
           })
           comment_msg[comment_msg.length - 1].innerHTML = comm.content;
       })
