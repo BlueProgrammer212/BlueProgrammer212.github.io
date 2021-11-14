@@ -273,7 +273,7 @@ window.addEventListener("load", () => {
            })
         })
         firestore.collection("profiles").doc(getCookie("pf_id")).get().then(_ => {
-           if (_.banned) window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html";
+           if (_.data().banned) window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html";
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";
