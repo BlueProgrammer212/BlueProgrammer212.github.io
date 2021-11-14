@@ -1,5 +1,6 @@
 (function() {
     var googleUser = {};
+    let firestore;
     
     function disableDrag() {
       for (let i = 0; i < document.images.length; i++) {
@@ -8,6 +9,8 @@
     }
   
     disableDrag(); 
+
+    
       
       const firebaseConfig = {
         apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
@@ -134,6 +137,9 @@
           pfp_img_elem.setAttribute("src", image_url);
           firebase.initializeApp(firebaseConfig);
           firestore = firebase.firestore();
+          firestore.collection("profiles").doc(getCookie("pf_id")).get().then(_ => {
+             if (_.banned) document.getElementById("reason").innerHTML = _.reason;
+          })
 
         } else {
             window.location.href = "https://blueprogrammer212.github.io/home/comments";
