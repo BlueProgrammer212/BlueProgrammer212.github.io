@@ -162,9 +162,11 @@ body {
 body {
   background-color: rgba(0, 0, 0, 0.5);
   background-image: url("../assets/bg_icon (4).png");
+  background-attachment: fixed;
 }
 #main_content {
   background-image: url("../assets/Background.png");
+  background-attachment: fixed;
 }
 
 .checkbox {
