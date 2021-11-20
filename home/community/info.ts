@@ -65,7 +65,7 @@ document.getElementsByTagName("exit-prev")[0].addEventListener("load", () => {
             let l = (typeof Number(this.getAttribute("data-set-size")) == typeof s ? ()=>{
             loadExitButtonImg[o[x]] = this.getAttribute("data-set-size")} : ()=>{return;});l()
         }
-        /*NON-PRODUCTION code
+        /*NON-PRODUCTION code. Press ALT+CURSOR UP in line 70 to disable.
         */
         loadExitButtonImg.className = "invisible";
 
