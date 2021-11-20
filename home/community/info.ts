@@ -305,15 +305,11 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 if (history.pushState) {
-                    var newurl = `https://blueprogrammer212.github.io/home/community?p=${data.message.match(/\[(.*?)\]/)[1].substr(
-                        data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
+                    var newurl = `https://blueprogrammer212.github.io/home/community/?p=${data.message.match(/\[(.*?)\]/)[1].substr(
+                    data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
                     window.history.pushState({path:newurl},'',newurl);
-                    if ("r" in params && params.r == "AS" && "p" in params) {
-                        document.getElementById("bg_prev").className = "";
-                        document.getElementById("img_prev").setAttribute("src", `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`);
-                    } else {
-                        document.getElementById("bg_prev").className = "invisible";
-                    }
+                    document.getElementById("bg_prev").className = "";
+                    document.getElementById("img_prev").setAttribute("src", `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`);
                  }
             });
             if ("r" in params && params.r == "AS" && "p" in params) {
