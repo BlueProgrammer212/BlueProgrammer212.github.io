@@ -283,7 +283,10 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
         //Send profile data to https://blueprogrammer212.github.io/profile
         document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("onclick", `
-             window.location.href = "https://blueprogrammer212.github.io/profile?id=${data.profile_id}"
+             if (history.pushState) {
+                var newurl = 'https://blueprogrammer212.github.io/profile?id=${data.profile_id}';
+                window.history.pushState({path:newurl},'',newurl);
+             }
         `);
 
         this.update(i);
@@ -301,8 +304,11 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             })
             console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
-                window.location.search = `?p=${data.message.match(/\[(.*?)\]/)[1].substr(
-                data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
+                if (history.pushState) {
+                    var newurl = `https://blueprogrammer212.github.io/home/community?p=${data.message.match(/\[(.*?)\]/)[1].substr(
+                        data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
+                    window.history.pushState({path:newurl},'',newurl);
+                 }
             });
             if ("r" in params && params.r == "AS" && "p" in params) {
                 document.getElementById("bg_prev").className = "";
