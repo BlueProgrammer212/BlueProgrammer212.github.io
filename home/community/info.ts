@@ -73,8 +73,6 @@ document.getElementsByTagName("exit-prev")[0].addEventListener("load", () => {
     }}
 })
 
-alert("Test")
-
 class FragmentInstance implements Fragment {
     template_id : string;
     template_element : any;
