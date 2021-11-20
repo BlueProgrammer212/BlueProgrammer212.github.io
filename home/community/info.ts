@@ -286,6 +286,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
              if (history.pushState) {
                 var newurl = 'https://blueprogrammer212.github.io/profile?id=${data.profile_id}';
                 window.history.pushState({path:newurl},'',newurl);
+                window.location.reload();
+             } else {
+                 window.location.href = 'https://blueprogrammer212.github.io/profile?id=${data.profile_id}'
              }
         `);
 
