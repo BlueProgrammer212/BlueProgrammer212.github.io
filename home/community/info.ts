@@ -272,6 +272,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
     setPosts(data : Data, i : number) {
         this.update(i);
+        firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
+            this.setImage(p_info.data().image_url);
+        })
         if (this.msg.length == 0 && !data.message.startsWith("/uploadImg[")) {
             this.setMessage(data.message, i);
             this.setTime(data.date_published, i);
@@ -341,9 +344,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             this.setButton(data, i); 
             document.getElementsByClassName("pfp_comment")[i].setAttribute("src", getCookie("pfp_url"));
         }
-        firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
-            this.setImage(p_info.data().image_url);
-        })
     }
 }
 
