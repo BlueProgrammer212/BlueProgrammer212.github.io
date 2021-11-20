@@ -324,6 +324,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                     document.getElementById("bg_prev").className = "";
 
                     document.getElementById("img_prev").setAttribute("src", url_resource);
+                    document.getElementById("img_prev").addEventListener("contextmenu", () => {return;})
                     let a_elem_open_original = document.getElementById("open_original_a");
                     a_elem_open_original.setAttribute("href", url_resource)
 
