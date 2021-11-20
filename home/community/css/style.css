@@ -468,8 +468,10 @@ html {
   color: white;
   font-size:18px;
   text-decoration:none;
-  font-family: Pixcel;
+  font-family: Pixel;
   position: relative;
+  left: 25%;
+  top: 75%;
 }
 
 #postsBoxContent {
