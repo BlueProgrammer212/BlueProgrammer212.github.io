@@ -339,7 +339,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                         for (let t = 0; t < o.length; ++t) e[o[t]]();
                         let r : string = a_elem_open_original.getAttribute("href");
                         console.log(`[Redirect] Redirecting to ${url_resource}`);
-                        const s : number = 2;
+                        const s : number = 0.5;
                         setTimeout((l) => window.location.href = l, s*1000, r);  
                     })
 
