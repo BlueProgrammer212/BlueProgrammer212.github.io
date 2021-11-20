@@ -48,6 +48,12 @@ class CommentManager {
     }
 }
 
+document.getElementsByTagName("exit-prev")[0].addEventListener("load", () => {
+    if (this !== void 0) {
+        console.log(this);
+    }
+})
+
 class FragmentInstance implements Fragment {
     template_id : string;
     template_element : any;
