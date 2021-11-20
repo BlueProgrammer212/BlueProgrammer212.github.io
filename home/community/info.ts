@@ -320,6 +320,12 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                     document.getElementById("bg_prev").className = "";
                     document.getElementById("img_prev").setAttribute("src", url_resource);
                     document.getElementById("open_original_a").setAttribute("href", url_resource)
+                    document.getElementById("open_original_a").addEventListener("click", (e) => {
+                        let o = ["stopPropagation", "preventDefault"];
+                        for (let t = 0; t < o.length; ++t) e[o[t]]();
+                    })
+                    document.getElementById("open_original_a").setAttribute("title", url_resource);
+                    console.log(`[Redirect] Redirecting to ${url_resource}`);
                 }
             });
             if ("r" in params && params.r == "AS" && "p" in params) {
