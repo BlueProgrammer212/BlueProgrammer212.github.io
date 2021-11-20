@@ -33,7 +33,7 @@ class CommentManager {
         this.parent_element = document.getElementsByClassName(parent_id);
         this.template_element = document.getElementById("template_comments_posts");
         this.PROFILE_PICTURE_INDEX = 0;
-        this.MESSAGE_ELEMENT_INDEX = 1
+        this.MESSAGE_ELEMENT_INDEX = 1;
     } 
     add(id, message : string, image) {
         if (message.length > 0) {
@@ -48,10 +48,29 @@ class CommentManager {
     }
 }
 
+const DATA_ID_ATTRIBUTE : string = "data-id";
 document.getElementsByTagName("exit-prev")[0].addEventListener("load", () => {
-    if (this !== void 0) {
-        console.log(this);
-    }
+    if (Number(this.getAttribute(DATA_ID_ATTRIBUTE))==1) {if (this.getAttribute("src")!==void 0){
+
+        this.addEventListener("click", () => {
+            this.parentElement.className += " invisible";
+        })
+
+        let loadExitButtonImg=document.createElement("IMG");
+        loadExitButtonImg.setAttribute("src", this.getAttribute("src"));
+        const o : string[] = ["width","height"];
+
+        for (let x=0,i=1,s=0;x<o.length&&i==1;++x) {
+            if (o[x]===void s) {break};if (o[x]!=="width"||o[x]!=="height") o.splice(x, i); 
+            let l = (typeof Number(this.getAttribute("data-set-size")) == typeof s ? ()=>{
+            loadExitButtonImg[o[x]] = this.getAttribute("data-set-size")} : ()=>{return;});l()
+        }
+        /*NON-PRODUCTION code
+        */
+        loadExitButtonImg.className = "invisible";
+
+        document.getElementsByTagName("exit-prev")[0].appendChild(loadExitButtonImg)
+    }}
 })
 
 class FragmentInstance implements Fragment {
