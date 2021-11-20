@@ -319,10 +319,13 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                     let url_resource : string = `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`;
                     document.getElementById("bg_prev").className = "";
                     document.getElementById("img_prev").setAttribute("src", url_resource);
-                    document.getElementById("open_original_a").setAttribute("href", url_resource)
-                    document.getElementById("open_original_a").addEventListener("click", (e) => {
+                    let a_elem_open_original = document.getElementById("open_original_a");
+                    a_elem_open_original.setAttribute("href", url_resource)
+                    a_elem_open_original.addEventListener("click", (e) => {
                         let o = ["stopPropagation", "preventDefault"];
                         for (let t = 0; t < o.length; ++t) e[o[t]]();
+                        let r = a_elem_open_original.getAttribute("href");
+                        window.location.href =  
                     })
                     document.getElementById("open_original_a").setAttribute("title", url_resource);
                     console.log(`[Redirect] Redirecting to ${url_resource}`);
