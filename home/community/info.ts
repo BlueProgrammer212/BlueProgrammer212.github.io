@@ -326,7 +326,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             this.setButton(data, i); 
             document.getElementsByClassName("pfp_comment")[i].setAttribute("src", getCookie("pfp_url"));
         }
-        if (!data.pfp_link.startsWith("https://")) return;
         firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
             this.setImage(p_info.data().image_url);
         })
