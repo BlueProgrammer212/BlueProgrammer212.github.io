@@ -1,5 +1,6 @@
 let inputBox : any;
 let firestore;
+let messaging;
 //Declaration of Javascript constants.
 declare let mat4: any;
 //////////////////////////////////////
@@ -24,22 +25,53 @@ function blobToBase64(blob) {
 class CommentManager {
     parent_element: any;
     clone: any;
+    PROFILE_PICTURE_INDEX: any;
+    MESSAGE_ELEMENT_INDEX: any;
+
     public template_element: any;
     constructor(parent_id) {
         this.parent_element = document.getElementsByClassName(parent_id);
         this.template_element = document.getElementById("template_comments_posts");
+        this.PROFILE_PICTURE_INDEX = 0;
+        this.MESSAGE_ELEMENT_INDEX = 1;
     } 
-    add(id, message, image) {
+    add(id, message : string, image) {
         if (message.length > 0) {
             this.clone = document.importNode(this.template_element.content, true).children[0];
-            this.clone.children[0].children[1].innerHTML = message;
-            this.clone.children[0].children[0].src = image;
+            let combox : any = this.clone.children[0];
+            combox.children[this.MESSAGE_ELEMENT_INDEX].innerHTML = `${message}`;
+            combox.children[this.PROFILE_PICTURE_INDEX].src = image;
             let patt = /\((\d+)\)/;
             document.getElementById(id).children[0].children[10].innerHTML = `View Comments (${Number(document.getElementById(id).children[0].children[10].innerHTML.match(patt)[1])+1})`
             document.getElementById(id).children[0].children[11].appendChild(this.clone);
         }
     }
 }
+
+const DATA_ID_ATTRIBUTE : string = "data-id";
+document.getElementsByTagName("exit-prev")[0].addEventListener("load", () => {
+    if (Number(this.getAttribute(DATA_ID_ATTRIBUTE))==1) {if (this.getAttribute("src")!==void 0){
+
+        this.addEventListener("click", () => {
+            this.parentElement.className += " invisible";
+        })
+
+        let loadExitButtonImg=document.createElement("IMG");
+        loadExitButtonImg.setAttribute("src", this.getAttribute("src"));
+        const o : string[] = ["width","height"];
+
+        for (let x=0,i=1,s=0;x<o.length&&i==1;++x) {
+            if (o[x]===void s) {break};if (o[x]!=="width"||o[x]!=="height") o.splice(x, i); 
+            let l = (typeof Number(this.getAttribute("data-set-size")) == typeof s ? ()=>{
+            loadExitButtonImg[o[x]] = this.getAttribute("data-set-size")} : ()=>{return;});l()
+        }
+        /*NON-PRODUCTION code. Press ALT+CURSOR UP in line 70 to disable.
+        */
+        loadExitButtonImg.className = "invisible";
+
+        document.getElementsByTagName("exit-prev")[0].appendChild(loadExitButtonImg)
+    }}
+})
 
 class FragmentInstance implements Fragment {
     template_id : string;
@@ -62,11 +94,10 @@ class FragmentInstance implements Fragment {
          this.a = [];
          this.commentManager = new CommentManager("comment_section_post");
     } 
-    protected setImage(link : string) {
-        for (let i = 0; i < this.pfp_element.length; ++i) {
-            if (this.pfp_element[i].getAttribute("src") == this.defaultPfp) {
-                document.getElementsByClassName("pfp_img_elem")[i].setAttribute("src", link);
-            }
+    protected setImage(link : string, i, name : string) {
+        if (this.pfp_element[i].getAttribute("src") == this.defaultPfp) {
+            document.getElementsByClassName("pfp_img_elem")[i].setAttribute("src", link);
+            document.getElementsByClassName("pfp_img_elem")[i].setAttribute("title", name)
         }
     } 
     setMessage(msg : string, i : number): void {
@@ -171,8 +202,8 @@ interface Data {
      readonly profile_id: any;
 }
 
-const urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
+let urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
+let params = Object.fromEntries(urlSearchParams.entries());
 
 function getCookie(cname) {
     let name = cname + "=";
@@ -272,16 +303,27 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
     setPosts(data : Data, i : number) {
         this.update(i);
+        firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
+            this.setImage(p_info.data().image_url, i, p_info.data().name);
+        })
         if (this.msg.length == 0 && !data.message.startsWith("/uploadImg[")) {
             this.setMessage(data.message, i);
             this.setTime(data.date_published, i);
-            this.setName(data.name, i);
+            firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
+                this.setName(p_info.data().name, i);
+            })
             document.getElementsByClassName("img_upload")[i].setAttribute("class", "invisible img_upload")
         }
 
         //Send profile data to https://blueprogrammer212.github.io/profile
         document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("onclick", `
-             window.location.href = "https://blueprogrammer212.github.io/profile?id=${data.profile_id}"
+             if (history.pushState) {
+                var newurl = 'https://blueprogrammer212.github.io/profile?id=${data.profile_id}';
+                window.history.pushState({path:newurl},'',newurl);
+                window.location.reload();
+             } else {
+                 window.location.href = 'https://blueprogrammer212.github.io/profile?id=${data.profile_id}'
+             }
         `);
 
         this.update(i);
@@ -298,9 +340,37 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 console.log("%c[System]" + "%c Loading resource image... 100%", "color: violet;", "color: white;");
             })
             console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
+
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
-                window.location.search = `?p=${data.message.match(/\[(.*?)\]/)[1].substr(
-                data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
+                if (history.pushState) {
+
+                    var newurl = `https://blueprogrammer212.github.io/home/community/?p=${data.message.match(/\[(.*?)\]/)[1].substr(
+                    data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
+                    window.history.pushState({path:newurl},'',newurl);
+
+                    urlSearchParams = new URLSearchParams(window.location.search);
+                    params = Object.fromEntries(urlSearchParams.entries());       
+
+                    let url_resource : string = `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`;
+                    document.getElementById("bg_prev").className = "";
+
+                    document.getElementById("img_prev").setAttribute("src", url_resource);
+                    document.getElementById("img_prev").addEventListener("contextmenu", () => {return;})
+                    let a_elem_open_original = document.getElementById("open_original_a");
+                    a_elem_open_original.setAttribute("href", url_resource)
+
+                    a_elem_open_original.addEventListener("click", (e) => {
+                        let o = ["stopPropagation", "preventDefault"];
+                        for (let t = 0; t < o.length; ++t) e[o[t]]();
+                        let r : string = a_elem_open_original.getAttribute("href");
+                        console.log(`[Redirect] Redirecting to ${url_resource}`);
+                        const s : number = 0.5;
+                        setTimeout((l) => window.location.href = l, s*1000, r);  
+                    })
+
+                    document.getElementById("open_original_a").setAttribute("title", url_resource);
+
+                }
             });
             if ("r" in params && params.r == "AS" && "p" in params) {
                 document.getElementById("bg_prev").className = "";
@@ -326,10 +396,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             this.setButton(data, i); 
             document.getElementsByClassName("pfp_comment")[i].setAttribute("src", getCookie("pfp_url"));
         }
-        if (!data.pfp_link.startsWith("https://")) return;
-        firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
-            this.setImage(p_info.data().image_url);
-        })
     }
 }
 
@@ -337,6 +403,10 @@ let fragmentInstance = new FragmentManager("template_posts", "../assets/default_
 
 document.getElementById("img_prev").parentElement.addEventListener("click", () => {
     document.getElementById("img_prev").parentElement.className = "invisible";
+    if (history.pushState) {
+        var newurl = `https://blueprogrammer212.github.io/home/community/`;
+        window.history.pushState({path:newurl},'',newurl);
+     }
 })
 
 document.getElementById("img_prev").parentElement.addEventListener("mousewheel", (e) => {
@@ -350,6 +420,19 @@ document.getElementById("img_prev").addEventListener("click", (e) => {
 window.addEventListener("load", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
+        /*messaging = firebase.messaging();
+        messaging.getToken(
+            {vapidKey: "BG8u9E9Qe2OZ6PrSATzwzm5YjJU33_mBoBn1z_J2hMA-LmN1VPspuG23VJTdCUKIPH6GF5k4Fj5eMQqrV9jJhvA"}
+        ).then((c) => {
+            if (c) {
+                // Send the token to your server and update the UI if necessary
+                // ...
+            } else {
+                console.log('No registration token available. Request permission to generate one.');
+            }
+        }).catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+        })*/
         firestore = firebase.firestore();
         firestore.collection("posts").where("region", "==", "AS").onSnapshot((querySnapshot) => {
             document.getElementById("loading_posts").innerHTML = "It's quiet for now. <a class='blue' href='post.html'>Wanna make a noise?</a>"
@@ -361,6 +444,9 @@ window.addEventListener("load", () => {
                 };
                 if (change.type == "modified") {
                     fragmentInstance.update_likes(change.doc.data());
+                }
+                if (change.type == "deleted") {
+                    console.log("Post: ")
                 }
             });
             querySnapshot.forEach((doc) => {

@@ -461,7 +461,19 @@ html {
   width: 4vw;
   height: 4vw;
   transform: translateX(-1.5vw) translateY(-1.5vw);
+  cursor: pointer;
 }
+
+#open_original_a {
+  color: white;
+  font-size:18px;
+  text-decoration:none;
+  font-family: Pixel;
+  position: relative;
+  left: 25%;
+  top: 75%;
+}
+
 #postsBoxContent {
     margin-top: 2.5%;
     margin-left: 2.5%;

@@ -151,6 +151,31 @@ function getCookie(cname) {
   return "";
 }
 
+function deleteCookie( name, path, domain ) {
+  if(getCookie(name)) {
+    document.cookie = name + "=" +
+      ((path) ? ";path="+path:"")+
+      ((domain)?";domain="+domain:"") +
+      ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+  }
+}
+
+function signOut() {
+  auth2.signOut().then(function () {
+    console.log('Clearing cookies... 0%');
+    console.log(`Signing out... ${JSON.stringify(googleUser, undefined, 2)}`);
+    let domain = "https://blueprogrammer212.github.io";
+    deleteCookie("pfp_url", "/")
+    deleteCookie("pf_id", "/")
+    deleteCookie("pf_name", "/")
+    deleteCookie("pf_email", "/");
+    console.log('Succesfully cleared cookies. 100%');
+    setTimeout(() => {
+      window.location.href = "../"
+    }, 800)
+  });
+}
+
 let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
 
 class Profile {

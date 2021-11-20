@@ -10,16 +10,21 @@
     }
   }
 
-  disableDrag();
+  disableDrag(); 
   
   function clearDatabase() {
-    if (prompt("PIN:")===`#9576`) {
+    if (getCookie("pf_id")=="111296049109307608942") {
       firestore.collection('comments').get().then(querySnapshot => {
         querySnapshot.docs.forEach(snapshot => {
           // console.log(snapshot)
           snapshot.ref.delete();
         })
       })
+    } else {
+      alert("You are not authorized to perform that action. You are blocked from the server for security reasons.");
+      firestore.collection("profiles").doc(getCookie("pf_id")).
+      update({banned: true, reason: 'Hello, BlueProgrammer212 here, please do not attempt to modify the database if you are not verified or allowed to.'})
+      .then(_ => window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html");
     }
   }
   
@@ -58,6 +63,9 @@
           this.parent.appendChild(this.child); 
           name[name.length - 1].innerHTML = ol.name;
           img[img.length - 1].setAttribute("src", ol.image_url);
+          img[img.length - 1].addEventListener("click", () => {
+            window.location.href = `https://blueprogrammer212.github.io/profile?id=${comm.id}`
+          })
           comment_msg[comment_msg.length - 1].innerHTML = comm.content;
       })
       }
@@ -237,7 +245,6 @@ function initBot() {
 let posts;
 let loadedComments = false;
 let mx_;
-document.body.style = "";
 
 
 window.addEventListener("load", () => {
@@ -263,6 +270,13 @@ window.addEventListener("load", () => {
                 console.log(snap.doc.data());
               }
            })
+        })
+        firestore.collection("profiles").doc(getCookie("pf_id")).get().then(_ => {
+           if (_.data().banned) {
+               window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html";
+           } else {
+               document.body.style = "";
+           } 
         })
       } else {
           window.location.href = "https://blueprogrammer212.github.io/home/comments";

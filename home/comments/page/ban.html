@@ -20,6 +20,8 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
+      <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
       <div class="sidebar">
         <a class="active" href="#home">Contact us!</a>
         <a href="#wiki">Visit our wikipage!</a>
@@ -51,10 +53,11 @@
         </div>
         <div id="main_content">
         <div class="titles">
-            <h2 class="align-left fontMedium red">You got banned for 7 days.</h2>
-            <p class="align-left fontSmall">Reason: yo galaxy you suc</p>
+            <h2 class="align-left fontMedium red">You are banned for 7 days.</h2>
+            <p class="align-left fontSmall" id="reason" style="font-size: 20px">Reason:</p>
         </div>
       </div>
+      <script src="./b.js"></script>
       <script src="./js/openSideBar.js"></script>
    </body>
 </html>
