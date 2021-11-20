@@ -309,26 +309,35 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 console.log("%c[System]" + "%c Loading resource image... 100%", "color: violet;", "color: white;");
             })
             console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
+
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 if (history.pushState) {
+
                     var newurl = `https://blueprogrammer212.github.io/home/community/?p=${data.message.match(/\[(.*?)\]/)[1].substr(
                     data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
                     window.history.pushState({path:newurl},'',newurl);
+
                     urlSearchParams = new URLSearchParams(window.location.search);
                     params = Object.fromEntries(urlSearchParams.entries());       
+
                     let url_resource : string = `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`;
                     document.getElementById("bg_prev").className = "";
+
                     document.getElementById("img_prev").setAttribute("src", url_resource);
                     let a_elem_open_original = document.getElementById("open_original_a");
                     a_elem_open_original.setAttribute("href", url_resource)
+
                     a_elem_open_original.addEventListener("click", (e) => {
                         let o = ["stopPropagation", "preventDefault"];
                         for (let t = 0; t < o.length; ++t) e[o[t]]();
-                        let r = a_elem_open_original.getAttribute("href");
-                        window.location.href =  
+                        let r : string = a_elem_open_original.getAttribute("href");
+                        console.log(`[Redirect] Redirecting to ${url_resource}`);
+                        const s : number = 2;
+                        setTimeout((l) => window.location.href = l, s*1000, r);  
                     })
+
                     document.getElementById("open_original_a").setAttribute("title", url_resource);
-                    console.log(`[Redirect] Redirecting to ${url_resource}`);
+
                 }
             });
             if ("r" in params && params.r == "AS" && "p" in params) {
