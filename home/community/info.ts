@@ -25,16 +25,22 @@ function blobToBase64(blob) {
 class CommentManager {
     parent_element: any;
     clone: any;
+    PROFILE_PICTURE_INDEX: any;
+    MESSAGE_ELEMENT_INDEX: any;
+
     public template_element: any;
     constructor(parent_id) {
         this.parent_element = document.getElementsByClassName(parent_id);
         this.template_element = document.getElementById("template_comments_posts");
+        this.PROFILE_PICTURE_INDEX = 0;
+        this.MESSAGE_ELEMENT_INDEX = 1
     } 
     add(id, message, image) {
         if (message.length > 0) {
             this.clone = document.importNode(this.template_element.content, true).children[0];
-            this.clone.children[0].children[1].innerHTML = message;
-            this.clone.children[0].children[0].src = image;
+            let combox : any = this.clone.children[0];
+            combox.children[this.MESSAGE_ELEMENT_INDEX].innerHTML = message;
+            combox.children[this.PROFILE_PICTURE_INDEX].src = image;
             let patt = /\((\d+)\)/;
             document.getElementById(id).children[0].children[10].innerHTML = `View Comments (${Number(document.getElementById(id).children[0].children[10].innerHTML.match(patt)[1])+1})`
             document.getElementById(id).children[0].children[11].appendChild(this.clone);
