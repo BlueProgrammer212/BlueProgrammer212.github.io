@@ -171,8 +171,8 @@ interface Data {
      readonly profile_id: any;
 }
 
-const urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
-const params = Object.fromEntries(urlSearchParams.entries());
+let urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
+let params = Object.fromEntries(urlSearchParams.entries());
 
 function getCookie(cname) {
     let name = cname + "=";
@@ -308,6 +308,8 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                     var newurl = `https://blueprogrammer212.github.io/home/community/?p=${data.message.match(/\[(.*?)\]/)[1].substr(
                     data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
                     window.history.pushState({path:newurl},'',newurl);
+                    urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
+                    params = Object.fromEntries(urlSearchParams.entries());       
                     document.getElementById("bg_prev").className = "";
                     document.getElementById("img_prev").setAttribute("src", `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`);
                  }
