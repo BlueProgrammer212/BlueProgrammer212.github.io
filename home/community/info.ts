@@ -35,11 +35,11 @@ class CommentManager {
         this.PROFILE_PICTURE_INDEX = 0;
         this.MESSAGE_ELEMENT_INDEX = 1
     } 
-    add(id, message, image) {
+    add(id, message : string, image) {
         if (message.length > 0) {
             this.clone = document.importNode(this.template_element.content, true).children[0];
             let combox : any = this.clone.children[0];
-            combox.children[this.MESSAGE_ELEMENT_INDEX].innerHTML = message;
+            combox.children[this.MESSAGE_ELEMENT_INDEX].innerHTML = `${message}`;
             combox.children[this.PROFILE_PICTURE_INDEX].src = image;
             let patt = /\((\d+)\)/;
             document.getElementById(id).children[0].children[10].innerHTML = `View Comments (${Number(document.getElementById(id).children[0].children[10].innerHTML.match(patt)[1])+1})`
