@@ -275,7 +275,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         if (this.msg.length == 0 && !data.message.startsWith("/uploadImg[")) {
             this.setMessage(data.message, i);
             this.setTime(data.date_published, i);
-            this.setName(data.name, i);
+            firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
+                this.setName(p_info.data().name, i);
+            })
             document.getElementsByClassName("img_upload")[i].setAttribute("class", "invisible img_upload")
         }
 
