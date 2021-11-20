@@ -1,5 +1,6 @@
 let inputBox : any;
 let firestore;
+let messaging;
 //Declaration of Javascript constants.
 declare let mat4: any;
 //////////////////////////////////////
@@ -315,9 +316,11 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                     window.history.pushState({path:newurl},'',newurl);
                     urlSearchParams = new URLSearchParams(window.location.search);
                     params = Object.fromEntries(urlSearchParams.entries());       
+                    let url_resource : string = `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`;
                     document.getElementById("bg_prev").className = "";
-                    document.getElementById("img_prev").setAttribute("src", `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`);
-                 }
+                    document.getElementById("img_prev").setAttribute("src", url_resource);
+                    document.getElementById("open_original_a").setAttribute("href", url_resource)
+                }
             });
             if ("r" in params && params.r == "AS" && "p" in params) {
                 document.getElementById("bg_prev").className = "";
@@ -367,6 +370,19 @@ document.getElementById("img_prev").addEventListener("click", (e) => {
 window.addEventListener("load", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
+        /*messaging = firebase.messaging();
+        messaging.getToken(
+            {vapidKey: "BG8u9E9Qe2OZ6PrSATzwzm5YjJU33_mBoBn1z_J2hMA-LmN1VPspuG23VJTdCUKIPH6GF5k4Fj5eMQqrV9jJhvA"}
+        ).then((c) => {
+            if (c) {
+                // Send the token to your server and update the UI if necessary
+                // ...
+            } else {
+                console.log('No registration token available. Request permission to generate one.');
+            }
+        }).catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+        })*/
         firestore = firebase.firestore();
         firestore.collection("posts").where("region", "==", "AS").onSnapshot((querySnapshot) => {
             document.getElementById("loading_posts").innerHTML = "It's quiet for now. <a class='blue' href='post.html'>Wanna make a noise?</a>"
@@ -378,6 +394,9 @@ window.addEventListener("load", () => {
                 };
                 if (change.type == "modified") {
                     fragmentInstance.update_likes(change.doc.data());
+                }
+                if (change.type == "deleted") {
+                    console.log("Post: ")
                 }
             });
             querySnapshot.forEach((doc) => {
