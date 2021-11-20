@@ -98,6 +98,7 @@ class FragmentInstance implements Fragment {
         if (this.pfp_element[i].getAttribute("src") == this.defaultPfp) {
             document.getElementsByClassName("pfp_img_elem")[i].setAttribute("src", link);
             document.getElementsByClassName("pfp_img_elem")[i].setAttribute("title", name)
+            document.getElementsByClassName("pfp_img_elem")[i].oncontextmenu=function(){return;}
         }
     } 
     setMessage(msg : string, i : number): void {
