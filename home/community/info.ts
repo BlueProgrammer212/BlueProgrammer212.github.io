@@ -62,11 +62,9 @@ class FragmentInstance implements Fragment {
          this.a = [];
          this.commentManager = new CommentManager("comment_section_post");
     } 
-    protected setImage(link : string) {
-        for (let i = 0; i < this.pfp_element.length; ++i) {
-            if (this.pfp_element[i].getAttribute("src") == this.defaultPfp) {
-                document.getElementsByClassName("pfp_img_elem")[i].setAttribute("src", link);
-            }
+    protected setImage(link : string, i) {
+        if (this.pfp_element[i].getAttribute("src") == this.defaultPfp) {
+            document.getElementsByClassName("pfp_img_elem")[i].setAttribute("src", link);
         }
     } 
     setMessage(msg : string, i : number): void {
@@ -273,7 +271,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     setPosts(data : Data, i : number) {
         this.update(i);
         firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
-            this.setImage(p_info.data().image_url);
+            this.setImage(p_info.data().image_url, i);
         })
         if (this.msg.length == 0 && !data.message.startsWith("/uploadImg[")) {
             this.setMessage(data.message, i);
