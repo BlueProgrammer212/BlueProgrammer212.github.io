@@ -110,7 +110,6 @@ let canvas_size : Position.Render2D = new Pixcel.Vector2i(
     context.canvas.width,
     context.canvas.height
 );
-
  
 function drawGrid(context) {
     context.fillStyle = "#ffffff";
