@@ -457,9 +457,9 @@ html {
 
 .pfp_img_elem {
   min-width: 32px;
-  min-height: 32px;;
-  width: 5vw;
-  height: 5vw;
+  min-height: 32px;
+  width: 6vw;
+  height: 6vw;
   transform: translateX(-1.5vw) translateY(-1.5vw);
   cursor: pointer;
 }
