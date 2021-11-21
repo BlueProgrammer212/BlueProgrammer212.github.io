@@ -207,15 +207,14 @@ window.addEventListener("load", () => {
         name = getCookie("pf_name"),
         id = getCookie("pf_id");
         console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
-        document.getElementById("dropdown_ui_options").addEventListener("click", () => {
+        document.getElementById("dropdown_ui_options").addEventListener("click", (e) => {
             document.getElementById("profileEditBg").className = "";
-            
+            const o = ["stopPropagation", "preventDefault"];for (let m=0;m<o.length;++m) e[o[m]]();
         })
         if ("id" in params_) firestore.collection("profiles").doc(params_.id).get().then((a) => {
             if (!a.exists && params_.id === getCookie("pf_id")) {
-              alert("We're registering your profile. Please click ok and wait until your browser reloads. This feature is intended for Indev 1.0.0 users.")
-              firestore.collection("profiles").doc(params_.id).set({id: getCookie("pf_id"), name: getCookie("pf_name"), image_url: getCookie("pfp_url"), description: null}).then(() => {
-                 window.location.reload(); //Reload the website after registering account uuid to the database.
+              firestore.collection("profiles").doc(params_.id).set({id: getCookie("pf_id"), name: getCookie("pf_name"), image_url: getCookie("pfp_url"), description: null, pending_friend_requests: [], friends: []}).then(() => {
+                 window.location.reload(); 
               })
             }
             if ("registerProfile" in params_ && params_.registerProfile == 'true') window.location.search = `?id=${getCookie("pf_id")}`
