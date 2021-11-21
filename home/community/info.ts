@@ -424,7 +424,18 @@ document.getElementById("img_prev").addEventListener("click", (e) => {
 window.addEventListener("load", () => {
     setTimeout(() => {  
         let noPosts : any = document.getElementById("noPosts");
-        
+        messaging = firebase.messaging();
+        messaging.getToken(
+            {vapidKey: "BG8u9E9Qe2OZ6PrSATzwzm5YjJU33_mBoBn1z_J2hMA-LmN1VPspuG23VJTdCUKIPH6GF5k4Fj5eMQqrV9jJhvA"}
+        ).then((c) => {
+            if (c) {
+                console.log(`Server token: ${c}`)
+            } else {
+                console.log('No registration token available. Request permission to generate one.');
+            }
+        }).catch((err) => {
+            console.log('An error occurred while retrieving token. ', err);
+        })
         firestore = firebase.firestore();
         firestore.collection("posts").where("region", "==", "AS").onSnapshot((querySnapshot) => {
             document.getElementById("loading_posts").innerHTML = "It's quiet for now. <a class='blue' href='post.html'>Wanna make a noise?</a>"

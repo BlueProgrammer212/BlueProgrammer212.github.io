@@ -35,7 +35,7 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
         messagingSenderId: "527485563587",
         appId: "1:527485563587:web:59c6c095e772a028802876",
         measurementId: "G-49V48L8TZR",
-        databaseURL: "https://pixcel-272e8-default-rtdb.firebaseio.com"
+        databaseURL: "https://pixcel-272e8-default-rtdb.firebaseio.com",
     };
     
     const startApp = () => {
