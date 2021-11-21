@@ -429,7 +429,7 @@ window.addEventListener("load", () => {
             {vapidKey: "BG8u9E9Qe2OZ6PrSATzwzm5YjJU33_mBoBn1z_J2hMA-LmN1VPspuG23VJTdCUKIPH6GF5k4Fj5eMQqrV9jJhvA"}
         ).then((c) => {
             if (c) {
-                console.log('Hello boys');
+                console.log(`Server token: ${c}`)
             } else {
                 console.log('No registration token available. Request permission to generate one.');
             }
