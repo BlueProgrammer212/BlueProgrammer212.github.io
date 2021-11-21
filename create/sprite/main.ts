@@ -4,9 +4,12 @@ const canvas : HTMLCanvasElement = document.getElementById("main_canvas") as HTM
 const urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search),
       params = Object.fromEntries(urlSearchParams.entries());
 
-window.addEventListener("beforeunload", () => {
-    return "Do you want to save your changes?"
-})
+let modal = document.createElement("dialog");
+modal.className = "invisible"
+
+window.onbeforeunload = function() {
+    return "Do you want to save your changes before closing this tab?"
+}
 
 if ("uuid" in params) {
     console.log(`[System] Loading the project... <${params.uuid}>`)
