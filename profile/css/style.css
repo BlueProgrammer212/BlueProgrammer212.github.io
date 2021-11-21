@@ -370,6 +370,16 @@ button.delete_req:active {
   background-color: rgb(220, 0, 0);
 }
 
+div#profileEditBg {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+}
+
 button.delete_req {
   background-color: red;
   font-size: 15px;

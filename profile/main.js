@@ -207,6 +207,9 @@ window.addEventListener("load", () => {
         name = getCookie("pf_name"),
         id = getCookie("pf_id");
         console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
+        document.getElementById("dropdown_ui_options").addEventListener("click", () => {
+            document.getElementById("profileEditBg").className = "";
+        })
         if ("id" in params_) firestore.collection("profiles").doc(params_.id).get().then((a) => {
             if (!a.exists && params_.id === getCookie("pf_id")) {
               alert("We're registering your profile. Please click ok and wait until your browser reloads. This feature is intended for Indev 1.0.0 users.")
