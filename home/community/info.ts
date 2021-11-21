@@ -99,8 +99,8 @@ class FragmentInstance implements Fragment {
     protected setImage(link : string, i, name : string) {
         if (this.pfp_element[i].getAttribute("src") == this.defaultPfp) {
             document.getElementsByClassName("pfp_img_elem")[i].setAttribute("src", link);
-            document.getElementsByClassName("pfp_img_elem")[i].setAttribute("title", name)
-            document.getElementsByClassName("pfp_img_elem")[i].oncontextmenu=function(){return;}
+            document.getElementsByClassName("pfp_img_elem")[i].setAttribute("title", name);
+            document.getElementsByClassName("pfp_img_elem")[i].addEventListener("contextmenu", () => {return;})
         }
     } 
     setMessage(msg : string, i : number): void {
@@ -368,7 +368,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                         for (let t = 0; t < o.length; ++t) e[o[t]][m.toLowerCase()]();
                         let r : string = a_elem_open_original.getAttribute("href");
                         console.log(`[Redirect] Redirecting to ${url_resource}`);
-                        const s : number = 0.1; //0.1*1000 = 1000/10
+                        const s : number = 0.1;
                         setTimeout((l) => window.location.href = l, s*1000, r);  
                     });
 
