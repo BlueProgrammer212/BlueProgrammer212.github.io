@@ -25,10 +25,11 @@
   z-index: 1;
   position: relative;
   display: flex;
-  top: -72px;
-  width: 64px;
+  top: -65px;
+  width: 56px;
   margin-bottom: -60px;
-  height: 64px;
+  height: 56px;
+  left: 4px;
   justify-content: center;
   align-items: center;
 }
