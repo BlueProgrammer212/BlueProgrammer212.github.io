@@ -35,7 +35,7 @@ class CommentManager {
         this.PROFILE_PICTURE_INDEX = 0;
         this.MESSAGE_ELEMENT_INDEX = 1;
     } 
-    add(id, message : string, image) {
+    add(id, message : string, image): void {
         if (message.length > 0) {
             this.clone = document.importNode(this.template_element.content, true).children[0];
             let combox : any = this.clone.children[0];
@@ -46,6 +46,8 @@ class CommentManager {
             document.getElementById(id).children[0].children[11].appendChild(this.clone);
         }
     }
+    deleteComment(id): void {}
+    editComment(id, message : string): void {}
 }
 
 const DATA_ID_ATTRIBUTE : string = "data-id";
@@ -361,13 +363,14 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                     a_elem_open_original.setAttribute("href", url_resource)
 
                     a_elem_open_original.addEventListener("click", (e) => {
-                        let o = ["stopPropagation", "preventDefault"];
-                        for (let t = 0; t < o.length; ++t) e[o[t]]();
+                        const o : string[] = ["stopPropagation", "preventDefault"];
+                        const m : string = "CALL";
+                        for (let t = 0; t < o.length; ++t) e[o[t]][m.toLowerCase()]();
                         let r : string = a_elem_open_original.getAttribute("href");
                         console.log(`[Redirect] Redirecting to ${url_resource}`);
-                        const s : number = 0.5;
+                        const s : number = 0.1; //0.1*1000 = 1000/10
                         setTimeout((l) => window.location.href = l, s*1000, r);  
-                    })
+                    });
 
                     document.getElementById("open_original_a").setAttribute("title", url_resource);
 
