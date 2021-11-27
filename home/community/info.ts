@@ -14,6 +14,18 @@ interface Fragment {
     pfp_element: any
 }
 
+interface String {
+    makeURL: Function;
+}
+
+String.prototype.makeURL = function() {
+     const proto : string[] = ["http://", "https://", "file:///"];
+     for (let k = 0; k < proto.length; ++k) {
+        if ("startsWith" in this && this.startsWith(proto[k])) return this.link(this);
+     }
+    return this;
+}
+
 function blobToBase64(blob) {
     return new Promise((resolve, _) => {
         const reader = new FileReader();
