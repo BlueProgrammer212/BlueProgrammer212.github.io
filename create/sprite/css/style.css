@@ -188,6 +188,7 @@ body {
     transform: translate(-50%, -46%);
     aspect-ratio: 100 / 100;
     z-index: -1;
+    background-image: url(background_canvas.png);
 }
 .column {
   float: left;

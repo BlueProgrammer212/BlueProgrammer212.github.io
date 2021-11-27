@@ -110,7 +110,9 @@ let canvas_size : Position.Render2D = new Pixcel.Vector2i(
     context.canvas.width,
     context.canvas.height
 );
- 
+
+/*Deprecated. Use CSS Instead!
+
 function drawGrid(context) {
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, canvas.width, canvas.height);
@@ -126,12 +128,12 @@ function drawGrid(context) {
         context.stroke();
     }
 }
-
 drawGrid(context)
 
 window.addEventListener("resize", () => {
     drawGrid(context);
 })
+*/
 
 let drawingProgram = new Pixcel.Main();
 drawingProgram.init(context);
