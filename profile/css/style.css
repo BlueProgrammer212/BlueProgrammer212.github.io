@@ -373,19 +373,25 @@ button.delete_req:active {
 background-color: rgb(220, 0, 0);
 }
 
-div#profileEditBg {
-background-color: rgba(0, 0, 0, 0.4);
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-max-width: 100%;
-height: 100%;
-display: flex;
-justify-content: center;
-align-content: center;
-flex-direction: row;
-flex-wrap: wrap;
+textarea#nameMod {
+  border: 3.5px solid black;
+  font-family: 'Pixel';
+  width: 500px;
+  height: 50px;
+  position: relative;
+  font-size: 20px;
+  top: -20px;
+}
+
+div#modalBoxProfileMod {
+  border: 3.5px solid black;
+  background-color: white;
+  width: 700px;
+  height: 700px;
+}
+
+img#pfp_mod_profile {
+  margin: 10px;
 }
 
 button.delete_req {
