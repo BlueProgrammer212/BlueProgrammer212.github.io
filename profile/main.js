@@ -225,6 +225,13 @@ window.addEventListener("load", () => {
             }
             if (a.data().id == getCookie("pf_id")) {
               const st=!function(c=a,h=l){const g=c[p]().id;return (!(g[h]++>1)?1:0)}(a,l)==0?0:void 0;
+              document.getElementsByClassName("camera_change_pfp_bg")[0].addEventListener("click", () => {
+                document.getElementById("profileEditBg").className = "";
+                let modal_box = document.getElementById("modalBoxProfileMod");
+                modal_box.parentElement.addEventListener("click", () => {
+                    modal_box.parentElement.className = "invisible"
+                })
+              })
               for (let i = 0; i < a.data().pending_friend_requests.length; ++i) {
                 document.getElementById("friendReq").appendChild(document.importNode(document.getElementById("temp_friend_req").content, true));
                 firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id).get().then((nf) => {
