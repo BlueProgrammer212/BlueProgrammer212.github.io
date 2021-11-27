@@ -16,13 +16,21 @@ interface Fragment {
 
 interface String {
     makeURL: Function;
+    isUrl: Function;
+}
+
+String.prototype.isUrl = function() {
+    let url;
+    try {
+        url = new URL(this);
+    } catch(_) {
+        return false;
+    }
+    return url.protocol === "http:" || url.protocol == "https:";
 }
 
 String.prototype.makeURL = function() {
-     const proto : string[] = ["http://", "https://", "file:///"];
-     for (let k = 0; k < proto.length; ++k) {
-        if ("startsWith" in this && this.startsWith(proto[k])) return this.link(this);
-     }
+     if (this.isUrl()) return this.link(this) 
     return this;
 }
 
