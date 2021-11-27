@@ -1,250 +1,496 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .camera_change_pfp_bg {
-  background-color: black;
-  z-index: 1001; 
-  position: relative;
-  width: 100px;
-  height: 100px;
+background-color: black;
+z-index: 1001; 
+position: relative;
+width: 100px;
+height: 100px;
 }
 
 ::-webkit-scrollbar {
-  width: 15px;
+width: 15px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: white;
-  box-shadow: inset 0 0 5px black;
-  border-radius: 0px;
+background-color: white;
+box-shadow: inset 0 0 5px black;
+border-radius: 0px;
 }
 
 .camera_change_pfp_bg {
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 1;
-  position: relative;
-  display: flex;
-  top: -65px;
-  width: 56px;
-  margin-bottom: -60px;
-  height: 56px;
-  left: 4px;
-  justify-content: center;
-  align-items: center;
+background-color: rgba(0, 0, 0, 0.3);
+z-index: 1;
+position: relative;
+display: flex;
+top: -65px;
+width: 56px;
+margin-bottom: -60px;
+height: 56px;
+left: 4px;
+justify-content: center;
+align-items: center;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: grey;
-  border: 3.5px solid black;
+background: grey;
+border: 3.5px solid black;
 }
 
 .pfp_img {
-  position: absolute;
-  left: 90%;
-  margin-top: 0.5%;
+position: absolute;
+left: 90%;
+margin-top: 0.5%;
 }
-  
+
 body {
-  margin: 0;
-  overscroll-behavior: none;
-  max-width: 100%;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+margin: 0;
+overscroll-behavior: none;
+max-width: 100%;
+scroll-behavior: smooth;
+overflow-x: hidden;
 }
 
 .sidebar {
-  margin: 0;
-  padding: 0;
-  width: 300px;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-  opacity:1; 
-  transform: translateX(-500px); 
-  transition: opacity 0.7s, transform 0.6s;
-  z-index: 100;
-  border-right: 3.5px solid black;
-  max-height: fit-content;
-  max-width: fit-content;
-  min-height: 200px;
-  min-width: 200px;
+margin: 0;
+padding: 0;
+width: 300px;
+background-color: #f1f1f1;
+position: fixed;
+height: 100%;
+overflow: auto;
+opacity:1; 
+transform: translateX(-500px); 
+transition: opacity 0.7s, transform 0.6s;
+z-index: 100;
+border-right: 3.5px solid black;
+max-height: fit-content;
+max-width: fit-content;
+min-height: 200px;
+min-width: 200px;
 }
 
 
 .sidebar a {
-  display: block;
-  color: black;
-  padding: 16px;
-  text-decoration: none;
+display: block;
+color: black;
+padding: 16px;
+text-decoration: none;
 }
 
 .sidebar a.active {
-  color: white;
+color: white;
 }
 
 .sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
+background-color: #555;
+color: white;
 }
 
 
 .fontBig {
-   font-size: 60px;
+ font-size: 60px;
 }
 
 .invisible {
-  display: none;
+display: none;
 }
 
 textarea#aboutMeEdit {
-  color: black;
-  position: relative;
-  top: -360px;
-  resize: none;
-  font-family: Pixel;
-  border: 3.5px solid black;
-  width: 90%;
-  word-break: break-all;
-  margin-bottom: -250px;
-  height: 25%;
+color: black;
+position: relative;
+top: -360px;
+resize: none;
+font-family: Pixel;
+border: 3.5px solid black;
+width: 90%;
+word-break: break-all;
+margin-bottom: -250px;
+height: 25%;
 }
 
 div#parent_editProfile {
-  height: 75%;
-  margin-bottom: -320px;
+height: 75%;
+margin-bottom: -320px;
 
 }
 
 button#save_desc {
-   color: rgb(255, 255, 255);
-   background-color: #0c9;
-   font-size: 14px;
-   position: relative;
-   font-family: Pixel;
-   padding: 10px;
-  top: -50px;
+ color: rgb(255, 255, 255);
+ background-color: #0c9;
+ font-size: 14px;
+ position: relative;
+ font-family: Pixel;
+ padding: 10px;
+top: -50px;
 }
 
 p#aboutMeSection {
-  color: black;
-  position: relative;
-  top: -190px;
+color: black;
+position: relative;
+top: -190px;
 }
 
 .footer {
-  border-top: 3.5px solid black;
-  padding: 15px;
-  text-align: left;
-  background-color: gray;
-  margin-top: 11%;
-  height: 200%;
+border-top: 3.5px solid black;
+padding: 15px;
+text-align: left;
+background-color: gray;
+margin-top: 11%;
+height: 200%;
 }
 
 @font-face {
-  font-family: Pixel;
-  src: url("../assets/Pixel.ttf");
+font-family: Pixel;
+src: url("../assets/Pixel.ttf");
 }
 
 *:focus {
-  outline: none;
+outline: none;
 }
 
 .header {
-  padding: 10px;
-  text-align: center;
+padding: 10px;
+text-align: center;
 }
 
 .abs {
-  margin: 100px;
-  padding: 10;
+margin: 100px;
+padding: 10;
 }
 
 #img_pfp {
-  width: 56px;
-  height: 56px;
+width: 56px;
+height: 56px;
 }
 #name_pfp {
-  font-size: 20px;
-  color: black;
-  transform: translate(60px, -70px);
+font-size: 20px;
+color: black;
+transform: translate(60px, -70px);
 }
 .section_break {
-  margin-top: -30px;
-  border: 2.4px solid black;
+margin-top: -30px;
+border: 2.4px solid black;
 }
 #AddFriend {
-  background-color: lightgreen;
-  font-family: 'Pixel';
-  color: white;
-  border: none;
-  font-size: 16px;
-  padding: 10px;
-  margin-left: 5px;
-  margin-top: 20px;
+background-color: lightgreen;
+font-family: 'Pixel';
+color: white;
+border: none;
+font-size: 16px;
+padding: 10px;
+margin-left: 5px;
+margin-top: 20px;
 }
 #BlockUser {
-  background-color: lightcoral;
-  font-family: 'Pixel';
-  color: white;
-  border: none;
-  font-size: 16px;
-  padding: 10px;
-  margin-left: 5px;
-  margin-top: 9px;
+background-color: lightcoral;
+font-family: 'Pixel';
+color: white;
+border: none;
+font-size: 16px;
+padding: 10px;
+margin-left: 5px;
+margin-top: 9px;
 }
 #ReportUser {
-  background-color: lightcoral;
-  font-family: 'Pixel';
-  color: white;
-  border: none;
-  font-size: 16px;
-  padding: 10px;
-  margin-left: 5px;
-  margin-top: -105px;
+background-color: lightcoral;
+font-family: 'Pixel';
+color: white;
+border: none;
+font-size: 16px;
+padding: 10px;
+margin-left: 5px;
+margin-top: -105px;
 }
 #date_pfp {
-  color: black;
-  margin-top: -40px;
-  position: relative;
-  margin-left: 65px;
-  top: -25px;
+color: black;
+margin-top: -40px;
+position: relative;
+margin-left: 65px;
+top: -25px;
 }
 
 #aboutMe {
-  color: black;
-  margin-bottom: 200px;
+color: black;
+margin-bottom: 200px;
 }
 
 #profile_container {
-  width: 400px;
-  height: 500px;
-  background-color: white;
-  border: 3.5px solid black;
-  float: left;
+width: 400px;
+height: 500px;
+background-color: white;
+border: 3.5px solid black;
+float: left;
 }
 
 .topnav {
-  overflow: hidden;
-  background-color: #0c9;
-  box-shadow: 1px 0.3px 2px #444444;
-  position: sticky;
-  display: block;
-  margin: 0;
-  padding: 0;
-  left: 0;
-  top: 0;
-  z-index: 100;
+overflow: hidden;
+background-color: #0c9;
+box-shadow: 1px 0.3px 2px #444444;
+position: sticky;
+display: block;
+margin: 0;
+padding: 0;
+left: 0;
+top: 0;
+z-index: 100;
 }
 
 #works {
-  padding: 10px;
-  padding-right: 50px;
-  background-color: rgb(138, 255, 144);
-  border: 3.5px solid black;
+padding: 10px;
+padding-right: 50px;
+background-color: rgb(138, 255, 144);
+border: 3.5px solid black;
 }
 
+#works > button {
+background: none;
+font-family: 'Pixel';
+color: white;
+border-top: none;
+border-right: none;
+border-left: none;
+margin-left: 50px;
+font-size: 16px;
+padding: 10px;
+}
+#works > button.selected {
+border-bottom: 3.5px solid #ff7d7d;
+}
+
+.friend_container_card {
+ padding: 10px;
+ background-color: white;
+ border: 3.5px solid #000000;
+ width: 85%;
+ margin-bottom: 20px;
+}
+.name_tag {
+color:rgba(0, 0, 0, 1);
+}
+.friend_description {
+color:rgba(0, 0, 0, 1);
+}
+
+.pixel.search {
+border: 3.5px solid black;
+display: inline-flex;
+color: #000000;
+background-color: #fff;
+font-size: 14px;
+margin-left: 20px;
+height: 25px;
+width: 500px;
+font-family: Pixel;
+text-shadow: 1px 2px 1px #888;
+}
+
+.link {
+color: blue;
+}
+
+#background-layer {
+position: absolute;
+background-color: rgba(0, 0, 0, 0.4);
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+z-index: -1;
+}
+
+#title_container {
+z-index: 100;
+}
+
+.topnav a {
+float: left;
+display: block;
+color: #f2f2f2;
+text-align: center;
+font-family: Pixel;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 100%;
+}
+
+.topnav a:hover {
+background-color: #0a7;
+color: #f2f2f2;
+}
+.pfp_name {
+  position: absolute;
+  transform: translateX(56px) translateY(-32px);
+}
+
+body {
+background-color: rgba(0, 0, 0, 0.5);
+background-image: url("../assets/bg_icon (4).png");
+background-attachment: fixed;
+}
+
+#main_content {
+background-image: url("../assets/Background.png");
+padding: 15px;
+height: 700px;
+padding-bottom: 200px;
+}
+
+img#dropdown_ui_options {
+float: right;
+position: relative;
+left: -10px;
+top: 10px;
+width: 12px;
+height: 42px;
+}
+
+
+#friendReq {
+border: 3.5px solid black;
+background-color: white;
+padding: 30px;
+overflow-y: auto;
+height: 475px;
+}
+
+button.accept_req:active {
+background-color: #0b7;
+}
+
+button.accept_req {
+background-color: #0c9;
+color: white;
+font-family: 'Pixel';
+border: none;
+padding: 10px;
+font-size: 15px;
+}
+
+button.delete_req:active {
+background-color: rgb(220, 0, 0);
+}
+
+div#profileEditBg {
+background-color: rgba(0, 0, 0, 0.4);
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+max-width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-content: center;
+flex-direction: row;
+flex-wrap: wrap;
+}
+
+button.delete_req {
+background-color: red;
+font-size: 15px;
+padding: 10px;
+border: none;
+font-family: 'Pixel';
+color: white;
+}
+
+.column {
+float: left;
+width: 33.33%;
+padding: 15px;
+}
+
+.red {
+color: red;
+}
+
+.violet {
+color: violet;
+}
+
+#logo_icon {
+transform: translateY(16px);
+}
+
+.green {
+color: green;
+}
+
+.blue {
+color: blue;
+}
+
+.yellow {
+color: yellow;
+}
+
+p, a, span, h1, h2, h3, h4, h5, h6 {
+font-family: Pixel;
+color: white;
+text-shadow: 1px 3px 1px gray;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+font-family: Pixel;
+}
+
+.fontSmall {
+font-size: 15px;
+}
+
+#FAQ {
+color: black;
+padding-bottom: 40px;
+}
+#FAQ > div {
+margin-top: 20;
+}
+
+#FAQ > div > p, #FAQ > div > h2 {
+color: white;
+}
+
+*::selection {
+user-select: none;
+-webkit-user-select: none;
+-moz-user-select: none;
+}
+
+.align-left {
+max-width: 95%;
+margin: 1.25%
+}
+
+.fontMedium {
+font-size: 30px;
+}
+
+@media screen and (max-width:1090px) {
+.column {
+    width: 100%;
+}
+#works {
+  padding: 10px;
+  padding-right: 25%;
+  background-color: rgb(138, 255, 144);
+  border: 3.5px solid black;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#profile_container {
+  width: 75%;
+  height: 500px;
+  background-color: white;
+  border: 3.5px solid black;
+  float: inherit;
+}
 #works > button {
   background: none;
   font-family: 'Pixel';
@@ -252,248 +498,7 @@ p#aboutMeSection {
   border-top: none;
   border-right: none;
   border-left: none;
-  margin-left: 50px;
-  font-size: 16px;
+  font-size: 13px;
   padding: 10px;
 }
-#works > button.selected {
-  border-bottom: 3.5px solid #ff7d7d;
-}
-
-.friend_container_card {
-   padding: 10px;
-   background-color: white;
-   border: 3.5px solid #000000;
-   width: 85%;
-   margin-bottom: 20px;
-}
-.name_tag {
-  color:rgba(0, 0, 0, 1);
-}
-.friend_description {
-  color:rgba(0, 0, 0, 1);
-}
-
-.pixel.search {
-  border: 3.5px solid black;
-  display: inline-flex;
-  color: #000000;
-  background-color: #fff;
-  font-size: 14px;
-  margin-left: 20px;
-  height: 25px;
-  width: 500px;
-  font-family: Pixel;
-  text-shadow: 1px 2px 1px #888;
-}
-
-.link {
-  color: blue;
-}
-
-#background-layer {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.4);
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
-#title_container {
-  z-index: 100;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  font-family: Pixel;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 100%;
-}
-
-.topnav a:hover {
-  background-color: #0a7;
-  color: #f2f2f2;
-}
-.pfp_name {
-    position: absolute;
-    transform: translateX(56px) translateY(-32px);
-}
-
-body {
-  background-color: rgba(0, 0, 0, 0.5);
-  background-image: url("../assets/bg_icon (4).png");
-  background-attachment: fixed;
-}
-
-#main_content {
-  background-image: url("../assets/Background.png");
-  padding: 15px;
-  height: 700px;
-  padding-bottom: 200px;
-}
-
-img#dropdown_ui_options {
-  float: right;
-  position: relative;
-  left: -10px;
-  top: 10px;
-  width: 12px;
-  height: 42px;
-}
-
-
-#friendReq {
-  border: 3.5px solid black;
-  background-color: white;
-  padding: 30px;
-  overflow-y: auto;
-  height: 475px;
-}
-
-button.accept_req:active {
-  background-color: #0b7;
-}
-
-button.accept_req {
-  background-color: #0c9;
-  color: white;
-  font-family: 'Pixel';
-  border: none;
-  padding: 10px;
-  font-size: 15px;
-}
-
-button.delete_req:active {
-  background-color: rgb(220, 0, 0);
-}
-
-div#profileEditBg {
-  background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-}
-
-button.delete_req {
-  background-color: red;
-  font-size: 15px;
-  padding: 10px;
-  border: none;
-  font-family: 'Pixel';
-  color: white;
-}
-
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 15px;
-}
-
-.red {
-  color: red;
-}
-
-.violet {
-  color: violet;
-}
-
-#logo_icon {
-  transform: translateY(16px);
-}
-
-.green {
-  color: green;
-}
-
-.blue {
-  color: blue;
-}
-
-.yellow {
-  color: yellow;
-}
-
-p, a, span, h1, h2, h3, h4, h5, h6 {
-  font-family: Pixel;
-  color: white;
-  text-shadow: 1px 3px 1px gray;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-  font-family: Pixel;
-}
-
-.fontSmall {
-  font-size: 15px;
-}
-
-#FAQ {
-  color: black;
-  padding-bottom: 40px;
-}
-#FAQ > div {
-  margin-top: 20;
-}
-
-#FAQ > div > p, #FAQ > div > h2 {
-  color: white;
-}
-
-*::selection {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-}
-
-.align-left {
-  max-width: 95%;
-  margin: 1.25%
-}
-
-.fontMedium {
-  font-size: 30px;
-}
-
-@media screen and (max-width:1090px) {
-  .column {
-      width: 100%;
-  }
-  #works {
-    padding: 10px;
-    padding-right: 25%;
-    background-color: rgb(138, 255, 144);
-    border: 3.5px solid black;
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  #profile_container {
-    width: 75%;
-    height: 500px;
-    background-color: white;
-    border: 3.5px solid black;
-    float: inherit;
-  }
-  #works > button {
-    background: none;
-    font-family: 'Pixel';
-    color: white;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    font-size: 13px;
-    padding: 10px;
-  }
 }
