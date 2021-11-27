@@ -94,6 +94,10 @@ color: white;
  font-size: 60px;
 }
 
+
+.invisible {
+  display: none;
+}
 div#profileEditBg {
   display: flex;
   background-color: rgba(0, 0, 0, 0.4);
@@ -107,10 +111,6 @@ div#profileEditBg {
   align-content: center;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.invisible {
-display: none;
 }
 
 textarea#aboutMeEdit {
