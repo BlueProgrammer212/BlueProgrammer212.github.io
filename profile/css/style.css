@@ -402,8 +402,8 @@ textarea#nameMod {
 div#modalBoxProfileMod {
   border: 3.5px solid black;
   background-color: white;
-  width: 700px;
-  height: 700px;
+  width: 65%;
+  height: 65%;
 }
 
 img#pfp_mod_profile {
