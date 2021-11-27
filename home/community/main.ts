@@ -2,6 +2,26 @@ declare let firebase : any;
 declare let id_: any;
 declare let image_url_: any;
 
+interface String {
+    makeURL: Function;
+    isUrl: Function;
+}
+
+String.prototype.isUrl = function() {
+    let url;
+    try {
+        url = new URL(this);
+    } catch(_) {
+        return false;
+    }
+    return url.protocol === "http:" || url.protocol == "https:";
+}
+
+String.prototype.makeURL = function() {
+     if (this.isUrl()) return this.link(this) 
+    return this;
+}
+
 const customFileUploadBtn = document.getElementById("customUploadImage"),
       uploadImage = document.getElementById("uploadImage");
 
