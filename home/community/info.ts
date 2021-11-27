@@ -297,6 +297,19 @@ profile_img.addEventListener("click", () => {
     profile_img.className = "blackColorRectBg invisible"
 })
 
+class DatabaseManager {
+    firestore: any;
+    constructor(firestore) {
+        this.firestore = firestore;
+    }
+    edit(collection : string, document : string, property : string, data : any): void {
+        this.firestore.collection(collection).doc(document).update(property, data);
+    }  
+    add(collection : string, document_name : string, data : any): void {
+        this.firestore.collection(collection).doc(document_name).set(data)    
+    }
+} 
+
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
     public set : any;
@@ -467,6 +480,7 @@ window.addEventListener("load", () => {
                 console.log(doc.data()); 
             });
         });
+        let dataManager = new DatabaseManager(firestore);
         messaging = firebase.messaging();
         messaging.getToken(
             {vapidKey: "BG8u9E9Qe2OZ6PrSATzwzm5YjJU33_mBoBn1z_J2hMA-LmN1VPspuG23VJTdCUKIPH6GF5k4Fj5eMQqrV9jJhvA"}

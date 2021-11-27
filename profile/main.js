@@ -209,7 +209,7 @@ window.addEventListener("load", () => {
         console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
         document.getElementById("dropdown_ui_options").addEventListener("click", (e) => {
             document.getElementById("profileEditBg").className = "";
-            const o = ["stopPropagation", "preventDefault"];for (let m=0;m<o.length;++m) e[o[m]]();
+            //const o = ["stopPropagation", "preventDefault"];for (let m=0;m<o.length;++m) e[o[m]]();
         })
         if ("id" in params_) firestore.collection("profiles").doc(params_.id).get().then((a) => {
             if (!a.exists && params_.id === getCookie("pf_id")) {
