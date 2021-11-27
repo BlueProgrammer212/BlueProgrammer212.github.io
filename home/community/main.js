@@ -144,6 +144,8 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
       return string;
   }
 
+  
+
   window.addEventListener("load", () => {
       setTimeout(() => {
         if (auth2.isSignedIn.get()) {
