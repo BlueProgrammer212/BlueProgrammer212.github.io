@@ -343,6 +343,8 @@ img#dropdown_ui_options {
   position: relative;
   left: -10px;
   top: 10px;
+  width: 12px;
+  height: 42px;
 }
 
 
