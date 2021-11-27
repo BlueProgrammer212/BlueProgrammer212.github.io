@@ -17,7 +17,14 @@ if ("uuid" in params) {
     console.log(`[System] Creating new project... <>`)
 }
 
-let PIXEL_SIZE : number = 8;
+let PIXEL_SIZE : number = 16;
+
+if ("scale" in params) {
+    const a : string[] = ["width", "height"];
+    for (let j = 0; j < a.length; ++j) {
+        canvas.setAttribute(a[j], params.scale);
+    }
+}
 
 namespace Position {
     export interface Render2D {
