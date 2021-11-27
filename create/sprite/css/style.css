@@ -189,6 +189,7 @@ body {
     aspect-ratio: 100 / 100;
     z-index: -1;
     background-image: url(../assets/background_canvas.png);
+    background-position: fixed;
 }
 .column {
   float: left;
