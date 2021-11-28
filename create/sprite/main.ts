@@ -92,7 +92,7 @@ function redraw(){
     })
 
     canvas.addEventListener('mousemove',function(evt){
-        if (Tool.item.selected == "move") {
+        if (Tool.item.selected == "move" && onMouseDownPencilMode) {
             lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
             lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
             dragged = true;
@@ -103,7 +103,7 @@ function redraw(){
             }
         } else if (Tool.item.selected === "pencil" && onMouseDownPencilMode) {
             var pt = ctx.transformedPoint(lastX,lastY);
-            drawPixel(ctx, evt.x * pt.x, evt.y * pt.y, 16);
+            drawPixel(ctx, evt.clientX, evt.clientY, 16);
         }
     },false);
 
