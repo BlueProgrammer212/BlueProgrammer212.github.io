@@ -182,12 +182,10 @@ function trackTransforms(ctx){
 
     var setTransform = ctx.setTransform;
     ctx.setTransform = function(a,b,c,d,e,f){
-        xform.a = a;
-        xform.b = b;
-        xform.c = c;
-        xform.d = d;
-        xform.e = e;
-        xform.f = f;
+        const xform_prop : string[] = ["a","b","c","d","e","f"];
+        for (let xformi=0;xformi<xform_prop.length;++xformi) {
+            if (arguments[xformi]!==void 0) xform[xform_prop[xformi]]==arguments[xformi];
+        }
         return setTransform.call(ctx,a,b,c,d,e,f);
     };
 
