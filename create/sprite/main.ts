@@ -53,9 +53,11 @@ function redraw(){
 
     let Tool = new Tools("pencil");
     let onMouseDownPencilMode : boolean = false;
+    let DEFAULT_COLOR = "#ff0000"
 
     function drawPixel(context, x : number, y : number, pixel_size = 16): void {
-        context.fillStyle = "red";
+        //Default color: Red
+        context.fillStyle = DEFAULT_COLOR;
         let offsetX : number = x - context.canvas.getBoundingClientRect().left;
         let offsetY : number = y - context.canvas.getBoundingClientRect().top;
         let deltaX : number = Math.floor(offsetX / pixel_size);
