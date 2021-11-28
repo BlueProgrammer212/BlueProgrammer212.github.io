@@ -335,7 +335,9 @@ window.addEventListener("load", () => {
                               hr.setRequestHeader('Authorization','key=AAAAetCW8sM:APA91bHrdCQy4pRXv6JSvI2VS3SGnS09fFT_91DISOXGI0LQ6d4Cd9nuHPXiAOucBAqz2xUNpUznlL_MTDrzLrSYQEvs0fYYV3tGza1cFDZ7DANW-4gjnpKIsJ85UwJklS0JEnMx5DJ8');      
                               
                               let data = JSON.stringify({"notification": {"body": 
-                              `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel"},
+                              `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel",
+                              "click_action": `https://blueprogrammer212.github.io/profile?id=${info.data().id}`,
+                               "icon": "https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/logo_icon.png?alt=media&token=2e685f22-a5a9-4a1a-b4c5-a2cd91641b09"},
                                 "to": info.data().notification_token, "priority": "high"})
 
                               hr.onreadystatechange = function() { 
