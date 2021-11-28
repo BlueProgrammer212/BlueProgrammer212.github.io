@@ -243,7 +243,7 @@ window.addEventListener("load", () => {
                 let save_btn = document.getElementById("update_btn");
                 save_btn.addEventListener("click", (e) => {
                    let value_name = document.getElementById("nameMod").value;
-                   firestore.collection("profile").doc(getCookie("pf_id")).update({name: value_name});
+                   firestore.collection("profiles").doc(getCookie("pf_id")).update({name: value_name});
                 })
                 modal_box.addEventListener("click", (e) => PD(e));
                 modal_box.parentElement.addEventListener("click", () => {
