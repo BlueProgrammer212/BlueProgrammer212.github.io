@@ -18,15 +18,6 @@ var ctx : CanvasRenderingContext2D = canvas.getContext('2d');
 let pixels = [];
         
 function redraw(){
-
-    var p1 = ctx.transformedPoint(0,0);
-    var p2 = ctx.transformedPoint(canvas.width,canvas.height);
-    ctx.clearRect(p1.x,p1.y,p2.x-p1.x,p2.y-p1.y);
-
-    ctx.save();
-    ctx.setTransform(1,0,0,1,0,0);
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.restore();
     for (let i = 0; i < pixels.length; ++i) {
         ctx.fillStyle = pixels[i].color;
         ctx.fillRect(pixels[i].pos.x, pixels[i].pos.y, pixels[i].scale.x, pixels[i].scale.y);
