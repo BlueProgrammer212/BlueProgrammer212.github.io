@@ -48,7 +48,7 @@ function redraw(){
         let offsetY : number = y - context.canvas.getBoundingClientRect().top;
         let deltaX : number = Math.floor(offsetX / pixel_size);
         let deltaY : number = Math.floor(offsetY / pixel_size);
-        context.fillRect(x * pixel_size, y * pixel_size, pixel_size, pixel_size)
+        context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
     }
 
     canvas.addEventListener('mousedown',function(evt){
