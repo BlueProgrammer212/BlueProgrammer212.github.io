@@ -168,6 +168,7 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   background-image: url("https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/download%20(11).png?alt=media&token=43642a8b-3a0f-465c-b5fe-65b22f3c11b8");
   background-attachment: fixed;
+  background-size: 75%;
 }
 
 #main_content {
