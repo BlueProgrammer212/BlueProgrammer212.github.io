@@ -406,7 +406,7 @@ div#modalBoxProfileMod {
   height: 65%;
 }
 
-#background-layer {
+#background_canvas {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.4);
   width: 100%;
