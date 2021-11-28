@@ -12,6 +12,8 @@ window.onload = function(){
 
 var ctx : CanvasRenderingContext2D = canvas.getContext('2d');
 trackTransforms(ctx);
+
+let pixels = [];
         
 function redraw(){
 
@@ -23,7 +25,10 @@ function redraw(){
     ctx.setTransform(1,0,0,1,0,0);
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.restore();
-
+    for (let i = 0; i < pixels.length; ++i) {
+        ctx.fillStyle = pixels[i].color;
+        ctx.fillRect(pixels[i].pos.x, pixels[i].pos.y, pixels[i].scale.x, pixels[i].scale.y);
+    }
 }
     redraw();
 
@@ -49,6 +54,7 @@ function redraw(){
         let deltaX : number = Math.floor(offsetX / pixel_size);
         let deltaY : number = Math.floor(offsetY / pixel_size);
         context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
+        pixels = [...pixels, {pos: {x: deltaX * pixel_size, y: deltaY * pixel_size}, scale: {x: pixel_size, y: pixel_size}}]
     }
 
     canvas.addEventListener('mousedown',function(evt){
