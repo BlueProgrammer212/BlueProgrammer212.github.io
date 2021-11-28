@@ -198,6 +198,11 @@ function loadInformation() {
   });
 }
 
+function PD(e) {
+    const o = ["stopPropagation", "preventDefault"];
+    for (let io=0;io<o.length;++io) if(o[io]!==void 0) e[o[io]]();
+}
+
 window.addEventListener("load", () => {
     setTimeout(async () => { 
       firebase.initializeApp(firebaseConfig);
@@ -211,27 +216,38 @@ window.addEventListener("load", () => {
             document.getElementById("profileEditBg").className = "";
             const o = ["stopPropagation", "preventDefault"];for (let m=0;m<o.length;++m) e[o[m]]();
         })
+
         if ("id" in params_) firestore.collection("profiles").doc(params_.id).get().then((a) => {
             if (!a.exists && params_.id === getCookie("pf_id")) {
               firestore.collection("profiles").doc(params_.id).set({id: getCookie("pf_id"), name: getCookie("pf_name"), image_url: getCookie("pfp_url"), description: null, pending_friend_requests: [], friends: []}).then(() => {
                  window.location.reload(); 
               })
             }
+
             if ("registerProfile" in params_ && params_.registerProfile == 'true') window.location.search = `?id=${getCookie("pf_id")}`
             if ("data" in a) document.getElementById("name_pfp")["innerHTML"] = a["data"]().name;
+
             document.getElementById("date_pfp").innerHTML = `Joined on ${a.data().date_joined}`; let p="data",l="length";
+
             if (a.data().id != getCookie("pf_id")) {
                document.getElementsByClassName("camera_change_pfp_bg")[0].className += " invisible"
             }
+
             if (a.data().id == getCookie("pf_id")) {
               const st=!function(c=a,h=l){const g=c[p]().id;return (!(g[h]++>1)?1:0)}(a,l)==0?0:void 0;
+
               document.getElementsByClassName("camera_change_pfp_bg")[0].addEventListener("click", () => {
                 document.getElementById("lth").className = "profileEditBg";
                 let modal_box = document.getElementById("modalBoxProfileMod");
+                document.getElementById("pfp_mod_profile").src = a.data().image_url; 
+                modal_box.addEventListener("click", (e) => PD(e));
                 modal_box.parentElement.addEventListener("click", () => {
                     modal_box.parentElement.className = "invisible"
                 })
               })
+
+              document.getElementById("lth").addEventListener("click", (e) => PD(e));
+
               for (let i = 0; i < a.data().pending_friend_requests.length; ++i) {
                 document.getElementById("friendReq").appendChild(document.importNode(document.getElementById("temp_friend_req").content, true));
                 firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id).get().then((nf) => {
