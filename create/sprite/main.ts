@@ -103,7 +103,7 @@ function redraw(){
             }
         } else if (Tool.item.selected === "pencil" && onMouseDownPencilMode) {
             var pt = ctx.transformedPoint(lastX,lastY);
-            drawPixel(ctx, evt.clientX - pt.x, evt.clientY - pt.y, 16);
+            drawPixel(ctx, evt.x * pt.x, evt.y * pt.y, 16);
         }
     },false);
 
