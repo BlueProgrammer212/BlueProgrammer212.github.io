@@ -67,16 +67,13 @@ function redraw(){
     }
 
     canvas.addEventListener('mousedown',function(evt){
+          lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
+          lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
+          dragStart = ctx.transformedPoint(lastX,lastY);
           if (Tool.item.selected == "move") {
-                lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
-                lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
-                dragStart = ctx.transformedPoint(lastX,lastY);
                 dragged = false;
           } else if (Tool.item.selected === "pencil") {
-            lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
-            lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
-            dragStart = ctx.transformedPoint(lastX,lastY);
-             onMouseDownPencilMode = true;
+                onMouseDownPencilMode = true;
           } 
     },false);
    
@@ -99,9 +96,10 @@ function redraw(){
     })
 
     canvas.addEventListener('mousemove',function(evt){
+        lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
+        lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
+        dragStart = ctx.transformedPoint(lastX,lastY);
         if (Tool.item.selected == "move" && onMouseDownPencilMode) {
-            lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
-            lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
             dragged = true;
             if (dragStart){
                 var pt = ctx.transformedPoint(lastX,lastY);
@@ -110,9 +108,6 @@ function redraw(){
             }
         } else if (Tool.item.selected === "pencil" && onMouseDownPencilMode) {
             drawPixel(ctx, evt.clientX * factor, evt.clientY * factor, 16);
-            lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
-            lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
-            dragStart = ctx.transformedPoint(lastX,lastY);
         }
     },false);
 
