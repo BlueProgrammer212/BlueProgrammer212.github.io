@@ -2,6 +2,8 @@ var canvas = document.getElementsByTagName('canvas')[0];
 canvas.width = 800;
 canvas.height = 600;
 
+let factor : number = 1, pt;
+
 interface CanvasRenderingContext2D {
     transformedPoint: Function;
     translate: Function;
@@ -102,8 +104,7 @@ function redraw(){
                 redraw();
             }
         } else if (Tool.item.selected === "pencil" && onMouseDownPencilMode) {
-            var pt = ctx.transformedPoint(lastX,lastY);
-            drawPixel(ctx, evt.clientX, evt.clientY, 16);
+            drawPixel(ctx, evt.clientX * factor, evt.clientY * factor, 16);
         }
     },false);
 
@@ -114,9 +115,9 @@ function redraw(){
     var scaleFactor = 1.1;
 
     var zoom = function(clicks){
-        var pt = ctx.transformedPoint(lastX,lastY);
+        pt = ctx.transformedPoint(lastX,lastY);
         ctx.translate(pt.x,pt.y);
-        var factor = Math.pow(scaleFactor,clicks);
+        factor = Math.pow(scaleFactor,clicks);
         ctx.scale(factor,factor);
         ctx.translate(-pt.x,-pt.y);
         redraw();
