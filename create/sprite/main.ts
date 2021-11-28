@@ -115,7 +115,7 @@ function redraw(){
         onMouseDownPencilMode = false;
     },false);
 
-    var scaleFactor = 1.1;
+    var scaleFactor = 0.8;
 
     var zoom = function(clicks){
         pt = ctx.transformedPoint(lastX,lastY);
