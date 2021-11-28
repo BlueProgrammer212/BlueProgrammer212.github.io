@@ -4,6 +4,7 @@ canvas.height = 600;
 
 interface CanvasRenderingContext2D {
     transformedPoint: Function;
+    translate: Function;
 }
 
 var gkhead = new Image;
@@ -42,6 +43,10 @@ function redraw(){
           this.item = {};
           this.item.selected = name;
       }
+      public setTool(name : string): string {
+         this.item.selected = name;
+         return this.item.selected;
+      }
     }
 
     let Tool = new Tools("pencil");
@@ -67,6 +72,15 @@ function redraw(){
              onMouseDownPencilMode = true;
           } 
     },false);
+   
+    document.addEventListener("keydown", (e) => {
+        this.e = e;
+        this.e.preventDefault();
+        this.e.stopPropagation();
+        if (this.e.key == "Control") {
+            Tool.item.selected = "move";
+        }
+    })
 
     canvas.addEventListener('mousemove',function(evt){
         if (Tool.item.selected == "move") {
