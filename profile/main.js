@@ -240,7 +240,7 @@ window.addEventListener("load", () => {
                 document.getElementById("lth").className = "profileEditBg";
                 let modal_box = document.getElementById("modalBoxProfileMod");
                 document.getElementById("pfp_mod_profile").src = a.data().image_url; 
-                let save_btn = document.getElementById("update_btn");
+                let save_btn = document.getElementById("save_information");
                 save_btn.addEventListener("click", (e) => {
                    let value_name = document.getElementById("nameMod").value;
                    firestore.collection("profiles").doc(getCookie("pf_id")).update({name: value_name});
