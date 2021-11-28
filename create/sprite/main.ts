@@ -78,7 +78,16 @@ function redraw(){
         this.e.preventDefault();
         this.e.stopPropagation();
         if (this.e.key == "Control") {
-            Tool.item.selected = "move";
+            Tool.setTool("move");
+        }
+    })
+
+    document.addEventListener("keyup", (e) => { 
+        this.e = e;
+        this.e.preventDefault();
+        this.e.stopPropagation();
+        if (this.e.key == "Control") {
+            Tool.setTool("pencil");
         }
     })
 
