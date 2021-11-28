@@ -71,6 +71,9 @@ function redraw(){
                 dragStart = ctx.transformedPoint(lastX,lastY);
                 dragged = false;
           } else if (Tool.item.selected === "pencil") {
+            lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
+            lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
+            dragStart = ctx.transformedPoint(lastX,lastY);
              onMouseDownPencilMode = true;
           } 
     },false);
@@ -105,6 +108,9 @@ function redraw(){
             }
         } else if (Tool.item.selected === "pencil" && onMouseDownPencilMode) {
             drawPixel(ctx, evt.clientX * factor, evt.clientY * factor, 16);
+            lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
+            lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
+            dragStart = ctx.transformedPoint(lastX,lastY);
         }
     },false);
 
