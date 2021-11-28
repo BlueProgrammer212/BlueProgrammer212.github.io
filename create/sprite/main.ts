@@ -72,14 +72,13 @@ function redraw(){
                 ctx.translate(pt.x-dragStart.x,pt.y-dragStart.y);
                 redraw();
             }
-        } else if (Tool.item.selected === "pencil") {
+        } else if (Tool.item.selected === "pencil" && onMouseDownPencilMode) {
             drawPixel(ctx, evt.clientX, evt.clientY, 16);
         }
     },false);
 
     canvas.addEventListener('mouseup',function(evt){
-        dragStart = null;
-        if (!dragged) zoom(evt.shiftKey ? -1 : 1 );
+        onMouseDownPencilMode = false;
     },false);
 
     var scaleFactor = 1.1;
