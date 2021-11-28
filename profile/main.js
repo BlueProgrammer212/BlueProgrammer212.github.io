@@ -326,6 +326,31 @@ window.addEventListener("load", () => {
                  } else {
                    document.getElementById(b).addEventListener("click", async () => {
                       if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
+                          if (info.data().notification_token !== void 0) {
+                              var hr = new XMLHttpRequest();
+                              const url = "https://fcm.googleapis.com/fcm/send";
+
+                              hr.open("POST", url, true);
+                              hr.setRequestHeader('Content-Type','application/json');
+                              hr.setRequestHeader('Authorization','key=AAAAetCW8sM:APA91bHrdCQy4pRXv6JSvI2VS3SGnS09fFT_91DISOXGI0LQ6d4Cd9nuHPXiAOucBAqz2xUNpUznlL_MTDrzLrSYQEvs0fYYV3tGza1cFDZ7DANW-4gjnpKIsJ85UwJklS0JEnMx5DJ8');      
+                              
+                              let data = JSON.stringify({"notification": {"body": 
+                              `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel"},
+                                "to": info.data().notification_token, "priority": "high"})
+
+                              hr.onreadystatechange = function() { 
+                                  if (hr.readyState == 4) {
+                                    if (hr.status == 200) {
+                                        resp=JSON.parse(hr.responseText);
+                                        console.log('Response Sent with params '+ data );
+                                    } else {
+                                        console.log('Something went wrong '+ hr.responseText);
+                                    }
+                                  }
+                              };     
+                              hr.send(data);
+                          }     
+
                           firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
                               "profile_id": getCookie("pf_id")
                           })}).then(() => document.getElementById(b).innerHTML = "Cancel Friend Request");
