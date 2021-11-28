@@ -107,7 +107,7 @@ function redraw(){
                 redraw();
             }
         } else if (Tool.item.selected === "pencil" && onMouseDownPencilMode) {
-            drawPixel(ctx, evt.clientX * factor, evt.clientY * factor, 16);
+            drawPixel(ctx, evt.clientX, evt.clientY, 16 * factor);
         }
     },false);
 
