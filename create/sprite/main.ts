@@ -20,6 +20,7 @@ let pixels = [];
 function redraw(){
     for (let i = 0; i < pixels.length; ++i) {
         ctx.fillStyle = pixels[i].color;
+        if (pixels[i] === void 0) break;
         ctx.fillRect(pixels[i].pos.x, pixels[i].pos.y, pixels[i].scale.x, pixels[i].scale.y);
     }
 }
@@ -57,9 +58,6 @@ function redraw(){
     }
 
     canvas.addEventListener('mousedown',function(evt){
-          lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
-          lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
-          dragStart = ctx.transformedPoint(lastX,lastY);
           if (Tool.item.selected == "move") {
                 dragged = false;
           } else if (Tool.item.selected === "pencil") {
@@ -86,17 +84,7 @@ function redraw(){
     })
 
     canvas.addEventListener('mousemove',function(evt){
-        lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
-        lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
-        dragStart = ctx.transformedPoint(lastX,lastY);
-        if (Tool.item.selected == "move" && onMouseDownPencilMode) {
-            dragged = true;
-            if (dragStart){
-                var pt = ctx.transformedPoint(lastX,lastY);
-                ctx.translate(pt.x-dragStart.x,pt.y-dragStart.y);
-                redraw();
-            }
-        } else if (Tool.item.selected === "pencil" && onMouseDownPencilMode) {
+       if (Tool.item.selected === "pencil" && onMouseDownPencilMode) {
             drawPixel(ctx, evt.clientX, evt.clientY, 16 * factor);
         }
     },false);
