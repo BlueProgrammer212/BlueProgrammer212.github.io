@@ -172,7 +172,7 @@ let image_url_;
           firestore = firebase.firestore();
           let pfp_elem = document.getElementsByClassName("pfp_img")[0];
           firestore.collection("profiles").doc(getCookie("pf_id")).get().then(pfp_info => {
-            pfp_.setAttribute("src", pfp_info.data().image_url);
+            pfp_elem.setAttribute("src", pfp_info.data().image_url);
           }).catch(e => console.error(`Something unexpected occured. ${e}`));
         } else {
             window.location.href = "https://blueprogrammer212.github.io/home/comments";
