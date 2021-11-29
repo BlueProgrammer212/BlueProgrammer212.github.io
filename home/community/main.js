@@ -67,7 +67,9 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
 
         let pfp_elem = document.getElementsByClassName("pfp_img")[0];
 
-        pfp_elem.setAttribute("src", image_url)
+        firestore.collection("profiles").doc(getCookie("pf_id")).get().then(pfp_info => {
+          pfp_elem.setAttribute("src", pfp_info.data().image_url);
+        }).catch(e => console.error(`Something unexpected occured. ${e}`));
 
         console.log('ID: ' + id);
         console.log('Name: ' + name);
