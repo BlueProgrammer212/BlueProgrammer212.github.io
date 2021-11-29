@@ -213,6 +213,14 @@ function PD(e) {
   for (let io=0;io<o.length;++io) if(o[io]!==void 0) e[o[io]]();
 }
 
+function generateName(len = 10, char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890") {
+  let string = "";
+  for (i = 1; i < len; ++i) {
+     string += char[Math.round(Math.random() * len) + 1];
+  }
+  return string;
+}
+
 window.addEventListener("load", () => {
   setTimeout(async () => { 
     firebase.initializeApp(firebaseConfig);
@@ -338,17 +346,14 @@ window.addEventListener("load", () => {
                        if (info.data().notification_token !== void 0) {
                          var hr = new XMLHttpRequest();
                          const url = "https://fcm.googleapis.com/fcm/send";
-                         
                          hr.open("POST", url, true);
                          hr.setRequestHeader('Content-Type','application/json');
                          hr.setRequestHeader('Authorization','key=AAAAetCW8sM:APA91bHrdCQy4pRXv6JSvI2VS3SGnS09fFT_91DISOXGI0LQ6d4Cd9nuHPXiAOucBAqz2xUNpUznlL_MTDrzLrSYQEvs0fYYV3tGza1cFDZ7DANW-4gjnpKIsJ85UwJklS0JEnMx5DJ8');      
-                         
-                         let data = JSON.stringify({"notification": {"body": 
-                         `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel",
+                      
+                         let data = JSON.stringify({"notification": {"body": `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel",
                          "click_action": `https://blueprogrammer212.github.io/profile?id=${info.data().id}`,
                          "icon": "https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/logo_icon.png?alt=media&token=2e685f22-a5a9-4a1a-b4c5-a2cd91641b09"},
                          "to": info.data().notification_token, "priority": "high"})
-                         
                          hr.onreadystatechange = function() { 
                            if (hr.readyState == 4) {
                              if (hr.status == 200) {
@@ -360,11 +365,10 @@ window.addEventListener("load", () => {
                             }
                           };     
                           hr.send(data);
-                                }     
-                                
-                          firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
-                            "profile_id": getCookie("pf_id")
-                          })}).then(() => document.getElementById(b).innerHTML = "Cancel Friend Request");
+                        }          
+                        firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
+                          "profile_id": getCookie("pf_id")
+                        })}).then(() => document.getElementById(b).innerHTML = "Cancel Friend Request");
                         } else {
                           firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayRemove({
                           "profile_id": getCookie("pf_id")
@@ -384,6 +388,25 @@ window.addEventListener("load", () => {
         firestore.collection("profiles").doc(getCookie("pf_id")).get().then(pfp_info => {
             pfp_img_elem.setAttribute("src", pfp_info.data().image_url);
         }).catch(e => console.error(`Something unexpected occured. ${e}`));
+        document.getElementById("change_pfp").addEventListener("click", () => {
+           document.getElementById("uploadProfile").click();
+        })
+        document.getElementById("uploadProfile").addEventListener("change", (evt) => {
+          let generatedFileName = generateName();
+          let storageRef = firebase.storage().ref(`profile_picture/${generatedFileName}.png`)
+          let imageUpload = evt.target.files[0];
+          let uploadTask = storageRef.put(imageUpload);
+          uploadTask.then((snapshot) => { 
+            console.log("Succesfully uploaded image: ", snapshot);
+            let img_link = `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/profile_picture%2F${generatedFileName}.png?alt=media`
+            firestore.collection("profiles").doc(currentId).update({image_url: img_link}).then(ab => {
+              pfp_img_elem.setAttribute("src", img_link);
+              console.log(`Successfully changed your profile picture. Image link: ${img_link}`)
+            })
+          }).catch((err) => {
+              console.error(`Failed to upload image to cloud: ${JSON.stringify(err)}`);
+          })
+        })
         pfp_img_elem.addEventListener("click", () => {
           window.location.href = `?id=${getCookie("pf_id")}`;
         })

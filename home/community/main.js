@@ -137,7 +137,7 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
   }
 
   function generateName(len = 10, char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890") {
-      let string;
+      let string = "";
       for (i = 1; i < len; ++i) {
          string += char[Math.round(Math.random() * len) + 1];
       }
