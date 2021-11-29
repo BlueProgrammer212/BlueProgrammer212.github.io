@@ -415,9 +415,7 @@ window.addEventListener("load", () => {
         firestore.collection("profiles").doc(getCookie("pf_id")).get().then(pfp_info => {
             pfp_img_elem.setAttribute("src", pfp_info.data().image_url);
         }).catch(e => console.error(`Something unexpected occured. ${e}`));
-        document.getElementById("change_pfp").addEventListener("click", () => {
-           document.getElementById("uploadProfile").click();
-        })
+        document.getElementById("change_pfp").addEventListener("click", e => document.getElementById("uploadProfile").click())
         document.getElementById("uploadProfile").addEventListener("change", (evt) => {
           let generatedFileName = generateName();
           let storageRef = firebase.storage().ref(`profile_picture/${generatedFileName}.png`)
@@ -428,6 +426,8 @@ window.addEventListener("load", () => {
             let img_link = `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/profile_picture%2F${generatedFileName}.png?alt=media`
             firestore.collection("profiles").doc(currentId).update({image_url: img_link}).then(ab => {
               pfp_img_elem.setAttribute("src", img_link);
+              document.getElementById("img_pfp").setAttribute("src", img_link);
+              document.getElementById("pfp_mod_profile").src = img_link;
               console.log(`Successfully changed your profile picture. Image link: ${img_link}`)
             })
           }).catch((err) => {
@@ -449,4 +449,3 @@ window.addEventListener("load", () => {
     }, 2000)
     console.log(`Loading client content... ${document.body}`)
 })
-console.log("%cWanna be a developer?", "font-size: 15px;")

@@ -19,21 +19,28 @@ interface String {
     isUrl: Function;
 }
 
-
-class NotificationManager {
+interface NotificationBody {
     message: string;
     xhr: XMLHttpRequest;
     url: string;
-    constructor() {
+}
+
+class NotificationManager implements NotificationBody {
+    message: string;
+    xhr: XMLHttpRequest;
+    url: string;
+    protected readonly serverToken : string;
+    constructor(serverToken : string) {
       this.message = "";
       this.xhr = new XMLHttpRequest();
       this.url = "https://fcm.googleapis.com/fcm/send";
+      this.serverToken = serverToken;
     }
-    send(message, title, token, link, icon) {
+    send(message : string, title : string, token : string, link : string, icon : string): void {
         this.message = message;
         this.xhr.open("POST", this.url, true);
         this.xhr.setRequestHeader('Content-Type','application/json');
-        this.xhr.setRequestHeader('Authorization','key=AAAAetCW8sM:APA91bHrdCQy4pRXv6JSvI2VS3SGnS09fFT_91DISOXGI0LQ6d4Cd9nuHPXiAOucBAqz2xUNpUznlL_MTDrzLrSYQEvs0fYYV3tGza1cFDZ7DANW-4gjnpKIsJ85UwJklS0JEnMx5DJ8');      
+        this.xhr.setRequestHeader('Authorization',`key=${this.serverToken}`);      
     
         let data = JSON.stringify({"notification": {"body": message,"title": title,
         "click_action": link, "icon": icon}, "to": token, "priority": "high"})
@@ -399,10 +406,8 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 console.log("%c[System]" + "%c Loading resource image... 100%", "color: violet;", "color: white;");
             })
             console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
-
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 if (history.pushState) {
-
                     var newurl = `https://blueprogrammer212.github.io/home/community/?p=${data.filename}&r=AS`;
                     window.history.pushState({path:newurl},'',newurl);
 
@@ -426,9 +431,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                         const s : number = 0.1;
                         setTimeout((l) => window.location.href = l, s*1000, r);  
                     });
-
                     document.getElementById("open_original_a").setAttribute("title", url_resource);
-
                 }
             });
             if ("r" in params && params.r == "AS" && "p" in params) {
