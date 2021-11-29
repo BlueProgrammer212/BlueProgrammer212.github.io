@@ -154,10 +154,10 @@ function getCookie(cname) {
 const currentId = getCookie("pf_id");
 setInterval(() => {
   if (getCookie("pf_id")!==currentId) {
-    alert("You are currently blocked from the server for security reasons. (Reason: Cookie modification via XSS)");
+    alert("You are currently blocked from the server for security reasons. (Reason: Unverified profile ID modification via XSS)");
     console.log("[System] Setting your ID to your previous profile ID."); 
     setCookie("pf_id", currentId);
-    setTimeout(window.location.reload, 100);
+    firestore.collection("profiles").doc(currentId).update({banned: true}).then(() => window.location.reload())
   };
 }, 4000); 
 
