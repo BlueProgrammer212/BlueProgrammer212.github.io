@@ -19,6 +19,35 @@ if ("getElementsByTagName" in document) {
       }
   }
 }
+
+class NotificationManager {
+  constructor() {
+    this.message = "";
+    this.xhr = new XMLHttpRequest();
+    this.url = "https://fcm.googleapis.com/fcm/send";
+  }
+  send(message, title, token, link, icon) {
+      this.message = message;
+      this.xhr.open("POST", this.url, true);
+      this.xhr.setRequestHeader('Content-Type','application/json');
+      this.xhr.setRequestHeader('Authorization','key=AAAAetCW8sM:APA91bHrdCQy4pRXv6JSvI2VS3SGnS09fFT_91DISOXGI0LQ6d4Cd9nuHPXiAOucBAqz2xUNpUznlL_MTDrzLrSYQEvs0fYYV3tGza1cFDZ7DANW-4gjnpKIsJ85UwJklS0JEnMx5DJ8');      
+  
+      let data = JSON.stringify({"notification": {"body": message,"title": title,
+      "click_action": link, "icon": icon}, "to": token, "priority": "high"})
+       this.xhr.onreadystatechange = function() { 
+        if (this.xhr.readyState == 4) {
+           if (this.xhr.status == 200) {
+             resp=JSON.parse(this.xhr.responseText);
+             console.log('Response Sent with params '+ data );
+           } else {
+             console.log('Something went wrong '+ this.xhr.responseText);
+           }
+         }
+       };     
+       this.xhr.send(data);
+  }
+}
+
 const firebaseConfig = {
   apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
   authDomain: "pixcel-272e8.firebaseapp.com",

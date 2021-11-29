@@ -19,6 +19,28 @@ interface String {
     isUrl: Function;
 }
 
+
+class NotificationManager {
+    message: string;
+    xhr: XMLHttpRequest;
+    url: string;
+    constructor() {
+      this.message = "";
+      this.xhr = new XMLHttpRequest();
+      this.url = "https://fcm.googleapis.com/fcm/send";
+    }
+    send(message, title, token, link, icon) {
+        this.message = message;
+        this.xhr.open("POST", this.url, true);
+        this.xhr.setRequestHeader('Content-Type','application/json');
+        this.xhr.setRequestHeader('Authorization','key=AAAAetCW8sM:APA91bHrdCQy4pRXv6JSvI2VS3SGnS09fFT_91DISOXGI0LQ6d4Cd9nuHPXiAOucBAqz2xUNpUznlL_MTDrzLrSYQEvs0fYYV3tGza1cFDZ7DANW-4gjnpKIsJ85UwJklS0JEnMx5DJ8');      
+    
+        let data = JSON.stringify({"notification": {"body": message,"title": title,
+        "click_action": link, "icon": icon}, "to": token, "priority": "high"})
+         this.xhr.send(data);
+    }
+}
+
 String.prototype.isUrl = function() {
     let url;
     try {
