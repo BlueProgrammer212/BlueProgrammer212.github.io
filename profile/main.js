@@ -153,7 +153,7 @@ function getCookie(cname) {
 
 const currentId = getCookie("pf_id");
 setInterval(() => {
-  if (getCookie("pf_id")!==currentId) {
+  if (getCookie("pf_id")!==currentId&&getCookie("pf_id")!==void 0) {
     console.log("[System] Setting your ID to your previous profile ID."); 
     setCookie("pf_id", currentId);
     firestore.collection("profiles").doc(currentId).update({banned: true, reason: "Unverified profile ID modification via XSS"})
