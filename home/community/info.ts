@@ -223,6 +223,7 @@ interface Data {
      likes: any;
      readonly id: any;
      readonly profile_id: any;
+     readonly filename: string;
 }
 
 let urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
@@ -380,8 +381,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 if (history.pushState) {
 
-                    var newurl = `https://blueprogrammer212.github.io/home/community/?p=${data.message.match(/\[(.*?)\]/)[1].substr(
-                    data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
+                    var newurl = `https://blueprogrammer212.github.io/home/community/?p=${data.filename}&r=AS`;
                     window.history.pushState({path:newurl},'',newurl);
 
                     urlSearchParams = new URLSearchParams(window.location.search);

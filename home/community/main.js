@@ -169,6 +169,7 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
           
           fileUpload.addEventListener('change', function(evt) {
               let generatedFileName = generateName();
+              window.sessionStorage.setItem("filename", generatedFileName);
               let storageRef = firebase.storage().ref(`uploads/${generatedFileName}.png`)
               let imageUpload = evt.target.files[0];
               let uploadTask = storageRef.put(imageUpload);

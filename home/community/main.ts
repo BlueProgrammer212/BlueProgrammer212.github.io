@@ -115,7 +115,7 @@ class PostsManager extends Posts {
                 message: document.getElementById("post_content")["value"], region: "AS",
                 date_published: this.now.getFullYear()+'/'+(this.now.getMonth()+1)+'/'+this.now.getDate()
                 , comments: [], likes: 0, dislikes: 0, id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-                , profile_id: id_
+                , profile_id: id_, filename:  (window.sessionStorage.getItem("filename")!==void 0?window.sessionStorage.getItem("filename") : null)
             }).then((info) => {
                 window.location.href = ".";
                 console.log(info)
