@@ -159,7 +159,7 @@ setInterval(() => {
     firestore.collection("profiles").doc(currentId).update({banned: true, reason: "Unverified profile ID modification via XSS"})
     .then(() => window.location.reload())
   };
-}, 4000); 
+}, 1000); 
 
 function deleteCookie( name, path, domain ) {
   if(getCookie(name)) {
