@@ -151,6 +151,16 @@ function getCookie(cname) {
   return "";
 }
 
+const currentId = getCookie("pf_id");
+setInterval(() => {
+  if (getCookie("pf_id")!==currentId) {
+    alert(new Error("Hello BlueProgrammer212 here! Please do not attempt to change your profile ID. Thank you."));
+    console.log("[System] Setting your ID to your previous profile ID."); 
+    setCookie("pf_id", currentId);
+    setTimeout(window.location.reload, 100);
+  };
+}, 4000); 
+
 function deleteCookie( name, path, domain ) {
   if(getCookie(name)) {
     document.cookie = name + "=" +
@@ -235,7 +245,6 @@ window.addEventListener("load", () => {
 
             if (a.data().id == getCookie("pf_id")) {
               const st=!function(c=a,h=l){const g=c[p]().id;return (!(g[h]++>1)?1:0)}(a,l)==0?0:void 0;
-
               document.getElementsByClassName("camera_change_pfp_bg")[0].addEventListener("click", () => {
                 document.getElementById("lth").className = "profileEditBg";
                 let modal_box = document.getElementById("modalBoxProfileMod");
