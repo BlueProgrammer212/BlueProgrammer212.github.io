@@ -167,8 +167,7 @@ let image_url_;
           console.log(`Loading username... Name:${name}`);
           console.log(`Loading UserID... Id:<${id}>`);
           console.log(`Loading profile picture ${image_url}...`);
-  
-          pfp_img_elem.setAttribute("src", image_url);
+
           firebase.initializeApp(firebaseConfig);
           firestore = firebase.firestore();
         } else {
