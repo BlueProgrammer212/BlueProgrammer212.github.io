@@ -251,10 +251,10 @@ window.addEventListener("load", () => {
                   document.getElementById("pfp_mod_profile").src = a.data().image_url; 
                   let save_btn = document.getElementById("save_information");
                   save_btn.addEventListener("click", (e) => {
-                   let value_name = document.getElementById("nameMod").value;
-                   firestore.collection("profiles").doc(getCookie("pf_id")).update({name: value_name});
-                   setCookie("pf_name", value_name)
-                  })
+                      let value_name = document.getElementById("nameMod").value;
+                      firestore.collection("profiles").doc(getCookie("pf_id")).update({name: value_name});
+                      setCookie("pf_name", value_name)
+                  });
                   modal_box.addEventListener("click", (e) => PD(e));
                   modal_box.parentElement.addEventListener("click", () => {
                     modal_box.parentElement.className = "invisible"
@@ -380,8 +380,10 @@ window.addEventListener("load", () => {
           });
           console.log(`Loading username... NAME:${name}`)
           console.log(`Loading UserID... ID:<${id}>`)
-          console.log(`Loading profile picture ${image_url}...`)  
-        pfp_img_elem.setAttribute("src", image_url);
+          console.log(`Loading profile picture ${image_url}...`);
+        firestore.collection("profiles").doc(getCookie("pf_id")).get().then(pfp_info => {
+            pfp_img_elem.setAttribute("src", pfp_info.data().image_url);
+        }).catch(e => console.error(`Something unexpected occured. ${e}`));
         pfp_img_elem.addEventListener("click", () => {
           window.location.href = `?id=${getCookie("pf_id")}`;
         })

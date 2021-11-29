@@ -166,7 +166,9 @@ window.addEventListener("load", () => {
         console.log(`Loading username... NAME:${name}`)
         console.log(`Loading UserID... ID:<${id}>`)
         console.log(`Loading profile picture ${image_url}...`)  
-        pfp_img_elem.setAttribute("src", image_url);
+        firestore.collection("profiles").doc(getCookie("pf_id")).get().then(pfp_info => {
+          pfp_img_elem.setAttribute("src", pfp_info.data().image_url);
+        }).catch(e => console.error(`Something unexpected occured. ${e}`));
       } else {
         document.body.style = ""
       }
