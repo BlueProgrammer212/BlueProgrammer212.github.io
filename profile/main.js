@@ -152,12 +152,17 @@ function getCookie(cname) {
 }
 
 const currentId = getCookie("pf_id");
+void async function checkIfBanned() {
+   firestore.collection("profiles").doc(currentId).get().then((peers) => {
+       if (peers.data().banned) window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html" ;
+   })
+}()
 setInterval(() => {
   if (getCookie("pf_id")!==currentId) {
-    alert("You are currently blocked from the server for security reasons. (Reason: Unverified profile ID modification via XSS)");
     console.log("[System] Setting your ID to your previous profile ID."); 
     setCookie("pf_id", currentId);
-    firestore.collection("profiles").doc(currentId).update({banned: true}).then(() => window.location.reload())
+    firestore.collection("profiles").doc(currentId).update({banned: true, reason: "Unverified profile ID modification via XSS"})
+    .then(() => window.location.reload())
   };
 }, 4000); 
 
