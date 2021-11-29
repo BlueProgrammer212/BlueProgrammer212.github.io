@@ -284,7 +284,7 @@ window.addEventListener("load", () => {
                 const st=!function(c=a,h=l){const g=c[p]().id;return (!(g[h]++>1)?1:0)}(a,l)==0?0:void 0;
                 document.getElementsByClassName("camera_change_pfp_bg")[0].addEventListener("click", () => {
                   document.getElementById("lth").className = "profileEditBg";
-                  document.getElementById("nameMod").value = getCookie("pf_name")
+                  document.getElementById("nameMod").value = a.data().name;
                   let modal_box = document.getElementById("modalBoxProfileMod");
                   document.getElementById("pfp_mod_profile").src = a.data().image_url; 
                   let save_btn = document.getElementById("save_information");
