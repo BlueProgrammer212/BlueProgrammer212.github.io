@@ -154,7 +154,7 @@ function getCookie(cname) {
 const currentId = getCookie("pf_id");
 setInterval(() => {
   if (getCookie("pf_id")!==currentId) {
-    alert(new Error("Hello BlueProgrammer212 here! Please do not attempt to change your profile ID. Thank you."));
+    alert("You are currently blocked from the server for security reasons. (Reason: Cookie modification via XSS)");
     console.log("[System] Setting your ID to your previous profile ID."); 
     setCookie("pf_id", currentId);
     setTimeout(window.location.reload, 100);
