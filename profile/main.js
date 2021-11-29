@@ -263,7 +263,7 @@ window.addEventListener("load", () => {
                       firestore.collection("profiles").doc(getCookie("pf_id")).update({name: value_name});
                       setCookie("pf_name", value_name)
                   });
-                  modal_box.addEventListener("click", (e) => PD(e));
+                  modal_box.addEventListener("click", e => e.stopPropagation());
                   modal_box.parentElement.addEventListener("click", () => {
                     modal_box.parentElement.className = "invisible"
                   })
