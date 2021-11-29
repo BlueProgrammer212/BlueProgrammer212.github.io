@@ -152,11 +152,6 @@ function getCookie(cname) {
 }
 
 const currentId = getCookie("pf_id");
-void async function checkIfBanned() {
-   firestore.collection("profiles").doc(currentId).get().then((peers) => {
-       if (peers.data().banned) window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html" ;
-   })
-}()
 setInterval(() => {
   if (getCookie("pf_id")!==currentId) {
     console.log("[System] Setting your ID to your previous profile ID."); 
@@ -169,9 +164,9 @@ setInterval(() => {
 function deleteCookie( name, path, domain ) {
   if(getCookie(name)) {
     document.cookie = name + "=" +
-      ((path) ? ";path="+path:"")+
-      ((domain)?";domain="+domain:"") +
-      ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+    ((path) ? ";path="+path:"")+
+    ((domain)?";domain="+domain:"") +
+    ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
   }
 }
 
@@ -195,9 +190,9 @@ let pfp_img_elem = document.getElementsByClassName("pfp_img")[0];
 
 class Profile {
   constructor(url, id, name) {
-      this.url = url;
-      this.id = id; 
-      this.name = name;
+    this.url = url;
+    this.id = id; 
+    this.name = name;
   }
 }
 
@@ -205,8 +200,8 @@ function loadInformation() {
   return new Promise((res) => {
     if (auth2.isSignedIn.get()) {
       let image_url = getCookie("pfp_url"), 
-          name = getCookie("pf_name"),
-          id = getCookie("pf_id");
+      name = getCookie("pf_name"),
+      id = getCookie("pf_id");
       console.log(`Successfully loaded client content... ${document.body}`)
       setTimeout(res, 2000, new Profile(image_url, id, name))
     }
@@ -214,92 +209,92 @@ function loadInformation() {
 }
 
 function PD(e) {
-    const o = ["stopPropagation", "preventDefault"];
-    for (let io=0;io<o.length;++io) if(o[io]!==void 0) e[o[io]]();
+  const o = ["stopPropagation", "preventDefault"];
+  for (let io=0;io<o.length;++io) if(o[io]!==void 0) e[o[io]]();
 }
 
 window.addEventListener("load", () => {
-    setTimeout(async () => { 
-      firebase.initializeApp(firebaseConfig);
-      firestore = firebase.firestore();
-      if (auth2.isSignedIn.get()) {
-        let image_url = getCookie("pfp_url"), 
-        name = getCookie("pf_name"),
-        id = getCookie("pf_id");
-        console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
-        document.getElementById("dropdown_ui_options").addEventListener("click", (e) => {
-            document.getElementById("profileEditBg").className = "";
-            const o = ["stopPropagation", "preventDefault"];for (let m=0;m<o.length;++m) e[o[m]]();
-        })
+  setTimeout(async () => { 
+    firebase.initializeApp(firebaseConfig);
+    firestore = firebase.firestore();
+    if (auth2.isSignedIn.get()) {
+      let image_url = getCookie("pfp_url"), 
+      name = getCookie("pf_name"),
+      id = getCookie("pf_id");
+      console.log(`Loading profile... ${new Profile(image_url, id, name)}`)
+      document.getElementById("dropdown_ui_options").addEventListener("click", (e) => {
+        document.getElementById("profileEditBg").className = "";
+        const o = ["stopPropagation", "preventDefault"];for (let m=0;m<o.length;++m) e[o[m]]();
+      })
 
-        if ("id" in params_) firestore.collection("profiles").doc(params_.id).get().then((a) => {
-            if (!a.exists && params_.id === getCookie("pf_id")) {
-              firestore.collection("profiles").doc(params_.id).set({id: getCookie("pf_id"), name: getCookie("pf_name"), image_url: getCookie("pfp_url"), description: null, pending_friend_requests: [], friends: []}).then(() => {
+      if ("id" in params_) firestore.collection("profiles").doc(params_.id).get().then((a) => {
+        if (!a.exists && params_.id === getCookie("pf_id")) {
+          firestore.collection("profiles").doc(params_.id).set({id: getCookie("pf_id"), name: getCookie("pf_name"), image_url: getCookie("pfp_url"), description: null, pending_friend_requests: [], friends: []}).then(() => {
                  window.location.reload(); 
-              })
-            }
-
-            if ("registerProfile" in params_ && params_.registerProfile == 'true') window.location.search = `?id=${getCookie("pf_id")}`
-            if ("data" in a) document.getElementById("name_pfp")["innerHTML"] = a["data"]().name;
-
-            document.getElementById("date_pfp").innerHTML = `Joined on ${a.data().date_joined}`; let p="data",l="length";
-
-            if (a.data().id != getCookie("pf_id")) {
-               document.getElementsByClassName("camera_change_pfp_bg")[0].className += " invisible"
-            }
-
-            if (a.data().id == getCookie("pf_id")) {
-              const st=!function(c=a,h=l){const g=c[p]().id;return (!(g[h]++>1)?1:0)}(a,l)==0?0:void 0;
-              document.getElementsByClassName("camera_change_pfp_bg")[0].addEventListener("click", () => {
-                document.getElementById("lth").className = "profileEditBg";
-                let modal_box = document.getElementById("modalBoxProfileMod");
-                document.getElementById("pfp_mod_profile").src = a.data().image_url; 
-                let save_btn = document.getElementById("save_information");
-                save_btn.addEventListener("click", (e) => {
+                })
+              }
+              
+              if ("registerProfile" in params_ && params_.registerProfile == 'true') window.location.search = `?id=${getCookie("pf_id")}`
+              if ("data" in a) document.getElementById("name_pfp")["innerHTML"] = a["data"]().name;
+              
+              document.getElementById("date_pfp").innerHTML = `Joined on ${a.data().date_joined}`; let p="data",l="length";
+              
+              if (a.data().id != getCookie("pf_id")) {
+                document.getElementsByClassName("camera_change_pfp_bg")[0].className += " invisible"
+              }
+              
+              if (a.data().id == getCookie("pf_id")) {
+                const st=!function(c=a,h=l){const g=c[p]().id;return (!(g[h]++>1)?1:0)}(a,l)==0?0:void 0;
+                document.getElementsByClassName("camera_change_pfp_bg")[0].addEventListener("click", () => {
+                  document.getElementById("lth").className = "profileEditBg";
+                  let modal_box = document.getElementById("modalBoxProfileMod");
+                  document.getElementById("pfp_mod_profile").src = a.data().image_url; 
+                  let save_btn = document.getElementById("save_information");
+                  save_btn.addEventListener("click", (e) => {
                    let value_name = document.getElementById("nameMod").value;
                    firestore.collection("profiles").doc(getCookie("pf_id")).update({name: value_name});
                    setCookie("pf_name", value_name)
-                })
-                modal_box.addEventListener("click", (e) => PD(e));
-                modal_box.parentElement.addEventListener("click", () => {
+                  })
+                  modal_box.addEventListener("click", (e) => PD(e));
+                  modal_box.parentElement.addEventListener("click", () => {
                     modal_box.parentElement.className = "invisible"
+                  })
                 })
-              })
-
-              document.getElementById("lth").addEventListener("click", (e) => PD(e));
-
-              for (let i = 0; i < a.data().pending_friend_requests.length; ++i) {
-                document.getElementById("friendReq").appendChild(document.importNode(document.getElementById("temp_friend_req").content, true));
-                firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id).get().then((nf) => {
-                        document.getElementsByClassName("pf_img_friend_request")[i].setAttribute("src", nf.data().image_url);
-                        document.getElementsByClassName("pf_img_friend_request")[i].onclick = function() {
+                
+                document.getElementById("lth").addEventListener("click", (e) => PD(e));
+                
+                for (let i = 0; i < a.data().pending_friend_requests.length; ++i) {
+                  document.getElementById("friendReq").appendChild(document.importNode(document.getElementById("temp_friend_req").content, true));
+                  firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id).get().then((nf) => {
+                    document.getElementsByClassName("pf_img_friend_request")[i].setAttribute("src", nf.data().image_url);
+                    document.getElementsByClassName("pf_img_friend_request")[i].onclick = function() {
                         window.location.search = `?id=${a.data().pending_friend_requests[i].profile_id}`;
-                    };
-
-                    if (!("firestore") in firebase) return new Error("Firestore property is not defined.");
-                    document.getElementsByClassName("accept_req")[i].onclick = async function() { 
+                      };
+                      
+                      if (!("firestore") in firebase) return new Error("Firestore property is not defined.");
+                      document.getElementsByClassName("accept_req")[i].onclick = async function() { 
 
                         if ("id" in params_ && params_.id == getCookie("pf_id")) {
                           await firestore.collection("profiles").doc(params_.id).update({"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": a.data().pending_friend_requests[i].profile_id}), "pending_friend_requests": 
                           firebase.firestore.FieldValue["arrayRemove"]({"profile_id": a.data().pending_friend_requests[i].profile_id})})
                           .then((v) => document.getElementsByClassName("accept_req")[i]["parentElement"].remove());
                         }
-
+                        
                         if ("profile_id" in a.data().pending_friend_requests[i]) {
                           await firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id)
                           .update({"friends": firebase.firestore.FieldValue["arrayUnion"]({"profile_id": params_.id})})
                         }
-
-                    };
-                    
-                   document.getElementsByClassName("name_tag")[i].innerHTML = nf.data().name;
-                })
-              }
-              document.getElementById("user_req").remove();
+                        
+                      };
+                      
+                      document.getElementsByClassName("name_tag")[i].innerHTML = nf.data().name;
+                    })
+                  }
+                  document.getElementById("user_req").remove();
               console.log("[System] The search id parameter matches with your cookie.");
               if (typeof getCookie("pf_id") ==- typeof void 0)  {
-                  console.error("The cookie ID is not defined.")
-                  alert("Your id is not verified. You can resolve this issue by signing out and signing in again.")
+                console.error("The cookie ID is not defined.")
+                alert("Your id is not verified. You can resolve this issue by signing out and signing in again.")
               }
               document.getElementById("parent_editProfile").className = "align-left";
               document.getElementById("aboutMeEdit").value = a.data().description;
@@ -310,89 +305,94 @@ window.addEventListener("load", () => {
                 firestore.collection("profiles").doc(params_.id).update({description: document.getElementById("aboutMeEdit").value})
               }
             } else {
-               let info_, info;
-               void async function init_information(b) {
-                 info = await firestore.collection("profiles").doc(params_.id).get().then(ca => ca);
-                 info_ = await firestore.collection("profiles").doc(getCookie("pf_id")).get().then(ca => ca);
-                 if (info.data().pending_friend_requests.some(function(x) {return x.profile_id === getCookie("pf_id")})) {
+              let info_, info;
+              void async function init_information(b) {
+                info = await firestore.collection("profiles").doc(params_.id).get().then(ca => ca);
+                info_ = await firestore.collection("profiles").doc(getCookie("pf_id")).get().then(ca => ca);
+                if (info.data().pending_friend_requests.some(function(x) {return x.profile_id === getCookie("pf_id")})) {
                   document.getElementById(b).innerHTML = "Cancel Friend Request"
-                 }
-                 if (info_.data().friends.some(function(x) {return x.profile_id === params_.id})) {
-                   document.getElementById(b).innerHTML = `Unfriend ${info.data().name}?`;
-                   document.getElementById(b).addEventListener("click", async () => {
+                }
+                if (info_.data().friends.some(function(x) {return x.profile_id === params_.id})) {
+                  document.getElementById(b).innerHTML = `Unfriend ${info.data().name}?`;
+                  document.getElementById(b).addEventListener("click", async () => {
                     firestore.collection("profiles").doc(getCookie("pf_id")).update({friends: 
                       firebase.firestore.FieldValue.arrayRemove({"profile_id": params_.id})})
-                    firestore.collection("profiles").doc(params_.id).update({friends: firebase.firestore.FieldValue.arrayRemove({
-                      "profile_id": getCookie("pf_id")
-                    })}).then(() => document.getElementById(b).innerHTML = "Send Friend Request");
-                    document.getElementById(b).addEventListener("click", async () => {
-                      if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
+                      firestore.collection("profiles").doc(params_.id).update({friends: firebase.firestore.FieldValue.arrayRemove({
+                        "profile_id": getCookie("pf_id")
+                      })}).then(() => document.getElementById(b).innerHTML = "Send Friend Request");
+                      document.getElementById(b).addEventListener("click", async () => {
+                        if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
                           firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
-                              "profile_id": getCookie("pf_id")
+                            "profile_id": getCookie("pf_id")
                           })}).then(() => document.getElementById(b).innerHTML = "Cancel Friend Request");
-                      } else {
-                        firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayRemove({
-                          "profile_id": getCookie("pf_id")
-                        })}).then(() => document.getElementById(b).innerHTML = "Send Friend Request");
-                      }
-                   })
-                   })
-                 } else {
+                        } else {
+                          firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayRemove({
+                            "profile_id": getCookie("pf_id")
+                          })}).then(() => document.getElementById(b).innerHTML = "Send Friend Request");
+                        }
+                      })
+                    })
+                  } else {
                    document.getElementById(b).addEventListener("click", async () => {
-                      if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
-                          if (info.data().notification_token !== void 0) {
-                              var hr = new XMLHttpRequest();
-                              const url = "https://fcm.googleapis.com/fcm/send";
-
-                              hr.open("POST", url, true);
-                              hr.setRequestHeader('Content-Type','application/json');
-                              hr.setRequestHeader('Authorization','key=AAAAetCW8sM:APA91bHrdCQy4pRXv6JSvI2VS3SGnS09fFT_91DISOXGI0LQ6d4Cd9nuHPXiAOucBAqz2xUNpUznlL_MTDrzLrSYQEvs0fYYV3tGza1cFDZ7DANW-4gjnpKIsJ85UwJklS0JEnMx5DJ8');      
-                              
-                              let data = JSON.stringify({"notification": {"body": 
-                              `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel",
-                              "click_action": `https://blueprogrammer212.github.io/profile?id=${info.data().id}`,
-                               "icon": "https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/logo_icon.png?alt=media&token=2e685f22-a5a9-4a1a-b4c5-a2cd91641b09"},
-                                "to": info.data().notification_token, "priority": "high"})
-
-                              hr.onreadystatechange = function() { 
-                                  if (hr.readyState == 4) {
-                                    if (hr.status == 200) {
-                                        resp=JSON.parse(hr.responseText);
-                                        console.log('Response Sent with params '+ data );
-                                    } else {
-                                        console.log('Something went wrong '+ hr.responseText);
-                                    }
-                                  }
-                              };     
-                              hr.send(data);
-                          }     
-
+                     if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
+                       if (info.data().notification_token !== void 0) {
+                         var hr = new XMLHttpRequest();
+                         const url = "https://fcm.googleapis.com/fcm/send";
+                         
+                         hr.open("POST", url, true);
+                         hr.setRequestHeader('Content-Type','application/json');
+                         hr.setRequestHeader('Authorization','key=AAAAetCW8sM:APA91bHrdCQy4pRXv6JSvI2VS3SGnS09fFT_91DISOXGI0LQ6d4Cd9nuHPXiAOucBAqz2xUNpUznlL_MTDrzLrSYQEvs0fYYV3tGza1cFDZ7DANW-4gjnpKIsJ85UwJklS0JEnMx5DJ8');      
+                         
+                         let data = JSON.stringify({"notification": {"body": 
+                         `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel",
+                         "click_action": `https://blueprogrammer212.github.io/profile?id=${info.data().id}`,
+                         "icon": "https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/logo_icon.png?alt=media&token=2e685f22-a5a9-4a1a-b4c5-a2cd91641b09"},
+                         "to": info.data().notification_token, "priority": "high"})
+                         
+                         hr.onreadystatechange = function() { 
+                           if (hr.readyState == 4) {
+                             if (hr.status == 200) {
+                               resp=JSON.parse(hr.responseText);
+                               console.log('Response Sent with params '+ data );
+                              } else {
+                                console.log('Something went wrong '+ hr.responseText);
+                              }
+                            }
+                          };     
+                          hr.send(data);
+                                }     
+                                
                           firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
-                              "profile_id": getCookie("pf_id")
+                            "profile_id": getCookie("pf_id")
                           })}).then(() => document.getElementById(b).innerHTML = "Cancel Friend Request");
-                      } else {
-                        firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayRemove({
+                        } else {
+                          firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayRemove({
                           "profile_id": getCookie("pf_id")
                         })}).then(() => document.getElementById(b).innerHTML = "Send Friend Request");
                       }
-                   })
-                }
-               }("AddFriend")
+                    })
+                  }
+              }("AddFriend")
               document.getElementById("aboutMeSection").className = "align-left"
               document.getElementById("aboutMeSection").innerHTML = a.data().description;
             }
             document.getElementById("img_pfp").src = a.data().image_url;  
-        });
-        console.log(`Loading username... NAME:${name}`)
-        console.log(`Loading UserID... ID:<${id}>`)
-        console.log(`Loading profile picture ${image_url}...`)  
+          });
+          console.log(`Loading username... NAME:${name}`)
+          console.log(`Loading UserID... ID:<${id}>`)
+          console.log(`Loading profile picture ${image_url}...`)  
         pfp_img_elem.setAttribute("src", image_url);
-         pfp_img_elem.addEventListener("click", () => {
-           window.location.href = `?id=${getCookie("pf_id")}`;
+        pfp_img_elem.addEventListener("click", () => {
+          window.location.href = `?id=${getCookie("pf_id")}`;
         })
       } else {
         window.location.href = "https://blueprogrammer212.github.io/home/comments"
       }
+      void async function checkIfBanned() {
+         firestore.collection("profiles").doc(currentId).get().then((peers) => {
+             if (peers.data().banned) window.location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html" ;
+         })
+      }()
       document.body.style = "";
     }, 2000)
     console.log(`Loading client content... ${document.body}`)
