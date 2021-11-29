@@ -268,9 +268,7 @@ window.addEventListener("load", () => {
                     modal_box.parentElement.className = "invisible"
                   })
                 })
-                
-                document.getElementById("lth").addEventListener("click", (e) => PD(e));
-                
+                document.getElementById("lth").addEventListener("click", e => e.stopPropagation());  
                 for (let i = 0; i < a.data().pending_friend_requests.length; ++i) {
                   document.getElementById("friendReq").appendChild(document.importNode(document.getElementById("temp_friend_req").content, true));
                   firestore.collection("profiles").doc(a.data().pending_friend_requests[i].profile_id).get().then((nf) => {
