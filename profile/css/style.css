@@ -143,10 +143,17 @@ button#save_desc {
 top: -50px;
 }
 
+p#date_joined_format {
+  color: black;
+  position: relative;
+  top: -60px;
+  left: 88px;
+}
+
 button#save_information {
   position: relative;
   left: -80px;
-  top: -40px;
+  top: -50px;
   background-color: #0c9;
   font-size: 14px;
   color: white;
@@ -405,16 +412,20 @@ textarea#nameMod {
   border: 3.5px solid black;
   font-family: 'Pixel';
   width: 500px;
-  height: 50px;
+  height: 40px;
+  overflow: hidden;
   position: relative;
   font-size: 20px;
-  top: -20px;
+  top: -35px;
   resize: none;
 }
 
 img#pfp_mod_preview {
-   width: 65%;
-   height: 65%;
+   width: 55%;
+   position: relative;
+   top: -11%;
+   height: 70%;
+   image-rendering: pixelated;
 }
 
 button#change_pfp {
@@ -423,9 +434,10 @@ button#change_pfp {
   color: white;
   font-family: 'PIXEL';
   padding: 10px;
-  left: 10px;
-  position: relative;
-  top: 70%;
+  /* left: 10px; */
+  transform: translateX(10px);
+  /* position: relative; */
+  /* top: 70%; */
 }
 
 div#modalBoxProfileMod {
@@ -433,6 +445,8 @@ div#modalBoxProfileMod {
   background-color: white;
   width: 65%;
   height: 65%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 img#pfp_mod_profile {
