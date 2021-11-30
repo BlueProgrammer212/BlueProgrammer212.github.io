@@ -143,6 +143,18 @@ button#save_desc {
 top: -50px;
 }
 
+button#save_information {
+  position: relative;
+  left: -80px;
+  top: -40px;
+  background-color: #0c9;
+  font-size: 14px;
+  color: white;
+  border: none;
+  font-family: 'Pixel';
+  padding: 5px;
+}
+
 p#aboutMeSection {
 color: black;
 position: relative;
