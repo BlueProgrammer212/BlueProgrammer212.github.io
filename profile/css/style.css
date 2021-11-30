@@ -114,6 +114,12 @@ color: white;
   display: none;
 }
 
+hr#aboutMeSection_mod {
+  border: 2.7px solid black;
+  margin-top: -50px;
+  /* -webkit-text-fill-color: black; */
+}
+
 textarea#aboutMeEdit {
 color: black;
 position: relative;
@@ -430,9 +436,11 @@ img#pfp_mod_preview {
 
 #aboutMeSectionDefinition {
    font-family: 'Pixel';
-   margin-bottom: 100px;
+   margin-bottom: 75px;
    color: black;
    font-size: 20px;
+   position: relative;
+   left: 10px;
 }
 
 textarea#description_update_profile {
@@ -444,6 +452,7 @@ textarea#description_update_profile {
   position: relative;
   /* margin-left: 20px; */
   left: 10px;
+  border: 3.5px solid black;
   top: -60px;
 }
 
@@ -456,7 +465,7 @@ button#change_pfp {
   left: -405px;
   transform: translateX(10px);
   position: relative;
-  top: -6%;
+  top: -3%;
 }
 
 div#modalBoxProfileMod {
