@@ -376,7 +376,9 @@ window.addEventListener("load", () => {
                          const url = "https://fcm.googleapis.com/fcm/send";
                          hr.open("POST", url, true);
                          hr.setRequestHeader('Content-Type','application/json');
-                         hr.setRequestHeader('Authorization','key=AAAAetCW8sM:APA91bHrdCQy4pRXv6JSvI2VS3SGnS09fFT_91DISOXGI0LQ6d4Cd9nuHPXiAOucBAqz2xUNpUznlL_MTDrzLrSYQEvs0fYYV3tGza1cFDZ7DANW-4gjnpKIsJ85UwJklS0JEnMx5DJ8');      
+                         firestore.collection("token").doc("TOKEN-AUTHORIZATION-NOTIFICATION").get().then((key) => {
+                            hr.setRequestHeader('Authorization',`key=${key.SERVER_TOKEN}`);      
+                         });
                       
                          let data = JSON.stringify({"notification": {"body": `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel",
                          "click_action": `https://blueprogrammer212.github.io/profile?id=${info.data().id}`,
