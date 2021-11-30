@@ -409,6 +409,23 @@ textarea#nameMod {
   position: relative;
   font-size: 20px;
   top: -20px;
+  resize: none;
+}
+
+img#pfp_mod_preview {
+   width: 65%;
+   height: 65%;
+}
+
+button#change_pfp {
+  border: none;
+  background: #0c9;
+  color: white;
+  font-family: 'PIXEL';
+  padding: 10px;
+  left: 10px;
+  position: relative;
+  top: 70%;
 }
 
 div#modalBoxProfileMod {
