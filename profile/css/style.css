@@ -104,11 +104,9 @@ background-color: #555;
 color: white;
 }
 
-
 .fontBig {
  font-size: 60px;
 }
-
 
 .invisible {
   display: none;
@@ -117,7 +115,22 @@ color: white;
 hr#aboutMeSection_mod {
   border: 2.7px solid black;
   margin-top: -50px;
-  /* -webkit-text-fill-color: black; */
+}
+
+div#aboutMeSectionContainerMod {
+  float: left;
+  margin-right: -250px;
+}
+
+div#preview_profile {
+  color: black;
+  left: 45%;
+}
+
+#preview_profile > p {color: black;}
+
+#preview_profile > h3 {
+  color:  black;
 }
 
 textarea#aboutMeEdit {
@@ -447,7 +460,7 @@ textarea#description_update_profile {
   font-family: 'Pixel';
   resize: none;
   font-size: 14px;
-  width: 400px;
+  width: 350px;
   height: 100px;
   position: relative;
   /* margin-left: 20px; */
@@ -462,7 +475,7 @@ button#change_pfp {
   color: white;
   font-family: 'PIXEL';
   padding: 10px;
-  left: -405px;
+  left: -355px;
   transform: translateX(10px);
   position: relative;
   top: -3%;
@@ -520,11 +533,7 @@ color: blue;
 color: yellow;
 }
 
-p, a, span, h1, h2, h3, h4, h5, h6 {
-font-family: Pixel;
-color: white;
-text-shadow: 1px 3px 1px gray;
-}
+p, a, span, h1, h2, h3, h4, h5, h6 {font-family: Pixel;color: white;text-shadow: 1px 3px 1px gray;}
 
 .row:after {
 content: "";
