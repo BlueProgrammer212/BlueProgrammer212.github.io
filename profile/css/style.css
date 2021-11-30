@@ -428,16 +428,35 @@ img#pfp_mod_preview {
    image-rendering: pixelated;
 }
 
+#aboutMeSectionDefinition {
+   font-family: 'Pixel';
+   margin-bottom: 100px;
+   color: black;
+   font-size: 20px;
+}
+
+textarea#description_update_profile {
+  font-family: 'Pixel';
+  resize: none;
+  font-size: 14px;
+  width: 400px;
+  height: 100px;
+  position: relative;
+  /* margin-left: 20px; */
+  left: 10px;
+  top: -60px;
+}
+
 button#change_pfp {
   border: none;
   background: #0c9;
   color: white;
   font-family: 'PIXEL';
   padding: 10px;
-  /* left: 10px; */
+  left: -405px;
   transform: translateX(10px);
-  /* position: relative; */
-  /* top: 70%; */
+  position: relative;
+  top: -6%;
 }
 
 div#modalBoxProfileMod {
