@@ -372,29 +372,28 @@ window.addEventListener("load", () => {
                    document.getElementById(b).addEventListener("click", async () => {
                      if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
                        if (info.data().notification_token !== void 0) {
-                         var hr = new XMLHttpRequest();
-                         const url = "https://fcm.googleapis.com/fcm/send";
-                         hr.open("POST", url, true);
-                         hr.setRequestHeader('Content-Type','application/json');
                          firestore.collection("token").doc("TOKEN-AUTHORIZATION-NOTIFICATION").get().then((key) => {
-                            hr.setRequestHeader('Authorization',`key=${key.SERVER_TOKEN}`);      
-                         });
-                      
-                         let data = JSON.stringify({"notification": {"body": `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel",
-                         "click_action": `https://blueprogrammer212.github.io/profile?id=${info.data().id}`,
-                         "icon": "https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/logo_icon.png?alt=media&token=2e685f22-a5a9-4a1a-b4c5-a2cd91641b09"},
-                         "to": info.data().notification_token, "priority": "high"})
-                         hr.onreadystatechange = function() { 
-                           if (hr.readyState == 4) {
-                             if (hr.status == 200) {
-                               resp=JSON.parse(hr.responseText);
-                               console.log('Response Sent with params '+ data );
-                              } else {
-                                console.log('Something went wrong '+ hr.responseText);
+                          var hr = new XMLHttpRequest();
+                          const url = "https://fcm.googleapis.com/fcm/send";
+                          hr.open("POST", url, true);
+                          hr.setRequestHeader('Content-Type','application/json');
+                          hr.setRequestHeader('Authorization',`key=${key.SERVER_TOKEN}`);       
+                          let data = JSON.stringify({"notification": {"body": `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel",
+                          "click_action": `https://blueprogrammer212.github.io/profile?id=${info.data().id}`,
+                          "icon": "https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/logo_icon.png?alt=media&token=2e685f22-a5a9-4a1a-b4c5-a2cd91641b09"},
+                          "to": info.data().notification_token, "priority": "high"})
+                          hr.onreadystatechange = function() { 
+                            if (hr.readyState == 4) {
+                              if (hr.status == 200) {
+                                resp=JSON.parse(hr.responseText);
+                                console.log('Response Sent with params '+ data );
+                                } else {
+                                  console.log('Something went wrong '+ hr.responseText);
+                                }
                               }
-                            }
-                          };     
-                          hr.send(data);
+                            };     
+                            hr.send(data);
+                         });
                         }          
                         firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
                           "profile_id": getCookie("pf_id")
