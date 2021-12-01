@@ -283,7 +283,7 @@ window.addEventListener("load", () => {
               }
               document.getElementById("user_req").remove();
               console.log("[System] The search id parameter matches with your cookie.");
-              if (typeof getCookie("pf_id") ==- typeof void 0)  {
+              if (typeof getCookie("pf_id") == typeof void 0)  {
                   console.error("The cookie ID is not defined.")
                   alert("Your id is not verified. You can resolve this issue by signing out and signing in again.")
               }
