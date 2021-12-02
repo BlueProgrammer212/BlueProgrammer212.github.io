@@ -35,12 +35,12 @@ class NotificationManager {
       let data = JSON.stringify({"notification": {"body": message,"title": title,
       "click_action": link, "icon": icon}, "to": token, "priority": "high"})
        this.xhr.onreadystatechange = function() { 
-        if (this.xhr.readyState == 4) {
-           if (this.xhr.status == 200) {
-             resp=JSON.parse(this.xhr.responseText);
+        if (this.readyState == 4) {
+           if (this.status == 200) {
+             resp=JSON.parse(this.responseText);
              console.log('Response Sent with params '+ data );
            } else {
-             console.log('Something went wrong '+ this.xhr.responseText);
+             console.log('Something went wrong '+ this.responseText);
            }
          }
        };     
@@ -371,17 +371,15 @@ window.addEventListener("load", () => {
                    document.getElementById(b).addEventListener("click", async () => {
                      if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
                        if (info.data().notification_token !== void 0) {
+                         console.log(`Sending notification to user, <${info["data"]().id}>`)
                          const notifcation_manager = new NotificationManager(),
                                CURRENT_CONFIGURATION_NOTIFICATION_TITLE_STRING = "Pixcel";
                          firestore.collection("token").doc("TOKEN-AUTHORIZATION-NOTIFICATION").get().then((key) => {
-                             if ("SERVER_TOKEN" in key) {
-                             notifcation_manager.send(
-                               `${getCookie("pf_name")} sent you a friend request!`, 
-                               CURRENT_CONFIGURATION_NOTIFICATION_TITLE_STRING,
-                               info["data"]().notifcation_token,
+                             if ("SERVER_TOKEN" in key.data()) {
+                             notifcation_manager.send(`${getCookie("pf_name")} sent you a friend request!`, 
+                               CURRENT_CONFIGURATION_NOTIFICATION_TITLE_STRING, info["data"]().notifcation_token,
                                `https://blueprogrammer212.github.io/profile/?id=${info.data().id}`, 
-                               "https://blueprogrammer212.github.io/profile/assets/logo_icon.png", 
-                               key.SERVER_TOKEN
+                               "https://blueprogrammer212.github.io/profile/assets/logo_icon.png", key.data().SERVER_TOKEN
                               )
                              }
                          });
