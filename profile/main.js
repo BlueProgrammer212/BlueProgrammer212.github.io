@@ -37,7 +37,7 @@ class NotificationManager {
        this.xhr.onreadystatechange = function() { 
         if (this.readyState == 4) {
            if (this.status == 200) {
-             resp=JSON.parse(this.responseText);
+             let resp=JSON.parse(this.responseText);
              console.log('Response Sent with params '+ data );
            } else {
              console.log('Something went wrong '+ this.responseText);
