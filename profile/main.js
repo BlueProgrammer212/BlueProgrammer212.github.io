@@ -28,23 +28,32 @@ class NotificationManager {
   }
   send(message, title, token, link, icon, server_token) {
       this.message = message;
+      this.title = title;
+      this.icon = icon;
       this.xhr.open("POST", this.url, true);
-      this.xhr.setRequestHeader('Content-Type','application/json');
-      this.xhr.setRequestHeader('Authorization',`key=${server_token}`);      
-  
-      let data = JSON.stringify({"notification": {"body": message,"title": title,
-      "click_action": link, "icon": icon}, "to": token, "priority": "high"})
-       this.xhr.onreadystatechange = function() { 
+      const type = "json";
+      this.xhr.setRequestHeader('Content-Type',`application/${type}`);
+      if (server_token === void 0) return "Missing access! Please specify the server token to be verified!";
+      if (message === void 0) return "Missing parameter! Please try again."
+      if (link === void 0) return "Please specify a click action!";
+      this.xhr.setRequestHeader('Authorization',`key=${server_token}`);    
+      let data = JSON.stringify({"notification": {"body": this.message, "title": this.title,
+      "click_action": link, "icon": this.icon}, "to": token, "priority": "high"})
+      if ("send" in this.xhr) {
+        setTimeout(this.xhr.send, 1000, data);
+      } else {
+        return "Not supported in your browser!"
+      }
+      this.xhr.onreadystatechange = function() { 
         if (this.readyState == 4) {
-           if (this.status == 200) {
-             let resp=JSON.parse(this.responseText);
-             console.log('Response Sent with params '+ data );
-           } else {
-             console.log('Something went wrong '+ this.responseText);
-           }
-         }
-       };     
-       this.xhr.send(data);
+          if (this.status == 200) {
+            let resp=JSON.parse(this.responseText);
+            console.log('Response Sent with params '+ data );
+          } else {
+            console.log('Something went wrong '+ this.responseText);
+          }
+        }
+      };     
   }
 }
 
