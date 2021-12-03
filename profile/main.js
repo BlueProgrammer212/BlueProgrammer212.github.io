@@ -40,7 +40,7 @@ class NotificationManager {
       let data = JSON.stringify({"notification": {"body": this.message, "title": this.title,
       "click_action": link, "icon": this.icon}, "to": token, "priority": "high"})
       if ("send" in this.xhr) {
-        setTimeout(this.xhr.send, 1000, data);
+        this.xhr.send(data);
       } else {
         return "Not supported in your browser!"
       }
