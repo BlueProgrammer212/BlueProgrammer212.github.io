@@ -384,8 +384,7 @@ window.addEventListener("load", () => {
                      
                         let data = JSON.stringify({"notification": {"body": `${getCookie("pf_name")} sent you a friend request.`,"title":"Pixcel",
                         "click_action": `https://blueprogrammer212.github.io/profile?id=${info.data().id}`,
-                        "icon": "https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/logo_icon.png?alt=media&token=2e685f22-a5a9-4a1a-b4c5-a2cd91641b09"},
-                        "to": info.data().notification_token, "priority": "high"})
+                        "icon": getCookie("pfp_url")}, "to": info.data().notification_token, "priority": "high"})
                         hr.onreadystatechange = function() { 
                           if (hr.readyState == 4) {
                             if (hr.status == 200) {
@@ -398,14 +397,14 @@ window.addEventListener("load", () => {
                          };     
                          hr.send(data);
                        }            
-                        firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
-                          "profile_id": getCookie("pf_id")
-                        })}).then(() => document.getElementById(b).innerHTML = "Cancel Friend Request");
-                        } else {
-                          firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayRemove({
-                          "profile_id": getCookie("pf_id")
-                        })}).then(() => document.getElementById(b).innerHTML = "Send Friend Request");
-                      }
+                      firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
+                        "profile_id": getCookie("pf_id")
+                      })}).then(() => document.getElementById(b).innerHTML = "Cancel Friend Request");
+                      } else {
+                        firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayRemove({
+                        "profile_id": getCookie("pf_id")
+                      })}).then(() => document.getElementById(b).innerHTML = "Send Friend Request");
+                    }
                     })
                   }
               }("AddFriend")
