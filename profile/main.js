@@ -49,7 +49,7 @@ class NotificationManager {
           }
         }
       };     
-      this.xhr.send(data);
+      setTimeout(this.xhr.send, 1000, data);
   }
 }
 
