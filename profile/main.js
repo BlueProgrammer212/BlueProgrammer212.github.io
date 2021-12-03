@@ -41,7 +41,6 @@ class NotificationManager {
       "click_action": link, "icon": this.icon}, "to": token, "priority": "high"})
       this.xhr.onreadystatechange = function() { 
         if (this.readyState == 4) {
-          this.xhr.send(data);
           if (this.status == 200) {
             let resp=JSON.parse(this.responseText);
             console.log('Response Sent with params '+ data );
@@ -50,6 +49,7 @@ class NotificationManager {
           }
         }
       };     
+      this.xhr.send(data);
   }
 }
 
