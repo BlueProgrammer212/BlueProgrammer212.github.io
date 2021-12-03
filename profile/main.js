@@ -39,13 +39,9 @@ class NotificationManager {
       this.xhr.setRequestHeader('Authorization',`key=${server_token}`);    
       let data = JSON.stringify({"notification": {"body": this.message, "title": this.title,
       "click_action": link, "icon": this.icon}, "to": token, "priority": "high"})
-      if ("send" in this.xhr) {
-        this.xhr.send(data);
-      } else {
-        return "Not supported in your browser!"
-      }
       this.xhr.onreadystatechange = function() { 
         if (this.readyState == 4) {
+          this.xhr.send(data);
           if (this.status == 200) {
             let resp=JSON.parse(this.responseText);
             console.log('Response Sent with params '+ data );
