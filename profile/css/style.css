@@ -104,14 +104,33 @@ background-color: #555;
 color: white;
 }
 
-
 .fontBig {
  font-size: 60px;
 }
 
-
 .invisible {
   display: none;
+}
+
+hr#aboutMeSection_mod {
+  border: 2.7px solid black;
+  margin-top: -50px;
+}
+
+div#aboutMeSectionContainerMod {
+  float: left;
+  margin-right: -250px;
+}
+
+div#preview_profile {
+  color: black;
+  left: 45%;
+}
+
+#preview_profile > p {color: black;}
+
+#preview_profile > h3 {
+  color:  black;
 }
 
 textarea#aboutMeEdit {
@@ -141,6 +160,25 @@ button#save_desc {
  font-family: Pixel;
  padding: 10px;
 top: -50px;
+}
+
+p#date_joined_format {
+  color: black;
+  position: relative;
+  top: -60px;
+  left: 88px;
+}
+
+button#save_information {
+  position: relative;
+  left: -80px;
+  top: -50px;
+  background-color: #0c9;
+  font-size: 14px;
+  color: white;
+  border: none;
+  font-family: 'Pixel';
+  padding: 5px;
 }
 
 p#aboutMeSection {
@@ -393,10 +431,54 @@ textarea#nameMod {
   border: 3.5px solid black;
   font-family: 'Pixel';
   width: 500px;
-  height: 50px;
+  height: 40px;
+  overflow: hidden;
   position: relative;
   font-size: 20px;
-  top: -20px;
+  top: -35px;
+  resize: none;
+}
+
+img#pfp_mod_preview {
+   width: 55%;
+   position: relative;
+   top: -11%;
+   height: 70%;
+   image-rendering: pixelated;
+}
+
+#aboutMeSectionDefinition {
+   font-family: 'Pixel';
+   margin-bottom: 75px;
+   color: black;
+   font-size: 20px;
+   position: relative;
+   left: 10px;
+}
+
+textarea#description_update_profile {
+  font-family: 'Pixel';
+  resize: none;
+  font-size: 14px;
+  width: 350px;
+  height: 100px;
+  position: relative;
+  /* margin-left: 20px; */
+  left: 10px;
+  border: 3.5px solid black;
+  top: -60px;
+}
+
+button#change_pfp {
+  border: none;
+  background: #0c9;
+  color: white;
+  font-family: 'PIXEL';
+  padding: 10px;
+  left: -355px;
+  transform: translateX(10px);
+  position: relative;
+  top: -3%;
 }
 
 div#modalBoxProfileMod {
@@ -404,6 +486,8 @@ div#modalBoxProfileMod {
   background-color: white;
   width: 65%;
   height: 65%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 img#pfp_mod_profile {
@@ -449,11 +533,7 @@ color: blue;
 color: yellow;
 }
 
-p, a, span, h1, h2, h3, h4, h5, h6 {
-font-family: Pixel;
-color: white;
-text-shadow: 1px 3px 1px gray;
-}
+p, a, span, h1, h2, h3, h4, h5, h6 {font-family: Pixel;color: white;text-shadow: 1px 3px 1px gray;}
 
 .row:after {
 content: "";

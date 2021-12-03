@@ -67,7 +67,9 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
 
         let pfp_elem = document.getElementsByClassName("pfp_img")[0];
 
-        pfp_elem.setAttribute("src", image_url)
+        firestore.collection("profiles").doc(getCookie("pf_id")).get().then(pfp_info => {
+          pfp_elem.setAttribute("src", pfp_info.data().image_url);
+        }).catch(e => console.error(`Something unexpected occured. ${e}`));
 
         console.log('ID: ' + id);
         console.log('Name: ' + name);
@@ -137,7 +139,7 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
   }
 
   function generateName(len = 10, char = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890") {
-      let string;
+      let string = "";
       for (i = 1; i < len; ++i) {
          string += char[Math.round(Math.random() * len) + 1];
       }
@@ -158,13 +160,16 @@ let image_url_ = getCookie("pfp_url") || "../assets/default_pfp_16x16.png";
           console.log(`Loading UserID... Id:<${id}>`);
           console.log(`Loading profile picture ${image_url}...`);
   
-          pfp_img_elem.setAttribute("src", image_url);
           firebase.initializeApp(firebaseConfig);
           firestore = firebase.firestore();
           let fileUpload = document.getElementById("uploadImage")
-        
+          firestore.collection("profiles").doc(getCookie("pf_id")).get().then(pfp_info => {
+            pfp_img_elem.setAttribute("src", pfp_info.data().image_url);
+          }).catch(e => console.error(`Something unexpected occured. ${e}`));
+          
           fileUpload.addEventListener('change', function(evt) {
               let generatedFileName = generateName();
+              window.sessionStorage.setItem("filename", generatedFileName);
               let storageRef = firebase.storage().ref(`uploads/${generatedFileName}.png`)
               let imageUpload = evt.target.files[0];
               let uploadTask = storageRef.put(imageUpload);

@@ -19,6 +19,35 @@ interface String {
     isUrl: Function;
 }
 
+interface NotificationBody {
+    message: string;
+    xhr: XMLHttpRequest;
+    url: string;
+}
+
+class NotificationManager implements NotificationBody {
+    message: string;
+    xhr: XMLHttpRequest;
+    url: string;
+    protected readonly serverToken : string;
+    constructor(serverToken : string) {
+      this.message = "";
+      this.xhr = new XMLHttpRequest();
+      this.url = "https://fcm.googleapis.com/fcm/send";
+      this.serverToken = serverToken;
+    }
+    send(message : string, title : string, token : string, link : string, icon : string): void {
+        this.message = message;
+        this.xhr.open("POST", this.url, true);
+        this.xhr.setRequestHeader('Content-Type','application/json');
+        this.xhr.setRequestHeader('Authorization',`key=${this.serverToken}`);      
+    
+        let data = JSON.stringify({"notification": {"body": message,"title": title,
+        "click_action": link, "icon": icon}, "to": token, "priority": "high"})
+         this.xhr.send(data);
+    }
+}
+
 String.prototype.isUrl = function() {
     let url;
     try {
@@ -223,6 +252,7 @@ interface Data {
      likes: any;
      readonly id: any;
      readonly profile_id: any;
+     readonly filename: string;
 }
 
 let urlSearchParams : URLSearchParams = new URLSearchParams(window.location.search);
@@ -376,12 +406,9 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                 console.log("%c[System]" + "%c Loading resource image... 100%", "color: violet;", "color: white;");
             })
             console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
-
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 if (history.pushState) {
-
-                    var newurl = `https://blueprogrammer212.github.io/home/community/?p=${data.message.match(/\[(.*?)\]/)[1].substr(
-                    data.message.match(/\[(.*?)\]/)[1].search("undefined"), 18)}&r=AS`;
+                    var newurl = `https://blueprogrammer212.github.io/home/community/?p=${data.filename}&r=AS`;
                     window.history.pushState({path:newurl},'',newurl);
 
                     urlSearchParams = new URLSearchParams(window.location.search);
@@ -404,9 +431,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                         const s : number = 0.1;
                         setTimeout((l) => window.location.href = l, s*1000, r);  
                     });
-
                     document.getElementById("open_original_a").setAttribute("title", url_resource);
-
                 }
             });
             if ("r" in params && params.r == "AS" && "p" in params) {
