@@ -28,6 +28,10 @@ body {
   background-color: grey;
 }
 
+#toolset {
+   background-color: #000000;
+}
+
 .exitbtn {
   border: none; 
   background-color: rgba(0, 0, 0, 0);
