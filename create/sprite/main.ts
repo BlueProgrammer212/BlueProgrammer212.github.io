@@ -12,8 +12,8 @@ let colors : string[] = ["red", "blue"];
 
 class ColorManager {
     template: any;
-    constructor(className : string) {
-        this.template = document.getElementsByClassName(className)[0];
+    constructor(id : string) {
+        this.template = document.getElementById(id);
     }
     clone(element, color): void {
         let clone = document.importNode(this.template.content, true).children[0];
