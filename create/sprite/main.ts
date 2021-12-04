@@ -1,7 +1,5 @@
 const canvas = document.getElementsByTagName('canvas')[0],
       context = canvas.getContext("2d");
-canvas.width = 800;
-canvas.height = 600;
 
 interface pixel {
     pos: object;
@@ -62,7 +60,6 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     let deltaX : number = Math.floor(offsetX / pixel_size);
     let deltaY : number = Math.floor(offsetY / pixel_size);
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
-    //pixels = [...pixels, {pos: {x: deltaX * pixel_size, y: deltaY * pixel_size}, scale: {x: pixel_size, y: pixel_size}}]
 }
 
 function onmousemoveHandler(e) {
