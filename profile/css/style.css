@@ -120,14 +120,16 @@ hr#aboutMeSection_mod {
 div#aboutMeSectionContainerMod {
   float: left;
   margin-right: -250px;
+  padding-bottom: 20%;
 }
+
 
 div#preview_profile {
   color: black;
   left: 45%;
 }
 
-#preview_profile > p {color: black;}
+#preview_profile > p {color: black;word-break: break-all;max-width: 97%;}
 
 #preview_profile > h3 {
   color:  black;
@@ -357,6 +359,9 @@ z-index: -1;
 
 #title_container {
 z-index: 100;
+color: #FFFFFF;
+font-family: 'Pixel';
+text-shadow: 0 1px 0 #ffffff, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
 }
 
 .topnav a {
