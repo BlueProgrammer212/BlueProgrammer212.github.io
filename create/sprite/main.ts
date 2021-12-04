@@ -8,6 +8,26 @@ interface pixel {
     scale: object;
 }
 
+let colors : string[] = ["red", "blue"];
+
+class ColorManager {
+    template: any;
+    constructor(className : string) {
+        this.template = document.getElementsByClassName(className);
+    }
+    clone(element, color): void {
+        let clone = document.importNode(this.template.content, true).children[0];
+        clone.id = color;
+        clone.setAttribute("style", `background-color: ${color};`)
+        element.appendChild(clone)
+    }
+}
+
+let colorPicker = new ColorManager("colorBox_temp");
+for (let i = 0; i < colors.length; ++i) {
+    colorPicker.clone(document.getElementById("bg-color-pallete"), colors[i]);
+}
+
 class Vec2 {
     x: number;
     y: number;
