@@ -12,6 +12,12 @@
   border-radius: 0px;
 }
 
+#PencilTool {
+   image-rendering: pixelated;
+   width: 48px;
+   height: 48px;
+}
+
 img#pfp_img_id {display: flex;position: absolute;left: 90%;align-items: center;margin: -0.5%;}
 
 ::-webkit-scrollbar-thumb {
@@ -29,9 +35,11 @@ body {
 }
 
 #toolset {
+  position: absolute;
   background-color: #222222;
   padding: 7.5px;
   width: 15%;
+  z-index: -1;
   /* padding-top: 10px; */
   /* position: relative; */
   /* top: -60px; */
@@ -211,7 +219,7 @@ body {
 #ToolTitle {
   color: white;
   font-family: Pixel;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 #main_canvas {
