@@ -287,19 +287,11 @@ window.addEventListener("load", () => {
           
           if (a.data().id == getCookie("pf_id")) {
             document.getElementById("preview_description").innerHTML = a["data"]().description;
-            let avatarViewer = document.getElementById("description_update_profile")
-            const currentDescription = a.data().description,
-                  addEvent = ["addEventListener","input"];
-            if (addEvent in Element.prototype) { 
-              avatarViewer[addEvent[0]](addEvent[1], e => {
-                document.getElementById("preview_description").innerHTML = avatarViewer.value; 
-                if (avatarViewer.value !== currentDescription) {
-                   showSaveNavBar.className = "";
-                } else {
-                  
-                }
-              })
-            } 
+            const currentDescription = a.data().description;
+            document.getElementById("description_update_profile")["addEventListener"]("input", e => {
+              document.getElementById("preview_description").innerHTML = document.getElementById("description_update_profile").value; 
+              if (avatarViewer.value !== currentDescription) {} else {}
+            })
             const st=!function(c=a,h=l){const g=c[p]().id;return (!(g[h]++>1)?1:0)}(a,l)==0?0:void 0;
             document.getElementsByClassName("camera_change_pfp_bg")[0].addEventListener("click", () => {
               document.getElementById("lth").className = "profileEditBg";
