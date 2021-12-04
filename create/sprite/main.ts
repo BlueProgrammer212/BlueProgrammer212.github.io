@@ -1,97 +1,66 @@
-var canvas = document.getElementsByTagName('canvas')[0];
+const canvas = document.getElementsByTagName('canvas')[0],
+      context = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 600;
 
-let factor : number = 1, pt;
-
-interface CanvasRenderingContext2D {
-    transformedPoint: Function;
-    translate: Function;
+interface pixel {
+    pos: object;
+    scale: object;
 }
 
-var gkhead = new Image;
-
-window.onload = function(){		
-
-var ctx : CanvasRenderingContext2D = canvas.getContext('2d');
-
-let pixels = [];
-        
-function redraw(){
-    for (let i = 0; i < pixels.length; ++i) {
-        ctx.fillStyle = pixels[i].color;
-        if (pixels[i] === void 0) break;
-        ctx.fillRect(pixels[i].pos.x, pixels[i].pos.y, pixels[i].scale.x, pixels[i].scale.y);
+class Vec2 {
+    x: number;
+    y: number;
+    constructor(x = 0, y = 0) {
+        this.set(x, y);
+    } 
+    set(x = 0, y = 0): void {
+        this.x = x;
+        this.y = y;
+    }
+    dist(lx, ly, cx, cy): number {
+        let dx = lx - cx,
+            dy = ly - cy;
+       return Math.hypot(dx, dy);
     }
 }
-    redraw();
 
-    var lastX=canvas.width/2, lastY=canvas.height/2;
 
-    var dragStart,dragged;
+let CURRENT_COLOR : string = "red"; 
+let pixels : pixel[] = [];
 
-    class Tools {
-      item: any;
-      constructor(name) {
-          this.item = {};
-          this.item.selected = name;
-      }
-      public setTool(name : string): string {
-         this.item.selected = name;
-         return this.item.selected;
-      }
+let lastVector = new Vec2(0, 0), 
+    isDragging : boolean = false;
+
+function drawPixel(context, x : number, y : number, pixel_size = 16): void {
+    context.fillStyle = CURRENT_COLOR;
+    let offsetX : number = x - context.canvas.getBoundingClientRect().left;
+    let offsetY : number = y - context.canvas.getBoundingClientRect().top;
+    let deltaX : number = Math.floor(offsetX / pixel_size);
+    let deltaY : number = Math.floor(offsetY / pixel_size);
+    context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
+    pixels = [...pixels, {pos: {x: deltaX * pixel_size, y: deltaY * pixel_size}, scale: {x: pixel_size, y: pixel_size}}]
+}
+
+canvas.addEventListener("mousedown", (e) => {
+    lastVector.set(0, 0);
+    isDragging = true;
+    e.preventDefault();
+})
+
+canvas.addEventListener("mouseup", (e) => {
+    e.preventDefault();
+    isDragging = false;
+})
+
+canvas.addEventListener("mousemove", (e) => {
+    if (isDragging) {
+        drawPixel(context, e.x, e.y, 16)
+        let dx = e.x - lastVector.x, dy = e.y - lastVector.y;
+        let d = lastVector.dist(lastVector.x, lastVector.y, e.x, e.y);
+        for (var i = 1; i < d; i += 2) {
+            drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, 16)
+        }
+        lastVector.set(e.x, e.y);
     }
-
-    let Tool = new Tools("pencil");
-    let onMouseDownPencilMode : boolean = false;
-    let DEFAULT_COLOR = "#ff0000"
-
-    function drawPixel(context, x : number, y : number, pixel_size = 16): void {
-        //Default color: Red
-        context.fillStyle = DEFAULT_COLOR;
-        let offsetX : number = x - context.canvas.getBoundingClientRect().left;
-        let offsetY : number = y - context.canvas.getBoundingClientRect().top;
-        let deltaX : number = Math.floor(offsetX / pixel_size);
-        let deltaY : number = Math.floor(offsetY / pixel_size);
-        context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
-        pixels = [...pixels, {pos: {x: deltaX * pixel_size, y: deltaY * pixel_size}, scale: {x: pixel_size, y: pixel_size}}]
-    }
-
-    canvas.addEventListener('mousedown',function(evt){
-          if (Tool.item.selected == "move") {
-                dragged = false;
-          } else if (Tool.item.selected === "pencil") {
-                onMouseDownPencilMode = true;
-          } 
-    },false);
-   
-    document.addEventListener("keydown", (e) => {
-        this.e = e;
-        this.e.preventDefault();
-        this.e.stopPropagation();
-        if (this.e.key == "Control") {
-            Tool.setTool("move");
-        }
-    })
-
-    document.addEventListener("keyup", (e) => { 
-        this.e = e;
-        this.e.preventDefault();
-        this.e.stopPropagation();
-        if (this.e.key == "Control") {
-            Tool.setTool("pencil");
-        }
-    })
-
-    canvas.addEventListener('mousemove',function(evt){
-       if (Tool.item.selected === "pencil" && onMouseDownPencilMode) {
-            drawPixel(ctx, evt.clientX, evt.clientY, 16 * factor);
-        }
-    },false);
-
-    canvas.addEventListener('mouseup',function(evt){
-        onMouseDownPencilMode = false;
-    },false);
-
-};
-
+})
