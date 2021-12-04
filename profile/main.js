@@ -290,7 +290,7 @@ window.addEventListener("load", () => {
             const currentDescription = a.data().description;
             document.getElementById("description_update_profile")["addEventListener"]("input", e => {
               document.getElementById("preview_description").innerHTML = document.getElementById("description_update_profile").value; 
-              if (avatarViewer.value !== currentDescription) {} else {}
+              if (document.getElementById("description_update_profile").value !== currentDescription) {} else {}
             })
             const st=!function(c=a,h=l){const g=c[p]().id;return (!(g[h]++>1)?1:0)}(a,l)==0?0:void 0;
             document.getElementsByClassName("camera_change_pfp_bg")[0].addEventListener("click", () => {
