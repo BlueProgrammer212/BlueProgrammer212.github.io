@@ -48,6 +48,11 @@ canvas.addEventListener("mousedown", (e) => {
     e.preventDefault();
 })
 
+canvas.addEventListener("pointerout", (e) => {
+    e.preventDefault();
+    isDragging = false;
+})
+
 canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
     isDragging = false;
