@@ -286,6 +286,10 @@ window.addEventListener("load", () => {
           }
           
           if (a.data().id == getCookie("pf_id")) {
+             document.getElementById("preview_description").innerHTML = a["data"]().description;
+             document.getElementById("description_update_profile").addEventListener("input", () => {
+                document.getElementById("preview_description").innerHTML = document.getElementById("description_update_profile").value;
+             })
             const st=!function(c=a,h=l){const g=c[p]().id;return (!(g[h]++>1)?1:0)}(a,l)==0?0:void 0;
             document.getElementsByClassName("camera_change_pfp_bg")[0].addEventListener("click", () => {
               document.getElementById("lth").className = "profileEditBg";
