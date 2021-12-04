@@ -8,7 +8,7 @@ interface pixel {
 
 let CURRENT_COLOR : string = "red", 
     pixels : pixel[] = [],
-    colors : string[] = ["red", "blue"];
+    colors : string[] = ["red", "blue", "yellow", "green", "orange", "purple"];
 
 class ColorManager {
     template: any;
