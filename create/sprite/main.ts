@@ -70,7 +70,7 @@ function onmousemoveHandler(e) {
         drawPixel(context, e.x, e.y, 16)
         let dx = e.x - lastVector.x, dy = e.y - lastVector.y;
         let d = lastVector.dist(lastVector.x, lastVector.y, e.x, e.y);
-        for (var i = 1; i < d; i += 3) {
+        for (var i = 1; i < d; i += 16) {
             drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, 16)
         }
         lastVector.set(e.x, e.y);
