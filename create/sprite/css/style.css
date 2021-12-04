@@ -29,7 +29,21 @@ body {
 }
 
 #toolset {
-   background-color: #000000;
+  background-color: #222222;
+  padding: 7.5px;
+  width: 15%;
+  /* padding-top: 10px; */
+  /* position: relative; */
+  /* top: -60px; */
+  height: 60vw;
+  /* display: grid; */
+  /* display: flex; */
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  /* align-items: center; */
 }
 
 .exitbtn {
