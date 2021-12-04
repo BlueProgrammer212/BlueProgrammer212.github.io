@@ -43,7 +43,7 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
 }
 
 canvas.addEventListener("mousedown", (e) => {
-    lastVector.set(0, 0);
+    lastVector.set(e.x, e.y);
     isDragging = true;
     e.preventDefault();
 })
