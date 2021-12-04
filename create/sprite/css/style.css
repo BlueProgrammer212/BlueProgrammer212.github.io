@@ -194,6 +194,12 @@ body {
   color: #f2f2f2;
 }
 
+#ToolTitle {
+  color: white;
+  font-family: Pixel;
+  font-size: 18px;
+}
+
 #main_canvas {
     position: absolute;
     left: 50%;
@@ -202,6 +208,7 @@ body {
     transform: translate(-50%, -46%);
     aspect-ratio: 100 / 100;
     z-index: -1;
+    image-rendering: pixelated;
     background-image: url(../assets/background_canvas.png);
     background-position: fixed;
 }
