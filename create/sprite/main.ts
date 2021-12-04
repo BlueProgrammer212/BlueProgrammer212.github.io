@@ -7,6 +7,8 @@ interface pixel {
     pos: object;
     scale: object;
 }
+let CURRENT_COLOR : string = "red"; 
+let pixels : pixel[] = [];
 
 let colors : string[] = ["red", "blue"];
 
@@ -19,6 +21,9 @@ class ColorManager {
         let clone = document.importNode(this.template.content, true).children[0];
         clone.id = color;
         clone.setAttribute("style", `background-color: ${color};`)
+        clone.addEventListener("click", () => {
+            CURRENT_COLOR = color;
+        })
         element.appendChild(clone)
     }
 }
@@ -46,8 +51,6 @@ class Vec2 {
 }
 
 
-let CURRENT_COLOR : string = "red"; 
-let pixels : pixel[] = [];
 
 let lastVector = new Vec2(0, 0), 
     isDragging : boolean = false;
@@ -59,7 +62,7 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     let deltaX : number = Math.floor(offsetX / pixel_size);
     let deltaY : number = Math.floor(offsetY / pixel_size);
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
-    pixels = [...pixels, {pos: {x: deltaX * pixel_size, y: deltaY * pixel_size}, scale: {x: pixel_size, y: pixel_size}}]
+    //pixels = [...pixels, {pos: {x: deltaX * pixel_size, y: deltaY * pixel_size}, scale: {x: pixel_size, y: pixel_size}}]
 }
 
 function onmousemoveHandler(e) {
