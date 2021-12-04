@@ -1,4 +1,6 @@
 const regExpression = /|([^|]*)|/g
+
+console.log("[Client] Initializing websockets...")
 if (window.location.host !== "blueprogrammer212.github.io") {
   window.location.href = "https://blueprogrammer212.github.io/home"
 }
