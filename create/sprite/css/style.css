@@ -26,7 +26,6 @@ body {
   scroll-behavior: smooth;
   overflow: hidden;
   background-color: grey;
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/images%2Fmy-pixel-img%20(1).png?alt=media&token=85f82229-57c0-42cc-8a72-1f3c0e8c0ce3");
 }
 
 .exitbtn {
