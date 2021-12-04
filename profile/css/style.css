@@ -2,14 +2,6 @@
   box-sizing: border-box;
 }
 
-.camera_change_pfp_bg {
-background-color: black;
-z-index: 0; 
-position: relative;
-width: 100px;
-height: 100px;
-}
-
 ::-webkit-scrollbar {
 width: 15px;
 }
@@ -37,7 +29,7 @@ div.profileEditBg {
 
 .camera_change_pfp_bg {
 background-color: rgba(0, 0, 0, 0.3);
-z-index: 1;
+z-index: 0;
 position: relative;
 display: flex;
 top: -65px;
