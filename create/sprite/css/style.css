@@ -38,12 +38,12 @@ body {
   position: absolute;
   background-color: #222222;
   padding: 7.5px;
-  width: 15%;
+  width: 225px;
   z-index: -1;
   /* padding-top: 10px; */
   /* position: relative; */
   /* top: -60px; */
-  height: 60vw;
+  height: 100%;
   /* display: grid; */
   /* display: flex; */
   flex-wrap: nowrap;
