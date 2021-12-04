@@ -105,9 +105,12 @@ color: white;
 }
 
 hr#aboutMeSection_mod {
-  border: 2.7px solid black;
+  border-top: 6px ridge blue;
+  /* padding: 80px; */
   margin-top: -50px;
+  box-shadow: 0px 0px 6px #44444490;
 }
+
 
 div#aboutMeSectionContainerMod {
   float: left;
