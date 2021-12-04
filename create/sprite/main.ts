@@ -42,9 +42,7 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     pixels = [...pixels, {pos: {x: deltaX * pixel_size, y: deltaY * pixel_size}, scale: {x: pixel_size, y: pixel_size}}]
 }
 
-canvas.addEventListener("mousedown", (e) => {
-    lastVector.set(e.x, e.y);
-    isDragging = true;
+function onmousemoveHandler(e) {
     if (isDragging) {
         drawPixel(context, e.x, e.y, 16)
         let dx = e.x - lastVector.x, dy = e.y - lastVector.y;
@@ -54,6 +52,12 @@ canvas.addEventListener("mousedown", (e) => {
         }
         lastVector.set(e.x, e.y);
     }
+}
+
+canvas.addEventListener("mousedown", (e) => {
+    lastVector.set(e.x, e.y);
+    isDragging = true;
+    onmousemoveHandler(e)
     e.preventDefault();
 })
 
@@ -67,14 +71,4 @@ canvas.addEventListener("mouseup", (e) => {
     isDragging = false;
 })
 
-canvas.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-        drawPixel(context, e.x, e.y, 16)
-        let dx = e.x - lastVector.x, dy = e.y - lastVector.y;
-        let d = lastVector.dist(lastVector.x, lastVector.y, e.x, e.y);
-        for (var i = 1; i < d; i += 2) {
-            drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, 16)
-        }
-        lastVector.set(e.x, e.y);
-    }
-})
+canvas.addEventListener("mousemove", onmousemoveHandler)
