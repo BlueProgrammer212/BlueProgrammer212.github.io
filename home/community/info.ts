@@ -414,7 +414,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                     urlSearchParams = new URLSearchParams(window.location.search);
                     params = Object.fromEntries(urlSearchParams.entries());       
 
-                    let url_resource : string = `https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${params.p}.png?alt=media`;
+                    let url_resource : string = `https://pixcelcdn.bprog212.repl.co/?id=${params.p}&s=128`;
                     document.getElementById("bg_prev").className = "";
 
                     document.getElementById("img_prev").setAttribute("src", url_resource);
