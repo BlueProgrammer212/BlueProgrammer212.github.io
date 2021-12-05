@@ -76,7 +76,7 @@ function onmousemoveHandler(e) {
 
 function zoom(event) {
     event.preventDefault();
-    scale += event.deltaY * -0.01;
+    scale += event.deltaY * -0.001;
     scale = Math.min(Math.max(.125, scale), 4);
     canvas.style["zoom"] = `${scale}`;
 }
