@@ -12,12 +12,6 @@
   border-radius: 0px;
 }
 
-#PencilTool {
-   image-rendering: pixelated;
-   width: 48px;
-   height: 48px;
-}
-
 img#pfp_img_id {display: flex;position: absolute;left: 90%;align-items: center;margin: -0.5%;}
 
 ::-webkit-scrollbar-thumb {
@@ -125,6 +119,12 @@ body {
   background-color: gray;
   margin-top: 11%;
   height: 200%;
+}
+
+.toolslot {
+  image-rendering: pixelated;
+  width: 48px;
+  height: 48px;
 }
 
 @font-face {

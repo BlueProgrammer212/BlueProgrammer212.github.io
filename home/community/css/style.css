@@ -493,6 +493,8 @@ html {
 }
 #img_prev {
   max-width:75%;
+  min-width: 20%;
+  min-height: 20%;
   max-height:75%;
   width: 50vw;
   height: auto;
