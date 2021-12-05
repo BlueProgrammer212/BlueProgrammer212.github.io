@@ -492,10 +492,17 @@ html {
   background-color: rgba(0, 0, 0, 0.5);
   left: 0;
   top: 0;
-  z-index: 1009;
+  z-index: 6;
+}
+#img_prev {
+  max-width:50vw;
+  max-height:50vw;
+  width: 50vw;
+  height: auto;
+  background-color: #000000;
 }
 
-#img_prev {
+#bg_prev_figure {
   display: block;
   max-width:50vw;
   max-height:50vw;
@@ -508,7 +515,6 @@ html {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  background-color: #000000;
 }
 
 .blackColorRectBg {
