@@ -421,16 +421,12 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
                     document.getElementById("img_prev").setAttribute("src", url_resource_media_image);
                     document.getElementById("img_prev").addEventListener("contextmenu", () => {return;})
                     let a_elem_open_original = document.getElementById("open_original_a");
-                    a_elem_open_original.setAttribute("href", url_resource)
-
                     a_elem_open_original.addEventListener("click", (e) => {
                         const o : string[] = ["stopPropagation", "preventDefault"];
-                        const m : string = "CALL";
-                        for (let t = 0; t < o.length; ++t) e[o[t]][m.toLowerCase()]();
-                        let r : string = a_elem_open_original.getAttribute("href");
+                        for (let t = 0; t < o.length; ++t) e[o[t]].call();
                         console.log(`[Redirect] Redirecting to ${url_resource}`);
                         const s : number = 0.1;
-                        setTimeout((l) => window.location.href = l, s*1000, r);  
+                        setTimeout(() => window.location.href = url_resource, s*1000);  
                     });
                     document.getElementById("open_original_a").setAttribute("title", url_resource);
                 }
