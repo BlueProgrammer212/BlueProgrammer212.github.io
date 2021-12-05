@@ -497,6 +497,7 @@ html {
   width: 50vw;
   height: auto;
   background-color: #000000;
+  border: 3.5px solid black;
 }
 
 #bg_prev_figure {
@@ -505,7 +506,6 @@ html {
   max-height:50vw;
   width: 50vw;
   height: auto;
-  border: 3.5px solid black;
   z-index: 1010;
   position: fixed;
   top: 50%;
