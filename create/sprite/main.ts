@@ -74,6 +74,16 @@ function onmousemoveHandler(e) {
     }
 }
 
+function zoom(event) {
+    event.preventDefault();
+    scale += event.deltaY * -0.01;
+    scale = Math.min(Math.max(.125, scale), 4);
+    canvas.style["zoom"] = `${scale}`;
+}
+
+let scale = 1;
+canvas.onwheel = zoom;
+
 canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
     isDragging = true;

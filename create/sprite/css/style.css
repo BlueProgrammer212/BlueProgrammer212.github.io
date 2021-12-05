@@ -222,6 +222,7 @@ body {
 }
 
 #main_canvas {
+    zoom: 75%;
     position: absolute;
     left: 50%;
     top: 53%;
