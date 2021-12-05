@@ -459,7 +459,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
 
 let fragmentInstance = new FragmentManager("template_posts", "../assets/default_pfp_16x16.png");
 
-document.getElementById("img_prev").parentElement.addEventListener("click", () => {
+document.getElementById("img_prev").parentElement.parentElement.addEventListener("click", () => {
     document.getElementById("img_prev").parentElement.className = "invisible";
     if (history.pushState) {
         var newurl = `https://blueprogrammer212.github.io/home/community/`;
