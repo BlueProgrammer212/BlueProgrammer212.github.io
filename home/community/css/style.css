@@ -492,8 +492,8 @@ html {
   z-index: 6;
 }
 #img_prev {
-  max-width:50vw;
-  max-height:50vw;
+  max-width:75%;
+  max-height:75%;
   width: 50vw;
   height: auto;
   background-color: #000000;
