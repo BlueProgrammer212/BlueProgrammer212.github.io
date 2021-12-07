@@ -74,6 +74,10 @@ function onmousemoveHandler(e) {
     }
 }
 
+document.getElementById("Eraser").addEventListener("click", (e) => {
+    console.log(e);
+})
+
 function zoom(event) {
     event.preventDefault();
     scale += event.deltaY * -0.001;
