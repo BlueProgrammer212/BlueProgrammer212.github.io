@@ -55,8 +55,8 @@ let lastVector = new Vec2(0, 0),
 
 function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     context.fillStyle = CURRENT_COLOR;
-    let offsetX : number = (x - canvas.getBoundingClientRect().left) * Number(canvas.style["zoom"]);
-    let offsetY : number = (y - canvas.getBoundingClientRect().top) * Number(canvas.style["zoom"]);
+    let offsetX : number = (x - canvas.getBoundingClientRect().left) * -Number(canvas.style["zoom"]);
+    let offsetY : number = (y - canvas.getBoundingClientRect().top) * -Number(canvas.style["zoom"]);
     let deltaX : number = Math.floor(offsetX / pixel_size);
     let deltaY : number = Math.floor(offsetY / pixel_size);
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
