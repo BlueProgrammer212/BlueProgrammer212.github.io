@@ -62,13 +62,13 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
 
 function onmousemoveHandler(e) {
     if (isDragging) {
-        drawPixel(context, e.x, e.y, 16)
+        drawPixel(context, e.clientX, e.clientY, 16)
         let dx = e.clientX - lastVector.x, dy = e.clientX - lastVector.y;
         let d = lastVector.dist(lastVector.x, lastVector.y, e.clientX, e.clientY);
         for (var i = 1; i < d; i += 16) {
             drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, 16)
         }
-        lastVector.set(e.x, e.y);
+        lastVector.set(e.clientX, e.clientY);
     }
 }
 let currentTool = "Pencil";
