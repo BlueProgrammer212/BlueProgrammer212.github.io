@@ -73,9 +73,9 @@ function onmousemoveHandler(e) {
         lastVector.set(e.x, e.y);
     }
 }
-
-document.getElementById("Eraser").addEventListener("click", (e) => {
-    console.log(e);
+let currentTool = "Pencil";
+document.getElementById("EraserTool").addEventListener("click", (e) => {
+    currentTool = "Eraser";
 })
 
 function zoom(event) {
