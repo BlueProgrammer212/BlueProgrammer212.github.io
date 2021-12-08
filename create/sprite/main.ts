@@ -48,15 +48,13 @@ class Vec2 {
     }
 }
 
-
-
 let lastVector = new Vec2(0, 0), 
     isDragging : boolean = false;
 
 function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     context.fillStyle = CURRENT_COLOR;
-    let offsetX : number = (x - canvas.getBoundingClientRect().left) * -Number(canvas.style["zoom"]);
-    let offsetY : number = (y - canvas.getBoundingClientRect().top) * -Number(canvas.style["zoom"]);
+    let offsetX : number = (x - canvas.getBoundingClientRect().left);
+    let offsetY : number = (y - canvas.getBoundingClientRect().top);
     let deltaX : number = Math.floor(offsetX / pixel_size);
     let deltaY : number = Math.floor(offsetY / pixel_size);
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
@@ -65,8 +63,8 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
 function onmousemoveHandler(e) {
     if (isDragging) {
         drawPixel(context, e.x, e.y, 16)
-        let dx = e.x - lastVector.x, dy = e.y - lastVector.y;
-        let d = lastVector.dist(lastVector.x, lastVector.y, e.x, e.y);
+        let dx = e.clientX - lastVector.x, dy = e.clientX - lastVector.y;
+        let d = lastVector.dist(lastVector.x, lastVector.y, e.clientX, e.clientY);
         for (var i = 1; i < d; i += 16) {
             drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, 16)
         }
@@ -89,7 +87,7 @@ let scale = 1;
 canvas.onwheel = zoom;
 
 canvas.addEventListener("mousedown", (e) => {
-    lastVector.set(e.x, e.y);
+    lastVector.set(e.clientX, e.clientY);
     isDragging = true;
     onmousemoveHandler(e)
     e.preventDefault();
