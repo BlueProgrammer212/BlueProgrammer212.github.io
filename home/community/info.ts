@@ -462,7 +462,7 @@ let fragmentInstance = new FragmentManager("template_posts", "../assets/default_
 document.getElementById("img_prev").parentElement.parentElement.addEventListener("click", () => {
     document.getElementById("img_prev").parentElement.parentElement.className = "invisible";
     if (history.pushState) {
-        var newurl = `https://blueprogrammer212.github.io/home/community/`;
+        var newurl = `https://www.pixcel.ml/home/community/`;
         window.history.pushState({path:newurl},'',newurl);
      }
 })

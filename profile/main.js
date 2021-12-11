@@ -1,7 +1,7 @@
 const regExpression = /|([^|]*)|/g
 
 console.log("[Client] Initializing websockets...")
-if (window.location.host !== "blueprogrammer212.github.io") {
+if (window.location.host !== "www.pixcel.ml") {
   window.location.href = "https://blueprogrammer212.github.io/home"
 }
 const urlSearchParams_ = new URLSearchParams(window.location.search);
