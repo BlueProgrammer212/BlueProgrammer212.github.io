@@ -60,7 +60,7 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     let scalar : number = Number(canvas.style["zoom"]);
     let deltaX : number = Math.floor(offsetX / (pixel_size * scalar));
     let deltaY : number = Math.floor(offsetY / (pixel_size * scalar));
-    context.fillRect(deltaX * (pixel_size * scalar), deltaY * (pixel_size * scalar), pixel_size * scalar, pixel_size * scalar)
+    context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
 }
 
 function onmousemoveHandler(e) {
