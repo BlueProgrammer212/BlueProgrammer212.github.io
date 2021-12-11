@@ -260,13 +260,13 @@ body {
 }
 
 input#scaleSliderRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
   color: red;
   width: 30px;
   height: 30px;
   border-radius: 25px;
   background-position: center;
   /* margin: auto; */
-  -webkit-appearance: none;
   transform: translate(-2.5px, -5px);
 }
 
