@@ -57,9 +57,10 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     context.fillStyle = CURRENT_COLOR;
     let offsetX : number = x - canvas.getBoundingClientRect().left;
     let offsetY : number = y - canvas.getBoundingClientRect().top;
-    let deltaX : number = Math.floor(offsetX / pixel_size);
-    let deltaY : number = Math.floor(offsetY / pixel_size);
-    context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
+    let scalar : number = Number(canvas.style["zoom"]);
+    let deltaX : number = Math.floor(offsetX / (pixel_size * scalar));
+    let deltaY : number = Math.floor(offsetY / (pixel_size * scalar));
+    context.fillRect(deltaX * (pixel_size * scalar), deltaY * (pixel_size * scalar), pixel_size * scalar, pixel_size * scalar)
 }
 
 function onmousemoveHandler(e) {
