@@ -250,9 +250,23 @@ body {
 
 #scaleSliderRange {
   height: 50px;
-  width: 300px;
+  -webkit-appearance: none;
+  width: 180px;
   outline: none;
   background: url(../assets/h-slider-background.png);
+  background-size: 180px 40px;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+input#scaleSliderRange::-webkit-slider-thumb {
+  color: red;
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  background-position: center;
+  /* margin: auto; */
+  transform: translate(-2.5px, -5px);
 }
 
 #main_canvas {
