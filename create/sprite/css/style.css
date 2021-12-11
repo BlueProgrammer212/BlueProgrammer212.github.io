@@ -48,6 +48,27 @@ body {
   /* align-items: center; */
 }
 
+#layer_tool_box {
+  position: absolute;
+  left: 90%;
+  background-color: #222222;
+  padding: 7.5px;
+  width: 225px;
+  z-index: -1;
+  /* padding-top: 10px; */
+  /* position: relative; */
+  /* top: -60px; */
+  height: 100%;
+  /* display: grid; */
+  /* display: flex; */
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  /* align-items: center; */
+}
+
 .exitbtn {
   border: none; 
   background-color: rgba(0, 0, 0, 0);
