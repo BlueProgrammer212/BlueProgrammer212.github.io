@@ -64,6 +64,38 @@ document.getElementById("SaveTool").addEventListener("click", () => {
     },'image/png');
 })
 
+function printCanvas(url_blob)  
+{  
+    var windowContent = `
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <title>
+                    Pixcel: Print
+                </title>
+                </head>
+            <body>
+            <img src="${url_blob }">
+            </body> 
+        </html>
+    `
+    var printWin = window.open('','','width=340,height=260');
+    printWin.document.open();
+    printWin.document.write(windowContent);
+    printWin.document.close();
+    printWin.focus();
+    printWin.print();
+    printWin.close();
+}
+
+document.getElementById("Print").addEventListener("click", () => {
+    canvas.toBlob(function(blob){
+      printCanvas(URL.createObjectURL(blob));
+      console.log(blob);
+      console.log(`Pending blob printing request, ${l.href}`);
+    },'image/png');
+})
+
 function getMousePos(canvas, x, y) {
     var rect = canvas.getBoundingClientRect();
     return new Vec2((x - rect.left) / (rect.right - rect.left) * canvas.width, 
