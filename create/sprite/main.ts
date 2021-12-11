@@ -48,12 +48,23 @@ class Vec2 {
     }
 }
 
-
-
 let lastVector = new Vec2(0, 0), 
     isDragging : boolean = false;
 
 let scalar = 1;
+document.getElementById("SaveTool").addEventListener("click", () => {
+    let l = document.createElement("a");
+    l.download = "image.png";
+  
+    canvas.toBlob(function(blob){
+      l.href = URL.createObjectURL(blob);
+      console.log(blob);
+      console.log(`Pending blob download request, ${l.href}`);
+    },'image/png');
+  
+    l.click();
+})
+
 function getMousePos(canvas, x, y) {
     var rect = canvas.getBoundingClientRect();
     return new Vec2((x - rect.left) / (rect.right - rect.left) * canvas.width, 
