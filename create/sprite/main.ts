@@ -60,9 +60,11 @@ document.getElementById("SaveTool").addEventListener("click", () => {
       l.href = URL.createObjectURL(blob);
       console.log(blob);
       console.log(`Pending blob download request, ${l.href}`);
+      document.body.appendChild(l);
     },'image/png');
   
     l.click();
+    document.body.removeChild(l);
 })
 
 function getMousePos(canvas, x, y) {
