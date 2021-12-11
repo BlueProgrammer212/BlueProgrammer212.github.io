@@ -261,11 +261,11 @@ body {
 
 input#scaleSliderRange::-webkit-slider-thumb {
   -webkit-appearance: none;
-  color: red;
   width: 30px;
   height: 30px;
   border-radius: 25px;
   background-position: center;
+  background-image: url(../assets/h-slider-thumb-ico.png);
   /* margin: auto; */
   transform: translate(-2.5px, -5px);
 }
