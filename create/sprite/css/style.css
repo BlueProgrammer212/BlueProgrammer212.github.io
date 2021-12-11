@@ -248,6 +248,13 @@ body {
   font-size: 14px;  
 }
 
+#scaleSliderRange {
+  height: 50px;
+  width: 300px;
+  outline: none;
+  background: url(../assets/h-slider-background.png);
+}
+
 #main_canvas {
     position: absolute;
     left: 50%;

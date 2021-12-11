@@ -50,6 +50,13 @@
          <div id="canvas_container">
            <canvas id="main_canvas" width="700" height="600"></canvas>
          </div>
+         <template id="layer_box">
+            <div id="layerContainer">
+               <canvas id="canvasLayerPreview" class="layerBox layerPreview">
+                   Sorry, but your browser does not support the HTML5 canvas element.
+               </canvas>
+            </div> 
+         </template>
          <template id="colorBox_temp">
             <div class="colorBox" role="button"></div>
          </template> 
@@ -72,6 +79,7 @@
              <input type="image" src="assets/save_ico.png" title="Save" width="32" height="32" id="SaveTool" class="toolslot" />
              <input type="image" src="assets/publish_ico.png" draggable="false" title="Publish" width="32" height="32" id="Publish" class="toolslot" />
              <input type="image" src="assets/printer_ico.png" draggable="false" title="Print" width="32" height="32" id="Print" class="toolslot" />
+             <input type="range" max="100" value="50" class="scaleSlider" id="scaleSliderRange" />
           </div>
       </div>
       <div class="colorDialog_bg invisible">
