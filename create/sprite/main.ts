@@ -57,9 +57,8 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     context.fillStyle = CURRENT_COLOR;
     let offsetX : number = x - canvas.getBoundingClientRect().left;
     let offsetY : number = y - canvas.getBoundingClientRect().top;
-    let scalar : number = canvas.style["zoom"];
-    let deltaX : number = Math.floor(offsetX / pixel_size) * scalar;
-    let deltaY : number = Math.floor(offsetY / pixel_size) * scalar;
+    let deltaX : number = Math.floor(offsetX / pixel_size);
+    let deltaY : number = Math.floor(offsetY / pixel_size);
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
 }
 
@@ -83,7 +82,7 @@ function zoom(event) {
     event.preventDefault();
     scale += event.deltaY * -0.001;
     scale = Math.min(Math.max(.125, scale), 4);
-    canvas.style["zoom"] = `${scale}`;
+    canvas.style["transform"] = `scale(${scale})`;
 }
 
 let scale = 1;
