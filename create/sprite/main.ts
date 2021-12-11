@@ -92,7 +92,8 @@ function zoom(event) {
 }
 
 let scale = 1;
-canvas.onwheel = zoom;
+
+//canvas.onwheel = zoom;
 
 canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
