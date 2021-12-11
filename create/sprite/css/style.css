@@ -266,6 +266,7 @@ input#scaleSliderRange::-webkit-slider-thumb {
   border-radius: 25px;
   background-position: center;
   background-image: url(../assets/h-slider-thumb-ico.png);
+  background-size: 30px 30px;
   /* margin: auto; */
   transform: translate(-2.5px, -5px);
 }
