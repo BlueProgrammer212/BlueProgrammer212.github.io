@@ -75,7 +75,7 @@ function printCanvas(url_blob)
                 </title>
                 </head>
             <body>
-            <img src="${url_blob }">
+            <img src="${url_blob}">
             </body> 
         </html>
     `
@@ -95,6 +95,9 @@ document.getElementById("Print").addEventListener("click", () => {
       console.log(`Pending blob printing request, ${URL.createObjectURL(blob)}`);
     },'image/png');
 })
+
+
+canvas.oncontextmenu = function() {return false};
 
 function getMousePos(canvas, x, y) {
     var rect = canvas.getBoundingClientRect();
