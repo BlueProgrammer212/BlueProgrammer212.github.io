@@ -50,10 +50,10 @@ body {
 
 #layer_tool_box {
   position: absolute;
-  left: 90%;
+  left: 80%;
   background-color: #222222;
   padding: 7.5px;
-  width: 225px;
+  width: 325px;
   z-index: -1;
   /* padding-top: 10px; */
   /* position: relative; */
