@@ -57,8 +57,10 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     context.fillStyle = CURRENT_COLOR;
     let offsetX : number = x - canvas.getBoundingClientRect().left;
     let offsetY : number = y - canvas.getBoundingClientRect().top;
-    let deltaX : number = Math.floor(offsetX / pixel_size);
-    let deltaY : number = Math.floor(offsetY / pixel_size);
+    let scaleX : number = canvas.width / canvas.getBoundingClientRect().width;
+    let scaleY : number = canvas.height / canvas.getBoundingClientRect().height;
+    let deltaX : number = Math.floor(offsetX / pixel_size) * scaleX;
+    let deltaY : number = Math.floor(offsetY / pixel_size) * scaleY;
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
 }
 
