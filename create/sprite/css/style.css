@@ -242,6 +242,12 @@ body {
   font-size: 14px;
 }
 
+#SaveTitle {
+  color: white;
+  font-family: Pixel;
+  font-size: 14px;  
+}
+
 #main_canvas {
     position: absolute;
     left: 50%;
