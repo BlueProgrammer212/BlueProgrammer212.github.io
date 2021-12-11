@@ -62,7 +62,6 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     let deltaY : number = Math.floor(offsetY / (pixel_size * scalar));
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
     console.log(new Vec2(deltaX, deltaY));
-    debugger;
 }
 
 function onmousemoveHandler(e) {
