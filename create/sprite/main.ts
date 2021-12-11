@@ -54,27 +54,29 @@ let lastVector = new Vec2(0, 0),
     isDragging : boolean = false;
 
 let scalar = 1;
-let originalClientRect = canvas.getBoundingClientRect();
+function getMousePos(canvas, x, y) {
+    var rect = canvas.getBoundingClientRect();
+    return new Vec2((x - rect.left) / (rect.right - rect.left) * canvas.width, 
+    (y - rect.top) / (rect.bottom - rect.top) * canvas.height);
+}
 
 function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     context.fillStyle = CURRENT_COLOR;
-    originalClientRect = canvas.getBoundingClientRect();
-    let offsetX : number = x - originalClientRect.left;
-    let offsetY : number = y - originalClientRect.top;
-    let deltaX : number = Math.floor(offsetX / (pixel_size * scalar));
-    let deltaY : number = Math.floor(offsetY / (pixel_size * scalar));
+    let mouseVector = getMousePos(canvas, x, y)
+    let deltaX : number = Math.floor(mouseVector.x / (pixel_size * scalar));
+    let deltaY : number = Math.floor(mouseVector.y / (pixel_size * scalar));
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
 }
 
 function onmousemoveHandler(e) {
     if (isDragging) {
-        drawPixel(context, e.x, e.y, 16)
-        let dx = e.x - lastVector.x, dy = e.y - lastVector.y;
-        let d = lastVector.dist(lastVector.x, lastVector.y, e.x, e.y);
+        drawPixel(context, e.clientX, e.clientY, 16)
+        let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
+        let d = lastVector.dist(lastVector.x, lastVector.y, e.clientX, e.clientY);
         for (var i = 1; i < d; i += 16) {
             drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, 16)
         }
-        lastVector.set(e.x, e.y);
+        lastVector.set(e.clientX, e.clientY);
     }
 }
 let currentTool = "Pencil";
@@ -85,7 +87,6 @@ document.getElementById("EraserTool").addEventListener("click", (e) => {
 function zoom(event) {
     event.preventDefault();
     scale += event.deltaY * -0.001;
-    originalClientRect = canvas.getBoundingClientRect();
     scale = Math.min(Math.max(.125, scale), 4);
     canvas.style["zoom"] = scale.toString();
 }
