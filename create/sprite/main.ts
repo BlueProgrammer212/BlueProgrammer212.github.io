@@ -54,10 +54,11 @@ let lastVector = new Vec2(0, 0),
     isDragging : boolean = false;
 
 let scalar = 1;
-const originalClientRect = canvas.getBoundingClientRect();
+let originalClientRect = canvas.getBoundingClientRect();
 
 function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     context.fillStyle = CURRENT_COLOR;
+    originalClientRect = canvas.getBoundingClientRect();
     let offsetX : number = x - originalClientRect.left;
     let offsetY : number = y - originalClientRect.top;
     let deltaX : number = Math.floor(offsetX / (pixel_size * scalar));
@@ -84,6 +85,7 @@ document.getElementById("EraserTool").addEventListener("click", (e) => {
 function zoom(event) {
     event.preventDefault();
     scale += event.deltaY * -0.001;
+    originalClientRect = canvas.getBoundingClientRect();
     scale = Math.min(Math.max(.125, scale), 4);
     canvas.style["zoom"] = scale.toString();
 }
