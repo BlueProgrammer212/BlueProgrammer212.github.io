@@ -82,7 +82,7 @@ function zoom(event) {
     event.preventDefault();
     scale += event.deltaY * -0.001;
     scale = Math.min(Math.max(.125, scale), 4);
-    canvas.style["transform"] = `scale(${scale})`;
+    canvas.style["zoom"] = `${scale}`;
 }
 
 let scale = 1;
