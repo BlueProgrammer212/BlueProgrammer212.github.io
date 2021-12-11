@@ -92,7 +92,7 @@ document.getElementById("Print").addEventListener("click", () => {
     canvas.toBlob(function(blob){
       printCanvas(URL.createObjectURL(blob));
       console.log(blob);
-      console.log(`Pending blob printing request, ${l.href}`);
+      console.log(`Pending blob printing request, ${URL.createObjectURL(blob)}`);
     },'image/png');
 })
 
