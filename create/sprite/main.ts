@@ -18,6 +18,8 @@ class Vec2 {
     }
 }
 
+let psize = 16;
+
 interface pixel {
     pos: object;
     scale: object;
@@ -73,6 +75,10 @@ class SpriteManager {
         }
     }
 } 
+
+document.getElementById("scaleSliderRange").addEventListener("input", () => {
+    psize = psize * (document.getElementById("scaleSliderRange")["value"] * 0.01);
+})
 
 let sprite = new SpriteManager("sprite_box");
 sprite.add("sprite_frame_fragment_container").then(c => c.children[1].getContext("2d")
@@ -160,8 +166,8 @@ function onmousemoveHandler(e) {
         drawPixel(context, e.clientX, e.clientY, 16)
         let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
         let d = lastVector.dist(lastVector.x, lastVector.y, e.clientX, e.clientY);
-        for (var i = 1; i < d; i += 16) {
-            drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, 16)
+        for (var i = 1; i < d; i += psize) {
+            drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, psize)
         }
         lastVector.set(e.clientX, e.clientY);
         let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
