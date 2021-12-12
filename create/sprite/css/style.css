@@ -292,14 +292,17 @@ body {
 }
 
 #sprite_frame_fragment_container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 45%;
+  overflow-x: hidden;
 }
 
 #sprite_frame_fragment_container > div {
   width: 70%;
-  height: 100px;
-  margin: 15%;
+  height: 125px;
+  margin: 5px;
   border: 3.5px solid rgb(255, 255, 255);
 }
 
