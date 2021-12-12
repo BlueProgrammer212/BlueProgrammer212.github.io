@@ -66,20 +66,8 @@ document.getElementById("SaveTool").addEventListener("click", () => {
 
 function printCanvas(url_blob)  
 {  
-    var windowContent = `
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title>
-                    Pixcel: Print
-                </title>
-                </head>
-            <body>
-                <img src="${url_blob}" width="800" height="800">
-            </body> 
-        </html>
-    `
-    var printWin = window.open('','','width=340,height=260');
+    var windowContent : string = `<!DOCTYPE html><html><head><title>Pixcel: Print</title></head><body><img src="${url_blob}" width="800" height="800"></body></html>`
+    var printWin = window.open('','','width=800,height=800');
     printWin.document.open();
     printWin.document.write(windowContent);
     printWin.document.close();

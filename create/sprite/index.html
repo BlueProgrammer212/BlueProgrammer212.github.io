@@ -50,11 +50,12 @@
          <div id="canvas_container">
            <canvas id="main_canvas" width="700" height="600"></canvas>
          </div>
-         <template id="layer_box">
-            <div id="layerContainer">
-               <canvas id="canvasLayerPreview" class="layerBox layerPreview">
+         <template id="sprite_box">
+            <div id="spriteContainer">
+               <canvas tabindex="0" alt="sprite_frame" class="layerBox layerPreview">
                    Sorry, but your browser does not support the HTML5 canvas element.
                </canvas>
+               <button></button>
             </div> 
          </template>
          <template id="colorBox_temp">
@@ -67,12 +68,16 @@
          </div>
          <div id="toolset">
            <p id="ToolTitle">Tools</p>
-           <input type="image" src="assets/pencil.png" title="Pencil" width="32" height="32" id="PencilTool" class="toolslot" />
-           <input type="image" src="assets/eraser_ico.png" title="Eraser" width="32" height="32" id="EraserTool" class="toolslot" />
-           <input type="image" src="assets/rectangle_ico.png" title="Rectangle Tool" width="32" height="32" id="RectangleTool" class="toolslot" />
-           <input type="image" src="assets/eyedropper_ico.png" title="Eyedropper Tool" width="32" height="32" id="EyeDropperTool" class="toolslot" />
-           <input type="image" src="assets/bucket_ico.png" title="Bucket Tool" width="32" height="32" id="BucketTool" class="toolslot" />
-           <input type="image" src="assets/ruler_ico.png" title="Ruler Tool" width="32" height="32" id="RulerTool" class="toolslot" />
+           <input type="image" tabindex="1" src="assets/pencil.png" title="Pencil" width="32" height="32" id="PencilTool" class="toolslot" />
+           <input type="image" tabindex="2" src="assets/eraser_ico.png" title="Eraser" width="32" height="32" id="EraserTool" class="toolslot" />
+           <input type="image" tabindex="3" src="assets/rectangle_ico.png" title="Rectangle Tool" width="32" height="32" id="RectangleTool" class="toolslot" />
+           <input type="image" tabindex="4" src="assets/eyedropper_ico.png" title="Eyedropper Tool" width="32" height="32" id="EyeDropperTool" class="toolslot" />
+           <input type="image" tabindex="5" src="assets/bucket_ico.png" title="Bucket Tool" width="32" height="32" id="BucketTool" class="toolslot" />
+           <input type="image" tabindex="6" src="assets/ruler_ico.png" title="Ruler Tool" width="32" height="32" id="RulerTool" class="toolslot" />
+           <p id="sprite_frame_category" tabindex="7">Sprite frame</p>
+           <div id="sprite_frame_fragment_container" class="sprite_fragment_container" tabindex="8"></div>
+           <div id="addFrameButton" tabindex="9" aria-role="button" contenteditable="false" 
+           role="button" data-id="frame_add" data-action="addNewFrame" title="Add new frame?">Add new sprite frame.</div>
           </div>
           <div id="layer_tool_box">
              <p id="SaveTitle">Save</p>
