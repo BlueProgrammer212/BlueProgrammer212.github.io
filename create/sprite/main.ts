@@ -251,7 +251,10 @@ canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
     if (currentTool == "Rectangle") stVector.set(e.x, e.y);
     if (currentTool == "EyeDropper") {
-        let pixel =  context.getImageData(e["layerX"], e["layerY"], 1, 1);
+        let mouseVector = getMousePos(canvas, e.x, e.y)
+        let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
+        let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
+        let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
         let data = pixel.data;
         const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
         colorPicker.clone(document.getElementById("bg-color-pallete"), rgba);
