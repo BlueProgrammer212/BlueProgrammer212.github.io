@@ -52,7 +52,7 @@
          </div>
          <template id="sprite_box">
             <div id="spriteContainer" role="button" class="spriteBoxContainer">
-               <p className="numTag" id="tag_number_label"></p>
+               <p class="numTag" id="tag_number_label"></p>
                <canvas tabindex="0" alt="sprite_frame" class="layerBox layerPreview">
                    Sorry, but your browser does not support the HTML5 canvas element.
                </canvas>
@@ -86,6 +86,8 @@
              <input type="image" src="assets/printer_ico.png" draggable="false" title="Print" width="32" height="32" id="Print" class="toolslot" />
              <p id="ScaleCategory">Scale value</p>
              <input type="range" max="100" value="50" class="scaleSlider" id="scaleSliderRange" />
+             <p id="SpritePreviewCategory">Preview</p>
+             <canvas id="preview_canvas_sprite_animation"></canvas>
           </div>
       </div>
       <div class="colorDialog_bg invisible">

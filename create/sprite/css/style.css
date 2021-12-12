@@ -315,6 +315,19 @@ canvas.layerBox.layerPreview {
   background-size: 8px 8px;
 }
 
+#tag_number_label {
+   font-family: Pixel;
+   color: white;
+   font-size: 12px;
+}
+
+canvas#preview_canvas_sprite_animation {
+  height: 125px;
+  width: 140px;
+  border: 3.5px solid #fff;
+  margin: 5px;
+}
+
 input#scaleSliderRange::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 30px;
