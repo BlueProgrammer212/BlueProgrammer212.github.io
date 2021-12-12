@@ -299,6 +299,13 @@ body {
   overflow-x: hidden;
 }
 
+canvas.layerBox.layerPreview {
+  position: relative;
+  width: 140px;
+  height: 120px;
+  top: -15px;
+}
+
 #sprite_frame_fragment_container > div {
   width: 70%;
   height: 125px;
