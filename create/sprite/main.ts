@@ -74,7 +74,7 @@ document.getElementById("addFrameButton").addEventListener("click", e => {
             selected_sprite_frame_index = k;
             context.clearRect(0, 0, canvas.width, canvas.height);
             let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-            const buffer = sprite_canvas;
+            const buffer = document.importNode(sprite_canvas, true);
             buffer.width = canvas.width;
             buffer.height = canvas.height;
             context.drawImage(buffer, 0, 0, canvas.width, canvas.height);
