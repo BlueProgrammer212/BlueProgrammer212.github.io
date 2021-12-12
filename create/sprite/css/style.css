@@ -336,7 +336,7 @@ canvas#preview_canvas_sprite_animation {
   background-color: #0c9;
   color:rgb(255, 255, 255);
   font-family: Pixel;
-  padding: 10px;
+  padding: 5px;
   border: 3.5px ridge #0c9;
   font-size: 14px;
 }
@@ -345,7 +345,7 @@ canvas#preview_canvas_sprite_animation {
   background-color: #0c9;
   color:rgb(255, 255, 255);
   font-family: Pixel;
-  padding: 10px;
+  padding: 5px;
   border: 3.5px ridge #0c9;
   font-size: 14px;
 }
