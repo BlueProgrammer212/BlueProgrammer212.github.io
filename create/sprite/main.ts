@@ -74,7 +74,10 @@ document.getElementById("addFrameButton").addEventListener("click", e => {
             selected_sprite_frame_index = k;
             context.clearRect(0, 0, canvas.width, canvas.height);
             let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-            context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
+            const buffer = sprite_canvas;
+            buffer.width = canvas.width;
+            buffer.height = canvas.height;
+            context.drawImage(buffer, 0, 0, canvas.width, canvas.height);
         };
     }
 })
