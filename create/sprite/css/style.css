@@ -317,8 +317,10 @@ canvas.layerBox.layerPreview {
 
 #tag_number_label {
    font-family: Pixel;
-   color: white;
+   color: black;
    font-size: 12px;
+   position: relative;
+   top: -15px;
 }
 
 canvas#preview_canvas_sprite_animation {
