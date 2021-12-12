@@ -272,7 +272,7 @@ body {
 }
 
 #addFrameButton {
-  border: 7px groove rgb(200, 30, 30);
+  border: 5px groove rgb(200, 30, 30);
   color: white;
   background-color: rgb(200, 30, 30);
   font-size: 11px;
@@ -282,7 +282,7 @@ body {
 }
 
 #addFrameButton:active {
-  border: 3.5px ridge rgb(150, 30, 30);
+  border: 5px ridge rgb(150, 30, 30);
   color: white;
   background-color: rgb(150, 30, 30);
   font-size: 11px;
