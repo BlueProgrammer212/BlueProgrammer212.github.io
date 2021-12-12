@@ -77,7 +77,7 @@ class SpriteManager {
 } 
 
 document.getElementById("scaleSliderRange").addEventListener("input", () => {
-    psize = psize * (document.getElementById("scaleSliderRange")["value"] * 0.01);
+    psize = psize * (document.getElementById("scaleSliderRange")["value"] * 0.1);
 })
 
 let sprite = new SpriteManager("sprite_box");
