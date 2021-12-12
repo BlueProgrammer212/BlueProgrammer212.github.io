@@ -161,25 +161,48 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
 }
 
+function clearPixel(context, x : number, y : number, pixel_size = 16): void {
+    let mouseVector = getMousePos(canvas, x, y)
+    let deltaX : number = Math.floor(mouseVector.x / (pixel_size * scalar));
+    let deltaY : number = Math.floor(mouseVector.y / (pixel_size * scalar));
+    context.clearRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
+}
+
+let currentTool = "Pencil";
+document.getElementById("PencilTool").addEventListener("click", (e) => {
+    currentTool = "Pencil";
+})
+document.getElementById("EraserTool").addEventListener("click", (e) => {
+    currentTool = "Eraser";
+})
+
+function updateFrame(e) {
+    lastVector.set(e.clientX, e.clientY);
+    let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
+    sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
+    sprite_canvas["getContext"]("2d").drawImage(document.getElementById("main_canvas"),
+     0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+}
+
 function onmousemoveHandler(e) {
-    if (isDragging) {
+    if (isDragging && currentTool == "Pencil") {
         drawPixel(context, e.clientX, e.clientY, psize)
         let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
         let d = lastVector.dist(lastVector.x, lastVector.y, e.clientX, e.clientY);
         for (var i = 1; i < d; i += psize) {
             drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, psize)
         }
-        lastVector.set(e.clientX, e.clientY);
-        let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-        sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
-        sprite_canvas["getContext"]("2d").drawImage(document.getElementById("main_canvas"),
-         0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+        updateFrame(e);
+    } else if (isDragging && currentTool == "Eraser") {
+        clearPixel(context, e.clientX, e.clientY, psize)
+        let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
+        let d = lastVector.dist(lastVector.x, lastVector.y, e.clientX, e.clientY);
+        for (var i = 1; i < d; i += psize) {
+            clearPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, psize)
+        }
+        updateFrame(e)
     }
 }
-let currentTool = "Pencil";
-document.getElementById("EraserTool").addEventListener("click", (e) => {
-    currentTool = "Eraser";
-})
 
 function zoom(event) {
     event.preventDefault();
