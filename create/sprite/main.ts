@@ -163,7 +163,7 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
 
 function onmousemoveHandler(e) {
     if (isDragging) {
-        drawPixel(context, e.clientX, e.clientY, 16)
+        drawPixel(context, e.clientX, e.clientY, psize)
         let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
         let d = lastVector.dist(lastVector.x, lastVector.y, e.clientX, e.clientY);
         for (var i = 1; i < d; i += psize) {
