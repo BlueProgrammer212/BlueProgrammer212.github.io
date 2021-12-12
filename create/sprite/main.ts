@@ -169,7 +169,7 @@ function clearPixel(context, x : number, y : number, pixel_size = 16): void {
 }
 
 let currentTool = "Pencil";
-const ToolName : string[] = ["Pencil", "Eraser", "Rectangle"];
+const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper"];
 for (let k = 0; k < ToolName.length; ++k) {
     document.getElementById(`${ToolName[k]}Tool`).addEventListener("click", (e) => {
         currentTool = ToolName[k];
@@ -250,6 +250,13 @@ let scale = 1;
 canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
     if (currentTool == "Rectangle") stVector.set(e.x, e.y);
+    if (currentTool == "EyeDropper") {
+        let pixel =  context.getImageData(e.x, e.y, psize, psize);
+        let data = pixel.data;
+        const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
+        colorPicker.clone(document.getElementById("bg-color-pallete"), rgba);
+        CURRENT_COLOR = rgba;
+    }
     isDragging = true;
     onmousemoveHandler(e)
     e.preventDefault();
