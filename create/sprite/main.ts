@@ -194,7 +194,7 @@ function animate() {
     canvas_preview.getContext("2d").drawImage(buffer, 0, 0, canvas_preview.width, canvas_preview.height);
 }
 
-setInterval(animate, 500)
+setInterval(animate, 200)
 
 let scale = 1;
 
