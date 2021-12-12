@@ -26,6 +26,19 @@ class ColorManager {
     }
 }
 
+class SpriteManager {
+    template: any;
+    clone: any;
+    constructor(id: string) {
+        this.template = document.getElementById(id);
+    }
+    add(): void {
+        this.clone = document.importNode(this.template.content, true).children[0];
+        document.getElementById("sprite_frame_fragment_container").appendChild(this.clone);
+        console.log("Added a new sprite frame");
+    } 
+} 
+
 let colorPicker = new ColorManager("colorBox_temp");
 for (let i = 0; i < colors.length; ++i) {
     colorPicker.clone(document.getElementById("bg-color-pallete"), colors[i]);
