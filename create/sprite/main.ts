@@ -51,8 +51,8 @@ class SpriteManager {
     }
     add(id : string): Promise<any> {
         this.clone = document.importNode(this.template.content, true).children[0];
-        if (this.clone.child[0].className==="numTag") { 
-             this.clone.child[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length;
+        if (this.clone.children[0].className==="numTag") { 
+             this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length;
         }
         let scrollByVector = new Vec2(0, 9999999999999999);
         document.getElementById(id).appendChild(this.clone);
@@ -63,11 +63,12 @@ class SpriteManager {
 } 
 
 let sprite = new SpriteManager("sprite_box");
-sprite.add("sprite_frame_fragment_container").then(c => c.child[1].getContext("2d")
-.drawImage(document.getElementById("main_canvas"), 0, 0, c.child[1].width, c.child[1].height))
+sprite.add("sprite_frame_fragment_container").then(c => c.children[1].getContext("2d")
+.drawImage(document.getElementById("main_canvas"), 0, 0, c.children[1].width, c.children[1].height))
+let selected_sprite_frame_index : number = 0;
 
 document.getElementById("addFrameButton").addEventListener("click", e => {
-    sprite.add("sprite_frame_fragment_container").then((c) => {});
+    sprite.add("sprite_frame_fragment_container").then((c) => {selected_sprite_frame_index += 1;});
 })
 
 let colorPicker = new ColorManager("colorBox_temp");
@@ -137,6 +138,9 @@ function onmousemoveHandler(e) {
             drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, 16)
         }
         lastVector.set(e.clientX, e.clientY);
+        let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
+        sprite_canvas["getContext"]("2d").drawImage(document.getElementById("main_canvas"),
+         0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
     }
 }
 let currentTool = "Pencil";
