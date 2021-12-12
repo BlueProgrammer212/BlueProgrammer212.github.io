@@ -1,5 +1,22 @@
 const canvas = document.getElementsByTagName('canvas')[0],
-      context = canvas.getContext("2d");
+context = canvas.getContext("2d");
+
+class Vec2 {
+    x: number;
+    y: number;
+    constructor(x = 0, y = 0) {
+        this.set(x, y);
+    } 
+    set(x = 0, y = 0): void {
+        this.x = x;
+        this.y = y;
+    }
+    dist(lx, ly, cx, cy): number {
+        let dx = lx - cx,
+            dy = ly - cy;
+       return Math.hypot(dx, dy);
+    }
+}
 
 interface pixel {
     pos: object;
@@ -32,18 +49,25 @@ class SpriteManager {
     constructor(id: string) {
         this.template = document.getElementById(id);
     }
-    add(): void {
+    add(id : string): Promise<any> {
         this.clone = document.importNode(this.template.content, true).children[0];
-        document.getElementById("sprite_frame_fragment_container").appendChild(this.clone);
-        console.log("Added a new sprite frame");
-        document.getElementById("sprite_frame_fragment_container").scrollBy(0, 9999999999999999)
+        if (this.clone.child[0].className==="numTag") { 
+             this.clone.child[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length;
+        }
+        let scrollByVector = new Vec2(0, 9999999999999999);
+        document.getElementById(id).appendChild(this.clone);
+        document.getElementById(id).scrollBy(scrollByVector.x, scrollByVector.y);
+        scrollByVector = null;
+        return new Promise(res => setTimeout(res, 100, this.clone));
     } 
 } 
 
 let sprite = new SpriteManager("sprite_box");
-sprite.add();
-document.getElementById("addFrameButton").addEventListener("click", () => {
-    sprite.add();
+sprite.add("sprite_frame_fragment_container").then(c => c.child[1].getContext("2d")
+.drawImage(document.getElementById("main_canvas"), 0, 0, c.child[1].width, c.child[1].height))
+
+document.getElementById("addFrameButton").addEventListener("click", e => {
+    sprite.add("sprite_frame_fragment_container").then((c) => {});
 })
 
 let colorPicker = new ColorManager("colorBox_temp");
@@ -51,22 +75,6 @@ for (let i = 0; i < colors.length; ++i) {
     colorPicker.clone(document.getElementById("bg-color-pallete"), colors[i]);
 }
 
-class Vec2 {
-    x: number;
-    y: number;
-    constructor(x = 0, y = 0) {
-        this.set(x, y);
-    } 
-    set(x = 0, y = 0): void {
-        this.x = x;
-        this.y = y;
-    }
-    dist(lx, ly, cx, cy): number {
-        let dx = lx - cx,
-            dy = ly - cy;
-       return Math.hypot(dx, dy);
-    }
-}
 
 let lastVector = new Vec2(0, 0), 
     isDragging : boolean = false;
