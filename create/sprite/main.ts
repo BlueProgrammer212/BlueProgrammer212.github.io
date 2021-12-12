@@ -205,8 +205,10 @@ function onmousemoveHandler(e) {
         }
         updateFrame(e)
     } else if (isDragging && currentTool == "Rectangle") {
-        for (let xS = stVector.x; xS < e.clientX; xS += psize) {
-            for (let yS = stVector.y; yS < e.clientY; yS += psize) {
+        let minVector = new Vec2(Math.min(stVector.x, e.clientX), Math.min(stVector.y, e.clientY));
+        let maxVector = new Vec2(Math.max(stVector.x, e.clientX), Math.max(stVector.y, e.clientY)); 
+        for (let xS = minVector.x; xS < maxVector.x; xS += psize) {
+            for (let yS = minVector.y; yS < maxVector.y; yS += psize) {
                 drawPixel(context, xS, yS, psize);
             }
         }
