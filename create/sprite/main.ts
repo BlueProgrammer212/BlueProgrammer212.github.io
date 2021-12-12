@@ -148,6 +148,7 @@ function onmousemoveHandler(e) {
         }
         lastVector.set(e.clientX, e.clientY);
         let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
+        sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
         sprite_canvas["getContext"]("2d").drawImage(document.getElementById("main_canvas"),
          0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
     }
