@@ -315,7 +315,6 @@ canvas.layerBox.layerPreview {
   background-size: 8px 8px;
 }
 
-
 input#scaleSliderRange::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 30px;

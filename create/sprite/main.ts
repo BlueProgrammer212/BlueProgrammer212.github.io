@@ -69,6 +69,7 @@ let selected_sprite_frame_index : number = 0;
 
 document.getElementById("addFrameButton").addEventListener("click", e => {
     sprite.add("sprite_frame_fragment_container").then((c) => {selected_sprite_frame_index += 1;});
+    context.clearRect(0, 0, canvas.width, canvas.height)
 })
 
 let colorPicker = new ColorManager("colorBox_temp");
