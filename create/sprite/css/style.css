@@ -328,6 +328,8 @@ canvas#preview_canvas_sprite_animation {
   width: 140px;
   border: 3.5px solid #fff;
   margin: 5px;
+  background-image: url(../assets/background_canvas.png);
+  background-size: 8px 8px;
 }
 
 input#scaleSliderRange::-webkit-slider-thumb {

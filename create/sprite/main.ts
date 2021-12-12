@@ -52,7 +52,7 @@ class SpriteManager {
     add(id : string): Promise<any> {
         this.clone = document.importNode(this.template.content, true).children[0];
         if (this.clone.children[0].className==="numTag") { 
-             this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length;
+             this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length + 1;
         }
         let scrollByVector = new Vec2(0, 9999999999999999);
         document.getElementById(id).appendChild(this.clone);
@@ -181,6 +181,18 @@ function zoom(event) {
     scale = Math.min(Math.max(.125, scale), 4);
     canvas.style["zoom"] = scale.toString();
 }
+
+let cf : number = 0;
+
+function animate() {
+    let canvas_preview : any = document.getElementById("preview_canvas_sprite_animation");
+    if (document.getElementsByClassName("spriteBoxContainer")[cf + 1]) {cf += 1;} else {cf = 0;}
+    const buffer = document.getElementsByClassName("spriteBoxContainer")[cf].children[1];
+    canvas_preview.getContext("2d").imageSmoothingEnabled = false;
+    canvas_preview.getContext("2d").drawImage(buffer, 0, 0, canvas_preview.width, canvas_preview.height);
+}
+
+setInterval(animate, 500)
 
 let scale = 1;
 
