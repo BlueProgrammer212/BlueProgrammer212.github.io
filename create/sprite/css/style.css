@@ -332,6 +332,36 @@ canvas#preview_canvas_sprite_animation {
   background-size: 8px 8px;
 }
 
+button#clearCanvasButton {
+  background-color: #0c9;
+  color:rgb(255, 255, 255);
+  font-family: Pixel;
+  padding: 10px;
+  border: 3.5px ridge #0c9;
+  font-size: 14px;
+}
+
+button#viewMoreToolsButton {
+  background-color: #0c9;
+  color:rgb(255, 255, 255);
+  font-family: Pixel;
+  padding: 10px;
+  border: 3.5px ridge #0c9;
+  font-size: 14px;
+}
+
+p#ClearCanvasCategoryTitle {
+  color: white;
+  font-family: Pixel;
+  font-size: 14px;  
+}
+
+p#MoreToolsCategory {
+  color: white;
+  font-family: Pixel;
+  font-size: 14px;  
+}
+
 input#scaleSliderRange::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 30px;

@@ -176,8 +176,7 @@ for (let k = 0; k < ToolName.length; ++k) {
     })
 }
 
-function updateFrame(e) {
-    lastVector.set(e.clientX, e.clientY);
+function updateFrame() {
     let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
     sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
     sprite_canvas["getContext"]("2d").clearRect(0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
@@ -187,6 +186,11 @@ function updateFrame(e) {
 
 let stVector = new Vec2(0, 0)
 
+document.getElementById("clearCanvasButton").addEventListener("click", () => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    updateFrame();
+})
+
 function onmousemoveHandler(e) {
     if (isDragging && currentTool == "Pencil") {
         drawPixel(context, e.clientX, e.clientY, psize)
@@ -195,7 +199,8 @@ function onmousemoveHandler(e) {
         for (var i = 1; i < d; i += psize) {
             drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, psize)
         }
-        updateFrame(e);
+        lastVector.set(e.clientX, e.clientY);
+        updateFrame();
     } else if (isDragging && currentTool == "Eraser") {
         clearPixel(context, e.clientX, e.clientY, psize)
         let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
@@ -203,7 +208,8 @@ function onmousemoveHandler(e) {
         for (var i = 1; i < d; i += psize) {
             clearPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, psize)
         }
-        updateFrame(e)
+        lastVector.set(e.clientX, e.clientY);
+        updateFrame()
     } else if (isDragging && currentTool == "Rectangle") {
         let minVector = new Vec2(Math.min(stVector.x, e.clientX), Math.min(stVector.y, e.clientY));
         let maxVector = new Vec2(Math.max(stVector.x, e.clientX), Math.max(stVector.y, e.clientY)); 
