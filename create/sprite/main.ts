@@ -41,6 +41,7 @@ class SpriteManager {
 } 
 
 let sprite = new SpriteManager("sprite_box");
+sprite.add();
 document.getElementById("addFrameButton").addEventListener("click", () => {
     sprite.add();
 })
