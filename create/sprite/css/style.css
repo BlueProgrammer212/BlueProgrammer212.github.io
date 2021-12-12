@@ -259,6 +259,12 @@ body {
   image-rendering: pixelated;
 }
 
+#ScaleCategory {
+  color: white;
+  font-family: Pixel;
+  font-size: 14px;  
+}
+
 input#scaleSliderRange::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 30px;

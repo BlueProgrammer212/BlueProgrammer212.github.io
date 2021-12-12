@@ -75,7 +75,7 @@ function printCanvas(url_blob)
                 </title>
                 </head>
             <body>
-            <img src="${url_blob}">
+                <img src="${url_blob}" width="800" height="800">
             </body> 
         </html>
     `
@@ -94,8 +94,7 @@ document.getElementById("Print").addEventListener("click", () => {
       console.log(blob);
       console.log(`Pending blob printing request, ${URL.createObjectURL(blob)}`);
     },'image/png');
-})
-
+});
 
 canvas.oncontextmenu = function() {return false};
 
