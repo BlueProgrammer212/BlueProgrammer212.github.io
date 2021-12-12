@@ -272,7 +272,6 @@ body {
 }
 
 #addFrameButton {
-  border-radius: 25px;
   border: 7px groove rgb(200, 30, 30);
   color: white;
   background-color: rgb(200, 30, 30);
@@ -283,7 +282,6 @@ body {
 }
 
 #addFrameButton::active {
-  border-radius: 25px;
   border: 3.5px ridge rgb(150, 30, 30);
   color: white;
   background-color: rgb(150, 30, 30);
