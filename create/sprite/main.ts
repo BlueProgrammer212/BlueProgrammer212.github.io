@@ -188,7 +188,8 @@ function animate() {
     let canvas_preview : any = document.getElementById("preview_canvas_sprite_animation");
     if (document.getElementsByClassName("spriteBoxContainer")[cf + 1]) {cf += 1;} else {cf = 0;}
     const buffer = document.getElementsByClassName("spriteBoxContainer")[cf].children[1];
-    if (cf !== 0) canvas_preview.getContext("2d").clearRect(0, 0, canvas_preview.width, canvas_preview.height)
+    if (document.getElementsByClassName("spriteBoxContainer").length !== 1) {
+         canvas_preview.getContext("2d").clearRect(0, 0, canvas_preview.width, canvas_preview.height)}
     canvas_preview.getContext("2d").imageSmoothingEnabled = false;
     canvas_preview.getContext("2d").drawImage(buffer, 0, 0, canvas_preview.width, canvas_preview.height);
 }
