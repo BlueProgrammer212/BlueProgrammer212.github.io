@@ -332,7 +332,7 @@ canvas#preview_canvas_sprite_animation {
   background-size: 8px 8px;
 }
 
-button#clearCanvasButton {
+#clearCanvasButton {
   background-color: #0c9;
   color:rgb(255, 255, 255);
   font-family: Pixel;
@@ -341,7 +341,7 @@ button#clearCanvasButton {
   font-size: 14px;
 }
 
-button#viewMoreToolsButton {
+#viewMoreToolsButton {
   background-color: #0c9;
   color:rgb(255, 255, 255);
   font-family: Pixel;
