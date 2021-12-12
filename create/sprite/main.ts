@@ -36,6 +36,7 @@ class SpriteManager {
         this.clone = document.importNode(this.template.content, true).children[0];
         document.getElementById("sprite_frame_fragment_container").appendChild(this.clone);
         console.log("Added a new sprite frame");
+        document.getElementById("sprite_frame_fragment_container").scrollBy(0, 9999999999999999)
     } 
 } 
 
