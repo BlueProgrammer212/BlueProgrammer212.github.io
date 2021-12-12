@@ -74,9 +74,8 @@ document.getElementById("addFrameButton").addEventListener("click", e => {
             selected_sprite_frame_index = k;
             context.clearRect(0, 0, canvas.width, canvas.height);
             let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-            context.imageSmoothingEnabled = true;
-            context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
             context.imageSmoothingEnabled = false;
+            context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
         };
     }
 })
