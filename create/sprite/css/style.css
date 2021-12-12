@@ -303,7 +303,7 @@ canvas.layerBox.layerPreview {
   position: relative;
   width: 140px;
   height: 120px;
-  top: -15px;
+  top: -40px;
 }
 
 #sprite_frame_fragment_container > div {
