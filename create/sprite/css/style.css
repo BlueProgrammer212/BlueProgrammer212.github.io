@@ -281,7 +281,7 @@ body {
   font-family: Pixel;
 }
 
-#addFrameButton::active {
+#addFrameButton:active {
   border: 3.5px ridge rgb(150, 30, 30);
   color: white;
   background-color: rgb(150, 30, 30);
