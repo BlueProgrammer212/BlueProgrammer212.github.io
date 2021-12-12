@@ -169,12 +169,12 @@ function clearPixel(context, x : number, y : number, pixel_size = 16): void {
 }
 
 let currentTool = "Pencil";
-document.getElementById("PencilTool").addEventListener("click", (e) => {
-    currentTool = "Pencil";
-})
-document.getElementById("EraserTool").addEventListener("click", (e) => {
-    currentTool = "Eraser";
-})
+const ToolName : string[] = ["Pencil", "Eraser", "Rectangle"];
+for (let k = 0; k < ToolName.length; ++k) {
+    document.getElementById(`${ToolName[k]}Tool`).addEventListener("click", (e) => {
+        currentTool = ToolName[k];
+    })
+}
 
 function updateFrame(e) {
     lastVector.set(e.clientX, e.clientY);
@@ -184,6 +184,8 @@ function updateFrame(e) {
     sprite_canvas["getContext"]("2d").drawImage(document.getElementById("main_canvas"),
      0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
 }
+
+let stVector = new Vec2(0, 0)
 
 function onmousemoveHandler(e) {
     if (isDragging && currentTool == "Pencil") {
@@ -202,6 +204,12 @@ function onmousemoveHandler(e) {
             clearPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, psize)
         }
         updateFrame(e)
+    } else if (isDragging && currentTool == "Rectangle") {
+        for (let xS = stVector.x; xS < e.clientX; xS += psize) {
+            for (let yS = stVector.y; yS < e.clientY; yS += psize) {
+                drawPixel(context, xS, yS, psize);
+            }
+        }
     }
 }
 
@@ -233,6 +241,7 @@ let scale = 1;
 
 canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
+    if (currentTool == "Rectangle") stVector.set(e.x, e.y);
     isDragging = true;
     onmousemoveHandler(e)
     e.preventDefault();
