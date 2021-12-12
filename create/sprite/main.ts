@@ -39,6 +39,11 @@ class SpriteManager {
     } 
 } 
 
+let sprite = new SpriteManager("sprite_box");
+document.getElementById("addFrameButton").addEventListener("click", () => {
+    sprite.add();
+})
+
 let colorPicker = new ColorManager("colorBox_temp");
 for (let i = 0; i < colors.length; ++i) {
     colorPicker.clone(document.getElementById("bg-color-pallete"), colors[i]);
