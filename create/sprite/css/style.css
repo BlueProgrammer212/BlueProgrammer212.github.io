@@ -351,6 +351,10 @@ canvas#preview_canvas_sprite_animation {
   margin-bottom: 10px;
 }
 
+div.manage_layer_ui {
+  
+}
+
 #editLayers {
   background-color: #0c9;
   color:rgb(255, 255, 255);
