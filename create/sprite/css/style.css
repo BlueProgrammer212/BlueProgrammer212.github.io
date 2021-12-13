@@ -348,6 +348,7 @@ canvas#preview_canvas_sprite_animation {
   padding: 5px;
   border: 3.5px ridge #0c9;
   font-size: 14px;
+  margin-bottom: 10px;
 }
 
 #editLayers {
@@ -357,7 +358,6 @@ canvas#preview_canvas_sprite_animation {
   padding: 5px;
   border: 3.5px ridge #0c9;
   font-size: 14px;
-  margin-bottom: 10px;
 }
 
 p#ClearCanvasCategoryTitle {

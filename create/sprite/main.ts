@@ -191,6 +191,13 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
     updateFrame();
 })
 
+document.getElementById("editLayers").addEventListener("click", (e) => {
+    for (let i = 0; i < document.getElementsByClassName("save_artwork_ui").length; ++i) {
+        document.getElementsByClassName("save_artwork_ui")[i].className += " invisible";
+    }
+    document.getElementsByClassName("manage_layer_ui")[0].className = "manage_layer_ui";
+})
+
 function onmousemoveHandler(e) {
     if (isDragging && currentTool == "Pencil") {
         drawPixel(context, e.clientX, e.clientY, psize)
