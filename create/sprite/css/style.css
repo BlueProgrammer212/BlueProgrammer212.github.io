@@ -350,6 +350,15 @@ canvas#preview_canvas_sprite_animation {
   font-size: 14px;
 }
 
+#editLayers {
+  background-color: #0c9;
+  color:rgb(255, 255, 255);
+  font-family: Pixel;
+  padding: 5px;
+  border: 3.5px ridge #0c9;
+  font-size: 14px;
+}
+
 p#ClearCanvasCategoryTitle {
   color: white;
   font-family: Pixel;

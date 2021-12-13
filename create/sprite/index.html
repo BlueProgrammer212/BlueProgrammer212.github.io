@@ -80,18 +80,22 @@
            role="button" data-id="frame_add" data-action="addNewFrame" title="Add new frame?">Add new sprite frame.</div>
           </div>
           <div id="layer_tool_box">
-             <p id="SaveTitle">Save</p>
-             <input type="image" src="assets/save_ico.png" title="Save" width="32" height="32" id="SaveTool" class="toolslot" />
-             <input type="image" src="assets/publish_ico.png" draggable="false" title="Publish" width="32" height="32" id="Publish" class="toolslot" />
-             <input type="image" src="assets/printer_ico.png" draggable="false" title="Print" width="32" height="32" id="Print" class="toolslot" />
-             <p id="ScaleCategory">Pixel scalar</p>
-             <input type="range" max="100" value="50" class="scaleSlider" id="scaleSliderRange" />
-             <p id="SpritePreviewCategory">Preview</p>
-             <canvas id="preview_canvas_sprite_animation"></canvas>
-             <p id="ClearCanvasCategoryTitle">Canvas Edit</p>
-             <button id="clearCanvasButton" title="Clear Canvas">Clear canvas</button>
-             <p id="MoreToolsCategory">Misc tools</p>
-             <button id="viewMoreToolsButton" title="View more tools">View more tools</button>
+             <p class="save_artwork_ui" id="SaveTitle">Save</p>
+             <input class="save_artwork_ui" type="image" src="assets/save_ico.png" title="Save" width="32" height="32" id="SaveTool" class="toolslot" />
+             <input class="save_artwork_ui" type="image" src="assets/publish_ico.png" draggable="false" title="Publish" width="32" height="32" id="Publish" class="toolslot" />
+             <input class="save_artwork_ui" type="image" src="assets/printer_ico.png" draggable="false" title="Print" width="32" height="32" id="Print" class="toolslot" />
+             <p class="save_artwork_ui" id="ScaleCategory">Pixel scalar</p>
+             <input class="save_artwork_ui" type="range" max="100" value="50" class="scaleSlider" id="scaleSliderRange" />
+             <p class="save_artwork_ui" id="SpritePreviewCategory">Preview</p>
+             <canvas class="save_artwork_ui" id="preview_canvas_sprite_animation"></canvas>
+             <p class="save_artwork_ui" id="ClearCanvasCategoryTitle">Canvas Edit</p>
+             <button class="save_artwork_ui" id="clearCanvasButton" title="Clear Canvas">Clear canvas</button>
+             <p class="save_artwork_ui" id="MoreToolsCategory">Misc tools</p>
+             <button class="save_artwork_ui" id="viewMoreToolsButton" title="View more tools">View more tools</button>
+             <button class="save_artwork_ui" id="editLayers" title="Edit Layers">Manage layers</button>
+             <div class="manage_layer_ui invisible">
+              <p id="LayerTitle">Layers</p>
+             </div>
           </div>
       </div>
       <div class="colorDialog_bg invisible">
