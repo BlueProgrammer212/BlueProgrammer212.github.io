@@ -196,7 +196,7 @@ document.getElementById("editLayers").addEventListener("click", (e) => {
     document.getElementById("dialog_window_parent").className = "";
 })
 document.getElementById("dialog_window_parent").addEventListener("click", () => {
-    document.getElementById("dialog_window_parent").children[0].className = "invisible"
+    document.getElementById("dialog_window_parent").className = "invisible"
 })
 
 let touch_pos = new Vec2(0, 0)
