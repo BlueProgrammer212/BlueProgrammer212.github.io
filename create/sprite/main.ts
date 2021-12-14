@@ -193,6 +193,10 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
 
 document.getElementById("editLayers").addEventListener("click", (e) => {
     document.getElementsByClassName("manage_layer_ui")[0].className = "manage_layer_ui";
+    document.getElementById("dialog_window_parent").className = "";
+})
+document.getElementById("dialog_window_parent").addEventListener("click", () => {
+    document.getElementById("dialog_window_parent").children[0].className = "invisible"
 })
 
 let touch_pos = new Vec2(0, 0)
