@@ -335,6 +335,11 @@ canvas.addEventListener("pointerout", (e) => {
     isDragging = false;
 })
 
+canvas.addEventListener("touchend", (e) => {
+    e.preventDefault();
+    isDragging = false;
+})
+
 canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
     isDragging = false;

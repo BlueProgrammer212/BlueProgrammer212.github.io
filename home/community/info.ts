@@ -408,7 +408,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             console.log("%c[System]" + "%c Loaded image resource successfully", "color: violet;", "color: white");
             document.getElementsByClassName("img_upload")[i].addEventListener("click", () => {
                 if (history.pushState) {
-                    var newurl = `https://blueprogrammer212.github.io/home/community/?p=${data.filename}&r=AS`;
+                    var newurl = `https://www.pixcel.ml/home/community/?p=${data.filename}&r=AS`;
                     window.history.pushState({path:newurl},'',newurl);
 
                     urlSearchParams = new URLSearchParams(window.location.search);
