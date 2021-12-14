@@ -47,55 +47,57 @@
         <p>You are offline. Retrying to connect in 5s</p>
       </nav>
       <div id="main_content">
-         <div id="canvas_container">
-           <canvas id="main_canvas" width="700" height="600"></canvas>
-         </div>
-         <template id="sprite_box">
-            <div id="spriteContainer" role="button" class="spriteBoxContainer">
-               <p class="numTag" id="tag_number_label"></p>
-               <canvas tabindex="0" alt="sprite_frame" class="layerBox layerPreview">
-                   Sorry, but your browser does not support the HTML5 canvas element.
-               </canvas>
-            </div> 
-         </template>
-         <template id="colorBox_temp">
-            <div class="colorBox" role="button"></div>
-         </template> 
-         <div id="bg-color-pallete">
-           <div id="addButton" class="colorBox add" role="button" aria-pressed="false">
-              <p>+</p>
-           </div>
-         </div>
-         <div id="toolset">
-           <p id="ToolTitle">Tools</p>
-           <input type="image" tabindex="1" src="assets/pencil.png" title="Pencil" width="32" height="32" id="PencilTool" class="toolslot" />
-           <input type="image" tabindex="2" src="assets/eraser_ico.png" title="Eraser" width="32" height="32" id="EraserTool" class="toolslot" />
-           <input type="image" tabindex="3" src="assets/rectangle_ico.png" title="Rectangle Tool" width="32" height="32" id="RectangleTool" class="toolslot" />
-           <input type="image" tabindex="4" src="assets/eyedropper_ico.png" title="Eyedropper Tool" width="32" height="32" id="EyeDropperTool" class="toolslot" />
-           <input type="image" tabindex="5" src="assets/bucket_ico.png" title="Bucket Tool" width="32" height="32" id="BucketTool" class="toolslot" />
-           <input type="image" tabindex="6" src="assets/ruler_ico.png" title="Ruler Tool" width="32" height="32" id="RulerTool" class="toolslot" />
-           <p id="sprite_frame_category" tabindex="7">Sprite frame</p>
-           <div id="sprite_frame_fragment_container" class="sprite_fragment_container" tabindex="8"></div>
-           <div id="addFrameButton" tabindex="9" aria-role="button" contenteditable="false" 
-           role="button" data-id="frame_add" data-action="addNewFrame" title="Add new frame?">Add new sprite frame.</div>
-          </div>
-          <div id="layer_tool_box">
-             <p class="save_artwork_ui" id="SaveTitle">Save</p>
-             <input class="save_artwork_ui" type="image" src="assets/save_ico.png" title="Save" width="32" height="32" id="SaveTool" class="toolslot" />
-             <input class="save_artwork_ui" type="image" src="assets/publish_ico.png" draggable="false" title="Publish" width="32" height="32" id="Publish" class="toolslot" />
-             <input class="save_artwork_ui" type="image" src="assets/printer_ico.png" draggable="false" title="Print" width="32" height="32" id="Print" class="toolslot" />
-             <p class="save_artwork_ui" id="ScaleCategory">Pixel scalar</p>
-             <input class="save_artwork_ui" type="range" max="100" value="50" class="scaleSlider" id="scaleSliderRange" />
-             <p class="save_artwork_ui" id="SpritePreviewCategory">Preview</p>
-             <canvas class="save_artwork_ui" id="preview_canvas_sprite_animation"></canvas>
-             <p class="save_artwork_ui" id="ClearCanvasCategoryTitle">Canvas Edit</p>
-             <button class="save_artwork_ui" id="clearCanvasButton" title="Clear Canvas">Clear canvas</button>
-             <p class="save_artwork_ui" id="MoreToolsCategory">Misc tools</p>
-             <button class="save_artwork_ui" id="viewMoreToolsButton" title="View more tools">View more tools</button> <br>
-             <button class="save_artwork_ui" id="editLayers" title="Edit Layers">Manage layers</button>
-             <div class="manage_layer_ui invisible">
-              <p id="LayerTitle">Layers</p>
-             </div>
+      <div id="canvas_container">
+        <canvas id="main_canvas" width="700" height="600"></canvas>
+      </div>
+      <template id="sprite_box">
+        <div id="spriteContainer" role="button" class="spriteBoxContainer">
+            <p class="numTag" id="tag_number_label"></p>
+            <canvas tabindex="0" alt="sprite_frame" class="layerBox layerPreview">
+                Sorry, but your browser does not support the HTML5 canvas element.
+            </canvas>
+        </div> 
+      </template>
+      <template id="colorBox_temp">
+        <div class="colorBox" role="button"></div>
+      </template> 
+      <div id="bg-color-pallete">
+        <div id="addButton" class="colorBox add" role="button" aria-pressed="false">
+          <p>+</p>
+        </div>
+      </div>
+      <div id="toolset">
+        <p id="ToolTitle">Tools</p>
+        <input type="image" tabindex="1" src="assets/pencil.png" title="Pencil" width="32" height="32" id="PencilTool" class="toolslot" />
+        <input type="image" tabindex="2" src="assets/eraser_ico.png" title="Eraser" width="32" height="32" id="EraserTool" class="toolslot" />
+        <input type="image" tabindex="3" src="assets/rectangle_ico.png" title="Rectangle Tool" width="32" height="32" id="RectangleTool" class="toolslot" />
+        <input type="image" tabindex="4" src="assets/eyedropper_ico.png" title="Eyedropper Tool" width="32" height="32" id="EyeDropperTool" class="toolslot" />
+        <input type="image" tabindex="5" src="assets/bucket_ico.png" title="Bucket Tool" width="32" height="32" id="BucketTool" class="toolslot" />
+        <input type="image" tabindex="6" src="assets/ruler_ico.png" title="Ruler Tool" width="32" height="32" id="RulerTool" class="toolslot" />
+        <p id="sprite_frame_category" tabindex="7">Sprite frame</p>
+        <div id="sprite_frame_fragment_container" class="sprite_fragment_container" tabindex="8"></div>
+        <div id="addFrameButton" tabindex="9" aria-role="button" contenteditable="false" 
+        role="button" data-id="frame_add" data-action="addNewFrame" title="Add new frame?">Add new sprite frame.</div>
+      </div>
+      <div id="layer_tool_box">
+          <p class="save_artwork_ui" id="SaveTitle">Save</p>
+          <input class="save_artwork_ui" type="image" src="assets/save_ico.png" title="Save" width="32" height="32" id="SaveTool" class="toolslot" />
+          <input class="save_artwork_ui" type="image" src="assets/publish_ico.png" draggable="false" title="Publish" width="32" height="32" id="Publish" class="toolslot" />
+          <input class="save_artwork_ui" type="image" src="assets/printer_ico.png" draggable="false" title="Print" width="32" height="32" id="Print" class="toolslot" />
+          <p class="save_artwork_ui" id="ScaleCategory">Pixel scalar</p>
+          <input class="save_artwork_ui" type="range" max="100" value="50" class="scaleSlider" id="scaleSliderRange" />
+          <p class="save_artwork_ui" id="SpritePreviewCategory">Preview</p>
+          <canvas class="save_artwork_ui" id="preview_canvas_sprite_animation"></canvas>
+          <p class="save_artwork_ui" id="ClearCanvasCategoryTitle">Canvas Edit</p>
+          <button class="save_artwork_ui" id="clearCanvasButton" title="Clear Canvas">Clear canvas</button>
+          <p class="save_artwork_ui" id="MoreToolsCategory">Misc tools</p>
+          <button class="save_artwork_ui" id="viewMoreToolsButton" title="View more tools">View more tools</button> <br>
+          <button class="save_artwork_ui" id="editLayers" title="Edit Layers">Manage layers</button>
+        </div>
+      </div>
+      <div id="dialog_window_parent invisible">
+          <div class="manage_layer_ui invisible">
+            <p id="LayerTitle">Layers</p>
           </div>
       </div>
       <div class="colorDialog_bg invisible">

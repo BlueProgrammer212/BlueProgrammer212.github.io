@@ -353,6 +353,9 @@ canvas#preview_canvas_sprite_animation {
 
 div.manage_layer_ui {
   color: white;
+  background-color: black;
+  width: 35%;
+  height: 35%;
 }
 
 #editLayers {
@@ -404,6 +407,19 @@ input#scaleSliderRange::-webkit-slider-thumb {
   float: left;
   width: 33.33%;
   padding: 15px;
+}
+
+#dialog_window_parent {
+   background-color: rgba(0, 0, 0, 0.4);
+   width: 100%;
+   height: 100%;
+   z-index: 1;
+   position: absolute;
+   left: 0px; 
+   top: 0px;
+   display: flex;
+   align-items: center;
+  justify-content: center;
 }
 
 .red {
