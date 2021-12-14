@@ -198,6 +198,41 @@ document.getElementById("editLayers").addEventListener("click", (e) => {
     document.getElementsByClassName("manage_layer_ui")[0].className = "manage_layer_ui";
 })
 
+let touch_pos = new Vec2(0, 0)
+function ontouchmoveHandler(e) {
+    for (let i = 0; i < e.changedTouches.length; ++i) {
+        touch_pos.set(e.changedTouches[i].pageX, e.changedTouches[i].pageY);
+    }
+    let {x, y} = touch_pos;
+    if (isDragging && currentTool == "Pencil") {
+        drawPixel(context, x, y, psize)
+        let dx = x - lastVector.x, dy = y - lastVector.y;
+        let d = lastVector.dist(lastVector.x, lastVector.y, x, y);
+        for (var i = 1; i < d; i += psize) {
+            drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, psize)
+        }
+        lastVector.set(x, y);
+        updateFrame();
+    } else if (isDragging && currentTool == "Eraser") {
+        clearPixel(context, x, y, psize)
+        let dx = x - lastVector.x, dy = y - lastVector.y;
+        let d = lastVector.dist(lastVector.x, lastVector.y, x, y);
+        for (var i = 1; i < d; i += psize) {
+            clearPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, psize)
+        }
+        lastVector.set(x, y);
+        updateFrame()
+    } else if (isDragging && currentTool == "Rectangle") {
+        let minVector = new Vec2(Math.min(stVector.x, x), Math.min(stVector.y, y));
+        let maxVector = new Vec2(Math.max(stVector.x, y), Math.max(stVector.y, y)); 
+        for (let xS = minVector.x; xS < maxVector.x; xS += psize) {
+            for (let yS = minVector.y; yS < maxVector.y; yS += psize) {
+                drawPixel(context, xS, yS, psize);
+            }
+        }
+    }
+}
+
 function onmousemoveHandler(e) {
     if (isDragging && currentTool == "Pencil") {
         drawPixel(context, e.clientX, e.clientY, psize)
@@ -269,6 +304,29 @@ canvas.addEventListener("mousedown", (e) => {
     }
     isDragging = true;
     onmousemoveHandler(e)
+    e.preventDefault();
+})
+
+canvas.addEventListener("touchmove", ontouchmoveHandler);
+canvas.addEventListener("touchstart", (e) => {
+    for (let i = 0; i < e.changedTouches.length; ++i) {
+        touch_pos.set(e.changedTouches[i].pageX, e.changedTouches[i].pageY);
+    }
+    let {x, y} = touch_pos;
+    lastVector.set(x, y);
+    if (currentTool == "Rectangle") stVector.set(x, y);
+    if (currentTool == "EyeDropper") {
+        let mouseVector = getMousePos(canvas, x, y)
+        let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
+        let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
+        let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
+        let data = pixel.data;
+        const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
+        colorPicker.clone(document.getElementById("bg-color-pallete"), rgba);
+        CURRENT_COLOR = rgba;
+    }
+    isDragging = true;
+    ontouchmoveHandler(e);
     e.preventDefault();
 })
 

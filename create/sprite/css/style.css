@@ -352,7 +352,7 @@ canvas#preview_canvas_sprite_animation {
 }
 
 div.manage_layer_ui {
-  
+  color: white;
 }
 
 #editLayers {
