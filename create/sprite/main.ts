@@ -103,6 +103,9 @@ document.getElementById("addFrameButton").addEventListener("click", e => {
     }
 })
 
+if (document.getElementById("LayerTitle").getAttribute("data-diatype")!=='category') 
+    document.getElementById("LayerTitle").remove();
+
 let colorPicker = new ColorManager("colorBox_temp");
 for (let i = 0; i < colors.length; ++i) {
     colorPicker.clone(document.getElementById("bg-color-pallete"), colors[i]);
