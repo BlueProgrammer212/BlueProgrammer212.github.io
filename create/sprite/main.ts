@@ -195,6 +195,7 @@ document.getElementById("editLayers").addEventListener("click", (e) => {
     document.getElementsByClassName("manage_layer_ui")[0].className = "manage_layer_ui";
     document.getElementById("dialog_window_parent").className = "";
 })
+document.getElementsByClassName("manage_layer_ui")[0].addEventListener("click", e => e["stopPropagatiion"]())
 document.getElementById("dialog_window_parent").addEventListener("click", () => {
     document.getElementById("dialog_window_parent").className = "invisible"
 })
