@@ -58,6 +58,14 @@
             </canvas>
         </div> 
       </template>
+      <template id="layer_box_template">
+         <figure class="LayerBoxContainer">
+            <canvas class="LayerBoxCanvasPreview"> 
+               Sorry. but your browser does not support HTML5 canvas. 
+            </canvas>
+            <figcaption>LAYER_NUMBER</figcaption>
+         </figure>
+      </template>
       <template id="colorBox_temp">
         <div class="colorBox" role="button"></div>
       </template> 
@@ -95,11 +103,20 @@
           <button class="save_artwork_ui" id="editLayers" title="Edit Layers">Manage layers</button>
         </div>
       </div>
-      <div id="dialog_window_parent" class="invisible">
-          <div class="manage_layer_ui invisible">
-            <p id="LayerTitle">Layers</p>
-          </div>
-      </div>
+      <figure id="fig-id-85412d4edc1ee82bde86165364ae10052b26270c90450137b7b215af64f1c530">
+        <div id="dialog_window_parent" class="invisible c03d6f0915e2fe8bcb24b5c34bce8557eed31c05f652a8e214e93dd487c19983">
+          <div class="manage_layer_ui invisible c03d6f0915e2fe8bcb24b5c34bce8557eed31c05f652a8e214e93dd487c19983_ch">
+            <p id="LayerTitle" tabindex="-1" data-diatype="category" class="1ec7f764a388949fa99681b52c0c337afb06456cf5308d12b56724f1f5475e8e">Manage Layers</p>
+            <div id="layerMainContainer" tabindex="1"><!--91b91bb8bd286ee0ad8b370b8dd049f2ec314e425ea3300cf0df60fbc9e09ac5--></div>
+            <div id="selectLayer" tabindex="2" role="button" title="Select this layer" aria-role="button" data-jsaction="sLayer">Select layer</div>
+            <div id="addLayer" tabindex="2" role="button" title="Add a layer" aria-role="button" data-jsaction="aLayer">Add a layer</div>
+            <div id="deleteLayer" tabindex="2" role="button" title="Delete the selected layer" aria-role="button" data-jsaction="dLayer">Delete the selected layer</div> 
+            <svg role="button" tabindex="3" width="48" height="48"><circle class="test" tabindex="-2" width="16" height="16" hidden />
+              <rect tabindex="-1" width="48" height="48" style="fill:rgb(180,60,60);stroke-width:3.5;stroke:rgb(60,0,0)" />
+              <div tabindex="-1" style="z-index: 10;" id="extDialogBox" role="button" title="Exit" aria-role="button" data-jsaction="extDialog" class="exitBtn">
+                <img src="assets/exitico_256x256-1.png" alt id="exitImg" width="48" height="48" data-id="145" draggable="false" /></div></svg></div></div>
+              <figcaption><a href="javascript:window.open('https://www.pixcel.ml/create/sprite?oD=true&mN=l',self,'width=800,height=1000')">Open this dialog in a new window?</a></figcaption>
+      </figure>
       <div class="colorDialog_bg invisible">
           <div class="colorDialog_body">
               <div class="colorPicker"></div>

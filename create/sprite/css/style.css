@@ -323,6 +323,14 @@ canvas.layerBox.layerPreview {
    top: -15px;
 }
 
+div.layerMainContainer {
+   width: 120px;
+   overflow-y: auto;
+   overflow-x: hidden;
+   height: 300px;
+   float: left;
+}
+
 canvas#preview_canvas_sprite_animation {
   height: 125px;
   width: 140px;
@@ -354,8 +362,14 @@ canvas#preview_canvas_sprite_animation {
 div.manage_layer_ui {
   color: white;
   background-color: black;
-  width: 35%;
-  height: 35%;
+  width: 50%;
+  height: 80%;
+}
+
+p#LayerTitle {
+  margin: 10px;
+  color: white;
+  text-shadow: none;
 }
 
 #editLayers {
