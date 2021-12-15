@@ -423,6 +423,11 @@ input#scaleSliderRange::-webkit-slider-thumb {
   padding: 15px;
 }
 
+#fig-id-85412d4edc1ee82bde86165364ae10052b26270c90450137b7b215af64f1c530 {
+  width: 100%;
+  height: 100%;
+}
+
 #dialog_window_parent {
    background-color: rgba(0, 0, 0, 0.4);
    width: 100%;
