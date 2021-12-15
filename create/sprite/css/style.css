@@ -359,6 +359,11 @@ canvas#preview_canvas_sprite_animation {
   margin-bottom: 10px;
 }
 
+div[role="button"] {
+  cursor: pointer;
+  font-family: Pixel;
+}
+
 div.manage_layer_ui {
   color: white;
   background-color: black;
