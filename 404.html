@@ -53,7 +53,7 @@
       <script>let map;map=new Map();map.set("profiles",1336375474756568568);window.onload=function(){console
       .log("profiles_1336375474756568568");let b="set",c="get",d="a";map[b](d,window.location);if(map[c](d).protocol
       !=="https:"){window.location.protocol="https:"}};if(map.get("profiles")===void 0)map.set("profiles",1336375474756568568);</script>
-      <script>(function(){if(window.location.href.substr(window.location.href.length-1,window.location.href.length)!=="/"){window.location.href += "/"};
+      <script>if (window.location.pathname.split("/")[1]=="profile"){(function(){if(window.location.href.substr(window.location.href.length-1,window.location.href.length)!=="/"){window.location.href += "/"};
       let f;this.map=new Map();this.map.set("conf",{apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",authDomain: "pixcel-272e8.firebaseapp.com",
         projectId: "pixcel-272e8",storageBucket: "pixcel-272e8.appspot.com",messagingSenderId: "527485563587",appId: "1:527485563587:web:59c6c095e772a028802876",
         measurementId: "G-49V48L8TZR",databaseURL: "https://pixcel-272e8-default-rtdb.firebaseio.com"});
@@ -63,7 +63,7 @@
         .get().then((a) => {window.location.href=`https://www.pixcel.ml/profile?id=${a.data().id}`}).catch(e => {console.error(e)
         console.log("Error 404: Resource not found.");let m3 = f.collection("profiles").where("name","==",directoryNam.replace(/%20/g," ").trim()).get();
         m3.then(q => {q.forEach(d => window.location.href=`https://www.pixcel.ml/profile?id=${d.id}`)})
-        .then(() => setInterval(()=>{document.body.style="";}, 600)).catch(a => document.body.style="")})})}())</script>
+        .then(() => setInterval(()=>{document.body.style="";}, 600)).catch(a => document.body.style="")})})}())}</script>
       <script src="./js/openSideBar.js"></script>
    </body>
 </html>
