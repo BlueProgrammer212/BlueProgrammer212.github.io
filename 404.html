@@ -63,7 +63,7 @@
         .get().then((a) => {window.location.href=`https://www.pixcel.ml/profile?id=${a.data().id}`}).catch(e => {console.error(e)
         console.log("Error 404: Resource not found.");let m3 = f.collection("profiles").where("name","==",directoryNam.replace(/%20/g," ").trim()).get();
         m3.then(q => {q.forEach(d => window.location.href=`https://www.pixcel.ml/profile?id=${d.id}`)})
-        .then(() => setInterval(()=>{document.body.style="";}, 600)).catch(a => document.body.style="")})})}())}</script>
+        .then(() => setInterval(()=>{document.body.style="";}, 600)).catch(a => document.body.style="")})})}())} else {document.body.style = "";}</script>
       <script src="./js/openSideBar.js"></script>
    </body>
 </html>
