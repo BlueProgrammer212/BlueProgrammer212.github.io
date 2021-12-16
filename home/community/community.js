@@ -175,6 +175,7 @@ let image_url_;
             pfp_elem.setAttribute("src", pfp_info.data().image_url);
             if (pfp_info.data().banned == true) {
                location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html?b=true#24567845847463534647658746";
+               console.log("Update #0002 Implementation completed.")
             }
           }).catch(e => console.error(`Something unexpected occured. ${e}`));
         } else {
