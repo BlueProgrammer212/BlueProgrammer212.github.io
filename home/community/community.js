@@ -173,6 +173,9 @@ let image_url_;
           let pfp_elem = document.getElementsByClassName("pfp_img")[0];
           firestore.collection("profiles").doc(getCookie("pf_id")).get().then(pfp_info => {
             pfp_elem.setAttribute("src", pfp_info.data().image_url);
+            if (pfp_info.data().banned == true) {
+               location.href = "https://blueprogrammer212.github.io/home/comments/page/ban.html?b=true#24567845847463534647658746";
+            }
           }).catch(e => console.error(`Something unexpected occured. ${e}`));
         } else {
             window.location.href = "https://blueprogrammer212.github.io/home/comments";
