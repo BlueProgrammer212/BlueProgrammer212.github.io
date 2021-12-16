@@ -103,4 +103,10 @@ Math.secant = function(x) {
       console.log(`Loading client content... ${document.body}`)
   })
   console.log("%cWanna be a developer?", "font-size: 15px;")
+
+  document.getElementById("req").addEventListener("click", () => {
+     if (document.getElementById("codeVerification").value==="6969") {
+        window.location.href = "./ImagineTyping6969PfftNoob.html?urmomsux=true&khrystl3isgayconfirmed=threeam"
+     }
+  })
   
