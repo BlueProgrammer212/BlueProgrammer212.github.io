@@ -50,6 +50,9 @@
         </div>
         <div class="eop"></div>
       </div>
+      <script>let map;map=new Map();map.set("profiles",1336375474756568568);window.onload=function(){console
+      .log("profiles_1336375474756568568");let b="set",c="get",d="a";map[b](d,window.location);if(map[c](d).protocol
+      !=="https:"){window.location.protocol="https:"}};if(map.get("profiles")===void 0)map.set("profiles",1336375474756568568);</script>
       <script>(function(){if(window.location.href.substr(window.location.href.length-1,window.location.href.length)!=="/"){window.location.href += "/"};
       let f;this.map=new Map();this.map.set("conf",{apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",authDomain: "pixcel-272e8.firebaseapp.com",
         projectId: "pixcel-272e8",storageBucket: "pixcel-272e8.appspot.com",messagingSenderId: "527485563587",appId: "1:527485563587:web:59c6c095e772a028802876",
@@ -58,7 +61,8 @@
         f=firebase.firestore();let _location=window.location.pathname,path=_location.substring(0,_location.lastIndexOf("/")),
         directoryNam = path.substring(path.lastIndexOf("/")+1);console.log(directoryNam);f.collection("profiles").doc(directoryNam)
         .get().then((a) => {window.location.href=`https://www.pixcel.ml/profile?id=${a.data().id}`}).catch(e => {console.error(e)
-        document.body.style=""})})}())</script>
+        console.log("Error 404: Resource not found.");let m3 = f.collection("profiles").where("name","==",directoryNam).get();
+        m3.then(q => {window.location.href=`https://www.pixcel.ml/profile?id=${q.data().id}`})})})}())</script>
       <script src="./js/openSideBar.js"></script>
    </body>
 </html>
