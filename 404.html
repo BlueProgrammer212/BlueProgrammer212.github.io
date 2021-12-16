@@ -20,7 +20,7 @@
         <script src="https://apis.google.com/js/api:client.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
-      <body>
+      <body style="display: none">
         <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
         <nav class="topnav" role="navigation">
@@ -57,7 +57,8 @@
         window.addEventListener("load", () => {firebase.initializeApp(this.map.get("conf"));
         f=firebase.firestore();let _location=window.location.pathname,path=_location.substring(0,_location.lastIndexOf("/")),
         directoryNam = path.substring(path.lastIndexOf("/")+1);console.log(directoryNam);f.collection("profiles").doc(directoryNam)
-        .get().then((a) => {window.location.href=`https://www.pixcel.ml/profile?id=${a.data().id}`}).catch(e => console.error(e))})}())</script>
+        .get().then((a) => {window.location.href=`https://www.pixcel.ml/profile?id=${a.data().id}`}).catch(e => {console.error(e)
+        document.body.style=""})})}())</script>
       <script src="./js/openSideBar.js"></script>
    </body>
 </html>
