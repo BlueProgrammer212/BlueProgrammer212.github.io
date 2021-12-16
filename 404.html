@@ -62,7 +62,7 @@
         directoryNam = path.substring(path.lastIndexOf("/")+1);console.log(directoryNam);f.collection("profiles").doc(directoryNam)
         .get().then((a) => {window.location.href=`https://www.pixcel.ml/profile?id=${a.data().id}`}).catch(e => {console.error(e)
         console.log("Error 404: Resource not found.");let m3 = f.collection("profiles").where("name","==",directoryNam).get();
-        m3.then(q => {window.location.href=`https://www.pixcel.ml/profile?id=${q.data().id}`})
+        m3.then(q => {q.forEach(d => window.location.href=`https://www.pixcel.ml/profile?id=${d.id}`)})
         .catch(a => document.body.style="")})})}())</script>
       <script src="./js/openSideBar.js"></script>
    </body>
