@@ -187,6 +187,14 @@ function updateFrame() {
      0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
 }
 
+document.addEventListener("keydown", (e) => {
+    if (e.key == "ArrowUp" && selected_sprite_frame_index - 1 > 0) {
+        selected_sprite_frame_index = selected_sprite_frame_index - 1;
+    } else if (e.key == "ArrowDown" && selected_sprite_frame_index + 1 < document.getElementsByClassName("spriteBoxContainer").length) {
+        selected_sprite_frame_index = selected_sprite_frame_index + 1;
+    }
+})
+
 let stVector = new Vec2(0, 0)
 
 document.getElementById("clearCanvasButton").addEventListener("click", () => {
