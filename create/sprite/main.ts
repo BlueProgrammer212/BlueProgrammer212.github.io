@@ -250,6 +250,8 @@ const toolKeys : object[] = [
     {key: "b", tool: "Bucket"}
 ];
 
+let FLAG_EVENT_FIRED : boolean = false;
+
 document.addEventListener("keydown", (e) => {
     if (e.key == "e" && e.ctrlKey) {
         e.preventDefault();
@@ -271,7 +273,8 @@ document.addEventListener("keydown", (e) => {
     } else if (e.key == "ArrowDown") {
         selected_sprite_frame_index = ++selected_sprite_frame_index % document.getElementsByClassName("spriteBoxContainer").length;
         onSpriteSwitch();
-    } else if (e.key == "n") {
+    } else if (e.key == "n" && !FLAG_EVENT_FIRED) {
+        FLAG_EVENT_FIRED = true;
         document.getElementById("addFrameButton").click();
     }
     for (let i = 0; i < toolKeys.length; ++i) {
@@ -280,6 +283,10 @@ document.addEventListener("keydown", (e) => {
         }
     }
 })
+
+document.addEventListener("keyup", (e) => {
+    FLAG_EVENT_FIRED = false;
+});
 
 let stVector = new Vec2(0, 0)
 
