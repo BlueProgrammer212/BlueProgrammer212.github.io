@@ -391,6 +391,7 @@ canvas.addEventListener("mousedown", (e) => {
         const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
         colorPicker.clone(document.getElementById("bg-color-pallete"), rgba);
         CURRENT_COLOR = rgba;
+        onSwitchTool("Pencil")
     }
     isDragging = true;
     onmousemoveHandler(e)
@@ -414,6 +415,7 @@ canvas.addEventListener("touchstart", (e) => {
         const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
         colorPicker.clone(document.getElementById("bg-color-pallete"), rgba);
         CURRENT_COLOR = rgba;
+        onSwitchTool("Pencil")
     }
     isDragging = true;
     ontouchmoveHandler(e);
