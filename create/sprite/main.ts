@@ -257,7 +257,7 @@ document.addEventListener("keydown", (e) => {
         selected_sprite_frame_index = ++selected_sprite_frame_index % document.getElementsByClassName("spriteBoxContainer").length;
         onSpriteSwitch();
     } else if (e.ctrlKey && e.key == "n") {
-        document.getElementById("addLayer").click();
+        document.getElementById("addFrameButton").click();
     }
     for (let i = 0; i < toolKeys.length; ++i) {
         if (e.key === toolKeys[i]["key"]) {
