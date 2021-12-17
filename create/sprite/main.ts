@@ -230,6 +230,14 @@ function onSpriteSwitch() {
     context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
 }
 
+function onSwitchTool(tool : string) {
+    document.getElementById(`${tool}Tool`).className="toolslot selected";
+    if ("localStorage" in window) localStorage.setItem("toolSelected", tool)
+    currentTool = tool;
+    let ax = ToolName.filter(b => {return b !== tool});
+    ax.forEach(e => document.getElementById(`${e}Tool`).className = "toolslot")
+}
+
 document.addEventListener("keydown", (e) => {
     if (e.key == "ArrowUp") {
         if (--selected_sprite_frame_index < 0) {
@@ -241,6 +249,10 @@ document.addEventListener("keydown", (e) => {
     } else if (e.key == "ArrowDown") {
         selected_sprite_frame_index = ++selected_sprite_frame_index % document.getElementsByClassName("spriteBoxContainer").length;
         onSpriteSwitch();
+    } else if (e.key=="p") {
+        onSwitchTool("Pencil")
+    } else if (e.key=="e") {
+        onSwitchTool("Eraser")
     }
 })
 
