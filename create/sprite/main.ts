@@ -86,15 +86,17 @@ sprite.add("sprite_frame_fragment_container").then(c => {
     document.getElementsByClassName("spriteBoxContainer")[0].className += " selected"
 })
 let selected_sprite_frame_index : number = 0;
-document.getElementById("addFrameButton").addEventListener("click", e => {
+document.getElementById("addFrameButton").addEventListener("click", async e => {
 
-    sprite.add("sprite_frame_fragment_container").then((c) => {selected_sprite_frame_index += 1;});
+    await sprite.add("sprite_frame_fragment_container").then((c) => {
+        selected_sprite_frame_index += 1;
+        let sel_frames = [...document.getElementsByClassName("spriteBoxContainer")]
+        .filter(a => { return a.className.includes("selected")});
+        
+        sel_frames.forEach(elem => elem.className = "spriteBoxContainer");
+        document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
+    });
     context.clearRect(0, 0, canvas.width, canvas.height)
-    let sel_frames = [...document.getElementsByClassName("spriteBoxContainer")]
-    .filter(a => { return a.className.includes("selected")});
-    
-    sel_frames.forEach(elem => elem.className = "spriteBoxContainer");
-    document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
 
     for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
 
