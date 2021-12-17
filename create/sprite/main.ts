@@ -246,6 +246,10 @@ const toolKeys : object[] = [
 ];
 
 document.addEventListener("keydown", (e) => {
+    if (e.key == "e" && e.ctrlKey) {
+        e.preventDefault();
+        onSwitchTool("EyeDropper");
+    }
     if (e.key == "ArrowUp") {
         if (--selected_sprite_frame_index < 0) {
             selected_sprite_frame_index = document.getElementsByClassName("spriteBoxContainer").length - 1;
