@@ -379,6 +379,11 @@ window.addEventListener("load", () => {
                       })
                     })
                   } else {
+                    if (params_.sendFr===1&&!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
+                      firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
+                        "profile_id": getCookie("pf_id")
+                      })}).then(() => document.getElementById(b).innerHTML = "Cancel Friend Request");
+                    }
                    document.getElementById(b).addEventListener("click", async () => {
                      if (!info["data"]().pending_friend_requests.some((x) => {return x.profile_id === getCookie("pf_id")})) {
                       if (info.data().notification_token !== void 0) {

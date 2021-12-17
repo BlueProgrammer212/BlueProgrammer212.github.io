@@ -50,13 +50,13 @@
         </div>
         <div class="eop"></div>
       </div>
-      <script>function UrlExists(url){var http = new XMLHttpRequest();http.open('HEAD', url, false);
-        http.send();if (http.status!=400){return true;}; return false;}; if(window.location.pathname.split("/")[1]==="uploads"){
+      <script>const FILENAME_INDX=2;function UrlExists(url){var http = new XMLHttpRequest();if("open" in http)http.open('HEAD', url, false);
+        http.send();return http.status != 404 || http.status != 400;}; if(window.location.pathname.split("/")[1]==="uploads"){
         if(window.location.href.substr(window.location.href.length-1,window.location.href.length)!=="/"){window.location.href += "/"};
         let _location=window.location.pathname,path=_location.substring(0,_location.lastIndexOf("/")),
         directoryNam = path.substring(path.lastIndexOf("/")+1);console.log(directoryNam);if(window.location.pathname.split("/")[2]!==void 0 && 
         UrlExists(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${window.location.pathname.split("/")[2]}.png?alt=media`)){
-        window.location.href=`https://pixcelcdn.bprog212.repl.co?id=${window.location.pathname.split("/")[2]}`} else {document.body.style=""}}</script>
+        window.location.href=`https://pixcelcdn.bprog212.repl.co?id=${window.location.pathname.split("/")[FILENAME_INDX]}`} else {document.body.style=""}}</script>
       <script>let map;map=new Map();map.set("profiles",1336375474756568568);window.onload=function(){console
       .log("profiles_1336375474756568568");let b="set",c="get",d="a";map[b](d,window.location);if(map[c](d).protocol
       !=="https:"){window.location.protocol="https:"}};if(map.get("profiles")===void 0)map.set("profiles",1336375474756568568);</script>
@@ -64,12 +64,13 @@
       let f;this.map=new Map();this.map.set("conf",{apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",authDomain: "pixcel-272e8.firebaseapp.com",
         projectId: "pixcel-272e8",storageBucket: "pixcel-272e8.appspot.com",messagingSenderId: "527485563587",appId: "1:527485563587:web:59c6c095e772a028802876",
         measurementId: "G-49V48L8TZR",databaseURL: "https://pixcel-272e8-default-rtdb.firebaseio.com"});
-        window.addEventListener("load", () => {firebase.initializeApp(this.map.get("conf"));
-        f=firebase.firestore();let _location=window.location.pathname,path=_location.substring(0,_location.lastIndexOf("/")),
+        window.addEventListener("load", () => {firebase.initializeApp(this.map.get("conf"));f=firebase.firestore();
+        let willSendFriendRequest = (window.location.pathname.split("/")[2]==="send" && window.location.pathname.split("/")[3]=="friend" ? "&sendFr=1" : "&sendFr=0");
+        let _location=window.location.pathname,path=_location.substring(0,_location.lastIndexOf("/")),
         directoryNam = path.substring(path.lastIndexOf("/")+1);console.log(directoryNam);f.collection("profiles").doc(directoryNam)
-        .get().then((a) => {window.location.href=`https://www.pixcel.ml/profile?id=${a.data().id}`}).catch(e => {console.error(e)
+        .get().then((a) => {window.location.href=`https://www.pixcel.ml/profile?id=${a.data().id}${willSendFriendRequest}`}).catch(e => {console.error(e)
         console.log("Error 404: Resource not found.");let m3 = f.collection("profiles").where("name","==",directoryNam.replace(/%20/g," ").trim()).get();
-        m3.then(q => {q.forEach(d => window.location.href=`https://www.pixcel.ml/profile?id=${d.id}`)})
+        m3.then(q => {q.forEach(d => window.location.href=`https://www.pixcel.ml/profile?id=${d.id}${willSendFriendRequest}`)})
         .then(() => setTimeout(()=>{document.body.style="";document.getElementById("message").innerHTML=`Can't find the user, ${directoryNam.replace(/%20/g," ")}`;
         document.getElementById("desc").innerHTML = `The user might have changed their nickname or deleted their accounts. If you think this is an error, report it immediately in
         ${"https://www.pixcel.ml/home/comments".link("https://www.pixcel.ml/home/comments")} OR you can always reload this page.`
