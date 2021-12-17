@@ -187,7 +187,7 @@ function clearPixel(context, x : number, y : number, pixel_size = 16): void {
 }
 
 let currentTool = "Pencil";
-const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper"];
+const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper", "Bucket", "Ruler"];
 if (typeof localStorage.getItem("toolSelected") !== "string") {
     localStorage.setItem("toolSelected", ToolName[0]);
 }
