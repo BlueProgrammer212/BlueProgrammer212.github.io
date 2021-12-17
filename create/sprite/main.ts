@@ -131,7 +131,7 @@ document.getElementById("SaveTool").addEventListener("click", () => {
     for (let i = 0; i < spriteCollection.length; ++i) {
         const bitmap : HTMLCanvasElement = spriteCollection[i].children[1] as HTMLCanvasElement;
         context_canvas_download.imageSmoothingEnabled = false;
-        context_canvas_download.drawImage(bitmap, canvas.width * (i % 3), canvas.height * (i / 3), canvas.width, canvas.height);
+        context_canvas_download.drawImage(bitmap, canvas.width * (i % 3), canvas.height * Math.round(i / 3), canvas.width, canvas.height);
     }
   
     canvas_download.toBlob(function(blob){
@@ -140,7 +140,7 @@ document.getElementById("SaveTool").addEventListener("click", () => {
       console.log(`Pending blob download request, ${l.href}`);
       l.click();
     },'image/png');
-    
+
 })
 
 function printCanvas(url_blob)  
