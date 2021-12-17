@@ -240,7 +240,6 @@ function onSwitchTool(tool : string) {
 
 const toolKeys : object[] = [
     {key: "p", tool: "Pencil"},
-    {key: "e", tool: "Eraser"},
     {key: "r", tool: "Ruler"},
     {key: "b", tool: "Bucket"}
 ];
@@ -249,6 +248,9 @@ document.addEventListener("keydown", (e) => {
     if (e.key == "e" && e.ctrlKey) {
         e.preventDefault();
         onSwitchTool("EyeDropper");
+    } else if (e.key == "e") {
+        e.preventDefault();
+        onSwitchTool("Eraser");
     }
     if (e.key == "ArrowUp") {
         if (--selected_sprite_frame_index < 0) {
