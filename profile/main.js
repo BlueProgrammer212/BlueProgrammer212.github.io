@@ -357,6 +357,7 @@ window.addEventListener("load", () => {
                   "profile_id": getCookie("pf_id")
                 })}).then(() => document.getElementById("AddFriend").innerHTML = "Cancel Friend Request");
               }
+              document.getElementById("friendReq").className = "";
               let info_, info;
               void async function init_information(b) {
                 info = await firestore.collection("profiles").doc(params_.id).get().then(ca => ca);
