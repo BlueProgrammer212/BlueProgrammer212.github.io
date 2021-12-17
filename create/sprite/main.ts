@@ -117,17 +117,21 @@ let lastVector = new Vec2(0, 0),
 
 let scalar = 1;
 document.getElementById("SaveTool").addEventListener("click", () => {
+
     let l = document.createElement("a");
     l.download = "image.png";
+    
     let canvas_download = document.createElement("canvas"),
         context_canvas_download = canvas_download.getContext("2d"),
         spriteCollection : HTMLCollection = document.getElementsByClassName("spriteBoxContainer");
+
     canvas_download.width = canvas.width * spriteCollection.length;
     canvas_download.height = canvas.height * spriteCollection.length;
+
     for (let i = 0; i < spriteCollection.length; ++i) {
         const bitmap : HTMLCanvasElement = spriteCollection[i].children[1] as HTMLCanvasElement;
         context_canvas_download.imageSmoothingEnabled = false;
-        context_canvas_download.drawImage(bitmap, canvas.width * i, 0, canvas.width, canvas.height);
+        context_canvas_download.drawImage(bitmap, canvas.width * (i % 3), canvas.height * (i / 3), canvas.width, canvas.height);
     }
   
     canvas_download.toBlob(function(blob){
@@ -136,6 +140,7 @@ document.getElementById("SaveTool").addEventListener("click", () => {
       console.log(`Pending blob download request, ${l.href}`);
       l.click();
     },'image/png');
+    
 })
 
 function printCanvas(url_blob)  
