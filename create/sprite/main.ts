@@ -141,12 +141,12 @@ document.getElementById("SaveTool").addEventListener("click", () => {
         spriteCollection : HTMLCollection = document.getElementsByClassName("spriteBoxContainer");
 
     canvas_download.width = canvas.width * spriteCollection.length;
-    canvas_download.height = canvas.height * spriteCollection.length;
+    canvas_download.height = canvas.height;
 
     for (let i = 0; i < spriteCollection.length; ++i) {
         const bitmap : HTMLCanvasElement = spriteCollection[i].children[1] as HTMLCanvasElement;
         context_canvas_download.imageSmoothingEnabled = false;
-        context_canvas_download.drawImage(bitmap, canvas.width * (i % 4), canvas.height * Math.round(i / 3), canvas.width, canvas.height);
+        context_canvas_download.drawImage(bitmap, canvas.width * i, 0, canvas.width, canvas.height);
     }
   
     canvas_download.toBlob(function(blob){
