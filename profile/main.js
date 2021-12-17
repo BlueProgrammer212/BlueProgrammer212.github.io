@@ -351,11 +351,11 @@ window.addEventListener("load", () => {
                 firestore.collection("profiles").doc(params_.id).update({description: document.getElementById("aboutMeEdit").value})
               }
             } else {
-              if (params_.sendFr===1) {
+              if (params_.sendFr==1) {
                 console.log("Sent friend request automatically")
                 firestore.collection("profiles").doc(params_.id).update({pending_friend_requests: firebase.firestore.FieldValue.arrayUnion({
                   "profile_id": getCookie("pf_id")
-                })}).then(() => document.getElementById(b).innerHTML = "Cancel Friend Request");
+                })}).then(() => document.getElementById("AddFriend").innerHTML = "Cancel Friend Request");
               }
               let info_, info;
               void async function init_information(b) {
