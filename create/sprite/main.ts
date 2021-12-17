@@ -245,7 +245,6 @@ const toolKeys : object[] = [
 ];
 
 document.addEventListener("keydown", (e) => {
-    e.preventDefault();
     if (e.key == "ArrowUp") {
         if (--selected_sprite_frame_index < 0) {
             selected_sprite_frame_index = document.getElementsByClassName("spriteBoxContainer").length - 1;
