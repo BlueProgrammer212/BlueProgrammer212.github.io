@@ -219,11 +219,24 @@ function updateFrame() {
      0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
 }
 
+function onSpriteSwitch() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
+    .filter(a => { return a.className.includes("selected")});
+    old_frame.forEach(elem => elem.className = "spriteBoxContainer");
+    document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
+    let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
+    context.imageSmoothingEnabled = false;
+    context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
+}
+
 document.addEventListener("keydown", (e) => {
-    if (e.key == "ArrowUp" && selected_sprite_frame_index - 1 > 0) {
-        selected_sprite_frame_index = selected_sprite_frame_index - 1;
-    } else if (e.key == "ArrowDown" && selected_sprite_frame_index + 1 < document.getElementsByClassName("spriteBoxContainer").length) {
-        selected_sprite_frame_index = selected_sprite_frame_index + 1;
+    if (e.key == "ArrowUp") {
+        selected_sprite_frame_index = --selected_sprite_frame_index % -1;
+        onSpriteSwitch();
+    } else if (e.key == "ArrowDown") {
+        selected_sprite_frame_index = ++selected_sprite_frame_index % document.getElementsByClassName("spriteBoxContainer").length + 1;
+        onSpriteSwitch();
     }
 })
 
