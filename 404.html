@@ -51,7 +51,7 @@
         <div class="eop"></div>
       </div>
       <script>function UrlExists(url){var http = new XMLHttpRequest();http.open('HEAD', url, false);
-        http.send();if (http.status != 404){return true;}; return false;}; if(window.location.pathname.split("/")[1]==="uploads"){
+        http.send();if (http.status!=400){return true;}; return false;}; if(window.location.pathname.split("/")[1]==="uploads"){
         if(window.location.href.substr(window.location.href.length-1,window.location.href.length)!=="/"){window.location.href += "/"};
         let _location=window.location.pathname,path=_location.substring(0,_location.lastIndexOf("/")),
         directoryNam = path.substring(path.lastIndexOf("/")+1);console.log(directoryNam);if(window.location.pathname.split("/")[2]!==void 0 && 
@@ -74,7 +74,7 @@
         document.getElementById("desc").innerHTML = `The user might have changed their nickname or deleted their accounts. If you think this is an error, report it immediately in
         ${"https://www.pixcel.ml/home/comments".link("https://www.pixcel.ml/home/comments")} OR you can always reload this page.`
         console.log("[System] Update #0002 Implementation completed.")}, 1000)).catch(a => document.body.style="")})})}())
-        } else if (window.location.pathname.split("/")[1]==="uploads") {document.body.style = "";}</script>
+        } else if (window.location.pathname.split("/")[1]!=="uploads") {document.body.style = "";}</script>
       <script src="./js/openSideBar.js"></script>
    </body>
 </html>
