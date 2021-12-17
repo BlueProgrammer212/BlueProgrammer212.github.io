@@ -194,12 +194,12 @@ function clearPixel(context, x : number, y : number, pixel_size = 16): void {
     context.clearRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
 }
 
-let currentTool = "Pencil";
 const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper", "Bucket", "Ruler"];
 if (typeof localStorage.getItem("toolSelected") !== "string") {
     localStorage.setItem("toolSelected", ToolName[0]);
 }
 document.getElementById(`${localStorage.getItem("toolSelected")}Tool`).className="toolslot selected";
+let currentTool = localStorage.getItem("toolSelected");
 
 for (let k = 0; k < ToolName.length; ++k) {
     document.getElementById(`${ToolName[k]}Tool`).addEventListener("click", (e) => {
