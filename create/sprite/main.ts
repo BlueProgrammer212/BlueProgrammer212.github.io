@@ -233,7 +233,7 @@ function onSpriteSwitch() {
 document.addEventListener("keydown", (e) => {
     if (e.key == "ArrowUp") {
         if (--selected_sprite_frame_index < 0) {
-            selected_sprite_frame_index = document.getElementsByClassName("spriteBoxContainer").length;
+            selected_sprite_frame_index = document.getElementsByClassName("spriteBoxContainer").length - 1;
         } else {
             selected_sprite_frame_index = --selected_sprite_frame_index % -1;
         }
