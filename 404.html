@@ -50,6 +50,13 @@
         </div>
         <div class="eop"></div>
       </div>
+      <script>function UrlExists(url){var http = new XMLHttpRequest();http.open('HEAD', url, false);
+        http.send();if (http.status != 404){return true;}; return false;}; if(window.location.pathname.split("/")[1]==="uploads"){
+        if(window.location.href.substr(window.location.href.length-1,window.location.href.length)!=="/"){window.location.href += "/"};
+        let _location=window.location.pathname,path=_location.substring(0,_location.lastIndexOf("/")),
+        directoryNam = path.substring(path.lastIndexOf("/")+1);console.log(directoryNam);if(window.location.pathname.split("/")[2]!==void 0 && 
+        UrlExists(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${window.location.pathname.split("/")[2]}.png?alt=media`)){
+        window.location.href=`https://pixcelcdn.bprog212.repl.co?id=${window.location.pathname.split("/")[2]}`} else {document.body.style=""}}</script>
       <script>let map;map=new Map();map.set("profiles",1336375474756568568);window.onload=function(){console
       .log("profiles_1336375474756568568");let b="set",c="get",d="a";map[b](d,window.location);if(map[c](d).protocol
       !=="https:"){window.location.protocol="https:"}};if(map.get("profiles")===void 0)map.set("profiles",1336375474756568568);</script>
@@ -66,7 +73,8 @@
         .then(() => setTimeout(()=>{document.body.style="";document.getElementById("message").innerHTML=`Can't find the user, ${directoryNam.replace(/%20/g," ")}`;
         document.getElementById("desc").innerHTML = `The user might have changed their nickname or deleted their accounts. If you think this is an error, report it immediately in
         ${"https://www.pixcel.ml/home/comments".link("https://www.pixcel.ml/home/comments")} OR you can always reload this page.`
-        console.log("[System] Update #0002 Implementation completed.")}, 1000)).catch(a => document.body.style="")})})}())} else {document.body.style = "";}</script>
+        console.log("[System] Update #0002 Implementation completed.")}, 1000)).catch(a => document.body.style="")})})}())
+        } else if (window.location.pathname.split("/")[1]==="uploads") {document.body.style = "";}</script>
       <script src="./js/openSideBar.js"></script>
    </body>
 </html>
