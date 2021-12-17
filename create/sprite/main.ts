@@ -238,7 +238,14 @@ function onSwitchTool(tool : string) {
     ax.forEach(e => document.getElementById(`${e}Tool`).className = "toolslot")
 }
 
+const toolKeys : object[] = [
+    {key: "p", tool: "Pencil"},
+    {key: "e", tool: "Eraser"},
+    {key: "r", tool: "Ruler"},
+];
+
 document.addEventListener("keydown", (e) => {
+    e.preventDefault();
     if (e.key == "ArrowUp") {
         if (--selected_sprite_frame_index < 0) {
             selected_sprite_frame_index = document.getElementsByClassName("spriteBoxContainer").length - 1;
@@ -249,10 +256,13 @@ document.addEventListener("keydown", (e) => {
     } else if (e.key == "ArrowDown") {
         selected_sprite_frame_index = ++selected_sprite_frame_index % document.getElementsByClassName("spriteBoxContainer").length;
         onSpriteSwitch();
-    } else if (e.key=="p") {
-        onSwitchTool("Pencil")
-    } else if (e.key=="e") {
-        onSwitchTool("Eraser")
+    } else if (e.ctrlKey && e.key == "n") {
+        document.getElementById("addLayer").click();
+    }
+    for (let i = 0; i < toolKeys.length; ++i) {
+        if (e.key === toolKeys[i]["key"]) {
+            onSwitchTool(toolKeys[i]["key"])
+        }
     }
 })
 
