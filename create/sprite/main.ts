@@ -256,7 +256,7 @@ document.addEventListener("keydown", (e) => {
     } else if (e.key == "ArrowDown") {
         selected_sprite_frame_index = ++selected_sprite_frame_index % document.getElementsByClassName("spriteBoxContainer").length;
         onSpriteSwitch();
-    } else if (e.ctrlKey && e.key == "n") {
+    } else if (e.key == "n") {
         document.getElementById("addFrameButton").click();
     }
     for (let i = 0; i < toolKeys.length; ++i) {
