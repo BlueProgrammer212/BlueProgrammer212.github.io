@@ -240,7 +240,6 @@ function onSwitchTool(tool : string) {
 
 const toolKeys : object[] = [
     {key: "p", tool: "Pencil"},
-    {key: "r", tool: "Ruler"},
     {key: "b", tool: "Bucket"}
 ];
 
@@ -252,6 +251,9 @@ document.addEventListener("keydown", (e) => {
         e.preventDefault();
         onSwitchTool("Eraser");
     }
+
+    if (e.key == "r" && !e.ctrlKey) onSwitchTool("Ruler")
+
     if (e.key == "ArrowUp") {
         if (--selected_sprite_frame_index < 0) {
             selected_sprite_frame_index = document.getElementsByClassName("spriteBoxContainer").length - 1;
