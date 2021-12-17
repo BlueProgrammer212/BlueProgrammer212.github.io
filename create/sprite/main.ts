@@ -242,6 +242,7 @@ const toolKeys : object[] = [
     {key: "p", tool: "Pencil"},
     {key: "e", tool: "Eraser"},
     {key: "r", tool: "Ruler"},
+    {key: "b", tool: "Bucket"}
 ];
 
 document.addEventListener("keydown", (e) => {
@@ -260,7 +261,7 @@ document.addEventListener("keydown", (e) => {
     }
     for (let i = 0; i < toolKeys.length; ++i) {
         if (e.key === toolKeys[i]["key"]) {
-            onSwitchTool(toolKeys[i]["key"])
+            onSwitchTool(toolKeys[i]["tool"])
         }
     }
 })
