@@ -248,6 +248,10 @@ body {
   font-size: 14px;  
 }
 
+.selected {
+   border:rgb(255, 255, 255) solid 3.5px;
+}
+
 #scaleSliderRange {
   height: 50px;
   -webkit-appearance: none;

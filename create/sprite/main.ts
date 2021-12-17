@@ -190,7 +190,10 @@ let currentTool = "Pencil";
 const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper"];
 for (let k = 0; k < ToolName.length; ++k) {
     document.getElementById(`${ToolName[k]}Tool`).addEventListener("click", (e) => {
+        document.getElementById(`${ToolName[k]}Tool`).className="toolslot selected";
         currentTool = ToolName[k];
+        let ax = ToolName.filter(b => {return b !== ToolName[k]});
+        ax.forEach(e => document.getElementById(`${e}}Tool`).className = "toolslot")
     })
 }
 
