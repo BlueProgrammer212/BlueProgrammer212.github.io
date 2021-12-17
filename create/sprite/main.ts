@@ -299,6 +299,7 @@ document.getElementById("dialog_window_parent").addEventListener("click", () => 
 
 let touch_pos = new Vec2(0, 0)
 function ontouchmoveHandler(e) {
+    if (e.cancelable) e.preventDefault();
     for (let i = 0; i < e.changedTouches.length; ++i) {
         touch_pos.set(e.changedTouches[i].pageX, e.changedTouches[i].pageY);
     }
