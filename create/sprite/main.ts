@@ -188,9 +188,15 @@ function clearPixel(context, x : number, y : number, pixel_size = 16): void {
 
 let currentTool = "Pencil";
 const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper"];
+if (typeof localStorage.getItem("toolSelected") !== "string") {
+    localStorage.setItem("toolSelected", ToolName[0]);
+}
+document.getElementById(`${localStorage.getItem("toolSelected")}Tool`).className="toolslot selected";
+
 for (let k = 0; k < ToolName.length; ++k) {
     document.getElementById(`${ToolName[k]}Tool`).addEventListener("click", (e) => {
         document.getElementById(`${ToolName[k]}Tool`).className="toolslot selected";
+        if ("localStorage" in window) localStorage.setItem("toolSelected", ToolName[k])
         currentTool = ToolName[k];
         let ax = ToolName.filter(b => {return b !== ToolName[k]});
         ax.forEach(e => document.getElementById(`${e}Tool`).className = "toolslot")
