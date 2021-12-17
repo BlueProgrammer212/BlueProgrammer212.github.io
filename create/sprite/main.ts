@@ -96,12 +96,12 @@ document.getElementById("addFrameButton").addEventListener("click", e => {
         document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
             selected_sprite_frame_index = k;
             context.clearRect(0, 0, canvas.width, canvas.height);
-            document.getElementsByClassName("spriteBoxContainer")[k].className += "selected";
-
+            
             let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
-                            .filter(a => { return a.className.includes("selected")});
-                            
+            .filter(a => { return a.className.includes("selected")});
+            
             old_frame.forEach(elem => elem.className = "spriteBoxContainer");
+            document.getElementsByClassName("spriteBoxContainer")[k].className += " selected";
             
             let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
             context.imageSmoothingEnabled = false;
