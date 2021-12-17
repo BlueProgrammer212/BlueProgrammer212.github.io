@@ -235,7 +235,7 @@ document.addEventListener("keydown", (e) => {
         selected_sprite_frame_index = --selected_sprite_frame_index % -1;
         onSpriteSwitch();
     } else if (e.key == "ArrowDown") {
-        selected_sprite_frame_index = ++selected_sprite_frame_index % document.getElementsByClassName("spriteBoxContainer").length + 1;
+        selected_sprite_frame_index = ++selected_sprite_frame_index % document.getElementsByClassName("spriteBoxContainer").length;
         onSpriteSwitch();
     }
 })
