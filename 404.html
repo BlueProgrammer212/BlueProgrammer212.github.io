@@ -63,11 +63,10 @@
         .get().then((a) => {window.location.href=`https://www.pixcel.ml/profile?id=${a.data().id}`}).catch(e => {console.error(e)
         console.log("Error 404: Resource not found.");let m3 = f.collection("profiles").where("name","==",directoryNam.replace(/%20/g," ").trim()).get();
         m3.then(q => {q.forEach(d => window.location.href=`https://www.pixcel.ml/profile?id=${d.id}`)})
-        .then(() => setInterval(()=>{document.body.style="";document.getElementById("message").innerHTML=`Can't find the user, ${directoryNam.replace(/%20/g," ")}`;
+        .then(() => setTimeout(()=>{document.body.style="";document.getElementById("message").innerHTML=`Can't find the user, ${directoryNam.replace(/%20/g," ")}`;
         document.getElementById("desc").innerHTML = `The user might have changed their nickname or deleted their accounts. If you think this is an error, report it immediately in
         ${"https://www.pixcel.ml/home/comments".link("https://www.pixcel.ml/home/comments")} OR you can always reload this page.`
-        console.log("[System] Update #0001 Implementation completed.")
-        }, 600)).catch(a => document.body.style="")})})}())} else {document.body.style = "";}</script>
+        console.log("[System] Update #0002 Implementation completed.")}, 1000)).catch(a => document.body.style="")})})}())} else {document.body.style = "";}</script>
       <script src="./js/openSideBar.js"></script>
    </body>
 </html>
