@@ -90,6 +90,11 @@ document.getElementById("addFrameButton").addEventListener("click", e => {
 
     sprite.add("sprite_frame_fragment_container").then((c) => {selected_sprite_frame_index += 1;});
     context.clearRect(0, 0, canvas.width, canvas.height)
+    let sel_frames = [...document.getElementsByClassName("spriteBoxContainer")]
+    .filter(a => { return a.className.includes("selected")});
+    
+    sel_frames.forEach(elem => elem.className = "spriteBoxContainer");
+    document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
 
     for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
 
