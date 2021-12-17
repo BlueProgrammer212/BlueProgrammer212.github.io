@@ -429,7 +429,7 @@ canvas.addEventListener("touchstart", (e) => {
     }
     isDragging = true;
     ontouchmoveHandler(e);
-    e.preventDefault();
+    if (e.cancelable) e.preventDefault();
 })
 
 canvas.addEventListener("pointerout", (e) => {
