@@ -193,7 +193,7 @@ for (let k = 0; k < ToolName.length; ++k) {
         document.getElementById(`${ToolName[k]}Tool`).className="toolslot selected";
         currentTool = ToolName[k];
         let ax = ToolName.filter(b => {return b !== ToolName[k]});
-        ax.forEach(e => document.getElementById(`${e}}Tool`).className = "toolslot")
+        ax.forEach(e => document.getElementById(`${e}Tool`).className = "toolslot")
     })
 }
 
