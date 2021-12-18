@@ -226,19 +226,13 @@ const adjacent : Vec2[] = [
 ] as Vec2[];
 
 function fill(x : number, y : number) : void {
-    for (let d = 0; d < adjacent.length; ++d) {
-        for (let i = 0; i < Math.floor(canvas.width / psize); ++i) {
-            let deltaX : number = Math.floor(x + (psize * (adjacent[d].x * i)) / (psize * scalar));
-            let deltaY : number = Math.floor(y + (psize * (adjacent[d].y * i)) / (psize * scalar));
-            let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
-            let data = pixel.data;
-            const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
-            if (data[3] / 255 == 0) {
-                drawPixel(context, x + (psize * (adjacent[d].x * i)), y + (psize * (adjacent[d].y * i)), psize);
-            } else {
-                break;
-            }
+    let p = [new Vec2(x, y)]
+    for (let r = 0; r < p.length; ++r) {
+        for (let {x, y} of adjacent) {
+            let dx = p[r].x + x, dy = p[r].y + y;
+            p.push(new Vec2(dx, dy));       
         }
+        drawPixel(context, p[r].x, p[r].y, psize);
     }
 }
 
