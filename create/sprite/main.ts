@@ -227,13 +227,15 @@ const adjacent : Vec2[] = [
 
 function fill(x : number, y : number) : void {
     for (let d = 0; d < adjacent.length; ++d) {
-        let deltaX : number = Math.floor(x / (psize * scalar));
-        let deltaY : number = Math.floor(y / (psize * scalar));
-        let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
-        let data = pixel.data;
-        const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
-        if (data[3] / 255 == 0) {
-            drawPixel(context, x + (psize * adjacent[d].x), y + (psize * adjacent[d].y), psize);
+        for (let i = 0; i < 2; ++i) {
+            let deltaX : number = Math.floor(x / (psize * scalar));
+            let deltaY : number = Math.floor(y / (psize * scalar));
+            let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
+            let data = pixel.data;
+            const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
+            if (data[3] / 255 == 0) {
+                drawPixel(context, x + (psize * adjacent[d].x), y + (psize * adjacent[d].y), psize);
+            }
         }
     }
 }
