@@ -234,7 +234,7 @@ function fill(x : number, y : number) : void {
             let data = pixel.data;
             const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
             if (data[3] / 255 == 0) {
-                drawPixel(context, x + (psize * adjacent[d].x), y + (psize * adjacent[d].y), psize);
+                drawPixel(context, x + (psize * (adjacent[d].x * i)), y + (psize * (adjacent[d].y * i)), psize);
             }
         }
     }
