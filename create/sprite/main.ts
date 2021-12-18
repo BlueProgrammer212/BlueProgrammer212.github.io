@@ -56,7 +56,7 @@ class SpriteManager {
         if (this.clone.children[0].className==="numTag") { 
              this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length + 1;
         }
-        let scrollByVector = new Vec2(0, 9999999999999999);
+        let scrollByVector = new Vec2(0, 999999);
         document.getElementById(id).appendChild(this.clone);
         document.getElementById(id).scrollBy(scrollByVector.x, scrollByVector.y);
         scrollByVector = null;
