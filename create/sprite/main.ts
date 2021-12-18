@@ -56,7 +56,7 @@ class SpriteManager {
         if (this.clone.children[0].className==="numTag") { 
              this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length + 1;
         }
-        let scrollByVector = new Vec2(0, 9999999999999999);
+        let scrollByVector = new Vec2(0, 999999);
         document.getElementById(id).appendChild(this.clone);
         document.getElementById(id).scrollBy(scrollByVector.x, scrollByVector.y);
         scrollByVector = null;
@@ -227,10 +227,10 @@ const adjacent : Vec2[] = [
 
 class CanvasManager {
     protected canvas: HTMLCanvasElement | any;
-    constructor(canvas) {
+    constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
     }
-    public static fill(x: number, y: number): void {
+    public static fill({ x, y }: { x: number; y: number; }): void {
         let p : object[] | any = [{x, y}];
         if (x === void 0 || y === void 0) return;
         for (let i = 0; i < p.length; ++i) {
@@ -269,7 +269,7 @@ function onSpriteSwitch() {
     context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
 }
 
-function onSwitchTool(tool : string) {
+function onSwitchTool(tool : string): void {
     document.getElementById(`${tool}Tool`).className="toolslot selected";
     if ("localStorage" in window) localStorage.setItem("toolSelected", tool)
     currentTool = tool;
@@ -284,7 +284,7 @@ const toolKeys : object[] = [
 
 let FLAG_EVENT_FIRED : boolean = false;
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (e): void => {
     if (e.key == "e" && e.ctrlKey) {
         e.preventDefault();
         onSwitchTool("EyeDropper");
@@ -468,7 +468,7 @@ canvas.addEventListener("touchstart", (e) => {
     } 
     if (currentTool == "Bucket") {
         let modifiedVector = getMousePos(canvas, x, y);
-        CanvasManager.fill(modifiedVector.x, modifiedVector.y);
+        CanvasManager.fill({ x: modifiedVector.x, y: modifiedVector.y });
     }
     isDragging = true;
     ontouchmoveHandler(e);
