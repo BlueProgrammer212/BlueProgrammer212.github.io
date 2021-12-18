@@ -288,7 +288,7 @@ class CanvasManager {
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
     }
-    public static fill({ x, y }: { x: number; y: number; }): void {
+    public static fill({ x, y }: { x: number; y: number; }): void {/*
         let p : object[] | any = [{x, y}];
         if (x === void 0 || y === void 0) return;
         for (let i = 0; i < p.length; ++i) {
@@ -303,7 +303,7 @@ class CanvasManager {
                 }
             }
         }
-    }
+    */}
 }
 
 let canvasManager = new CanvasManager(canvas);
