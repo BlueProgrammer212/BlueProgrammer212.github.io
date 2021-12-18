@@ -227,14 +227,17 @@ const adjacent : Vec2[] = [
 
 function fill(x : number, y : number) : void {
     for (let d = 0; d < adjacent.length; ++d) {
-        let mouseVector = getMousePos(canvas, x, y)
-        let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
-        let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
-        let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
-        let data = pixel.data;
-        const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
-        if (data[3] / 255 == 0) {
-            drawPixel(context, mouseVector.x + (psize * adjacent[d].x), mouseVector.y + (psize * adjacent[d].y), psize);
+        for (let a = 0; a < Math.floor(canvas.width / psize); ++a) {
+            for (let b = 0; b < Math.floor(canvas.height / psize); ++b) {
+                let deltaX : number = Math.floor(x / (psize * (adjacent[d].x * a)));
+                let deltaY : number = Math.floor(y / (psize * (adjacent[d].y * b));
+                let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
+                let data = pixel.data;
+                const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
+                if (data[3] / 255 == 0) {
+                    drawPixel(context, x + (psize * (adjacent[d].x * a)), y + (psize * (adjacent[d].y * a)), psize);
+                }
+            }
         }
     }   
 }
@@ -456,7 +459,7 @@ canvas.addEventListener("touchstart", (e) => {
         onSwitchTool("Pencil")
     } 
     if (currentTool == "Bucket") {
-        fill(touch_pos.x, touch_pos.y);
+        fill(x, y);
     }
     isDragging = true;
     ontouchmoveHandler(e);
