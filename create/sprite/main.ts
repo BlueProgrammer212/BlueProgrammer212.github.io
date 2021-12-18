@@ -467,8 +467,8 @@ canvas.addEventListener("touchstart", (e) => {
         onSwitchTool("Pencil")
     } 
     if (currentTool == "Bucket") {
-        let mouseVector = getMousePos(canvas, x, y)
-        CanvasManager.fill(mouseVector.x, mouseVector.y);
+        let modifiedVector = getMousePos(canvas, x, y);
+        CanvasManager.fill(modifiedVector.x, modifiedVector.y);
     }
     isDragging = true;
     ontouchmoveHandler(e);
