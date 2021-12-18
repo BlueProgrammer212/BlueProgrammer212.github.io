@@ -226,10 +226,10 @@ const adjacent : Vec2[] = [
 ] as Vec2[];
 
 function fill(x : number, y : number) : void {
-    let p = [{x, y}]
+    let p = [{x: x * psize, y: y * psize}]
     for (let r = 0; r < p.length; ++r) {
         for (let {x, y} of adjacent) {
-            let dx = p[r].x + x, dy = p[r].y + y;
+            let dx = p[r].x + (x * psize), dy = p[r].y + (y * psize);
             if (dx >= 0 && dx <= canvas.width && 
                 dy >= 0 && dy <= canvas.height) {
                 p.push({x: dx, y: dy});       
