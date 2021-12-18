@@ -230,7 +230,10 @@ function fill(x : number, y : number) : void {
     for (let r = 0; r < p.length; ++r) {
         for (let {x, y} of adjacent) {
             let dx = p[r].x + x, dy = p[r].y + y;
-            p.push({x: dx, y: dy});       
+            if (dx >= 0 && dx <= canvas.width && 
+                dy >= 0 && dy <= canvas.height) {
+                p.push({x: dx, y: dy});       
+            }    
         }
         drawPixel(context, p[r].x, p[r].y, psize);
     }
