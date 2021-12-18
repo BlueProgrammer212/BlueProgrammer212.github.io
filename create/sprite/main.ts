@@ -225,9 +225,30 @@ const adjacent : Vec2[] = [
     new Vec2(0, 16), //A4
 ] as Vec2[];
 
-function fill(x : number, y : number) : void {
-
+class CanvasManager {
+    protected canvas: HTMLCanvasElement | any;
+    constructor(canvas) {
+        this.canvas = canvas;
+    }
+    public static fill(x: number, y: number): void {
+        let p : object[] | any = [{x, y}];
+        if (x === void 0 || y === void 0) return;
+        for (let i = 0; i < p.length; ++i) {
+            for ({x, y} of adjacent) {
+                let dx = p[i].x + (x * psize),
+                    dy = p[i].y + (y * psize);
+                if (dx >= 0 && dx <= canvas.width + canvas.getBoundingClientRect().width &&
+                    dy >= 0 && dy <= canvas.height + canvas.getBoundingClientRect().height &&
+                    !p.some(a => p.x == dx && p.y == dy)) {
+                    p = [...p, {x: dx, y: dy}];
+                    drawPixel(context, p[i].x, p[i].y, psize);
+                }
+            }
+        }
+    }
 }
+
+let canvasManager = new CanvasManager(canvas);
 
 function updateFrame() {
     let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
@@ -447,7 +468,7 @@ canvas.addEventListener("touchstart", (e) => {
     } 
     if (currentTool == "Bucket") {
         let mouseVector = getMousePos(canvas, x, y)
-        fill(mouseVector.x, mouseVector.y);
+        CanvasManager.fill(mouseVector.x, mouseVector.y);
     }
     isDragging = true;
     ontouchmoveHandler(e);
