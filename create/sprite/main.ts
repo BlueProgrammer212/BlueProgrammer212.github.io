@@ -218,6 +218,27 @@ for (let k = 0; k < ToolName.length; ++k) {
     })
 }
 
+const adjacent : Vec2[] = [
+    new Vec2(-1, 0), //A1
+    new Vec2(1, 0), //A2
+    new Vec2(0, -1), //A3
+    new Vec2(0, 1), //A4
+] as Vec2[];
+
+function fill(x : number, y : number) : void {
+    for (let d = 0; d < adjacent.length; ++d) {
+        let mouseVector = getMousePos(canvas, x, y)
+        let deltaX : number = Math.floor((mouseVector.x + (adjacent[d].x * psize)) / (psize * scalar));
+        let deltaY : number = Math.floor((mouseVector.y + (adjacent[d].x * psize)) / (psize * scalar));
+        let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
+        let data = pixel.data;
+        const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
+        if (data[3] / 255 == 0) {
+            drawPixel(context, mouseVector.x, mouseVector.y, psize);
+        }
+    }   
+}
+
 function updateFrame() {
     let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
     sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
