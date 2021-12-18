@@ -56,7 +56,7 @@ class SpriteManager {
         if (this.clone.children[0].className==="numTag") { 
              this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length + 1;
         }
-        let scrollByVector = new Vec2(0, 999999);
+        let scrollByVector = new Vec2(0, 9999999999999999);
         document.getElementById(id).appendChild(this.clone);
         document.getElementById(id).scrollBy(scrollByVector.x, scrollByVector.y);
         scrollByVector = null;
@@ -226,19 +226,7 @@ const adjacent : Vec2[] = [
 ] as Vec2[];
 
 function fill(x : number, y : number) : void {
-    let p = [{x: x * psize, y: y * psize}]
-    for (let r = 0; r < p.length; r++) {
-        for (let {x, y} of adjacent) {
-            let dx = p[r].x + x, dy = p[r].y + y;
-            if (dx >= 0 && dx <= canvas.width + canvas.getBoundingClientRect().width && 
-                dy >= 0 && dy <= canvas.height +  canvas.getBoundingClientRect().height &&
-                !p.some(pa => pa.x == dx && pa.y == dy)) {
-                p.push({x: dx, y: dy}); 
-                drawPixel(context, dx, dy, psize);    
 
-            }   
-        }
-    }
 }
 
 function updateFrame() {
@@ -458,9 +446,8 @@ canvas.addEventListener("touchstart", (e) => {
         onSwitchTool("Pencil")
     } 
     if (currentTool == "Bucket") {
-        let deltaX : number = Math.floor(x / (psize * scalar));
-        let deltaY : number = Math.floor(y / (psize * scalar));
-        fill(deltaX, deltaY);
+        let mouseVector = getMousePos(canvas, x, y)
+        fill(mouseVector.x, mouseVector.y);
     }
     isDragging = true;
     ontouchmoveHandler(e);
