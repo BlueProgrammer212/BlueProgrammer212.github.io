@@ -233,9 +233,11 @@ function fill(x : number, y : number) : void {
             if (dx >= 0 && dx <= Math.floor(canvas.width / psize) && 
                 dy >= 0 && dy <= Math.floor(canvas.height / psize)) {
                 p.push({x: dx, y: dy});       
-            }    
-            drawPixel(context, p[r].x, p[r].y, psize);
+            }   
         }
+    }
+    for (let n = 0; n < p.length; ++n) {
+        drawPixel(context, p[n].x, p[n].y, psize);
     }
 }
 
