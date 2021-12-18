@@ -457,7 +457,7 @@ canvas.addEventListener("touchstart", (e) => {
         onSwitchTool("Pencil")
     } 
     if (currentTool == "Bucket") {
-        fill(x, y);
+        fill(x * psize, y * psize);
     }
     isDragging = true;
     ontouchmoveHandler(e);
