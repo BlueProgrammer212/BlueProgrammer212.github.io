@@ -11,7 +11,7 @@ class Vec2 {
         this.x = x;
         this.y = y;
     }
-    dist(lx, ly, cx, cy): number {
+    dist(lx: number, ly: number, cx: number, cy: number): number {
         let dx = lx - cx,
             dy = ly - cy;
        return Math.hypot(dx, dy);
@@ -34,7 +34,7 @@ class ColorManager {
     constructor(id : string) {
         this.template = document.getElementById(id);
     }
-    clone(element, color): void {
+    clone(element: HTMLElement, color: string): void {
         let clone = document.importNode(this.template.content, true).children[0];
         clone.id = color;
         clone.setAttribute("style", `background-color: ${color};`)
@@ -79,6 +79,62 @@ class SpriteManager {
 document.getElementById("scaleSliderRange").addEventListener("input", () => {
     psize = psize * (document.getElementById("scaleSliderRange")["value"] * 0.1);
 })
+
+interface Layer {
+    readonly id: string;
+    readonly pid: string;
+}
+
+class LayerManager implements Layer {
+    public readonly id: string;
+    public currentLayer : number;
+    public readonly pid: string;
+    public template: Element | HTMLTemplateElement;
+    public parent: Element;
+    public options?: object;
+    constructor({ tid, pid, options }: { tid: string; pid: string; options?: object; }) { 
+        this.id = tid;
+        this.pid = pid;
+        this.currentLayer = -1;
+        this.template = document.getElementById(this.id) as HTMLTemplateElement;
+        this.parent = document.getElementById(this.pid) as any;
+        this.options = options;
+    } 
+    
+    public set setSelectedLayerByIndex(i : number) {
+        this.currentLayer = i;
+    }
+    
+    public clone(): void { 
+        const cloned_layer_box = document.importNode(this.template["content"], true).children[0];
+        const events : string[] = ["click", "contextmenu"];
+        for (let i = 0; i < events.length; ++i) {
+            cloned_layer_box.addEventListener(events[i % events.length + 2], (e: { preventDefault: () => any; }) => e.preventDefault());
+            if (events[i] === "contextmenu") cloned_layer_box.onclick = (e: any) => {return false};
+        }
+        const elements_for_layer : HTMLCollectionOf<Element> = 
+              document.getElementsByClassName("LayerBoxContainer") as HTMLCollectionOf<any>;
+        let setCurrentLayer : any = this.setSelectedLayerByIndex;
+        [...elements_for_layer].forEach(elem => elem.addEventListener("click", (e) => {
+            setCurrentLayer([...elements_for_layer].indexOf(elem));
+        }, {passive: true}))
+    }
+
+    public remove(index): void {
+        const elements_for_layer : HTMLCollectionOf<Element> = 
+              document.getElementsByClassName("LayerBoxContainer") as HTMLCollectionOf<any>;
+        [...elements_for_layer].forEach(e => {
+            if ([...elements_for_layer].indexOf(e) === index) {
+                if ("remove" in e) {
+                    e.remove();
+                } else {
+                    e.parentElement.removeChild(e);
+                }
+            }
+        })
+    }
+}
+
 let sprite = new SpriteManager("sprite_box");
 sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
@@ -158,7 +214,7 @@ document.getElementById("SaveTool").addEventListener("click", () => {
 
 })
 
-function printCanvas(url_blob)  
+function printCanvas(url_blob: string)  
 {  
     var windowContent : string = `<!DOCTYPE html><html><head><title>Pixcel: Print</title></head><body><img src="${url_blob}" width="800" height="800"></body></html>`
     var printWin = window.open('','','width=800,height=800');
@@ -180,13 +236,13 @@ document.getElementById("Print").addEventListener("click", () => {
 
 canvas.oncontextmenu = function() {return false};
 
-function getMousePos(canvas, x, y) {
+function getMousePos(canvas: HTMLCanvasElement, x: number, y: number) {
     var rect = canvas.getBoundingClientRect();
     return new Vec2((x - rect.left) / (rect.right - rect.left) * canvas.width, 
     (y - rect.top) / (rect.bottom - rect.top) * canvas.height);
 }
 
-function drawPixel(context, x : number, y : number, pixel_size = 16): void {
+function drawPixel(context: CanvasRenderingContext2D, x : number, y : number, pixel_size = 16): void {
     context.fillStyle = CURRENT_COLOR;
     let mouseVector = getMousePos(canvas, x, y)
     let deltaX : number = Math.floor(mouseVector.x / (pixel_size * scalar));
@@ -194,7 +250,7 @@ function drawPixel(context, x : number, y : number, pixel_size = 16): void {
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
 }
 
-function clearPixel(context, x : number, y : number, pixel_size = 16): void {
+function clearPixel(context: CanvasRenderingContext2D, x : number, y : number, pixel_size = 16): void {
     let mouseVector = getMousePos(canvas, x, y)
     let deltaX : number = Math.floor(mouseVector.x / (pixel_size * scalar));
     let deltaY : number = Math.floor(mouseVector.y / (pixel_size * scalar));
@@ -239,7 +295,7 @@ class CanvasManager {
                     dy = p[i].y + (y * psize);
                 if (dx >= 0 && dx <= canvas.width + canvas.getBoundingClientRect().width &&
                     dy >= 0 && dy <= canvas.height + canvas.getBoundingClientRect().height &&
-                    !p.some(a => p.x == dx && p.y == dy)) {
+                    !p.some((a: any) => p.x == dx && p.y == dy)) {
                     p = [...p, {x: dx, y: dy}];
                     drawPixel(context, p[i].x, p[i].y, psize);
                 }
@@ -282,7 +338,8 @@ const toolKeys : object[] = [
     {key: "b", tool: "Bucket"}
 ];
 
-let FLAG_EVENT_FIRED : boolean = false;
+let FLAG_EVENT_FIRED : boolean = false,
+    FLAG_EVENT_STARTED_RIGHT_BUTTON_MOUSE : boolean = false;
 
 document.addEventListener("keydown", (e): void => {
     if (e.key == "e" && e.ctrlKey) {
@@ -337,7 +394,7 @@ document.getElementById("dialog_window_parent").addEventListener("click", () => 
 })
 
 let touch_pos = new Vec2(0, 0)
-function ontouchmoveHandler(e) {
+function ontouchmoveHandler(e: TouchEvent) {
     if (e.cancelable) e.preventDefault();
     for (let i = 0; i < e.changedTouches.length; ++i) {
         touch_pos.set(e.changedTouches[i].pageX, e.changedTouches[i].pageY);
@@ -369,10 +426,11 @@ function ontouchmoveHandler(e) {
                 drawPixel(context, xS, yS, psize);
             }
         }
+        updateFrame()
     }
 }
 
-function onmousemoveHandler(e) {
+function onmousemoveHandler(e: MouseEvent) {
     if (isDragging && currentTool == "Pencil") {
         drawPixel(context, e.clientX, e.clientY, psize)
         let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
@@ -399,10 +457,11 @@ function onmousemoveHandler(e) {
                 drawPixel(context, xS, yS, psize);
             }
         }
+        updateFrame()
     }
 }
 
-function zoom(event) {
+function zoom(event: { preventDefault: () => void; deltaY: number; }) {
     event.preventDefault();
     scale += event.deltaY * -0.001;
     scale = Math.min(Math.max(.125, scale), 4);
@@ -422,11 +481,9 @@ function animate() {
     canvas_preview.getContext("2d").drawImage(buffer, 0, 0, canvas_preview.width, canvas_preview.height);
 }
 
-setInterval(animate, 200)
+setInterval(animate, 100)
 
 let scale = 1;
-
-//canvas.onwheel = zoom;
 
 canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
@@ -441,6 +498,11 @@ canvas.addEventListener("mousedown", (e) => {
         colorPicker.clone(document.getElementById("bg-color-pallete"), rgba);
         CURRENT_COLOR = rgba;
         onSwitchTool("Pencil")
+    }
+    if (currentTool == "Bucket") {
+        let modifiedVector = getMousePos(canvas, e.x, e.y);
+        CanvasManager.fill({ x: modifiedVector.x, y: modifiedVector.y });
+        updateFrame()
     }
     isDragging = true;
     onmousemoveHandler(e)
@@ -469,6 +531,7 @@ canvas.addEventListener("touchstart", (e) => {
     if (currentTool == "Bucket") {
         let modifiedVector = getMousePos(canvas, x, y);
         CanvasManager.fill({ x: modifiedVector.x, y: modifiedVector.y });
+        updateFrame()
     }
     isDragging = true;
     ontouchmoveHandler(e);
