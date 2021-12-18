@@ -236,7 +236,7 @@ function fill(x : number, y : number) : void {
             if (data[3] / 255 == 0) {
                 drawPixel(context, x + (psize * (adjacent[d].x * i)), y + (psize * (adjacent[d].y * i)), psize);
             } else {
-                continue;
+                break;
             }
         }
     }
