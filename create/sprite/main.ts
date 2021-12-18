@@ -227,7 +227,7 @@ const adjacent : Vec2[] = [
 
 function fill(x : number, y : number) : void {
     for (let d = 0; d < adjacent.length; ++d) {
-        for (let i = 0; i < 2; ++i) {
+        for (let i = 0; i < 5; ++i) {
             let deltaX : number = Math.floor(x + (psize * (adjacent[d].x * i)) / (psize * scalar));
             let deltaY : number = Math.floor(y + (psize * (adjacent[d].y * i)) / (psize * scalar));
             let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
