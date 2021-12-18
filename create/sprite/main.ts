@@ -219,17 +219,17 @@ for (let k = 0; k < ToolName.length; ++k) {
 }
 
 const adjacent : Vec2[] = [
-    new Vec2(-1, 0), //A1
-    new Vec2(1, 0), //A2
-    new Vec2(0, -1), //A3
-    new Vec2(0, 1), //A4
+    new Vec2(-16, 0), //A1
+    new Vec2(16, 0), //A2
+    new Vec2(0, -16), //A3
+    new Vec2(0, 16), //A4
 ] as Vec2[];
 
 function fill(x : number, y : number) : void {
     let p = [{x: x * psize, y: y * psize}]
     for (let r = 0; r < p.length; r++) {
         for (let {x, y} of adjacent) {
-            let dx = p[r].x * (x * psize), dy = p[r].y * (y * psize);
+            let dx = p[r].x + x, dy = p[r].y + y;
             if (dx >= 0 && dx <= canvas.width && 
                 dy >= 0 && dy <= canvas.height &&
                 !p.some(pa => pa.x == dx && pa.y == dy)) {
