@@ -7,9 +7,9 @@ This the first initial release for Pixcel!
 -  You can now use colors for Pixel arts!
 -  Bugs hotfix
 
-Visit our [community](https://blueprogrammer212.github.io/home/community/?r=as)
+Visit our [community](https://www.pixcel.ml/home/community/?r=as)
 
-Homepage: https://blueprogrammer212.github.io/home
+Homepage: https://www.pixcel.ml
 
-Comments & Feedback: https://blueprogrammer212.github.io/home/comments
+Comments & Feedback: https://www.pixcel.ml/home/comments
 
