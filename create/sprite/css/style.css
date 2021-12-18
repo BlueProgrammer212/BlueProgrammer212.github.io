@@ -318,6 +318,11 @@ canvas.layerBox.layerPreview {
   background-size: 8px 8px;
 }
 
+.LayerBoxContainer {
+  border: 5.5px solid white;
+  padding: 40px;
+}
+
 #sprite_frame_fragment_container > div.selected {
     border: 5.5px solid white;
 }

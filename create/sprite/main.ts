@@ -135,7 +135,9 @@ class LayerManager implements Layer {
     }
 }
 
-let sprite = new SpriteManager("sprite_box");
+let layer = new LayerManager({tid: "layer_box_template", pid: "layerMainContainer"}),
+    sprite = new SpriteManager("sprite_box");
+layer.clone();
 sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
     0, 0, c.children[1].width, c.children[1].height)
