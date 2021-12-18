@@ -232,12 +232,10 @@ function fill(x : number, y : number) : void {
             let dx = p[r].x + (x * psize), dy = p[r].y + (y * psize);
             if (dx >= 0 && dx <= Math.floor(canvas.width / psize) && 
                 dy >= 0 && dy <= Math.floor(canvas.height / psize)) {
-                p.push({x: dx, y: dy});       
+                p.push({x: dx, y: dy}); 
+                drawPixel(context, dx, dy, psize);    
             }   
         }
-    }
-    for (let n = 0; n < p.length; ++n) {
-        drawPixel(context, p[n].x, p[n].y, psize);
     }
 }
 
