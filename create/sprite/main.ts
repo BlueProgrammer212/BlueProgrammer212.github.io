@@ -228,13 +228,13 @@ const adjacent : Vec2[] = [
 function fill(x : number, y : number) : void {
     for (let d = 0; d < adjacent.length; ++d) {
         let mouseVector = getMousePos(canvas, x, y)
-        let deltaX : number = Math.floor((mouseVector.x + (adjacent[d].x * psize)) / (psize * scalar));
-        let deltaY : number = Math.floor((mouseVector.y + (adjacent[d].x * psize)) / (psize * scalar));
+        let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
+        let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
         let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
         let data = pixel.data;
         const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
         if (data[3] / 255 == 0) {
-            drawPixel(context, mouseVector.x, mouseVector.y, psize);
+            drawPixel(context, mouseVector.x + (psize * adjacent[d].x), mouseVector.y + (psize * adjacent[d].y), psize);
         }
     }   
 }
@@ -454,6 +454,9 @@ canvas.addEventListener("touchstart", (e) => {
         colorPicker.clone(document.getElementById("bg-color-pallete"), rgba);
         CURRENT_COLOR = rgba;
         onSwitchTool("Pencil")
+    } 
+    if (currentTool == "Bucket") {
+        fill(x, y);
     }
     isDragging = true;
     ontouchmoveHandler(e);
