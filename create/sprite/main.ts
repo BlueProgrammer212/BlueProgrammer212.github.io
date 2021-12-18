@@ -234,8 +234,8 @@ function fill(x : number, y : number) : void {
                 dy >= 0 && dy <= Math.floor(canvas.height / psize)) {
                 p.push({x: dx, y: dy});       
             }    
+            drawPixel(context, p[r].x, p[r].y, psize);
         }
-        drawPixel(context, p[r].x, p[r].y, psize);
     }
 }
 
