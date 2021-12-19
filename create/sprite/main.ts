@@ -122,7 +122,7 @@ class LayerManager implements Layer {
               document.getElementsByClassName("LayerBoxContainer") as HTMLCollectionOf<any>;
 
         let setCurrentLayer : any = this.setSelectedLayerByIndex;
-        
+
         [...elements_for_layer].forEach(elem => elem.addEventListener("click", (e) => {
             setCurrentLayer([...elements_for_layer].indexOf(elem));
         }, {passive: true}))
@@ -150,6 +150,7 @@ let layer = new LayerManager({tid: "layer_box_template", pid: "layerMainContaine
 function initLayers(): void {
     layer.clone("first-layer", canvas)
 }
+initLayers();
 
 document.getElementById("addLayer").addEventListener("click", () => {
     layer.clone();
