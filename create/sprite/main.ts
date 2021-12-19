@@ -1,3 +1,5 @@
+declare let iro: any;
+
 const canvas = document.getElementsByTagName('canvas')[0],
 context = canvas.getContext("2d");
 
@@ -190,7 +192,16 @@ let colorPicker = new ColorManager("colorBox_temp");
 for (let i = 0; i < colors.length; ++i) {
     colorPicker.clone(document.getElementById("bg-color-pallete"), colors[i]);
 }
+var colorPicker_ = new iro.ColorPicker(".colorPicker", {
+    width: 280,
+    color: "rgb(255, 0, 0)",
+    borderWidth: 1,
+    borderColor: "#fff",
+});
 
+colorPicker_.on(["color:init", "color:change"], function(color){
+    colorPicker.clone(document.getElementById("bg-color-pallete"), color.hexString);
+});
 
 let lastVector = new Vec2(0, 0), 
     isDragging : boolean = false;
