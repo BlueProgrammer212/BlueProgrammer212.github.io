@@ -534,28 +534,36 @@ setInterval(animate, 100)
 
 let scale = 1;
 
+function intToBool(n : number) {
+    return n != 0;
+}
+
 canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
-    if (currentTool == "Rectangle") stVector.set(e.x, e.y);
-    if (currentTool == "EyeDropper") {
-        let mouseVector = getMousePos(canvas, e.x, e.y)
-        let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
-        let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
-        let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
-        let data = pixel.data;
-        const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
-        colorPicker.clone(document.getElementById("bg-color-pallete"), rgba);
-        CURRENT_COLOR = rgba;
-        onSwitchTool("Pencil")
-    }
-    if (currentTool == "Bucket") {
-        let modifiedVector = getMousePos(canvas, e.x, e.y);
-        CanvasManager.fill({ x: modifiedVector.x, y: modifiedVector.y });
-        updateFrame()
-    }
     isDragging = true;
-    onmousemoveHandler(e)
+    if (e.button == 0) {
+        if (currentTool == "Rectangle") stVector.set(e.x, e.y);
+        if (currentTool == "EyeDropper") {
+            let mouseVector = getMousePos(canvas, e.x, e.y)
+            let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
+            let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
+            let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
+            let data = pixel.data;
+            const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
+            colorPicker.clone(document.getElementById("bg-color-pallete"), rgba);
+            CURRENT_COLOR = rgba;
+            onSwitchTool("Pencil")
+        }
+        if (currentTool == "Bucket") {
+            let modifiedVector = getMousePos(canvas, e.x, e.y);
+            CanvasManager.fill({ x: modifiedVector.x, y: modifiedVector.y });
+            updateFrame()
+        }
+    } else if (e.button == 2) {
+        onSwitchTool("Eraser")
+    }
     e.preventDefault();
+    onmousemoveHandler(e)
 })
 
 canvas.addEventListener("touchmove", ontouchmoveHandler);
@@ -600,6 +608,7 @@ canvas.addEventListener("touchend", (e) => {
 canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
     isDragging = false;
+    if  (e.button == 2) onSwitchTool("Pencil")
 })
 
 canvas.addEventListener("mousemove", onmousemoveHandler)
