@@ -320,7 +320,9 @@ canvas.layerBox.layerPreview {
 
 .LayerBoxContainer {
   border: 5.5px solid white;
-  padding: 40px;
+  padding: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #sprite_frame_fragment_container > div.selected {
