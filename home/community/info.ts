@@ -381,14 +381,14 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
             document.getElementsByClassName("img_upload")[i].setAttribute("class", "invisible img_upload")
         }
 
-        //Send profile data to https://blueprogrammer212.github.io/profile
+        //Send profile data to https://www.pixcel.ml/profile
         document.getElementsByClassName("profile_picture_32x32")[i].setAttribute("onclick", `
              if (history.pushState) {
-                var newurl = 'https://blueprogrammer212.github.io/profile?id=${data.profile_id}';
+                var newurl = 'https://www.pixcel.ml/profile?id=${data.profile_id}';
                 window.history.pushState({path:newurl},'',newurl);
                 window.location.reload();
              } else {
-                 window.location.href = 'https://blueprogrammer212.github.io/profile?id=${data.profile_id}'
+                 window.location.href = 'https://www.pixcel.ml/profile?id=${data.profile_id}'
              }
         `);
 
