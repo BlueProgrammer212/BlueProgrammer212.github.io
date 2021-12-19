@@ -318,17 +318,25 @@ canvas.layerBox.layerPreview {
   background-size: 8px 8px;
 }
 
+.LayerBoxCanvasPreview {
+  width: 150px;
+  height: 150px;
+}
+
 .LayerBoxContainer {
   border: 5.5px solid white;
-  padding: 15px;
+  padding-bottom: 4px;
+  width: 150px;
+  height: 150px;
 }
 
 #layerMainContainer {
   overflow-y: auto;
   overflow-x: hidden;
-  border: 5.5px solid white; 
-  width: 80%;
-  height: 50%;
+  border: 5.5px solid white;
+  width: 37%;
+  height: 75%;
+  margin-left: 20px;
 }
 
 #sprite_frame_fragment_container > div.selected {
