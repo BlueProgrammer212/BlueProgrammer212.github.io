@@ -199,9 +199,18 @@ var colorPicker_ = new iro.ColorPicker(".colorPicker", {
     borderColor: "#fff",
 });
 
-colorPicker_.on(["color:init", "color:change"], function(color){
-    colorPicker.clone(document.getElementById("bg-color-pallete"), color.hexString);
+let co_sc : string;
+const s_prop = "style"
+
+colorPicker_.on(["color:init", "color:change"], function(color){   
+    co_sc = color.hexString;
+    document.getElementsByClassName("colorHex")[0][s_prop].backgroundColor = co_sc;
 });
+
+document.getElementsByClassName("addButton")[0].addEventListener("click", () => {
+    document.getElementsByClassName("colorDialog_bg")[0].className += " invisible"
+    colorPicker.clone(document.getElementById("bg-color-pallete"), co_sc);
+})
 
 let lastVector = new Vec2(0, 0), 
     isDragging : boolean = false;
