@@ -543,7 +543,7 @@ input#scaleSliderRange::-webkit-slider-thumb {
   border: 3.5px solid black;
   background-color: #fafafa;
   padding-bottom: 10px;
-  width: 95%;
+  width: 100%;
   z-index: 1001;
   white-space: nowrap;
   flex-direction: row;
