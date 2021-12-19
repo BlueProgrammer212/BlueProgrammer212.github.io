@@ -80,7 +80,6 @@ class SpriteManager {
 
 document.getElementById("scaleSliderRange").addEventListener("input", () => {
     psize = 16 * Number(document.getElementById("scaleSliderRange")["value"]);
-    canvas.style.backgroundSize = `${psize * 2}px`
 })
 
 interface Layer {
