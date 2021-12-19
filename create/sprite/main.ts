@@ -202,12 +202,14 @@ var colorPicker_ = new iro.ColorPicker(".colorPicker", {
 let co_sc : string;
 const s_prop = "style"
 
+let exitDialogColorPicker : Element | any = document.getElementById("exitColorPickerDialog");
+
 document.getElementsByClassName("add")[0].addEventListener("click", () => {
     document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
 })
 
-document.getElementById("exitColorPickerDialog").addEventListener("click", () => {
-    document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
+exitDialogColorPicker.addEventListener("click", () => {
+    document.getElementsByClassName("colorDialog_bg")[0].className += " invisible" 
 })
 
 colorPicker_.on(["color:init", "color:change"], function(color){   
