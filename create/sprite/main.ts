@@ -202,6 +202,14 @@ var colorPicker_ = new iro.ColorPicker(".colorPicker", {
 let co_sc : string;
 const s_prop = "style"
 
+document.getElementsByClassName("add")[0].addEventListener("click", () => {
+    document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
+})
+
+document.getElementById("exitColorPickerDialog").addEventListener("click", () => {
+    document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
+})
+
 colorPicker_.on(["color:init", "color:change"], function(color){   
     co_sc = color.hexString;
     document.getElementsByClassName("colorHex")[0][s_prop].backgroundColor = co_sc;
