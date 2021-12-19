@@ -20,7 +20,7 @@ class Vec2 {
     }
 
     public getFixedPosition(scale : number): object {
-        return {x: Math.floor(this.x * scale), y: Math.floor(this.y * scale)};
+        return {x: Math.floor(this.x / scale), y: Math.floor(this.y / scale)};
     }
 }
 
