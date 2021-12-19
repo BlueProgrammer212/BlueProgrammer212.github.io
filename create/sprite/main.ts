@@ -3,16 +3,43 @@ declare let iro: any;
 const canvas = document.getElementsByTagName('canvas')[0],
 context = canvas.getContext("2d");
 
+interface Entity {
+    map: Map<any, any>;
+}  
+
+class Vec3 {
+    public x: number;
+    public y: number;
+    public z: number;
+    constructor(x?: number, y?: number, z?: number) {
+        for (let i = 0; i < arguments.length; ++i) {
+            if (arguments[i] === void 0) arguments[i] = 0;
+        }
+        this.set(x, y, z);
+    }
+    public set(x?: number, y?: number, z?: number) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+}
+
 class Vec2 {
-    x: number;
-    y: number;
-    constructor(x = 0, y = 0) {
+    public x?: number;
+    public y?: number;
+
+    constructor(x?: number, y?: number) {
+        for (let i = 0; i < arguments.length; ++i) {
+            if (arguments[i] === void 0) arguments[i] = 0;
+        }
         this.set(x, y);
     } 
+
     set(x = 0, y = 0): void {
         this.x = x;
         this.y = y;
     }
+
     dist(lx: number, ly: number, cx: number, cy: number): number {
         let dx = lx - cx,
             dy = ly - cy;
@@ -24,7 +51,61 @@ class Vec2 {
     }
 }
 
-let psize = 16;
+function isDesktop(): boolean {
+    const mobile : RegExp[] = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+
+    return !mobile.some(element => navigator.userAgent.match(element));
+};
+
+let psize : number = 16;
+
+class EntityManager implements Entity {
+    public map: Map<any, any>;
+    constructor() {
+        this.map = new Map();
+    }
+    *[Symbol.iterator] () {
+        yield isDesktop();
+        yield this;
+    }
+    addEntity(isDebug?: boolean, name?: string, canvas?: any, size?: Vec2): void {
+        if (size === void 0) size = new Vec2(0, 0);
+
+        const entityData : object = {};
+        const scale = new Vec2(size.x, size.y);
+
+        this.map.set(name, {
+            context: canvas.getContext("2d"), 
+            pos: new Vec2(0, 0),
+            isDebug: isDebug
+        });
+    }
+    addEvent(e : string, name : string) {
+        let context_buffer = this.map.get(name)["context"];
+        context_buffer.canvas.addEventListener(e, (ev) => {
+            this.map.get(name)["pos"].set(ev.x, ev.y)
+            if (this.map.get(name).isDebug === true) {
+                const {x, y} = this.map.get(name)["pos"].getFixedPosition(psize);
+                context_buffer.strokeStyle = "#ff0000";
+                context_buffer.lineWidth = "8px"
+                context_buffer.strokeRect(x * psize, y * psize, psize, psize);
+            }
+        });
+    }
+}
+
+let entityManager = new EntityManager()
+if ([...new EntityManager][0]) {
+    entityManager.addEntity(false, "cursor", canvas, new Vec2(psize, psize));
+};
 
 interface pixel {
     pos: object;
@@ -89,6 +170,16 @@ document.getElementById("scaleSliderRange").addEventListener("input", () => {
 interface Layer {
     readonly id: string;
     readonly pid: string;
+}
+
+function im(u?: string, b?: any, s?: number): Promise<any> {
+    if ("setAttribute" in Element.prototype) {
+        b.setAttribute("src", u);
+    } else {
+        b.src = u;
+    }
+
+    return new Promise(r => b.addEventListener("load", () => setTimeout(r, s * 1000, b)));
 }
 
 class LayerManager implements Layer {
@@ -393,6 +484,10 @@ document.addEventListener("keydown", (e): void => {
     } else if (e.key == "e") {
         e.preventDefault();
         onSwitchTool("Eraser");
+    }
+
+    if (e.ctrlKey && e.key == "c") {
+        document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
     }
 
     if (e.key == "r" && !e.ctrlKey) onSwitchTool("Ruler")
