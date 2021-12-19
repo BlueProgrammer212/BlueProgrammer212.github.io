@@ -323,6 +323,10 @@ canvas.layerBox.layerPreview {
   height: 150px;
 }
 
+div#layerMainContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
 .LayerBoxContainer {
   border: 5.5px solid white;
   padding-bottom: 4px;
