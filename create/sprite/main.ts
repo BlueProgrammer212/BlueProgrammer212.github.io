@@ -213,7 +213,9 @@ exitDialogColorPicker.addEventListener("click", () => {
     document.getElementsByClassName("colorDialog_bg")[0].className += " invisible" 
 })
 
-colorPicker_.on(["color:init", "color:change"], function(color){   
+const events : string[] = ["color:init", "color:change"];
+
+colorPicker_.on(events, function(color){   
     co_sc = color.hexString;
     document.getElementsByClassName("colorHex")[0][s_prop].backgroundColor = co_sc;
 });
