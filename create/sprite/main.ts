@@ -18,6 +18,10 @@ class Vec2 {
             dy = ly - cy;
        return Math.hypot(dx, dy);
     }
+
+    public getFixedPosition(scale : number): object {
+        return {x: Math.floor(this.x * scale), y: Math.floor(this.y * scale)};
+    }
 }
 
 let psize = 16;
@@ -341,7 +345,7 @@ class CanvasManager {
         this.canvas = canvas;
     }
     public static fill({ x, y }: { x: number; y: number; }): void {
-        console.log(new Vec2(x, y));
+        console.log(new Vec2(x, y).getFixedPosition(psize));
     }
 }
 
