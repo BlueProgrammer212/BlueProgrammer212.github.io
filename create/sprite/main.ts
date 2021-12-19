@@ -106,19 +106,22 @@ class LayerManager implements Layer {
         this.currentLayer = i;
     }
     
-    public clone(): void { 
+    public clone(id?: string): void { 
         const cloned_layer_box = document.importNode(this.template["content"], true).children[0];
         const events : string[] = ["click", "contextmenu"];
         for (let i = 0; i < events.length; ++i) {
             cloned_layer_box.addEventListener(events[i % events.length + 2], (e: { preventDefault: () => any; }) => e.preventDefault());
             if (events[i] === "contextmenu") cloned_layer_box.onclick = (e: any) => {return false};
         }
+        if (id !== void 0) cloned_layer_box.id = id;
         const elements_for_layer : HTMLCollectionOf<Element> = 
               document.getElementsByClassName("LayerBoxContainer") as HTMLCollectionOf<any>;
         let setCurrentLayer : any = this.setSelectedLayerByIndex;
         [...elements_for_layer].forEach(elem => elem.addEventListener("click", (e) => {
             setCurrentLayer([...elements_for_layer].indexOf(elem));
         }, {passive: true}))
+
+        this.parent.appendChild(cloned_layer_box);
     }
 
     public remove(index): void {
