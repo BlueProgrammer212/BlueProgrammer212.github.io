@@ -113,7 +113,7 @@ interface pixel {
 }
 
 let CURRENT_COLOR : string = "red", 
-    pixels : pixel[] = [],
+    pixels : Set<object[]> = new Set(),
     colors : string[] = ["red", "blue", "yellow", "green", "orange", "purple", "pink", "magenta", "cyan", "brown"];
 
 class ColorManager {
