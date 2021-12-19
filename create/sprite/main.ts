@@ -323,34 +323,26 @@ for (let k = 0; k < ToolName.length; ++k) {
     })
 }
 
-const adjacent : Vec2[] = [
-    new Vec2(-16, 0), //A1
-    new Vec2(16, 0), //A2
-    new Vec2(0, -16), //A3
-    new Vec2(0, 16), //A4
-] as Vec2[];
+interface Adjacent {
+    x: number,
+    y: number
+}
+
+const adjacent : Adjacent[] = [
+    {x: -16, y: 0}, //A1
+    {x: 16, y: 0}, //A2
+    {x: 0, y: -16}, //A3
+    {x: 0, y: 16}, //A4
+] as Adjacent[];
 
 class CanvasManager {
     protected canvas: HTMLCanvasElement | any;
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
     }
-    public static fill({ x, y }: { x: number; y: number; }): void {/*
-        let p : object[] | any = [{x, y}];
-        if (x === void 0 || y === void 0) return;
-        for (let i = 0; i < p.length; ++i) {
-            for ({x, y} of adjacent) {
-                let dx = p[i].x + (x * psize),
-                    dy = p[i].y + (y * psize);
-                if (dx >= 0 && dx <= canvas.width + canvas.getBoundingClientRect().width &&
-                    dy >= 0 && dy <= canvas.height + canvas.getBoundingClientRect().height &&
-                    !p.some((a: any) => p.x == dx && p.y == dy)) {
-                    p = [...p, {x: dx, y: dy}];
-                    drawPixel(context, p[i].x, p[i].y, psize);
-                }
-            }
-        }
-    */}
+    public static fill({ x, y }: { x: number; y: number; }): void {
+        console.log(new Vec2(x, y));
+    }
 }
 
 let canvasManager = new CanvasManager(canvas);
