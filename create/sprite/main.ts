@@ -77,7 +77,7 @@ class SpriteManager {
 } 
 
 document.getElementById("scaleSliderRange").addEventListener("input", () => {
-    psize = 16 * (Number(document.getElementById("scaleSliderRange")["value"]) * 0.2);
+    psize = 16 * Number(document.getElementById("scaleSliderRange")["value"]);
 })
 
 interface Layer {
