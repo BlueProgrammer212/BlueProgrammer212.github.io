@@ -146,6 +146,7 @@ let layer = new LayerManager({tid: "layer_box_template", pid: "layerMainContaine
 layer.clone();
 document.getElementById("addLayer").addEventListener("click", () => {
     layer.clone();
+    document.getElementById("layerMainContainer").scroll(0, 99999)
 })
 sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
