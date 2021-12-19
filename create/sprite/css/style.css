@@ -332,6 +332,8 @@ div#layerMainContainer::-webkit-scrollbar {
   padding-bottom: 4px;
   width: 150px;
   height: 150px;
+  background-image: url(../assets/background_canvas.png);
+  background-size: 8px 8px;
 }
 
 #layerMainContainer {
