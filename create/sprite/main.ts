@@ -443,11 +443,13 @@ class CanvasManager {
 let canvasManager = new CanvasManager(canvas);
 
 function updateFrame() {
-    let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-    sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
-    sprite_canvas["getContext"]("2d").clearRect(0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
-    sprite_canvas["getContext"]("2d").drawImage(document.getElementById("main_canvas"),
-     0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+    if (CanvasRenderingContext2D.prototype.hasOwnProperty("drawImage")) {
+        let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
+        sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
+        sprite_canvas["getContext"]("2d").clearRect(0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+        sprite_canvas["getContext"]("2d").drawImage(document.getElementById("main_canvas"),
+        0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+    }
 }
 
 function onSpriteSwitch() {
