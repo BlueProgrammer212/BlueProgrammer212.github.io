@@ -417,8 +417,9 @@ function clearPixel(context: CanvasRenderingContext2D, x : number, y : number, p
     let mouseVector = getMousePos(canvas, x, y)
     let deltaX : number = Math.floor(mouseVector.x / (pixel_size * scalar));
     let deltaY : number = Math.floor(mouseVector.y / (pixel_size * scalar));
-    context.clearRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
-    undoPixel.push({x: deltaX * pixel_size, y: deltaY * pixel_size, scale: pixel_size, color: "rgba(0, 0, 0, 0)"})
+    context.clearRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size); 
+    let data : object = {x: deltaX * pixel_size, y: deltaY * pixel_size, scale: pixel_size, color: "rgba(0, 0, 0, 0)"};
+    if (!undoPixel.some(a => a == data)) undoPixel = [...undoPixel, data];
 }
 
 const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper", "Bucket", "Ruler"];
@@ -722,6 +723,7 @@ canvas.addEventListener("pointerout", (e) => {
 
 canvas.addEventListener("touchend", (e) => {
     e.preventDefault();
+    //Make undoPixel, a subset of pixels.
     pixels = [...pixels, undoPixel];
     undoPixel.pop();
     isDragging = false;
