@@ -488,7 +488,7 @@ class CanvasManager implements CanvasInterface {
                     let dx = modifiedVectorMouse.x + adjacent[d].x, dy = modifiedVectorMouse.y + adjacent[d].y;
                     let cx = canvas.width + canvas.getBoundingClientRect().width,
                         cy = canvas.height + canvas.getBoundingClientRect().height;
-                    if (dx != pixels[mx][my].x / psize && dy != pixels[mx][my].y / psize &&
+                    if (dx != Math.floor(pixels[mx][my].x / psize) && dy != Math.floor(pixels[mx][my].y / psize) &&
                         dx < cx && dy < cy && dx > 0 && dy > 0) {
                             drawPixel(context, dx * 16, dy * 16, 16);
                             console.log(`Pixel data position: ${pixels[mx][my].x / psize} \n Delta X: ${dx}`)
