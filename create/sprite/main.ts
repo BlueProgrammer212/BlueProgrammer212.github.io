@@ -218,6 +218,7 @@ class LayerManager implements Layer {
               document.getElementsByClassName("LayerBoxContainer") as HTMLCollectionOf<any>;
         currentLayerSelected += 1;
         if (canvas !== void 0) {
+            canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
             intervals.push(setInterval(this.updateLayer, 10, canvas));            
         }
 
