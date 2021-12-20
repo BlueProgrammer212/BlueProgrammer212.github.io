@@ -490,7 +490,7 @@ class CanvasManager implements CanvasInterface {
                         cy = canvas.height + canvas.getBoundingClientRect().height;
                     if (dx != pixels[mx][my].x / psize && dy != pixels[mx][my].y / psize &&
                         dx < cx && dy < cy && dx > 0 && dy > 0) {
-                            drawPixel(context, dx, dy, 16);
+                            drawPixel(context, dx * 16, dy * 16, 16);
                         }
                 }
             }
