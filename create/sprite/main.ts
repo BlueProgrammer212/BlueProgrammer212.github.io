@@ -405,7 +405,6 @@ interface PixelInterface {
 }
 
 function redraw_canvas() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
     for (let j = 0; j < pixels.length; ++j) {
         const {x, y, scale, color} = pixels[j] as PixelInterface;
         context.fillStyle = color;
@@ -730,7 +729,6 @@ canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
     pixels = [...pixels, undoPixel]
     undoPixel = [];
-
     isDragging = false;
     if  (e.button == 2) onSwitchTool("Pencil")
 })
