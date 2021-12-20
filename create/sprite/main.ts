@@ -405,6 +405,7 @@ interface PixelInterface {
 }
 
 function redraw_canvas() {
+    context.clearRect(0, 0, canvas.width,  canvas.height)
     for (let j = 0; j < pixels.length; ++j) {
         const {x, y, scale, color} = pixels[j] as PixelInterface;
         context.fillStyle = color;
