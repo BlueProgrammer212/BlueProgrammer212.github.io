@@ -515,7 +515,7 @@ document.addEventListener("keydown", (e): void => {
         document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
     }
 
-    if (e.ctrlKey && e.key == "z" && pixels.length > 0) {
+    if (e.ctrlKey && (e.key == "z" || e.key == "Backspace") && pixels.length > 0) {
         pixels.pop();
         context.clearRect(0, 0, canvas.width, canvas.height)
         redraw_canvas();
