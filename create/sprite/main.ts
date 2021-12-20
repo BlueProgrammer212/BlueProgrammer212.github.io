@@ -182,7 +182,7 @@ function im(u?: string, b?: any, s?: number): Promise<any> {
     return new Promise(r => b.addEventListener("load", () => setTimeout(r, s * 1000, b)));
 }
 
-let currentLayerSelected = 0,
+let currentLayerSelected = -1,
     intervals : any = [];
 
 class LayerManager implements Layer {
