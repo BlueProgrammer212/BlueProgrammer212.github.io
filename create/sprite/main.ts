@@ -480,7 +480,7 @@ class CanvasManager implements CanvasInterface {
 
     public static fill({ x, y }: { x: number; y: number; }): void {
         console.log(`Starting position: ${new Vec2(x, y)}`);
-        drawPixel(context, x * 16, y * 16, 16)
+        drawPixel(context, x, y, 16)
     }
     
 }
@@ -701,7 +701,7 @@ canvas.addEventListener("mousedown", (e) => {
         }
         if (currentTool == "Bucket") {
             let modifiedVector = getMousePos(canvas, e.x, e.y);
-            CanvasManager.fill({ x: modifiedVector.x, y: modifiedVector.y });
+            CanvasManager.fill({ x: e.x, y: e.y });
             updateFrame()
         }
     } else if (e.button == 2) {
