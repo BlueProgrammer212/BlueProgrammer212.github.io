@@ -517,6 +517,7 @@ document.addEventListener("keydown", (e): void => {
 
     if (e.ctrlKey && e.key == "z" && pixels.length > 0) {
         pixels.pop();
+        undoPixel.pop();
         context.clearRect(0, 0, canvas.width, canvas.height)
         redraw_canvas();
         updateFrame();
