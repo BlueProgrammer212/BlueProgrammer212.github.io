@@ -478,20 +478,17 @@ class CanvasManager implements CanvasInterface {
         yield ["aspectRatio", 0, 0, cwidth, cheight]
     }
 
-    public static fill({ x, y }: { x: number; y: number; }): void {
-        console.log(`Starting position: ${new Vec2(x, y)}`);
-        drawPixel(context, x, y, 16)
+    public static fill({ dx, dy }: { dx: number; dy: number; }): void {
+        console.log(`Starting position: ${new Vec2(dx, dy)}`);
+        drawPixel(context, dx, dy, 16)
         for (let mx = 0; mx < pixels.length; ++mx) {
             for (let my = 0; my < pixels[mx].length; ++my) {
-                for (let d = 0; d < adjacent.length; ++d) {
-                    let modifiedVectorMouse = getMousePos(canvas, x, y);
-                    let dx = modifiedVectorMouse.x + adjacent[d].x, dy = modifiedVectorMouse.y + adjacent[d].y;
-                    let cx = canvas.width + canvas.getBoundingClientRect().width,
-                        cy = canvas.height + canvas.getBoundingClientRect().height;
-                    if (dx != Math.floor(pixels[mx][my].x / psize) && dy != Math.floor(pixels[mx][my].y / psize) &&
-                        dx < cx && dy < cy && dx > 0 && dy > 0) {
-                            drawPixel(context, dx, dy, 16);
-                            console.log(`Pixel data position: ${pixels[mx][my].x / psize} \n Delta X: ${dx}`)
+                for (let {x, y} of adjacent) {
+                    let nx = pixels[mx][my].x + x, ny = pixels[mx][my].y + y;
+                    if (nx >= 0 && nx < canvas.width + canvas.getBoundingClientRect().width &&
+                        ny >= 0 && ny < canvas.height + canvas.getBoundingClientRect().height &&
+                        !pixels[mx].some(p => p.x == nx && p.y == ny)) {
+                            pixels.push([{x: nx * psize, y: ny * psize, scale: psize, color: CURRENT_COLOR}])
                         }
                 }
             }
@@ -716,7 +713,7 @@ canvas.addEventListener("mousedown", (e) => {
         }
         if (currentTool == "Bucket") {
             let modifiedVector = getMousePos(canvas, e.x, e.y);
-            CanvasManager.fill({ x: e.x, y: e.y });
+            CanvasManager.fill({ dx: e.x, dy: e.y });
             updateFrame()
         }
     } else if (e.button == 2) {
@@ -747,7 +744,7 @@ canvas.addEventListener("touchstart", (e) => {
     } 
     if (currentTool == "Bucket") {
         let modifiedVector = getMousePos(canvas, x, y);
-        CanvasManager.fill({ x: modifiedVector.x, y: modifiedVector.y });
+        CanvasManager.fill({ dx: modifiedVector.x, dy: modifiedVector.y });
         updateFrame()
     }
     isDragging = true;
