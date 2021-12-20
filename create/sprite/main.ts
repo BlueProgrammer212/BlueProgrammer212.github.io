@@ -517,7 +517,6 @@ document.addEventListener("keydown", (e): void => {
 
     if (e.ctrlKey && e.key == "z" && pixels.length > 0) {
         pixels.pop();
-        undoPixel.pop();
         context.clearRect(0, 0, canvas.width, canvas.height)
         redraw_canvas();
         updateFrame();
@@ -728,12 +727,14 @@ canvas.addEventListener("touchend", (e) => {
     e.preventDefault();
     //Make undoPixel, a subset of pixels.
     if (!pixels.some(a => a == undoPixel)) pixels = [...pixels, undoPixel];
+    undoPixel = [];
     isDragging = false;
 })
 
 canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
     if (!pixels.some(a => a == undoPixel)) pixels = [...pixels, undoPixel]
+    undoPixel = [];
     isDragging = false;
     if  (e.button == 2) onSwitchTool("Pencil")
 })
