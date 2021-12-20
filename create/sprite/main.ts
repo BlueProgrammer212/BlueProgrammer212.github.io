@@ -479,7 +479,6 @@ class CanvasManager implements CanvasInterface {
     }
 
     public static fill({ x, y }: { x: number; y: number; }): void {
-        /*
         console.log(`Starting position: ${new Vec2(x, y)}`);
         for (let mx = 0; mx < pixels.length; ++mx) {
             for (let my = 0; my < pixels[mx].length; ++my) {
@@ -504,7 +503,6 @@ class CanvasManager implements CanvasInterface {
                 }
             }
         }
-        */
     }
     
 }
