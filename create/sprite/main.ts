@@ -423,7 +423,7 @@ interface Adjacent {
     y: number
 }
 
-const adjacent : Adjacent[] = [
+const adjacent : Adjacent[] = [//
     {x: -16, y: 0}, //A1
     {x: 16, y: 0}, //A2
     {x: 0, y: -16}, //A3
