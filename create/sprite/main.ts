@@ -481,22 +481,8 @@ class CanvasManager implements CanvasInterface {
     public static fill({ dx, dy }: { dx: number; dy: number; }): void {
         console.log(`Starting position: ${new Vec2(dx, dy)}`);
         drawPixel(context, dx, dy, 16)
-        for (let mx = 0; mx < pixels.length; ++mx) {
-            for (let my = 0; my < pixels[mx].length; ++my) {
-                for (let {x, y} of adjacent) {
-                    let nx = Math.floor((dx + x) / psize), ny = Math.floor((dy + y) / psize);
-                    if (nx >= 0 && nx < canvas.width + canvas.getBoundingClientRect().width &&
-                        ny >= 0 && ny < canvas.height + canvas.getBoundingClientRect().height &&
-                        !pixels[mx].some(p => p.x == nx && p.y == ny)) {
-                            context.fillStyle = CURRENT_COLOR;
-                            let mouseVector = getMousePos(canvas, x, y)
-                            let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
-                            let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
-                            context.fillRect(deltaX * psize, deltaY * psize, psize, psize)
-                            pixels.push([{x: nx * psize, y: ny * psize, scale: psize, color: CURRENT_COLOR}])
-                        }
-                }
-            }
+        for (let {x, y} of adjacent) {
+            console.log(new Vec2(Math.floor((dx + x) / psize), Math.floor((dy + y) / psize)))
         }
     }
     
