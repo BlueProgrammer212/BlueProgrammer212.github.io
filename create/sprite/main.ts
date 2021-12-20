@@ -490,12 +490,15 @@ class CanvasManager implements CanvasInterface {
                     for (let cai = 0; cai < ca.length; ++cai) { 
                         if (ca[cai]===void 0) return;
                     }
-                    let dx = pixels[mx][my].x + adjacent[adj].x,
-                        dy = pixels[mx][my].y + adjacent[adj].y,
+                    let dx = x + adjacent[adj].x,
+                        dy = y + adjacent[adj].y,
                         cx = canvas.width + canvas.getBoundingClientRect().width,
                         cy = canvas.height + canvas.getBoundingClientRect().height;
-
-                    if (dx < cx && dx > 0 && dy < cy && dy > 0 && !pixels[mx][my].hasOwnProperty("drawn")) {
+                    
+                    if (Math.floor(dx) != Math.floor(pixels[mx][my].x / psize) && 
+                        Math.floor(dy) != Math.floor(pixels[mx][my].y / psize) && 
+                        dx < cx && dx > 0 && dy < cy && dy > 0 && 
+                        !pixels[mx][my].hasOwnProperty("drawn")) {
                         drawPixel(context, dx, dy, psize);
                         pixels[mx][my].drawn = true;
                     }
