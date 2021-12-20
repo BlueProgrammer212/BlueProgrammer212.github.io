@@ -406,11 +406,12 @@ interface PixelInterface {
 }
 
 function redraw_canvas() {
-    context.clearRect(0, 0, canvas.width,  canvas.height)
     for (let j = 0; j < pixels.length; ++j) {
-        const {x, y, scale, color} = pixels[j] as PixelInterface;
-        context.fillStyle = color;
-        context.fillRect(x, y, scale, scale); 
+        for (let k = 0; k < pixels[j].length; ++k) {
+            let {x, y, scale, color} = pixels[j][k] as PixelInterface;
+            context.fillStyle = color;
+            context.fillRect(x, y, scale, scale); 
+        }
     }
 }
 
@@ -516,7 +517,7 @@ document.addEventListener("keydown", (e): void => {
 
     if (e.ctrlKey && e.key == "z" && pixels.length > 0) {
         pixels.pop();
-        undoPixel.pop();
+        context.clearRect(0, 0, canvas.width, canvas.height)
         redraw_canvas();
         updateFrame();
     }
