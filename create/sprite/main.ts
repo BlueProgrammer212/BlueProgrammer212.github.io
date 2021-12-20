@@ -480,32 +480,7 @@ class CanvasManager implements CanvasInterface {
 
     public static fill({ x, y }: { x: number; y: number; }): void {
         console.log(`Starting position: ${new Vec2(x, y)}`);
-        for (let mx = 0; mx < pixels.length; ++mx) {
-            for (let my = 0; my < pixels[mx].length; ++my) {
-                for (let adj = 0; adj < adjacent.length; ++adj) {
-                    let ca : any[] = [
-                        pixels[mx][my].x, pixels[mx][my].y,
-                        adjacent[adj].x, adjacent[adj].y 
-                    ];
-                    for (let cai = 0; cai < ca.length; ++cai) { 
-                        if (ca[cai]===void 0) return;
-                    }
-                    let dx = x + adjacent[adj].x,
-                        dy = y + adjacent[adj].y,
-                        cx = canvas.width + canvas.getBoundingClientRect().width,
-                        cy = canvas.height + canvas.getBoundingClientRect().height;
-                    
-                    if (Math.floor(dx) != Math.floor(pixels[mx][my].x / psize) && 
-                        Math.floor(dy) != Math.floor(pixels[mx][my].y / psize) && 
-                        dx < cx && dx > 0 && dy < cy && dy > 0 && 
-                        !pixels[mx][my].hasOwnProperty("drawn")) {
-                        drawPixel(context, dx, dy, psize);
-                        pixels[mx][my].drawn = true;
-                    }
-
-                }
-            }
-        }
+        drawPixel(context, x, y, 16)
     }
     
 }
