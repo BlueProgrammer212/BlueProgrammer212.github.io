@@ -482,7 +482,7 @@ class CanvasManager implements CanvasInterface {
         console.log(`Starting position: ${new Vec2(dx, dy)}`);
         drawPixel(context, dx, dy, 16)
         for (let {x, y} of adjacent) {
-            console.log(new Vec2(Math.floor((dx + (x * psize))), Math.floor((dy + (y * psize))))
+            console.log(new Vec2(Math.floor((dx + (x * psize))), Math.floor((dy + (y * psize)))))
         }
     }
     
