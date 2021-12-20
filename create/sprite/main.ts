@@ -480,7 +480,7 @@ class CanvasManager implements CanvasInterface {
 
     public static fill({ x, y }: { x: number; y: number; }): void {
         console.log(`Starting position: ${new Vec2(x, y)}`);
-        drawPixel(context, x, y, 16)
+        drawPixel(context, x * 16, y * 16, 16)
     }
     
 }
