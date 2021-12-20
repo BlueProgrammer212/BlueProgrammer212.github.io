@@ -482,7 +482,7 @@ class CanvasManager implements CanvasInterface {
         console.log(`Starting position: ${new Vec2(x, y)}`);
         drawPixel(context, x, y, 16)
         for (let mx = 0; mx < pixels.length; ++mx) {
-            for (let my = 0; my < pixels.length; ++my) {
+            for (let my = 0; my < pixels[mx].length; ++my) {
                 for (let d = 0; d < adjacent.length; ++d) {
                     let modifiedVectorMouse = getMousePos(canvas, x, y);
                     let dx = modifiedVectorMouse.x + adjacent[d].x, dy = modifiedVectorMouse.y + adjacent[d].y;
