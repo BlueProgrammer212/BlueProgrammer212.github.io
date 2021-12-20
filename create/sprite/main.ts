@@ -515,6 +515,7 @@ document.addEventListener("keydown", (e): void => {
     if (e.ctrlKey && e.key == "z" && pixels.length > 0) {
         pixels.pop();
         redraw_canvas();
+        updateFrame();
     }
 
     if (e.key == "r" && !e.ctrlKey) onSwitchTool("Ruler")
@@ -720,13 +721,16 @@ canvas.addEventListener("pointerout", (e) => {
 
 canvas.addEventListener("touchend", (e) => {
     e.preventDefault();
-    pixels = [...pixels, undoPixel]
+    pixels = [...pixels, undoPixel];
+    undoPixel = [];
     isDragging = false;
 })
 
 canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
     pixels = [...pixels, undoPixel]
+    undoPixel = [];
+
     isDragging = false;
     if  (e.button == 2) onSwitchTool("Pencil")
 })
