@@ -725,14 +725,14 @@ canvas.addEventListener("pointerout", (e) => {
 canvas.addEventListener("touchend", (e) => {
     e.preventDefault();
     //Make undoPixel, a subset of pixels.
-    pixels = [...pixels, undoPixel];
+    if (!pixels.some(a => a === undoPixel)) pixels = [...pixels, undoPixel];
     undoPixel.pop();
     isDragging = false;
 })
 
 canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
-    pixels = [...pixels, undoPixel]
+    if (!pixels.some(a => a === undoPixel)) pixels = [...pixels, undoPixel]
     undoPixel.pop();
     isDragging = false;
     if  (e.button == 2) onSwitchTool("Pencil")
