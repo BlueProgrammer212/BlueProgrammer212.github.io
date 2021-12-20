@@ -394,7 +394,8 @@ function drawPixel(context: CanvasRenderingContext2D, x : number, y : number, pi
     let deltaX : number = Math.floor(mouseVector.x / (pixel_size * scalar));
     let deltaY : number = Math.floor(mouseVector.y / (pixel_size * scalar));
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
-    undoPixel.push({x: deltaX * pixel_size, y: deltaY * pixel_size, scale: pixel_size, color: CURRENT_COLOR})
+    let data : object = {x: deltaX * pixel_size, y: deltaY * pixel_size, scale: pixel_size, color: CURRENT_COLOR};
+    if (!undoPixel.some(a => a == data)) undoPixel = [...undoPixel, data];
 }
 
 interface PixelInterface {
