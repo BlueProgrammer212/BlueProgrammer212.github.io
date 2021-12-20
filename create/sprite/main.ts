@@ -454,10 +454,10 @@ interface Adjacent {
 }
 
 const adjacent : Adjacent[] = [//
-    {x: -16, y: 0}, //A1
-    {x: 16, y: 0}, //A2
-    {x: 0, y: -16}, //A3
-    {x: 0, y: 16}, //A4
+    {x: -1, y: 0}, //A1
+    {x: 1, y: 0}, //A2
+    {x: 0, y: -1}, //A3
+    {x: 0, y: 1}, //A4
 ] as Adjacent[];
 
 interface CanvasInterface {
@@ -482,7 +482,7 @@ class CanvasManager implements CanvasInterface {
         console.log(`Starting position: ${new Vec2(dx, dy)}`);
         drawPixel(context, dx, dy, 16)
         for (let {x, y} of adjacent) {
-            console.log(new Vec2(Math.floor((dx + x) / psize), Math.floor((dy + y) / psize)))
+            console.log(new Vec2(Math.floor((dx + (x * psize))), Math.floor((dy + (y * psize))))
         }
     }
     
