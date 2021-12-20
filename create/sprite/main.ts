@@ -113,7 +113,7 @@ interface pixel {
 }
 
 let CURRENT_COLOR : string = "red", 
-    pixels : Set<object[]> = new Set(),
+    pixels : Array<any> = [],
     colors : string[] = ["red", "blue", "yellow", "green", "orange", "purple", "pink", "magenta", "cyan", "brown"];
 
 class ColorManager {
@@ -386,12 +386,31 @@ function getMousePos(canvas: HTMLCanvasElement, x: number, y: number) {
     (y - rect.top) / (rect.bottom - rect.top) * canvas.height);
 }
 
+let undoPixel : object[] = [];
+
 function drawPixel(context: CanvasRenderingContext2D, x : number, y : number, pixel_size = 16): void {
     context.fillStyle = CURRENT_COLOR;
     let mouseVector = getMousePos(canvas, x, y)
     let deltaX : number = Math.floor(mouseVector.x / (pixel_size * scalar));
     let deltaY : number = Math.floor(mouseVector.y / (pixel_size * scalar));
     context.fillRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
+    undoPixel.push({x: deltaX * pixel_size, y: deltaY * pixel_size, scale: pixel_size, color: CURRENT_COLOR})
+}
+
+interface PixelInterface {
+     x: number,
+     y: number,
+     scale: number,
+     color: string;
+}
+
+function redraw_canvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    for (let j = 0; j < pixels.length; ++j) {
+        const {x, y, scale, color} = pixels[j] as PixelInterface;
+        context.fillStyle = color;
+        context.fillRect(x, y, scale, scale); 
+    }
 }
 
 function clearPixel(context: CanvasRenderingContext2D, x : number, y : number, pixel_size = 16): void {
@@ -399,6 +418,7 @@ function clearPixel(context: CanvasRenderingContext2D, x : number, y : number, p
     let deltaX : number = Math.floor(mouseVector.x / (pixel_size * scalar));
     let deltaY : number = Math.floor(mouseVector.y / (pixel_size * scalar));
     context.clearRect(deltaX * pixel_size, deltaY * pixel_size, pixel_size, pixel_size)
+    undoPixel.push({x: deltaX * pixel_size, y: deltaY * pixel_size, scale: pixel_size, color: "rgba(0, 0, 0, 0)"})
 }
 
 const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper", "Bucket", "Ruler"];
@@ -490,6 +510,11 @@ document.addEventListener("keydown", (e): void => {
 
     if (e.ctrlKey && e.key == "c") {
         document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
+    }
+
+    if (e.ctrlKey && e.key == "z" && pixels.length > 0) {
+        pixels.pop();
+        redraw_canvas();
     }
 
     if (e.key == "r" && !e.ctrlKey) onSwitchTool("Ruler")
@@ -629,7 +654,7 @@ let scale = 1;
 
 function intToBool(n : number) {
     return n != 0;
-}
+} 
 
 canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
@@ -695,11 +720,13 @@ canvas.addEventListener("pointerout", (e) => {
 
 canvas.addEventListener("touchend", (e) => {
     e.preventDefault();
+    pixels = [...pixels, undoPixel]
     isDragging = false;
 })
 
 canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
+    pixels = [...pixels, undoPixel]
     isDragging = false;
     if  (e.button == 2) onSwitchTool("Pencil")
 })
