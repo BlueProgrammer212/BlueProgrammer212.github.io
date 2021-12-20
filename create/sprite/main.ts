@@ -182,9 +182,10 @@ function im(u?: string, b?: any, s?: number): Promise<any> {
     return new Promise(r => b.addEventListener("load", () => setTimeout(r, s * 1000, b)));
 }
 
+let currentLayerSelected = 0;
+
 class LayerManager implements Layer {
     public readonly id: string;
-    public currentLayer : number;
     public readonly pid: string;
     public template: Element | HTMLTemplateElement;
     public parent: Element;
@@ -192,17 +193,12 @@ class LayerManager implements Layer {
     constructor({ tid, pid, options }: { tid: string; pid: string; options?: object; }) { 
         this.id = tid;
         this.pid = pid;
-        this.currentLayer = -1;
         this.template = document.getElementById(this.id) as HTMLTemplateElement;
         this.parent = document.getElementById(this.pid) as any;
         this.options = options;
     } 
     
-    public set setSelectedLayerByIndex(i : number) {
-        this.currentLayer = i;
-    }
-    
-    public clone(id?: string, canvas?: HTMLElement): void { 
+    public clone(canvas?: HTMLElement | any): void { 
         const cloned_layer_box = document.importNode(this.template["content"], true).children[0];
         const events : string[] = ["click", "contextmenu"];
 
@@ -211,15 +207,20 @@ class LayerManager implements Layer {
             if (events[i] === "contextmenu") cloned_layer_box.onclick = (e: any) => {return false};
         }
 
-        if (id !== void 0) cloned_layer_box.id = id;
         const elements_for_layer : HTMLCollectionOf<Element> = 
               document.getElementsByClassName("LayerBoxContainer") as HTMLCollectionOf<any>;
+        currentLayerSelected += 1;
+        if (canvas !== void 0) {
+            const layer_buffer_canvas : any = document.getElementsByClassName("LayerBoxCanvasPreview")[currentLayerSelected];
+            const layer_buffer : CanvasRenderingContext2D = layer_buffer_canvas.getContext("2d");
+            layer_buffer.drawImage(canvas, 0, 0, layer_buffer_canvas.width, layer_buffer_canvas.height)
+        }
 
-        let setCurrentLayer : any = this.setSelectedLayerByIndex;
-
-        [...elements_for_layer].forEach(elem => elem.addEventListener("click", (e) => {
-            setCurrentLayer([...elements_for_layer].indexOf(elem));
-        }, {passive: true}))
+        for (let i = 0; i < elements_for_layer.length; ++i) {
+            elements_for_layer[i]["onclick"] = () => {
+               currentLayerSelected = i;
+            }
+        }
 
         this.parent.appendChild(cloned_layer_box);
     }
@@ -242,12 +243,12 @@ class LayerManager implements Layer {
 let layer = new LayerManager({tid: "layer_box_template", pid: "layerMainContainer"}),
     sprite = new SpriteManager("sprite_box");
 function initLayers(): void {
-    layer.clone("first-layer", canvas)
+    layer.clone(canvas)
 }
 initLayers();
 
 document.getElementById("addLayer").addEventListener("click", () => {
-    layer.clone();
+    layer.clone(canvas);
     document.getElementById("layerMainContainer").scroll(0, 99999)
 })
 sprite.add("sprite_frame_fragment_container").then(c => {
@@ -453,14 +454,53 @@ const adjacent : Adjacent[] = [//
     {x: 0, y: 16}, //A4
 ] as Adjacent[];
 
-class CanvasManager {
-    protected canvas: HTMLCanvasElement | any;
+interface CanvasInterface {
+    canvas: HTMLCanvasElement | any;
+}
+
+class CanvasManager implements CanvasInterface {
+
+    canvas: HTMLCanvasElement | any;
+
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
     }
-    public static fill({ x, y }: { x: number; y: number; }): void {
-        console.log(new Vec2(x, y).getFixedPosition(psize));
+
+    *[Symbol.iterator] () {
+        let cwidth : number = canvas.width + canvas.getBoundingClientRect().width,
+            cheight : number = canvas.height + canvas.getBoundingClientRect().height;
+        yield ["aspectRatio", 0, 0, cwidth, cheight]
     }
+
+    public static fill({ x, y }: { x: number; y: number; }): void {
+        /*
+        console.log(`Starting position: ${new Vec2(x, y)}`);
+        for (let mx = 0; mx < pixels.length; ++mx) {
+            for (let my = 0; my < pixels[mx].length; ++my) {
+                for (let adj = 0; adj < adjacent.length; ++adj) {
+                    let ca : any[] = [
+                        pixels[mx][my].x, pixels[mx][my].y,
+                        adjacent[adj].x, adjacent[adj].y 
+                    ];
+                    for (let cai = 0; cai < ca.length; ++cai) { 
+                        if (ca[cai]===void 0) return;
+                    }
+                    let dx = pixels[mx][my].x + adjacent[adj].x,
+                        dy = pixels[mx][my].y + adjacent[adj].y,
+                        cx = canvas.width + canvas.getBoundingClientRect().width,
+                        cy = canvas.height + canvas.getBoundingClientRect().height;
+
+                    if (dx < cx && dx > 0 && dy < cy && dy > 0 && !pixels[mx][my].hasOwnProperty("drawn")) {
+                        drawPixel(context, dx, dy, psize);
+                        pixels[mx][my].drawn = true;
+                    }
+
+                }
+            }
+        }
+        */
+    }
+    
 }
 
 let canvasManager = new CanvasManager(canvas);
