@@ -490,7 +490,7 @@ class CanvasManager implements CanvasInterface {
                         cy = canvas.height + canvas.getBoundingClientRect().height;
                     if (dx != Math.floor(pixels[mx][my].x / psize) && dy != Math.floor(pixels[mx][my].y / psize) &&
                         dx < cx && dy < cy && dx > 0 && dy > 0) {
-                            drawPixel(context, dx * 16, dy * 16, 16);
+                            drawPixel(context, dx, dy, 16);
                             console.log(`Pixel data position: ${pixels[mx][my].x / psize} \n Delta X: ${dx}`)
                         }
                 }
