@@ -182,7 +182,8 @@ function im(u?: string, b?: any, s?: number): Promise<any> {
     return new Promise(r => b.addEventListener("load", () => setTimeout(r, s * 1000, b)));
 }
 
-let currentLayerSelected = 0;
+let currentLayerSelected = 0,
+    intervals : any = [];
 
 class LayerManager implements Layer {
     public readonly id: string;
@@ -197,6 +198,12 @@ class LayerManager implements Layer {
         this.parent = document.getElementById(this.pid) as any;
         this.options = options;
     } 
+
+    public updateLayer(canvas): void {
+        const layer_buffer_canvas : any = document.getElementsByClassName("LayerBoxCanvasPreview")[currentLayerSelected];
+        const layer_buffer : CanvasRenderingContext2D = layer_buffer_canvas.getContext("2d");
+        layer_buffer.drawImage(canvas, 0, 0, layer_buffer_canvas.width, layer_buffer_canvas.height)
+    }
     
     public clone(canvas?: HTMLElement | any): void { 
         const cloned_layer_box = document.importNode(this.template["content"], true).children[0];
@@ -211,9 +218,7 @@ class LayerManager implements Layer {
               document.getElementsByClassName("LayerBoxContainer") as HTMLCollectionOf<any>;
         currentLayerSelected += 1;
         if (canvas !== void 0) {
-            const layer_buffer_canvas : any = document.getElementsByClassName("LayerBoxCanvasPreview")[currentLayerSelected];
-            const layer_buffer : CanvasRenderingContext2D = layer_buffer_canvas.getContext("2d");
-            layer_buffer.drawImage(canvas, 0, 0, layer_buffer_canvas.width, layer_buffer_canvas.height)
+            intervals.push(setInterval(this.updateLayer, 10, canvas));            
         }
 
         for (let i = 0; i < elements_for_layer.length; ++i) {
