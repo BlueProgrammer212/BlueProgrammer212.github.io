@@ -507,7 +507,9 @@ input#scaleSliderRange::-webkit-slider-thumb {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.colorDialog_bg > div {
+/*Dark Theme*/
+
+.colorDialog_bg > div[data-theme="dark"] {
   z-index: 99;
   position: absolute;
   left: 50%;
