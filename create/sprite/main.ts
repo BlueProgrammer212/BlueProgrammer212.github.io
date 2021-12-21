@@ -670,7 +670,7 @@ function onmousemoveHandler(e: MouseEvent) {
     }
 }
 
-function zoom(event: { preventDefault: () => void; deltaY: number; }) {
+function zoom(event) {
     event.preventDefault();
     scale += event.deltaY * -0.001;
     scale = Math.min(Math.max(.125, scale), 4);
