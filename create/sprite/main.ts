@@ -486,7 +486,6 @@ class CanvasManager implements CanvasInterface {
         let data = pixel.data;
         const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
         console.log(rgba);
-        //ang panget ni mommy
     }
     
 }
