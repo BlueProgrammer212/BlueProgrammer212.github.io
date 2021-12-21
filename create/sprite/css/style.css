@@ -174,6 +174,7 @@ body {
   overflow: hidden;
   background-color: #0c9;
   box-shadow: 1px 0.3px 2px #444444;
+  background-image: linear-gradient(#74bfbf, #0c9, #005039);
   position: sticky;
   display: block;
   margin: 0;
