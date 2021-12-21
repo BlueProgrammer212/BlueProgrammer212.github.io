@@ -479,11 +479,14 @@ class CanvasManager implements CanvasInterface {
     }
 
     public static fill({ dx, dy }: { dx: number; dy: number; }): void {
-        console.log(`Starting position: ${new Vec2(dx, dy)}`);
-        drawPixel(context, dx, dy, 16)
-        for (let {x, y} of adjacent) {
-            console.log(new Vec2(Math.floor((dx + (x * psize))), Math.floor((dy + (y * psize)))))
-        }
+        let mouseVector = getMousePos(canvas, dx, dy)
+        let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
+        let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
+        let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
+        let data = pixel.data;
+        const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
+        console.log(rgba);
+        //ang panget ni mommy
     }
     
 }
