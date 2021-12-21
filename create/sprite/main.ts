@@ -464,6 +464,12 @@ interface CanvasInterface {
     canvas: HTMLCanvasElement | any;
 }
 
+window.addEventListener("hashchange", () => {
+    if (window.location.hash == "#comments") {
+        window.location.href = "https://www.pixcel.ml/home/comments"
+    }
+})
+
 class CanvasManager implements CanvasInterface {
 
     canvas: HTMLCanvasElement | any;
