@@ -445,6 +445,7 @@ input#scaleSliderRange::-webkit-slider-thumb {
     margin-right: -50%;
     transform: translate(-50%, -46%);
     aspect-ratio: 100 / 100;
+    background-size: 32px 32px;
     z-index: -1;
     image-rendering: pixelated;
     background-image: url(../assets/background_canvas.png);
