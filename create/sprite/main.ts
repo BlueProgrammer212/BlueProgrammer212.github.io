@@ -679,6 +679,12 @@ function zoom(event) {
 
 let cf : number = 0;
 
+let exit_button_layer_dialog = document.getElementById("exitImg") as HTMLButtonElement;
+
+exit_button_layer_dialog.addEventListener("click", e => {
+    document.getElementById("dialog_window_parent").className = "invisible"
+})
+
 function animate() {
     let canvas_preview : any = document.getElementById("preview_canvas_sprite_animation");
     if (document.getElementsByClassName("spriteBoxContainer")[cf + 1]) {cf += 1;} else {cf = 0;}

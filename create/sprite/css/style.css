@@ -170,6 +170,17 @@ body {
    background-color: rgba(0, 204, 153, 0.342);
 }
 
+input#exitImg {
+  position: relative;
+  float: right;
+  top: -88%;
+}
+
+div#extDialogBox {
+  width: 100%;
+  height: 100%;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #0c9;
