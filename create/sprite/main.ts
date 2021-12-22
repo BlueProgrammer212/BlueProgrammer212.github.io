@@ -526,6 +526,8 @@ function onSpriteSwitch() {
     context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
 }
 
+console.log("[System} Enabled pixel selection canvas overlay.");
+
 function onSwitchTool(tool : string): void {
     document.getElementById(`${tool}Tool`).className="toolslot selected";
     if ("localStorage" in window) localStorage.setItem("toolSelected", tool)
