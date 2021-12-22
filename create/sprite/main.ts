@@ -641,8 +641,14 @@ function ontouchmoveHandler(e: TouchEvent) {
         updateFrame()
     }
 }
-
+const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent) {
+    canvas_overlay_context.clearRect(0, 0, canvas.width, canvas.height); 
+    canvas_overlay_context.fillStyle = 'rgba(255, 255, 255, 0.4)';
+    let mouseVector = getMousePos(canvas, e.clientX, e.clientY)
+    let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
+    let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
+    canvas_overlay_context.fillRect(deltaX * psize, deltaY * psize, psize, psize)
     if (isDragging && currentTool == "Pencil") {
         drawPixel(context, e.clientX, e.clientY, psize)
         let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
