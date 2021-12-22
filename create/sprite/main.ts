@@ -779,7 +779,7 @@ canvas.addEventListener("touchend", (e) => {
 
 function updateCursorEntity(e : MouseEvent): void {
     canvas_overlay_context.clearRect(0, 0, canvas.width, canvas.height); 
-    canvas_overlay_context.fillStyle = 'rgba(255, 255, 255, 0.4)';
+    canvas_overlay_context.fillStyle = 'rgba(255, 255, 255, 0.6)';
     let mouseVector = getMousePos(canvas, e.clientX, e.clientY)
     let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
     let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
