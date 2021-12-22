@@ -115,7 +115,7 @@ interface pixel {
 let CURRENT_COLOR : string = "red", 
     pixels : Array<any> = [],
     colors : string[] = ["red", "blue", "yellow", "green", "orange", "purple", "pink", "magenta", "cyan",
-                         "brown", "aqua", "skyblue", "chartreuse", "lime", "violet"] as string[];
+                         "brown", "chartreuse", "lime", "violet", "magenta", "lavender"] as string[];
 
 class ColorManager {
     template: any;
