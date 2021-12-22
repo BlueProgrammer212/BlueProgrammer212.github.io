@@ -554,6 +554,8 @@ document.addEventListener("keydown", (e): void => {
         onSwitchTool("Eraser");
     }
 
+    if (e.ctrlKey && e.key == "w") sprite.remove("", selected_sprite_frame_index)
+
     if (e.ctrlKey && e.key == "c") {
         document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
     }
