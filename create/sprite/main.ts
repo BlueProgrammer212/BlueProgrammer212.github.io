@@ -554,7 +554,7 @@ document.addEventListener("keydown", (e): void => {
         onSwitchTool("Eraser");
     }
 
-    if (e.ctrlKey && e.key == "w") {
+    if (e.ctrlKey && e.key == "r") {
         e.preventDefault(); 
         if (selected_sprite_frame_index !== 0) {
             sprite.remove("", selected_sprite_frame_index)
