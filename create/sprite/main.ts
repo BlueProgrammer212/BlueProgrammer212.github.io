@@ -501,7 +501,6 @@ class CanvasManager implements CanvasInterface {
 }
 
 let canvasManager = new CanvasManager(canvas);
-let selected_sprite_frame_indx : number = 0;
 let selected_layer_frame_indx : number  = 0; 
 const layer_limited : number = 40;
 
@@ -516,6 +515,7 @@ function updateFrame() {
 }
 
 function onSpriteSwitch() {
+    selected_layer_frame_indx = 0;
     context.clearRect(0, 0, canvas.width, canvas.height);
     let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
     .filter(a => { return a.className.includes("selected")});
