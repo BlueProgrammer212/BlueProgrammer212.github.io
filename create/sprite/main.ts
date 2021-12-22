@@ -247,7 +247,9 @@ class LayerManager implements Layer {
     public clean(): void {
         const elements_for_layer : HTMLCollectionOf<Element> = 
               document.getElementsByClassName("LayerBoxContainer") as HTMLCollectionOf<any>;
+        this.clone();
         for (let el = 0; el < elements_for_layer.length; ++el) {
+            clearInterval(intervals[el])
             elements_for_layer[el].remove();
         }
     }
