@@ -485,18 +485,14 @@ class CanvasManager implements CanvasInterface {
 
     *[Symbol.iterator] () {
         let cwidth : number = canvas.width + canvas.getBoundingClientRect().width,
-            cheight : number = canvas.height + canvas.getBoundingClientRect().height;
-        yield ["aspectRatio", 0, 0, cwidth, cheight]
+            cheight : number = canvas.height + canvas.getBoundingClientRect().height,
+            cctx : CanvasRenderingContext2D = canvas.getContext("2d");
+        yield ["aspectRatio", 0, 0, cwidth, cheight, cctx];
     }
 
     public static fill({ dx, dy }: { dx: number; dy: number; }): void {
-        let mouseVector = getMousePos(canvas, dx, dy)
-        let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
-        let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
-        let pixel =  context.getImageData(deltaX * psize, deltaY * psize, psize, psize);
-        let data = pixel.data;
-        const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
-        console.log(rgba);
+        let dpi_pixel_data : Uint8ClampedArray = context.getImageData(0, 0, canvas.width, canvas.height).data;
+        console.log(dpi_pixel_data);
     }
     
 }
