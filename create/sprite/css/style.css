@@ -463,6 +463,18 @@ input#scaleSliderRange::-webkit-slider-thumb {
     background-image: url(../assets/background_canvas.png);
     background-position: fixed;
 }
+
+canvas#selected-canvas {
+  position: absolute;
+  left: 50%;
+  top: 53%;
+  margin-right: -50%;
+  transform: translate(-50%, -46%);
+  aspect-ratio: 100 / 100;
+  z-index: -1;
+  image-rendering: pixelated;
+}
+
 .column {
   float: left;
   width: 33.33%;

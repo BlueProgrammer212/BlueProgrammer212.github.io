@@ -244,6 +244,13 @@ class LayerManager implements Layer {
             }
         })
     }
+    public clean(): void {
+        const elements_for_layer : HTMLCollectionOf<Element> = 
+              document.getElementsByClassName("LayerBoxContainer") as HTMLCollectionOf<any>;
+        for (let el = 0; el < elements_for_layer.length; ++el) {
+            elements_for_layer[el].remove();
+        }
+    }
 }
 
 let layer = new LayerManager({tid: "layer_box_template", pid: "layerMainContainer"}),
@@ -505,10 +512,13 @@ let canvasManager = new CanvasManager(canvas);
 function updateFrame() {
     if (CanvasRenderingContext2D.prototype.hasOwnProperty("drawImage")) {
         let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-        sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
-        sprite_canvas["getContext"]("2d").clearRect(0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
-        sprite_canvas["getContext"]("2d").drawImage(document.getElementById("main_canvas"),
-        0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+        let layers = document.getElementsByClassName("LayerBoxCanvasPreview");
+        for (let b = 0; b < layers.length; ++b) {
+            sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
+            sprite_canvas["getContext"]("2d").clearRect(0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+            sprite_canvas["getContext"]("2d").drawImage(layers[b],
+            0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+        }
     }
 }
 
@@ -520,6 +530,7 @@ function onSpriteSwitch() {
     document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
     let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
     context.imageSmoothingEnabled = false;
+    layer.clean();
     context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
 }
 
