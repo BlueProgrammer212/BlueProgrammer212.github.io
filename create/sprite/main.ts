@@ -501,14 +501,20 @@ class CanvasManager implements CanvasInterface {
 }
 
 let canvasManager = new CanvasManager(canvas);
+let selected_sprite_frame_indx : number = 0;
+let selected_layer_frame_indx : number  = 0; 
+const layer_limited : number = 40;
 
 function updateFrame() {
     if (CanvasRenderingContext2D.prototype.hasOwnProperty("drawImage")) {
         let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
         sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
         sprite_canvas["getContext"]("2d").clearRect(0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
-        sprite_canvas["getContext"]("2d").drawImage(document.getElementById("main_canvas"),
-        0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+        let layers = document.getElementsByClassName("LayerBoxCanvasPreview");
+        for (let j = 0; j < layers.length; ++j) {
+            sprite_canvas["getContext"]("2d").drawImage(layers[j],
+            0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+        }
     }
 }
 
@@ -518,7 +524,7 @@ function onSpriteSwitch() {
     .filter(a => { return a.className.includes("selected")});
     old_frame.forEach(elem => elem.className = "spriteBoxContainer");
     document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
-    let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
+    let sprite_canvas : any = document.getElementsByClassName("LayerBoxCanvasPreview")[currentLayerSelected];
     context.imageSmoothingEnabled = false;
     context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
 }
