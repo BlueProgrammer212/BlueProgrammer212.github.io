@@ -707,7 +707,7 @@ function intToBool(n : number) {
     return n != 0;
 } 
 
-canvas.addEventListener("mousedown", (e) => {
+canvas_overlay_context.canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
     isDragging = true;
     if (e.button == 0) {
@@ -735,8 +735,8 @@ canvas.addEventListener("mousedown", (e) => {
     onmousemoveHandler(e)
 })
 
-canvas.addEventListener("touchmove", ontouchmoveHandler);
-canvas.addEventListener("touchstart", (e) => {
+canvas_overlay_context.canvas.addEventListener("touchmove", ontouchmoveHandler);
+canvas_overlay_context.canvas.addEventListener("touchstart", (e) => {
     for (let i = 0; i < e.changedTouches.length; ++i) {
         touch_pos.set(e.changedTouches[i].pageX, e.changedTouches[i].pageY);
     }
@@ -764,12 +764,12 @@ canvas.addEventListener("touchstart", (e) => {
     if (e.cancelable) e.preventDefault();
 })
 
-canvas.addEventListener("pointerout", (e) => {
+canvas_overlay_context.canvas.addEventListener("pointerout", (e) => {
     e.preventDefault();
     isDragging = false;
 })
 
-canvas.addEventListener("touchend", (e) => {
+canvas_overlay_context.canvas.addEventListener("touchend", (e) => {
     e.preventDefault();
     //Make undoPixel, a subset of pixels.
     if (!pixels.some(a => a == undoPixel)) pixels = [...pixels, undoPixel];
@@ -790,7 +790,7 @@ canvas_overlay_context.canvas.oncontextmenu = function() {return false;}
 
 canvas_overlay_context.canvas.addEventListener("mousemove", updateCursorEntity)
 
-canvas.addEventListener("mouseup", (e) => {
+canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
     if (!pixels.some(a => a == undoPixel)) pixels = [...pixels, undoPixel]
     undoPixel = [];
@@ -798,4 +798,4 @@ canvas.addEventListener("mouseup", (e) => {
     if  (e.button == 2) onSwitchTool("Pencil")
 })
 
-canvas.addEventListener("mousemove", onmousemoveHandler)
+canvas_overlay_context.canvas.addEventListener("mousemove", onmousemoveHandler)
