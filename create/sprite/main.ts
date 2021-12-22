@@ -786,6 +786,8 @@ function updateCursorEntity(e : MouseEvent): void {
     canvas_overlay_context.fillRect(deltaX * psize, deltaY * psize, psize, psize)
 }
 
+canvas_overlay_context.canvas.oncontextmenu = function() {return false;}
+
 canvas_overlay_context.canvas.addEventListener("mousemove", updateCursorEntity)
 
 canvas.addEventListener("mouseup", (e) => {
