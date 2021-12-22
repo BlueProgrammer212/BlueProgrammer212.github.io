@@ -556,7 +556,9 @@ document.addEventListener("keydown", (e): void => {
 
     if (e.ctrlKey && e.key == "w") {
         e.preventDefault(); 
-        sprite.remove("", selected_sprite_frame_index)
+        if (selected_sprite_frame_index !== 0) {
+            sprite.remove("", selected_sprite_frame_index)
+        }
     }
 
     if (e.ctrlKey && e.key == "c") {
