@@ -680,6 +680,7 @@ function restPixelArrayDispatch(c : CanvasRenderingContext2D, a: object[], p?: n
 }
 
 let endVector = new Vec2(0, 0);
+let lastMovementVector = new Vec2(0, 0);
 
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
@@ -698,11 +699,15 @@ function onmousemoveHandler(e: MouseEvent): void {
         }
     }
     if (isDragging && currentTool == "Move") {
+        let deltaMovementVector = new Vec2();
+        deltaMovementVector.set(lastMovementVector.x - e.movementX, lastMovementVector.y - e.movementY);
         context.save();
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.translate(16 * e.movementX, 16 * e.movementY)
+        context.translate(16 * deltaMovementVector.x, 16 * deltaMovementVector.y)
         redraw_canvas();
         context.restore();
+        updateFrame<void>();
+        lastMovementVector.set(e.movementX, e.movementY);
     }
     if (isDragging && currentTool == "Pencil") {
         drawPixel(context, e.clientX, e.clientY, psize)
