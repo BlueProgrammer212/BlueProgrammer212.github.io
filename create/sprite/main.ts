@@ -680,16 +680,7 @@ function onmousemoveHandler(e: MouseEvent): void {
 }
 
 canvas_overlay_context.canvas.addEventListener("mousewheel", (event : any) => {
-    event.preventDefault();
-    scale += event.deltaY * -0.001;
-    scale = Math.min(Math.max(.125, scale), 4);
-    const contexts : CanvasRenderingContext2D[] = [context, canvas_overlay_context];
-    for (let c = 0; c < contexts.length; ++c) {
-        contexts[c].translate(event.x, event.y);
-        contexts[c].scale(scale, scale);
-        contexts[c].translate(-event.x, -event.y);
-    }
-    context.canvas.style.backgroundSize = `${scale * 16}px`;
+    
 })
 
 let cf : number = 0;
