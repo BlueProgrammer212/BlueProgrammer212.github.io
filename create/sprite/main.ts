@@ -707,7 +707,6 @@ function onmousemoveHandler(e: MouseEvent): void {
                 p_r.push({x: xS, y: yS})
             }
         }
-        updateFrame<void>()
     }
 }
 
@@ -829,7 +828,10 @@ canvas_overlay_context.canvas.addEventListener("mousemove", updateCursorEntity)
 
 canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
-    if (currentTool == "Rectangle") restPixelArrayDispatch(context, p_r, 16);
+    if (currentTool == "Rectangle") {
+        restPixelArrayDispatch(context, p_r, 16);
+        updateFrame<void>()
+    }
     if (!pixels.some(a => a == undoPixel)) pixels = [...pixels, undoPixel]
     undoPixel = [];
     isDragging = false;
