@@ -845,6 +845,8 @@ canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     if (currentTool == "Rectangle") {
         restPixelArrayDispatch(context, p_r, 16);
         updateFrame<void>()
+    }
+    if (currentTool == "Select") {
         endVector.set(e.x, e.y)
     }
     if (!pixels.some(a => a == undoPixel)) pixels = [...pixels, undoPixel]
