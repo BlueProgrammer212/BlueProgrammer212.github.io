@@ -710,7 +710,7 @@ function handleTouchMove(evt) {
     var dx = swipeVector.x - xUp;
     var dy = swipeVector.y - yUp;
     if ( Math.abs(dx) > Math.abs(dy)) {
-        if ( dx < 0 && evt.target === canvas) {
+        if ( dx < 0 && evt.target !== canvas) {
             side_r.style.transform = (side_r.style.transform===
             "translateX(-500px)" ? "translateX(0px)" : "translateX(-500px)")
             side_r.style.opacity = (side_r.style.opacity==0 ? 1 : 0) 
