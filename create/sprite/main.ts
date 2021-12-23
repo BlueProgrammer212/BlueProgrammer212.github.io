@@ -583,11 +583,11 @@ document.addEventListener("keydown", (e): void => {
 
     if (e.ctrlKey && e.key == "c") {
         document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
-        FLAG_IS_COLOR_PALLETE_OPEN = true;
         if (FLAG_IS_COLOR_PALLETE_OPEN) {
             document.getElementsByClassName("colorDialog_bg")[0].className += " invisible";
             FLAG_IS_COLOR_PALLETE_OPEN = false;
         }
+        FLAG_IS_COLOR_PALLETE_OPEN = true;
     }
 
     if (((e.ctrlKey && e.key == "z") || e.key == "Backspace") && pixels.length > 0) {
