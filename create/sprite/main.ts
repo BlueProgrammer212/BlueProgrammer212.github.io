@@ -700,7 +700,7 @@ function onmousemoveHandler(e: MouseEvent): void {
     }
     if (isDragging && currentTool == "Move") {
         let deltaMovementVector = new Vec2();
-        deltaMovementVector.set(lastMovementVector.x - e.movementX, lastMovementVector.y - e.movementY);
+        deltaMovementVector.set(e.movementX - lastMovementVector.x, e.movementY - lastMovementVector.y);
         context.save();
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.translate(16 * deltaMovementVector.x, 16 * deltaMovementVector.y)
