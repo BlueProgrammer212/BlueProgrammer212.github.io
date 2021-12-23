@@ -659,7 +659,7 @@ function onmousemoveHandler(e: MouseEvent): void {
                 let mv = getMousePos(canvas, xS, yS)
                 let dx : number = Math.floor(mv.x / (16));
                 let dy : number = Math.floor(mv.y / (16));
-                context.fillRect(dx * 16, dy * 16, 16, 16)
+                canvas_overlay_context.fillRect(dx * 16, dy * 16, 16, 16)
             }
         }
     }
