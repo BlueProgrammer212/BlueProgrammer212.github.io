@@ -649,6 +649,17 @@ function ontouchmoveHandler(e: TouchEvent) {
 }
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
+    if (isDragging && currentTool == "Select") {
+        canvas_overlay_context.fillStyle = "rgba(135,206,235,0.6)";
+        let minVector = new Vec2(Math.min(stVector.x, e.clientX), Math.min(stVector.y, e.clientY));
+        let maxVector = new Vec2(Math.max(stVector.x, e.clientX), Math.max(stVector.y, e.clientY));
+        canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height) 
+        for (let xS = minVector.x; xS < maxVector.x; xS += 16) {
+            for (let yS = minVector.y; yS < maxVector.y; yS += 16) {
+                canvas_overlay_context.fillRect(xS, yS, 16, 16);
+            }
+        }
+    }
     if (isDragging && currentTool == "Pencil") {
         drawPixel(context, e.clientX, e.clientY, psize)
         let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
@@ -781,12 +792,14 @@ canvas_overlay_context.canvas.addEventListener("touchend", (e) => {
 })
 
 function updateCursorEntity(e : MouseEvent): void {
-    canvas_overlay_context.clearRect(0, 0, canvas.width, canvas.height); 
-    canvas_overlay_context.fillStyle = 'rgba(255, 255, 255, 0.6)';
-    let mouseVector = getMousePos(canvas, e.clientX, e.clientY)
-    let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
-    let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
-    canvas_overlay_context.fillRect(deltaX * psize, deltaY * psize, psize, psize)
+    if (currentTool !== "Select") {
+        canvas_overlay_context.clearRect(0, 0, canvas.width, canvas.height); 
+        canvas_overlay_context.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        let mouseVector = getMousePos(canvas, e.clientX, e.clientY)
+        let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
+        let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
+        canvas_overlay_context.fillRect(deltaX * psize, deltaY * psize, psize, psize)
+    }
 }
 
 canvas_overlay_context.canvas.oncontextmenu = function() {return false;}
