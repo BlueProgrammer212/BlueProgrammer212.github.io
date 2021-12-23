@@ -434,7 +434,7 @@ function clearPixel(context: CanvasRenderingContext2D, x : number, y : number, p
     if (!undoPixel.some(a => a === data)) undoPixel = [...undoPixel, data];
 }
 
-const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper", "Bucket", "Ruler", "Select"];
+const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper", "Bucket", "Ruler", "Select", "Move"];
 if (typeof localStorage.getItem("toolSelected") !== "string") {
     localStorage.setItem("toolSelected", ToolName[0]);
 }
@@ -493,8 +493,13 @@ class CanvasManager implements CanvasInterface {
     }
 
     public static fill({ dx, dy }: { dx: number; dy: number; }): void {
-        let dpi_pixel_data : Uint8ClampedArray = context.getImageData(0, 0, canvas.width, canvas.height).data;
-        console.log(dpi_pixel_data);
+        let pstack = [];
+        for (let mx = 0; mx < 5; ++mx) {
+            for (let my = 0; my < 5; ++my) {
+                pstack.push({x: mx, y: my})
+            }
+        }
+
     }
     
 }
