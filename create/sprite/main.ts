@@ -549,7 +549,8 @@ const toolKeys : object[] = [
 ];
 
 let FLAG_EVENT_FIRED : boolean = false,
-    FLAG_EVENT_STARTED_RIGHT_BUTTON_MOUSE : boolean = false;
+    FLAG_EVENT_STARTED_RIGHT_BUTTON_MOUSE : boolean = false,
+    FLAG_IS_COLOR_PALLETE_OPEN : boolean = false;
 
 document.addEventListener("keydown", (e): void => {
     if (e.key == "e" && e.ctrlKey) {
@@ -582,6 +583,11 @@ document.addEventListener("keydown", (e): void => {
 
     if (e.ctrlKey && e.key == "c") {
         document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
+        FLAG_IS_COLOR_PALLETE_OPEN = true;
+        if (FLAG_IS_COLOR_PALLETE_OPEN) {
+            document.getElementsByClassName("colorDialog_bg")[0].className += " invisible";
+            FLAG_IS_COLOR_PALLETE_OPEN = false;
+        }
     }
 
     if (((e.ctrlKey && e.key == "z") || e.key == "Backspace") && pixels.length > 0) {
