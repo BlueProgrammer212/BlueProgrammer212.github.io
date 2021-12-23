@@ -432,7 +432,7 @@ function clearPixel(context: CanvasRenderingContext2D, x : number, y : number, p
     if (!undoPixel.some(a => a === data)) undoPixel = [...undoPixel, data];
 }
 
-const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper", "Bucket", "Ruler"];
+const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper", "Bucket", "Ruler", "Select"];
 if (typeof localStorage.getItem("toolSelected") !== "string") {
     localStorage.setItem("toolSelected", ToolName[0]);
 }
@@ -501,7 +501,7 @@ let canvasManager = new CanvasManager(canvas);
 let selected_layer_frame_indx : number  = 0; 
 const layer_limited : number = 40;
 
-function updateFrame() {
+function updateFrame<Type>(): void {
     if (CanvasRenderingContext2D.prototype.hasOwnProperty("drawImage")) {
         let sprite_canvas = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
         sprite_canvas["getContext"]("2d").imageSmoothingEnabled = false;
@@ -675,7 +675,7 @@ function onmousemoveHandler(e: MouseEvent): void {
                 drawPixel(context, xS, yS, psize);
             }
         }
-        updateFrame()
+        updateFrame<void>()
     }
 }
 
