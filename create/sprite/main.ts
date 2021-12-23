@@ -702,11 +702,11 @@ function onmousemoveHandler(e: MouseEvent): void {
     }
     if (isDragging && currentTool == "Move") {
         let mv_m = getMousePos(canvas, e.x, e.y);
-        let deltaX : number = Math.floor(mv_m.x / (16 * scalar));
-        let deltaY : number = Math.floor(mv_m.y / (16 * scalar));
+        let deltaX : number = Math.floor(mv_m.x / 16);
+        let deltaY : number = Math.floor(mv_m.y / 16);
         context.save();
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.translate(deltaX * 16, deltaY * 16); 
+        context.translate((deltaX * 16) - mv_m.x, (deltaY * 16) - mv_m.y); 
         redraw_canvas();
         context.restore();
         updateFrame<void>();
@@ -747,9 +747,7 @@ function onmousemoveHandler(e: MouseEvent): void {
     }
 }
 
-canvas_overlay_context.canvas.addEventListener("mousewheel", (event : any) => {
-    
-})
+canvas_overlay_context.canvas.addEventListener("mousewheel", (event : any) => {}, false)
 
 let cf : number = 0;
 
