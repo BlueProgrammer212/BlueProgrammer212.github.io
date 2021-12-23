@@ -700,9 +700,11 @@ function onmousemoveHandler(e: MouseEvent): void {
     }
     if (isDragging && currentTool == "Move") {
         let mv_m = getMousePos(canvas, e.x, e.y);
+        let deltaX : number = Math.floor(mv_m.x / (16 * scalar));
+        let deltaY : number = Math.floor(mv_m.y / (16 * scalar));
         context.save();
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.translate(16 * mv_m.x, 16 * mv_m.y); 
+        context.translate(16 * deltaX, 16 * deltaY); 
         redraw_canvas();
         context.restore();
         updateFrame<void>();
