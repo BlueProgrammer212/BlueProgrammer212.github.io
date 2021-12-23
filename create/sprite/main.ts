@@ -690,7 +690,6 @@ canvas_overlay_context.canvas.addEventListener("mousewheel", (event : any) => {
         contexts[c].translate(-event.x, -event.y);
     }
     context.canvas.style.backgroundSize = `${scale * 16}px`;
-    redraw_canvas();
 })
 
 let cf : number = 0;
