@@ -745,7 +745,7 @@ canvas_overlay_context.canvas.addEventListener("touchstart", (e) => {
     }
     let {x, y} = touch_pos;
     lastVector.set(x, y);
-    if (currentTool == "Rectangle") stVector.set(x, y);
+    if (currentTool == "Rectangle" || currentTool == "Select") stVector.set(x, y);
     if (currentTool == "EyeDropper") {
         let mouseVector = getMousePos(canvas, x, y)
         let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
