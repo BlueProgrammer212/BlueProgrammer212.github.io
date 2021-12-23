@@ -552,11 +552,16 @@ document.addEventListener("keydown", (e): void => {
         onSwitchTool("Eraser");
     }
 
-    if (e.key == "Delete") {
+    if (e.key == "Delete" && currentTool == "Select") {
         let av = getMousePos(canvas, stVector.x, stVector.y),
             ev = getMousePos(canvas, endVector.x, endVector.y);
         canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
-        context.clearRect(av.x, av.y, ev.x, ev.y);
+        if (ev.x >= av.x && ev.y >= av.y) {
+            context.clearRect(av.x, av.y, ev.x, ev.y);
+        }
+        if (ev.x < av.x && ev.y < av.y) {
+            context.clearRect(ev.x, ev.y, av.x, av.y);
+        }
         updateFrame<void>();
     }
 
