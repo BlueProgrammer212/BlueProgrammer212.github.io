@@ -656,7 +656,10 @@ function onmousemoveHandler(e: MouseEvent): void {
         canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height) 
         for (let xS = minVector.x; xS < maxVector.x; xS += 16) {
             for (let yS = minVector.y; yS < maxVector.y; yS += 16) {
-                canvas_overlay_context.fillRect(xS, yS, 16, 16);
+                let mv = getMousePos(canvas, xS, yS)
+                let dx : number = Math.floor(mv.x / (16));
+                let dy : number = Math.floor(mv.y / (16));
+                context.fillRect(dx * 16, dy * 16, 16, 16)
             }
         }
     }
