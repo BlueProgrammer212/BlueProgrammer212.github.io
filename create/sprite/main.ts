@@ -527,6 +527,7 @@ console.log("[System] Enabled pixel selection canvas overlay.");
 
 function onSwitchTool(tool : string): void {
     document.getElementById(`${tool}Tool`).className="toolslot selected";
+    canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas["height"]);
     if ("localStorage" in window) localStorage.setItem("toolSelected", tool)
     currentTool = tool;
     let ax = ToolName.filter(b => {return b !== tool});
@@ -646,7 +647,17 @@ function ontouchmoveHandler(e: TouchEvent) {
         }
         updateFrame()
     }
+
 }
+let p_r : object[] = [];
+
+function restPixelArrayDispatch(c : CanvasRenderingContext2D, a: object[], p?: number): void {
+    for (let i = 0; i < a.length; ++i) { 
+        let {x, y} = a[i] as any;
+        drawPixel(c, x, y, p); //Dispatch pixels
+    }
+}
+
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
     if (isDragging && currentTool == "Select") {
@@ -684,9 +695,15 @@ function onmousemoveHandler(e: MouseEvent): void {
     } else if (isDragging && currentTool == "Rectangle") {
         let minVector = new Vec2(Math.min(stVector.x, e.clientX), Math.min(stVector.y, e.clientY));
         let maxVector = new Vec2(Math.max(stVector.x, e.clientX), Math.max(stVector.y, e.clientY)); 
+        canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height) 
+        p_r = [];
         for (let xS = minVector.x; xS < maxVector.x; xS += psize) {
             for (let yS = minVector.y; yS < maxVector.y; yS += psize) {
-                drawPixel(context, xS, yS, psize);
+                let mouseV = getMousePos(canvas, xS, yS);
+                let dx_r : number = Math.floor(mouseV.x / (16));
+                let dy_r : number = Math.floor(mouseV.y / (16));
+                canvas_overlay_context.fillRect(dx_r * 16, dy_r * 16, 16, 16)
+                p_r.push({x: xS, y: yS})
             }
         }
         updateFrame<void>()
@@ -811,6 +828,7 @@ canvas_overlay_context.canvas.addEventListener("mousemove", updateCursorEntity)
 
 canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
+    if (currentTool == "Rectangle") restPixelArrayDispatch(context, p_r, 16);
     if (!pixels.some(a => a == undoPixel)) pixels = [...pixels, undoPixel]
     undoPixel = [];
     isDragging = false;
