@@ -699,15 +699,13 @@ function onmousemoveHandler(e: MouseEvent): void {
         }
     }
     if (isDragging && currentTool == "Move") {
-        let deltaMovementVector = new Vec2();
-        deltaMovementVector.set(e.movementX - lastMovementVector.x, e.movementY - lastMovementVector.y);
+        let mv_m = getMousePos(canvas, e.x, e.y);
         context.save();
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.translate(16 * deltaMovementVector.x, 16 * deltaMovementVector.y)
+        context.translate(16 * mv_m.x, 16 * mv_m.y); 
         redraw_canvas();
         context.restore();
         updateFrame<void>();
-        lastMovementVector.set(e.movementX, e.movementY);
     }
     if (isDragging && currentTool == "Pencil") {
         drawPixel(context, e.clientX, e.clientY, psize)
