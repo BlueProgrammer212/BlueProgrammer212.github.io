@@ -709,8 +709,8 @@ function handleTouchMove(evt) {
     var dx = swipeVector.x - xUp;
     var dy = swipeVector.y - yUp;
     if ( Math.abs(dx) > Math.abs(dy)) {
-        if ( dx > 0 ) {
-            alert("Swipe test mode")
+        if ( dx < 0 ) {
+            window.location.href = "toggleSideBar()"
         }
     }
     swipeVector.set(0, 0)
