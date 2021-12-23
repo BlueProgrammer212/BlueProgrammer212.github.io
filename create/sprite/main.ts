@@ -1,3 +1,5 @@
+import { MouseWheelInputEvent } from "electron";
+
 declare let iro: any;
 
 const canvas = document.getElementsByTagName('canvas')[0],
@@ -679,12 +681,11 @@ function onmousemoveHandler(e: MouseEvent): void {
     }
 }
 
-function zoom(event) {
+canvas_overlay_context.canvas.addEventListener("mousewheel", (event : any) => {
     event.preventDefault();
     scale += event.deltaY * -0.001;
     scale = Math.min(Math.max(.125, scale), 4);
-    canvas.style["zoom"] = scale.toString();
-}
+})
 
 let cf : number = 0;
 
