@@ -728,7 +728,7 @@ canvas_overlay_context.canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
     isDragging = true;
     if (e.button == 0) {
-        if (currentTool == "Rectangle") stVector.set(e.x, e.y);
+        if (currentTool == "Rectangle" || currentTool == "Select") stVector.set(e.x, e.y);
         if (currentTool == "EyeDropper") {
             let mouseVector = getMousePos(canvas, e.x, e.y)
             let deltaX : number = Math.floor(mouseVector.x / (psize * scalar));
