@@ -697,8 +697,8 @@ function onmousemoveHandler(e: MouseEvent): void {
         let maxVector = new Vec2(Math.max(stVector.x, e.clientX), Math.max(stVector.y, e.clientY)); 
         canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height) 
         p_r = [];
-        for (let xS = minVector.x; xS < maxVector.x; xS += psize) {
-            for (let yS = minVector.y; yS < maxVector.y; yS += psize) {
+        for (let xS = minVector.x; xS < maxVector.x; xS += 16) {
+            for (let yS = minVector.y; yS < maxVector.y; yS += 16) {
                 let mouseV = getMousePos(canvas, xS, yS);
                 let dx_r : number = Math.floor(mouseV.x / (16));
                 let dy_r : number = Math.floor(mouseV.y / (16));
