@@ -557,6 +557,7 @@ document.addEventListener("keydown", (e): void => {
             ev = getMousePos(canvas, endVector.x, endVector.y);
         canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
         context.clearRect(av.x, av.y, ev.x, ev.y);
+        updateFrame<void>();
     }
 
     if (e.ctrlKey && e.key == "r") {
