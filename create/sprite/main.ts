@@ -252,6 +252,7 @@ class LayerManager implements Layer {
 let layer = new LayerManager({tid: "layer_box_template", pid: "layerMainContainer"}),
     sprite = new SpriteManager("sprite_box");
 function initLayers(): void {
+  //Initialize first layer of the selected sprite frame.
     layer.clone(canvas)
 }
 initLayers();
@@ -683,6 +684,30 @@ function restPixelArrayDispatch(c : CanvasRenderingContext2D, a: object[], p?: n
 
 let endVector = new Vec2(0, 0);
 let lastMovementVector = new Vec2(0, 0);
+let swipeVector = new Vec2(0, 0);
+document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
+function getTouches(evt) {
+  return evt.touches || evt.originalEvent.touches; 
+}                                                     
+                                                                         
+function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];                                      
+    swipeVector.set(firstTouch.x, firstTouch.y)
+};                                     
+
+function handleTouchMove(evt) {
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+    var dx = swipeVector.x - xUp;
+    var dy = swipeVector.y - yUp;
+    if ( Math.abs(dx) > Math.abs(dy)) {
+        if ( xDiff > 0 ) {
+            alert("Swipe test mode")
+        }
+    }
+    swipeVector.set(0, 0)
+};
 
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
