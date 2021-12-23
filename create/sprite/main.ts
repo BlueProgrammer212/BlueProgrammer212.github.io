@@ -704,7 +704,7 @@ function onmousemoveHandler(e: MouseEvent): void {
         let deltaY : number = Math.floor(mv_m.y / (16 * scalar));
         context.save();
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.translate(16 * deltaX, 16 * deltaY); 
+        context.translate(deltaX, deltaY); 
         redraw_canvas();
         context.restore();
         updateFrame<void>();
