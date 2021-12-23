@@ -152,9 +152,9 @@ class SpriteManager {
     } 
     remove(id : string, ind : number) { 
         context.clearRect(0, 0, canvas.height, canvas.width);
-        if (selected_sprite_frame_index - 1 > 0) {
+        if (selected_sprite_frame_index - 1 >= 0) {
             document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
-            selected_sprite_frame_index -= 1;
+            if (selected_sprite_frame_index !== 0) selected_sprite_frame_index -= 1;
         } else if (document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index + 1]) {
             document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
             selected_sprite_frame_index += 1;
