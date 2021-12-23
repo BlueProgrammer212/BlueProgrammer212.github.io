@@ -155,9 +155,11 @@ class SpriteManager {
         if (selected_sprite_frame_index - 1 >= 0) {
             document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
             if (selected_sprite_frame_index !== 0) selected_sprite_frame_index -= 1;
+            onSpriteSwitch();
         } else if (document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index + 1]) {
             document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
             selected_sprite_frame_index += 1;
+            onSpriteSwitch();
         } else if (document.getElementsByClassName("spriteBoxContainer").length == 1) {
             context.clearRect(0, 0, canvas.height, canvas.width);
         }
