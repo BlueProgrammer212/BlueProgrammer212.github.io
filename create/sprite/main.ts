@@ -552,6 +552,11 @@ document.addEventListener("keydown", (e): void => {
         onSwitchTool("Eraser");
     }
 
+    if (e.key == "Delete") {
+        canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
+        context.clearRect(stVector.x, stVector.y, endVector.x, endVector.y);
+    }
+
     if (e.ctrlKey && e.key == "r") {
         e.preventDefault(); 
         if (selected_sprite_frame_index !== 0) {
@@ -707,7 +712,6 @@ function onmousemoveHandler(e: MouseEvent): void {
                 let dy_r : number = Math.floor(mouseV.y / (16));
                 canvas_overlay_context.fillStyle = CURRENT_COLOR;
                 canvas_overlay_context.fillRect(dx_r * 16, dy_r * 16, 16, 16)
-                endVector.set(dx_r * 16, dy_r * 16)
                 p_r.push({x: xS, y: yS})
             }
         }
@@ -841,6 +845,7 @@ canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     if (currentTool == "Rectangle") {
         restPixelArrayDispatch(context, p_r, 16);
         updateFrame<void>()
+        endVector.set(e.x, e.y)
     }
     if (!pixels.some(a => a == undoPixel)) pixels = [...pixels, undoPixel]
     undoPixel = [];
