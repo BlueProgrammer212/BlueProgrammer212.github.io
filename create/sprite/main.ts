@@ -514,6 +514,7 @@ function updateFrame<Type>(): void {
 function onSpriteSwitch() {
     selected_layer_frame_indx = 0;
     context.clearRect(0, 0, canvas.width, canvas.height);
+    canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas["height"]);
     let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
     .filter(a => { return a.className.includes("selected")});
     old_frame.forEach(elem => elem.className = "spriteBoxContainer");
@@ -658,6 +659,8 @@ function restPixelArrayDispatch(c : CanvasRenderingContext2D, a: object[], p?: n
     }
 }
 
+let endVector = new Vec2(0, 0);
+
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
     if (isDragging && currentTool == "Select") {
@@ -704,6 +707,7 @@ function onmousemoveHandler(e: MouseEvent): void {
                 let dy_r : number = Math.floor(mouseV.y / (16));
                 canvas_overlay_context.fillStyle = CURRENT_COLOR;
                 canvas_overlay_context.fillRect(dx_r * 16, dy_r * 16, 16, 16)
+                endVector.set(dx_r * 16, dy_r * 16)
                 p_r.push({x: xS, y: yS})
             }
         }
