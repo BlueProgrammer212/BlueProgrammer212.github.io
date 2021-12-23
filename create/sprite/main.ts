@@ -702,7 +702,7 @@ function handleTouchMove(evt) {
     var dx = swipeVector.x - xUp;
     var dy = swipeVector.y - yUp;
     if ( Math.abs(dx) > Math.abs(dy)) {
-        if ( xDiff > 0 ) {
+        if ( dx > 0 ) {
             alert("Swipe test mode")
         }
     }
