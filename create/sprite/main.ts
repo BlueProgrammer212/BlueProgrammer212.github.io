@@ -697,6 +697,13 @@ function onmousemoveHandler(e: MouseEvent): void {
             }
         }
     }
+    if (isDragging && currentTool == "Move") {
+        context.save();
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.translate(16 * e.movementX, 16 * e.movementY)
+        redraw_canvas();
+        context.restore();
+    }
     if (isDragging && currentTool == "Pencil") {
         drawPixel(context, e.clientX, e.clientY, psize)
         let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
