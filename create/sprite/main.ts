@@ -800,6 +800,12 @@ canvas_overlay_context.canvas.addEventListener("touchstart", (e) => {
 
 canvas_overlay_context.canvas.addEventListener("pointerout", (e) => {
     e.preventDefault();
+    if (currentTool == "Rectangle") {
+        restPixelArrayDispatch(context, p_r, 16);
+        updateFrame<void>()
+    }
+    if (!pixels.some(a => a == undoPixel)) pixels = [...pixels, undoPixel]
+    undoPixel = [];
     isDragging = false;
 })
 
