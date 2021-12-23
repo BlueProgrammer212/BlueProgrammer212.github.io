@@ -621,6 +621,8 @@ let stVector = new Vec2(0, 0)
 
 document.getElementById("clearCanvasButton").addEventListener("click", () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
+    pixels = [];
+    undoPixel = [];
     updateFrame();
 })
 
