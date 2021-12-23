@@ -553,8 +553,10 @@ document.addEventListener("keydown", (e): void => {
     }
 
     if (e.key == "Delete") {
+        let av = getMousePos(canvas, stVector.x, stVector.y),
+            ev = getMousePos(canvas, endVector.x, endVector.y);
         canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
-        context.clearRect(stVector.x, stVector.y, endVector.x, endVector.y);
+        context.clearRect(av.x, av.y, ev.x, ev.y);
     }
 
     if (e.ctrlKey && e.key == "r") {
