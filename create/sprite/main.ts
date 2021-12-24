@@ -435,7 +435,7 @@ function clearPixel(context: CanvasRenderingContext2D, x : number, y : number, p
     if (!undoPixel.some(a => a === data)) undoPixel = [...undoPixel, data];
 }
 
-const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper", "Bucket", "Ruler", "Select", "Move"];
+const ToolName : string[] = ["Pencil", "Eraser", "Rectangle", "EyeDropper", "Bucket", "Ruler", "Select", "Move", "Symmetry"];
 if (typeof localStorage.getItem("toolSelected") !== "string") {
     localStorage.setItem("toolSelected", ToolName[0]);
 }
