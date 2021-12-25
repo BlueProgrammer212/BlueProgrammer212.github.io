@@ -60,9 +60,6 @@
       let img = document.getElementsByClassName("profile_picture_32x32"),
       name = document.getElementsByClassName("pfp_name"),
       comment_msg = document.getElementsByClassName("comment_message");
-      for (let a = 0; a < document.querySelectorAll(".commentBox").length; ++a) {
-         commentObserver.observe(document.querySelectorAll(".commentBox")[a])
-      }
       firestore.collection("profiles").doc(comm.id).get().then(a => a.data()).then(ol => {
           img = document.getElementsByClassName("profile_picture_32x32"),
           name = document.getElementsByClassName("pfp_name"),
@@ -75,6 +72,9 @@
             window.location.href = `https://blueprogrammer212.github.io/profile?id=${comm.id}`
           })
           comment_msg[comment_msg.length - 1].innerHTML = comm.content;
+          for (let a = 0; a < document.querySelectorAll(".commentBox").length; ++a) {
+            commentObserver.observe(document.querySelectorAll(".commentBox")[a])
+         }
       })
       }
       
@@ -272,17 +272,10 @@ window.addEventListener("load", () => {
         pfp_img_elem.setAttribute("src", image_url);
         firebase.initializeApp(firebaseConfig);
         firestore = firebase.firestore();
-        for (let a = 0; a < document.querySelectorAll(".commentBox").length; ++a) {
-          commentObserver.observe(document.querySelectorAll(".commentBox")[a])
-        }
-
         firestore.collection(`comments`).onSnapshot(snapshot => {        
             snapshot.docChanges().forEach(snap => {
               if (snap.type == "added") {
                 comments.add(snap.doc.data());
-                for (let a = 0; a < document.querySelectorAll(".commentBox").length; ++a) {
-                  commentObserver.observe(document.querySelectorAll(".commentBox")[a])
-                }
                 console.log(snap.doc.data());
               }
            })
