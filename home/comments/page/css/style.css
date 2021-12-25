@@ -337,7 +337,7 @@ body {
   width: 75%;
   opacity: 0;
   transform: translate(0px, 200px);
-  transition: transform 2s, opacity 2s;
+  transition: transform 1s, opacity 0.5s;
 } 
 .comment_message {
   position: absolute;
