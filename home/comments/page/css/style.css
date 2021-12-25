@@ -164,6 +164,11 @@ body {
   background-image: url("../assets/bg_icon (4).png");
   background-attachment: fixed;
 }
+.animate {
+  transform: translate(-1000px, 0px);
+  transition: transform 5s;
+  transform: translate(0px, 0px);
+}
 #main_content {
   background-image: url("../assets/Background.png");
   background-attachment: fixed;
