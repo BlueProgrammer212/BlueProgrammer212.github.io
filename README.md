@@ -11,22 +11,22 @@ This the first initial release for Pixcel!
 -  Added save button
 
 ### Future updates
-1. Add a keyboard shortcut dialog.
-2. Add a ESC keyboard shortcut close dialog.
-3. Add the symmetry tool functionality.
-4. Layer functionality
-5. Add a rotate tool.
-6. Add a lasso select tool.
-7. Add a GUI for sprite and layers.
-8. Add a color pallete dialog.
-9. Save color pallete for each clients.
-10. Refactor tool functionality.
-11. Debug glitches.
-12. Flood fill algorithm.
-13. Drawing sample dialog.
-14. Layer/sprite opacity.
-15. Resize/crop canvas GUI.
-16. Zooming functionality
+- Add a keyboard shortcut dialog.
+- Add a ESC keyboard shortcut close dialog.
+- Add the symmetry tool functionality.
+- Layer functionality
+- Add a rotate tool.
+- Add a lasso select tool.
+- Add a GUI for sprite and layers.
+- Add a color pallete dialog.
+- Save color pallete for each clients.
+- Refactor tool functionality.
+- Debug glitches.
+- Flood fill algorithm.
+- Drawing sample dialog.
+- Layer/sprite opacity.
+- Resize/crop canvas GUI.
+- Zooming functionality
 
 Visit our [community](https://www.pixcel.ml/home/community/?r=as)
 
