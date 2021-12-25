@@ -60,6 +60,9 @@
       let img = document.getElementsByClassName("profile_picture_32x32"),
       name = document.getElementsByClassName("pfp_name"),
       comment_msg = document.getElementsByClassName("comment_message");
+      for (let a = 0; a < document.querySelectorAll(".commentBox").length; ++a) {
+         commentObserver.observe(document.querySelectorAll(".commentBox")[a])
+      }
       firestore.collection("profiles").doc(comm.id).get().then(a => a.data()).then(ol => {
           img = document.getElementsByClassName("profile_picture_32x32"),
           name = document.getElementsByClassName("pfp_name"),
