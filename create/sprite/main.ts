@@ -273,7 +273,7 @@ document.getElementById("addLayer").addEventListener("click", () => {
 sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
     0, 0, c.children[1].width, c.children[1].height)
-    document.getElementsByClassName("spriteBoxContainer")[0].className += " selected"
+    document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected")
 })
 let selected_sprite_frame_index : number = 0;
 document.getElementById("addFrameButton").addEventListener("click", async e => {
@@ -332,7 +332,7 @@ document.getElementsByClassName("add")[0].addEventListener("click", () => {
 })
 
 exitDialogColorPicker.addEventListener("click", () => {
-    document.getElementsByClassName("colorDialog_bg")[0].className += " invisible" 
+    document.getElementsByClassName("colorDialog_bg")[0].classList.toggle("invisible"); 
 })
 
 const events : string[] = ["color:init", "color:change"];
@@ -622,13 +622,7 @@ document.addEventListener("keydown", (e): void => {
     }
 
     if (e.ctrlKey && e.key == "c") {
-        document.getElementsByClassName("colorDialog_bg")[0].className = "colorDialog_bg" 
-        if (FLAG_IS_COLOR_PALLETE_OPEN) {
-            document.getElementsByClassName("colorDialog_bg")[0].className += " invisible";
-            FLAG_IS_COLOR_PALLETE_OPEN = false;
-        } else {
-            FLAG_IS_COLOR_PALLETE_OPEN = true;
-        }
+        document.getElementsByClassName("colorDialog_bg")[0].classList.toggle("invisible")
     }
 
     if (((e.ctrlKey && e.key == "z") || e.key == "Backspace") && pixels.length > 0) {
@@ -680,7 +674,7 @@ document.getElementById("editLayers").addEventListener("click", (e) => {
 })
 document.getElementsByClassName("manage_layer_ui")[0].addEventListener("click", e => e["stopPropagation"]())
 document.getElementById("dialog_window_parent").addEventListener("click", () => {
-    document.getElementById("dialog_window_parent").className = "invisible"
+    document.getElementById("dialog_window_parent").classList.toggle("invisible")
 })
 
 let touch_pos = new Vec2(0, 0)
@@ -829,7 +823,7 @@ let cf : number = 0;
 let exit_button_layer_dialog = document.getElementById("exitImg") as HTMLButtonElement;
 
 exit_button_layer_dialog.addEventListener("click", e => {
-    document.getElementById("dialog_window_parent").className = "invisible"
+    document.getElementById("dialog_window_parent").classList.toggle("invisible");
 })
 
 function animate() {
