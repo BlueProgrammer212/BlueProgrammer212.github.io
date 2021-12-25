@@ -275,6 +275,15 @@ div#extDialogBox {
   font-size: 14px;  
 }
 
+#dialog_bg_black_keyboard_shortcut {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 #sprite_frame_category {
   color: #ffffff;
   font-size: 14px;
