@@ -342,7 +342,7 @@ class DatabaseManager {
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        entry.target.classList.toggle("invisible", !entry.isIntersecting);
+        entry.target.classList.toggle("invisible", entry.isIntersecting);
     })
 })
 
