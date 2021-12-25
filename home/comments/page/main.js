@@ -74,7 +74,8 @@
           comment_msg[comment_msg.length - 1].innerHTML = comm.content;
           for (let a = 0; a < document.querySelectorAll(".commentBox").length; ++a) {
             commentObserver.observe(document.querySelectorAll(".commentBox")[a])
-         }
+          }
+          console.log("Added a new comment box.")
       })
       }
       
