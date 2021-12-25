@@ -374,7 +374,6 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     } 
 
     setPosts(data : Data, i : number) {
-        observer.observe(document.getElementsByClassName("postsBox")[i])
         this.update(i);
         firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
             this.setImage(p_info.data().image_url, i, p_info.data().name);
@@ -457,6 +456,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.a.push(data.id);
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
+            observer.observe(document.querySelectorAll(".postBox")[i])
             this.setPosts(data, i);
             this.setButton(data, i); 
             document.getElementsByClassName("pfp_comment")[i].setAttribute("src", getCookie("pfp_url"));
