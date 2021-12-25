@@ -336,7 +336,7 @@ body {
   transform: translate(0px, 200px);
 } 
 .animate {
-  transform: translate(0px, -100px);
+  transform: translate(0px, 0px);
   opacity: 1;
 }
 .comment_message {

@@ -272,6 +272,9 @@ window.addEventListener("load", () => {
         pfp_img_elem.setAttribute("src", image_url);
         firebase.initializeApp(firebaseConfig);
         firestore = firebase.firestore();
+        for (let a = 0; a < document.querySelectorAll(".commentBox").length; ++a) {
+          commentObserver.observe(document.querySelectorAll(".commentBox")[a])
+        }
 
         firestore.collection(`comments`).onSnapshot(snapshot => {        
             snapshot.docChanges().forEach(snap => {
