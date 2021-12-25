@@ -1,7 +1,16 @@
 declare let iro: any;
 
 const canvas = document.getElementsByTagName('canvas')[0],
-context = canvas.getContext("2d");
+      context = canvas.getContext("2d");
+
+const keyIndexes : string[] = 
+[
+    "KEY-A","KEY-B","KEY-C","KEY-D","KEY-E","KEY-F",
+    "KEY-G","KEY-H","KEY-I","KEY-J","KEY-K","KEY-L",
+    "KEY-M","KEY-N","KEY-O","KEY-P","KEY-Q","KEY-R",
+    "KEY-S","KEY-T","KEY-U","KEY-V","KEY-W","KEY-X",
+    "KEY-Y","KEY-Z"
+];
 
 interface Entity {
     map: Map<any, any>;

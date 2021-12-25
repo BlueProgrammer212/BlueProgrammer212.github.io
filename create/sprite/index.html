@@ -76,12 +76,6 @@
           <p>+</p>
         </div>
       </div>
-      <!--TODO: 
-        1. Add a keyboard shortcut dialog.
-        2. Add a ESC keyboard shortcut close dialog.
-        3. Add the symmetry tool functionality.
-        4. Layers.
-      -->
       <div id="toolset">
         <p id="ToolTitle">Tools</p>
         <input type="image" tabindex="1" src="assets/pencil.png" title="Pencil" width="32" height="32" id="PencilTool" class="toolslot" />
@@ -140,6 +134,34 @@
                  <img src="assets/exitico_256x256-1.png" draggable="false" width="32" height="32" />
               </div>
           </div>
+      </div>
+      <div id="dialog_bg_black_keyboard_shortcut" class="invisible dialog" data-theme="dark">
+         <div id="dialog_bg_gray_main_modal_box">
+            <h3 class="align-left">Keyboard shortcuts</h3>
+            <p id="dialog_category">Modal box shortcuts</p>
+            <ol id="keyboard_shortcuts_list dialog_category_key_shortcuts">
+              <ul id="keyboard_shortcuts_list_unordered">
+               <li class="ESC"></li>
+               <li class="CTRL KEY-C"></li>
+               <li class="CTRL KEY-/"><li>
+              <ul>
+            </ol>
+            <p id="sprite_manager_category">Sprite frame shortcuts</p>
+            <ol id="keyboard_shortcuts_list_sprite_category">
+              <ul id="keyboard_shortcuts_list_unordered_sprite_category">
+                <li class="CTRL KEY-R"></li> 
+                <li class="KEY-N"></li> 
+              </ul>
+            </ol> 
+            <p id="tool_category">Tool shortcuts</p>
+            <ol id="keyboard_shortcuts_list_tool_category">
+               <ul id="keyboard_shortcuts_list_unordered_sprite_category">
+                  <li class="KEY-P"></li>
+                  <li class="KEY-E"></li>
+                  <li class="CTRL KEY-E"></li>
+               </ul>
+            </ol>
+         </div>
       </div>
       <script src="main.js" async defer></script>
       <script type="text/typescript" src="./main.ts" async defer></script>
