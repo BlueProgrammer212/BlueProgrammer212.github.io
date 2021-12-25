@@ -154,6 +154,12 @@ body {
   font-size: 100%;
 }
 
+.animate {
+  transform: translate(-1000px, 0px);
+  transition: transform 5s;
+  transform: translate(0px, 0px);
+}
+
 .topnav a:hover {
   background-color: #0a7;
   color: #f2f2f2;

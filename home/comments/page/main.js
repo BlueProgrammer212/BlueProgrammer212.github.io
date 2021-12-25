@@ -11,6 +11,11 @@
   }
 
   disableDrag(); 
+  let commentObserver = new IntersectionObserver(entries => {
+     entries.forEach(entry => {
+       entry.target.classList.toggle("invisible animate", entry.isIntersecting);
+     })
+  })
   
   function clearDatabase() {
     if (getCookie("pf_id")=="111296049109307608942") {
