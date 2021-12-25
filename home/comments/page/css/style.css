@@ -165,7 +165,8 @@ body {
   background-attachment: fixed;
 }
 .animate {
-  transform: translate(1000px, 0px);
+  transform: translate(0px, -100px);
+  opacity: 1;
 }
 #main_content {
   background-image: url("../assets/Background.png");
@@ -334,8 +335,9 @@ body {
   background-color: white;
   color: black;
   width: 75%;
-  transform: translate(-1000px, 0px);
-  transition: transform 2s;
+  opacity: 0;
+  transform: translate(0px, 200px);
+  transition: transform 2s, opacity 2s;
 } 
 .comment_message {
   position: absolute;
