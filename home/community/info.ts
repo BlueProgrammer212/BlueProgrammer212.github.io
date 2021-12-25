@@ -340,6 +340,12 @@ class DatabaseManager {
     }
 } 
 
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        entry.target.classList.toggle("invisible", !entry.isIntersecting);
+    })
+})
+
 class FragmentManager extends FragmentInstance implements FragmentExtension {
     public readonly parent : any;
     public set : any;
@@ -368,6 +374,7 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
     } 
 
     setPosts(data : Data, i : number) {
+        observer.observe(document.getElementsByClassName("postsBox")[i])
         this.update(i);
         firestore.collection("profiles").doc(data.profile_id).get().then((p_info) => {
             this.setImage(p_info.data().image_url, i, p_info.data().name);
