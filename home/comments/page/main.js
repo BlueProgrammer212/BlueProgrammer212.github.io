@@ -280,6 +280,9 @@ window.addEventListener("load", () => {
             snapshot.docChanges().forEach(snap => {
               if (snap.type == "added") {
                 comments.add(snap.doc.data());
+                for (let a = 0; a < document.querySelectorAll(".commentBox").length; ++a) {
+                  commentObserver.observe(document.querySelectorAll(".commentBox")[a])
+                }
                 console.log(snap.doc.data());
               }
            })
