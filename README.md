@@ -10,7 +10,7 @@ This the first initial release for Pixcel!
 -  Added sprite functionality.
 -  Added save button
 
-###Future updates
+### Future updates
 1. Add a keyboard shortcut dialog.
 2. Add a ESC keyboard shortcut close dialog.
 3. Add the symmetry tool functionality.
