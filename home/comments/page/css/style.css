@@ -165,8 +165,6 @@ body {
   background-attachment: fixed;
 }
 .animate {
-  transform: translate(-1000px, 0px);
-  transition: transform 5s;
   transform: translate(0px, 0px);
 }
 #main_content {
@@ -336,6 +334,8 @@ body {
   background-color: white;
   color: black;
   width: 75%;
+  transform: translate(-1000px, 0px);
+  transition: transform 5s;
 } 
 .comment_message {
   position: absolute;
