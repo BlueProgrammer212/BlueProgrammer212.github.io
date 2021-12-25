@@ -278,10 +278,14 @@ div#extDialogBox {
 #dialog_bg_black_keyboard_shortcut {
   width: 100%;
   height: 100%;
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+#dialog_bg_gray_main_modal_box {
+  
 }
 
 #sprite_frame_category {
