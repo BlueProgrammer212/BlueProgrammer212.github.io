@@ -454,9 +454,11 @@ class FragmentManager extends FragmentInstance implements FragmentExtension {
         this.update_likes(data);
         this.updateQuery(q);
         this.a.push(data.id);
+        for (let a = 0; a < document.querySelectorAll(".postBox").length; ++a) {
+            observer.observe(document.querySelectorAll(".postBox")[a])
+        }
 
         for (let i = 0; i < document.getElementsByClassName("postsBox").length; ++i) {
-            observer.observe(document.querySelectorAll(".postBox")[i])
             this.setPosts(data, i);
             this.setButton(data, i); 
             document.getElementsByClassName("pfp_comment")[i].setAttribute("src", getCookie("pfp_url"));
