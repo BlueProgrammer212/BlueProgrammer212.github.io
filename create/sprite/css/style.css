@@ -526,6 +526,7 @@ canvas#selected-canvas {
 
 .invisible {
   visibility: hidden;
+  display: none;
 }
 
 .colorDialog_bg {
