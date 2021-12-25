@@ -1,23 +1,27 @@
 let sidebar = document.getElementsByClassName("sidebar")[0]; 
-window.addEventListener("load", () => {
+
+setTimeout(() => {
     if (!sidebar) sidebar = document.getElementsByClassName("sidebar")[0];
     sidebar.style.transform = "translateX(-500px)";
     sidebar.style.opacity = 0;
-});
+}, 1000); 
+
 
 function openTab(url) {
     window.open(url)
 }
 
+let offline_dialog = document.getElementsByClassName("topnav")[1];
+
 window.onoffline = function() {
-    if (document.getElementsByClassName("topnav")[1].id == "offline") {
-        document.getElementsByClassName("topnav")[1].style.display = "block"
+    if (offline_dialog.id == "offline") {
+        offline_dialog.style.display = "block"
     }
 }
 
 window.ononline = function() {
-    if (document.getElementsByClassName("topnav")[1].id == "offline") {
-        document.getElementsByClassName("topnav")[1].style.display = "none"
+    if (offline_dialog.id == "offline") {
+        offline_dialog.style.display = "none"
     }
 }
 function toggleSideBar() {
