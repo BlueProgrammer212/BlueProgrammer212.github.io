@@ -477,15 +477,46 @@ interface CanvasInterface {
     canvas: HTMLCanvasElement | any;
 }
 
-if (window.location.hash == "#comments") {
-    window.location.href = "https://www.pixcel.ml/home/comments"
-}   
+class EventManager {
+    public type: string;
+    public map: Map<string, object | any>
+    public change: any;
+    constructor(type : string) {
+        this.type = type;
+        this.map = new Map;
+    }
+    setEvent(callback : Function, name : string): Promise<void> {
+        return new Promise(resolve => {
+            this.map.set(name, {callback, eventType: this.type});
+            setTimeout(resolve, 200, null);
+        });
+    }
+    dispatchEvent(element : HTMLElement | any, name : string): Promise<void> {
+        const {eventType, callback} = this.map.get(name); 
+        element.addEventListener(eventType, callback);
+        return new Promise(resolve => setTimeout(resolve, 200, null));
+    }
+    runCallback(name?: string) {
+        this.map.get(name).callback();
+    }
+}
 
-window.addEventListener("hashchange", () => {
+let eventManager = new EventManager("hashchange");
+
+function onHashChange() {
     if (window.location.hash == "#comments") {
         window.location.href = "https://www.pixcel.ml/home/comments"
+    } else if (window.location.href == "#community") {
+        window.location.href = "https://www.pixcel.ml/home/community"
     }
-})
+}
+
+void async function addEvent() {
+    await eventManager.setEvent(onHashChange, "hashevent");
+    await eventManager.dispatchEvent(window, "hashevent")
+    eventManager.runCallback("hashevent")
+}();
+
 
 class CanvasManager implements CanvasInterface {
 
