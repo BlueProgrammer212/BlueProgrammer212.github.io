@@ -13,7 +13,7 @@
   disableDrag(); 
   let commentObserver = new IntersectionObserver(entries => {
      entries.forEach(entry => {
-       entry.target.classList.toggle("invisible animate", entry.isIntersecting);
+       entry.target.classList.toggle("animate", entry.isIntersecting);
      })
   })
   
