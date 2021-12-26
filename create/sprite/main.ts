@@ -506,7 +506,7 @@ let eventManager = new EventManager("hashchange");
 function onHashChange() {
     if (window.location.hash == "#comments") {
         window.location.href = "https://www.pixcel.ml/home/comments"
-    } else if (window.location.href == "#community") {
+    } else if (window.location.hash == "#community") {
         window.location.href = "https://www.pixcel.ml/home/community"
     }
 }
