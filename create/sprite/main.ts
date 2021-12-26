@@ -600,6 +600,10 @@ document.addEventListener("keydown", (e): void => {
         e.preventDefault();
         onSwitchTool("Eraser");
     }
+    
+    if (e.altKey && e.ctrlKey && e.key == "C") {
+        console.log("Future update. #243ba51d5372b2ecc4b27ad2da115e4f9ae59a24835625aeeb29265abc438978")
+    }
 
     if (e.key == "Delete" && currentTool == "Select") {
         let av = getMousePos(canvas, stVector.x, stVector.y),
