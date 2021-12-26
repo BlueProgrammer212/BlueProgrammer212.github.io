@@ -20,6 +20,14 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body style="display: none">
+      <template id="download_post_template">
+         <div id="download_post_parent">
+            <p id="publisher_name"></p>
+            <p id="current_version"></p>
+            <p id="description"></p>
+            <button id="download_now">Download</button>
+         </div>
+      </template>
       <div class="sidebar">
         <a class="active" href="#home">Contact us!</a>
         <a href="#wiki">Visit our wikipage!</a>
@@ -51,7 +59,8 @@
         </div>
         <div id="main_content">
             <h2 class="align-left">Downloads</h2>
-            <p class="align-left">Sorry, there's no releases yet.</p>
+            <p class="align-left" id="noPosts">Sorry, there's no releases yet.</p>
+            <div id="download_releases_posts"></div>
         </div>
         <div class="footer">
           <p id="p-id-2" class="fontSmall paragraph align-left" draggable="false" translate="no" tabindex="0">
