@@ -269,6 +269,11 @@ div#extDialogBox {
   image-rendering: pixelated;
 }
 
+.li {
+  color: white;
+  font-family: Pixel;
+}
+
 #ScaleCategory {
   color: white;
   font-family: Pixel;
