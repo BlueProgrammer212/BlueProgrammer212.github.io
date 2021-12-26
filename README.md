@@ -12,6 +12,7 @@ This the first initial release for Pixcel!
 
 ### Future updates
 - Add a keyboard shortcut dialog.
+- Release the 1.0.1 download (app version)
 - Add a ESC keyboard shortcut close dialog.
 - Add the symmetry tool functionality.
 - Layer functionality
