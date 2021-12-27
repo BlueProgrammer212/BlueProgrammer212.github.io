@@ -214,10 +214,10 @@ window.addEventListener("load", () => {
         firestore.collection("download_releases").onSnapshot(snapshot => {
            snapshot.docChanges().forEach(querySnapshots => {
              if (querySnapshots.type === "added") {
-                  downloadManager.add(querySnapshots.data(), querySnapshots.id);
+                  downloadManager.add(querySnapshots.doc.data(), querySnapshots.doc.id);
              }
              if (querySnapshots.type === "removed") {
-                downloadManager.remove(querySnapshots.id);
+                downloadManager.remove(querySnapshots.doc.id);
              }
            })
         })
