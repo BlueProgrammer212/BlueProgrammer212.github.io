@@ -23,7 +23,7 @@ echo Progress: [#######################----------]: 71%
 ping www.pixcel.ml -n 3 > nul
 echo Published %release_name% %version% successfully! Progress: [######################################] 100%.
 ping www.pixcel.ml -n 3 > nul 
-set /a prog = ---------------------------
+set /a prog = ~~~~~~~~~~~~~~~~~~~~~~~
 :a
 echo Completing workflow: 
 echo Progress: [%prog%]: 0%
