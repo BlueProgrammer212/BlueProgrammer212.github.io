@@ -20,12 +20,14 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body style="display: none">
+      <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-firestore.js"></script>
       <template id="download_post_template">
-         <div id="download_post_parent">
-            <p id="publisher_name"></p>
-            <p id="current_version"></p>
-            <p id="description"></p>
-            <button id="download_now">Download</button>
+         <div class="download_post_parent">
+            <p class="app_name"></p>
+            <p class="current_version"></p>
+            <p class="description"></p>
+            <a class="download_link"><button class="download_now">Download</button></a>
          </div>
       </template>
       <div class="sidebar">

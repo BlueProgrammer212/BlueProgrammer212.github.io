@@ -17,7 +17,6 @@ echo Progress: [---------------------------------]: 0%
 git push -u origin main
 ping www.pixcel.ml -n 3 > nul
 echo Progress: [################-----------------]: 23%
-node ../publish_release.js
 ping www.pixcel.ml -n 3 > nul
 echo Progress: [#######################----------]: 71%
 ping www.pixcel.ml -n 3 > nul

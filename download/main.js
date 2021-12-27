@@ -150,6 +150,29 @@ class Profile {
       this.id = id; 
       this.name = name;
   }
+} 
+
+class DownloadPostManager {
+      constructor(parent_id, template_id) {
+         this.parent_element = document.getElementById(parent_id);
+         this.template = document.getElementById(template_id);
+         this.map = new Map();
+      }
+      setTitle(element, name = "Pixcel", child_index = 0) {
+          element.children[child_index].innerText = name;
+      }
+      add(data, doc) {
+        const clone = document.importNode(this.template.content, true).children[0];
+        this.map.set(doc, clone);
+        this.setTitle(clone, data.name, 0);
+        this.setTitle(clone, data.version, 1);
+        this.setTitle(clone, data.description, 2)
+        this.parent_element.appendChild(clone);
+      }
+      remove(doc) {
+        this.parent_element.removeChild(this.map.get(doc));
+        this.map.delete(doc);
+      }
 }
 
 function loadInformation() {
@@ -164,9 +187,34 @@ function loadInformation() {
   });
 }
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDqcXlXth2r-3nA-nWxUTlcm5-vgq2ZQgA",
+  authDomain: "pixcel-272e8.firebaseapp.com",
+  projectId: "pixcel-272e8",
+  storageBucket: "pixcel-272e8.appspot.com",
+  messagingSenderId: "527485563587",
+  appId: "1:527485563587:web:59c6c095e772a028802876",
+  measurementId: "G-49V48L8TZR",
+  databaseURL: "https://pixcel-272e8-default-rtdb.firebaseio.com"
+};
+
+let downloadManager = new DownloadPostManager("download_releases_posts", "download_post_template");
+
 window.addEventListener("load", () => {
     setTimeout(() => { 
       if (auth2.isSignedIn.get()) {
+        firebase.initializeApp(firebaseConfig);
+        let firestore = firebase.firestore();
+        firestore.collection("download_releases").onSnapshot(snapshot => {
+           snapshot.docChanges().forEach(querySnapshots => {
+             if (querySnapshots.type === "added") {
+                  downloadManager.add(querySnapshots.data(), querySnapshots.id);
+             }
+             if (querySnapshots.type === "removed") {
+                downloadManager.remove(querySnapshots.id);
+             }
+           })
+        })
         let image_url = getCookie("pfp_url"), 
         name = getCookie("pf_name"),
         id = getCookie("pf_id");

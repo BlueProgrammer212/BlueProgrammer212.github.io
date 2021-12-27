@@ -4,6 +4,11 @@ if (window.location.host !== "www.pixcel.ml") {
 }
 const urlSearchParams_ = new URLSearchParams(window.location.search);
 const params_ = Object.fromEntries(urlSearchParams_.entries());
+document.getElementById("nameMod").addEventListener("keydown", (e) => { 
+   if (e.key === "Enter") {
+     e.preventDefault();
+   }
+})
 
 if ("getElementsByTagName" in document) {
   let images = document.getElementsByTagName("img");
