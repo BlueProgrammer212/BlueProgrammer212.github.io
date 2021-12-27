@@ -22,4 +22,11 @@ ping www.pixcel.ml -n 3 > nul
 echo Progress: [#######################----------]: 71%
 ping www.pixcel.ml -n 3 > nul
 echo Published %release_name% %version% successfully! Progress: [######################################] 100%.
+ping www.pixcel.ml -n 3 > nul 
+:a
+cls
+echo Completing workflow: 
+echo Progress: [--------------------]: 0%
+goto a
+
 ENDLOCAL
