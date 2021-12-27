@@ -28,7 +28,7 @@ set /a prog = 0
 echo Completing workflow: 
 echo Progress: [------------------------]: %prog%%
 ping 127.0.0.1 -n 1 > nul
-set /a prog = %prog% + 0.1
+set /a prog = %prog% + 4
 cls
 goto a
 
