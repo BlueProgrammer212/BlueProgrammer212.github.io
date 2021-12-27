@@ -1,5 +1,5 @@
 @echo off
-SETLOCAL
+SETLOCAL 
 set /p release_name=App title: 
 set /p description=Description:
 set /p version=Version:
@@ -22,28 +22,28 @@ ping www.pixcel.ml -n 3 > nul
 echo Progress: [#######################----------]: 71%
 ping www.pixcel.ml -n 3 > nul
 echo Published %release_name% %version% successfully! Progress: [######################################] 100%.
-ping www.pixcel.ml -n 3 > nul  
-
-set /a prog = 0
-set progress_s = "...................."
-:a
-echo Completing workflow: 
-
-IF %prog% == 10 set progress_s =  "##.................."
-IF %prog% == 20 set progress_s =  "####................"
-IF %prog% == 30 set progress_s =  "######.............."
-IF %prog% == 40 set progress_s =  "########............"
-IF %prog% == 50 set progress_s =  "##########.........."
-IF %prog% == 60 set progress_s =  "############........"
-IF %prog% == 70 set progress_s =  "##############......"
-IF %prog% == 80 set progress_s =  "################...."
-IF %prog% == 90 set progress_s =  "##################.."
-IF %prog% == 100 set progress_s = "####################"
-
-echo Progress: [%progress_s%]: %prog% %
-ping 127.0.0.1 -n 1 > nul
-set /a prog = %prog% + 5
-cls
-goto a
+ping www.pixcel.ml -n 3 > nul 
+:: set /a prog = 0
+:: set /a progress_s = ....................
+:: :a
+:: 
+:: echo Completing workflow: 
+:: 
+:: IF %prog% == 10 set /a progress_s =  ##..................
+:: IF %prog% == 20 set /a progress_s =  ####................
+:: IF %prog% == 30 set /a progress_s =  ######..............
+:: IF %prog% == 40 set /a progress_s =  ########............
+:: IF %prog% == 50 set /a progress_s =  ##########..........
+:: IF %prog% == 60 set /a progress_s =  ############........
+:: IF %prog% == 70 set /a progress_s =  ##############......
+:: IF %prog% == 80 set /a progress_s =  ################....
+:: IF %prog% == 90 set /a progress_s =  ##################..
+:: IF %prog% == 100 set /a progress_s = ####################
+:: 
+:: echo Progress: [%progress_s%]: %prog% %
+:: ping 127.0.0.1 -n 1 > nul
+:: set /a prog = %prog% + 5
+:: cls
+:: goto a
 
 ENDLOCAL
