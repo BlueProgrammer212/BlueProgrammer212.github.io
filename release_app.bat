@@ -11,5 +11,7 @@ echo Publishing %release_name%, version %version%; sleep 5;
 echo Published %release_name% %version% successfully.
 git add --all
 git commit -m "Added new release, %DATE% %release_name% %version%"
+set /p pullNewCommits=Pull new commits? (Y/N):
+IF %pullNewCommits%==Y git pull -v
 git push -u origin main
 ENDLOCAL
