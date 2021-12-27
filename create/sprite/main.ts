@@ -3,37 +3,37 @@ declare let iro: any;
 const canvas = document.getElementsByTagName('canvas')[0],
       context = canvas.getContext("2d");
 
-const keyIndexes : string[] = 
+const keyIndexes : string[] | number[] = 
 [
     "KEY-A","KEY-B","KEY-C","KEY-D","KEY-E","KEY-F",
     "KEY-G","KEY-H","KEY-I","KEY-J","KEY-K","KEY-L",
     "KEY-M","KEY-N","KEY-O","KEY-P","KEY-Q","KEY-R",
     "KEY-S","KEY-T","KEY-U","KEY-V","KEY-W","KEY-X",
-    "KEY-Y","KEY-Z"
-];
- 
+    "KEY-Y","KEY-Z", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+] as string[] | number[];
 
-class KeySpritesheet {
-    public sv: Vec2;
+class KeySpritesheet extends Image {
+    public sv: Vec2; 
     public svwh: Vec2;
     public columns: number;
     public rows: number;
 
     constructor(columns : number, rows : number) {
+        super()
         this.sv = new Vec2();
         this.svwh = new Vec2();
         this.columns = columns;
         this.rows = rows;
     }
+
     public setSource(sx : number, sy : number, sw : number, sh : number): void {
         for (let i = 0; i < arguments.length; ++i) {
-            if (arguments[i] === void 0) {
-                arguments[i] = 0;
-            }
+            if (arguments[i] === void 0) arguments[i] = 0;
         }
         this.sv.set(sx, sy);
-        this.svwh.set(sw, sh)
+        this.svwh.set(sw, sh);
     }
+
     public setImageResource(url: string): Promise<ImageBitmap> {
         const image = new Image();
         return new Promise((r, _) => {
@@ -41,12 +41,18 @@ class KeySpritesheet {
             image.addEventListener("load", e => setTimeout(r, 2000, image));
         })
     }
+    
+    static get max_dpi(): number {
+        return window.devicePixelRatio;
+    }
+
     public bufferImage(image): void {
         const buffer = document.createElement("canvas");
         buffer.width = this.svwh.x / this.columns;
         buffer.height = this.svwh.y / this.rows;
         buffer.getContext("2d").drawImage(image, 0, 0, buffer.width, buffer.height);
     }
+
 }
 
 const dialogs_collection : HTMLCollectionOf<HTMLElement | any> = document.getElementsByClassName("dialog") as HTMLCollectionOf<any>;
