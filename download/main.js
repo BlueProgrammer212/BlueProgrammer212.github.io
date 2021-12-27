@@ -164,7 +164,7 @@ class DownloadPostManager {
           }
       }
       setDownloadLink(element, src) {
-        
+
       }
       add(data, doc) {
         const clone = document.importNode(this.template.content, true).children[0];
@@ -172,6 +172,7 @@ class DownloadPostManager {
         this.setTitle(clone, data.name, 0);
         this.setTitle(clone, data.version, 1);
         this.setTitle(clone, data.description, 2)
+        document.getElementById("noPosts").classList.toggle("invisible", true)
         this.parent_element.appendChild(clone);
       }
       remove(doc) {
