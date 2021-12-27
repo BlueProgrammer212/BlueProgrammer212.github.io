@@ -159,7 +159,12 @@ class DownloadPostManager {
          this.map = new Map();
       }
       setTitle(element, name = "Pixcel", child_index = 0) {
-          element.children[child_index].innerText = name;
+          if ("setAttribute" in Element.prototype) {
+              element.children[child_index].setAttribute("innerText", name);
+          }
+      }
+      setDownloadLink(element, src) {
+        
       }
       add(data, doc) {
         const clone = document.importNode(this.template.content, true).children[0];
