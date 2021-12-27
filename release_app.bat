@@ -9,4 +9,3 @@ IF %allowLogs%==Y cd publish_logs && @echo Release date: %DATE% Release Name: %r
 echo Release date: %DATE%
 echo Publishing %release_name%, version %version%
 ENDLOCAL
-
