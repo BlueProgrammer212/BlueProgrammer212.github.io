@@ -154,6 +154,11 @@ body {
   font-size: 100%;
 }
 
+.download_post_parent > p, .download_post_parent > h2 {
+   color: black;
+   margin: 10px;
+}
+
 .topnav a:hover {
   background-color: #0a7;
   color: #f2f2f2;
