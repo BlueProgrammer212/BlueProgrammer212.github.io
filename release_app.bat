@@ -3,6 +3,7 @@ SETLOCAL
 set /p release_name=App title: 
 set /p description=Description:
 set /p version=Version:
+set /p downloadLink=Download link:
 set /p allowLogs=Enable publish logs (Y/N): 
 IF not exist publish_logs mkdir publish_logs
 IF %allowLogs%==Y cd publish_logs && @echo Release date: %DATE% Release Name: %release_name% > publish_log_record.log
@@ -19,7 +20,7 @@ ping www.pixcel.ml -n 3 > nul
 echo Progress: [################-----------------]: 23%
 ping www.pixcel.ml -n 3 > nul
 echo Progress: [#######################----------]: 71%
-node ../publish_release.js %release_name% %description% %version% 
+node ../publish_release.js %release_name% %description% %version% %downloadLink%
 ping www.pixcel.ml -n 3 > nul
 echo Published %release_name% %version% successfully! Progress: [######################################] 100%.
 ping www.pixcel.ml -n 3 > nul 
