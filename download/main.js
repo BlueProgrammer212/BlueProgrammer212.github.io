@@ -164,14 +164,18 @@ class DownloadPostManager {
           }
       }
       setDownloadLink(element, src) {
-
+         if (src === void 0) return;
+         if ("setAttribute" in Element.prototype) {
+           element.setAttribute("src", src);
+         }
       }
       add(data, doc) {
         const clone = document.importNode(this.template.content, true).children[0];
         this.map.set(doc, clone);
         this.setTitle(clone, data.name, 0);
         this.setTitle(clone, data.version, 1);
-        this.setTitle(clone, data.description, 2)
+        this.setTitle(clone, data.description, 2);
+        this.setDownloadLink(clone.children[3], data.downloadLink);
         document.getElementById("noPosts").classList.toggle("invisible", true)
         this.parent_element.appendChild(clone);
       }
