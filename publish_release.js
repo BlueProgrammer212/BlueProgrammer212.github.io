@@ -18,5 +18,5 @@ for (let i = 1; i < arguments.length - 1; ++i) {
 docRef.add({
   description: description_string,
   name: arguments[0],
-  version: arguments[2]
+  version: arguments[arguments.length - 1]
 })
