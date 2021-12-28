@@ -159,6 +159,18 @@ body {
    margin: 10px;
 }
 
+button.download_now {
+  margin: 10px;
+  width: 200px;
+  height: 50px;
+  font-size: 14px;
+  border: 0.1px solid #8a6;
+  font-family: 'Pixel';
+  color: white;
+  background: linear-gradient(
+180deg, #ac8 70%, #133 160%, #011 70%);
+}
+
 .topnav a:hover {
   background-color: #0a7;
   color: #f2f2f2;
