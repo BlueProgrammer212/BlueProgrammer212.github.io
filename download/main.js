@@ -159,7 +159,9 @@ class DownloadPostManager {
          this.map = new Map();
       }
       setTitle(element, name = "Pixcel", child_index = 0) {
-          element.children[child_index].innerText = name;
+          if (element.children[child_index]) {
+              element.children[child_index].innerText = name;
+          }
       }
       setDownloadLink(element, src) {
 
