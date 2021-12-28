@@ -162,6 +162,14 @@ body {
   display: none;
 }
 
+.download_post_parent {
+  background: white;
+  border: 3.5px solid black;
+  height: 300px;
+  margin: 10px;
+  width: 85%;
+}
+
 .pfp_name {
     position: absolute;
     transform: translateX(56px) translateY(-32px);
