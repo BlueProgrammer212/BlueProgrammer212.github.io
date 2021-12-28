@@ -19,7 +19,7 @@ ping www.pixcel.ml -n 3 > nul
 echo Progress: [################-----------------]: 23%
 ping www.pixcel.ml -n 3 > nul
 echo Progress: [#######################----------]: 71%
-node publish_release.js %release_name% %description% %version% 
+node ../publish_release.js %release_name% %description% %version% 
 ping www.pixcel.ml -n 3 > nul
 echo Published %release_name% %version% successfully! Progress: [######################################] 100%.
 ping www.pixcel.ml -n 3 > nul 
