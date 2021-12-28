@@ -166,7 +166,7 @@ class DownloadPostManager {
       setDownloadLink(element, src) {
          if (src === void 0) return;
          if ("setAttribute" in Element.prototype) {
-           element.setAttribute("src", src);
+           element.setAttribute("href", src);
          }
       }
       add(data, doc) {
