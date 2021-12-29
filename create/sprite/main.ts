@@ -960,6 +960,9 @@ canvas_overlay_context.canvas.addEventListener("touchstart", (e) => {
 
 canvas_overlay_context.canvas.addEventListener("pointerout", (e) => {
     e.preventDefault();
+    if (currentTool !== "Select" && currentTool !== "Rectangle") {
+        canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
+    }
     if (currentTool == "Rectangle") {
         restPixelArrayDispatch(context, p_r, 16);
         updateFrame<void>()
