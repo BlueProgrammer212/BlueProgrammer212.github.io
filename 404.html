@@ -51,13 +51,15 @@
         <div class="eop"></div>
       </div>
       <script>const FILENAME_INDX=2;function UrlExists(url){var http = new XMLHttpRequest();if("open" in http)http.open('HEAD', url, false);
-        http.send();return http.status != 404 || http.status != 400;}; if(window.location.pathname.split("/")[1]==="uploads"){
+        http.send();return http.status != 404 || http.status != 400;};if(window.location.pathname.split("/")[1]==="uploads"){
         if(window.location.href.substr(window.location.href.length-1,window.location.href.length)!=="/"){window.location.href += "/"};
         let _location=window.location.pathname,path=_location.substring(0,_location.lastIndexOf("/")),
         directoryNam = path.substring(path.lastIndexOf("/")+1);console.log(directoryNam);if(window.location.pathname.split("/")[2]!==void 0 && 
         UrlExists(`https://firebasestorage.googleapis.com/v0/b/pixcel-272e8.appspot.com/o/uploads%2F${window.location.pathname.split("/")[2]}.png?alt=media`)){
-        window.location.href=`https://pixcelcdn.bprog212.repl.co?id=${window.location.pathname.split("/")[FILENAME_INDX]}`} else {document.body.style=""}}</script>
-      <script>let map;map=new Map();map.set("profiles",1336375474756568568);window.onload=function(){console
+        window.location.href=`https://pixcelcdn.bprog212.repl.co?id=${window.location.pathname.split("/")[FILENAME_INDX]}`} else {document.body.style=""}}
+        if(window.location.pathname.split("/")[1]==="downloads"){if(window.location.href.substr(window.location.href.length-1,window.location.href.length)!=="/"){window.location.href += "/"};
+        window.location.href=`https://pixceldownload.bprog212.repl.co/blob/${window.location.pathname.split("/")[2]}` /*VnxIzTc4hz4L4TR0dZpy_22432535343 Release 1.0.0 ID*/}</script>
+       <script>let map;map=new Map();map.set("profiles",1336375474756568568);window.onload=function(){console
       .log("profiles_1336375474756568568");let b="set",c="get",d="a";map[b](d,window.location);if(map[c](d).protocol
       !=="https:"){window.location.protocol="https:"}};if(map.get("profiles")===void 0)map.set("profiles",1336375474756568568);</script>
       <script>if (window.location.pathname.split("/")[1]=="profile"){(function(){if(window.location.href.substr(window.location.href.length-1,window.location.href.length)!=="/"){window.location.href += "/"};

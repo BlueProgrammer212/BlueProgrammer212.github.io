@@ -808,6 +808,7 @@ function handleTouchMove(evt) {
     }
     swipeVector.set(0, 0)
 };
+let lineStVector = new Vec2(0, 0);
 
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
@@ -905,6 +906,7 @@ canvas_overlay_context.canvas.addEventListener("mousedown", (e) => {
     lastVector.set(e.x, e.y);
     isDragging = true;
     if (e.button == 0) {
+        if (currentTool == "Ruler") lineStVector.set(e.x, e.y);
         if (currentTool == "Rectangle" || currentTool == "Select") stVector.set(e.x, e.y);
         if (currentTool == "EyeDropper") {
             let mouseVector = getMousePos(canvas, e.x, e.y)
@@ -936,6 +938,7 @@ canvas_overlay_context.canvas.addEventListener("touchstart", (e) => {
     }
     let {x, y} = touch_pos;
     lastVector.set(x, y);
+    if (currentTool == "Ruler") lineStVector.set(x, y);
     if (currentTool == "Rectangle" || currentTool == "Select") stVector.set(x, y);
     if (currentTool == "EyeDropper") {
         let mouseVector = getMousePos(canvas, x, y)
