@@ -167,8 +167,8 @@ button.download_now {
   border: 0.1px solid #8a6;
   font-family: 'Pixel';
   color: white;
-  background: linear-gradient(
-180deg, #ac8 70%, #133 160%, #011 70%);
+  background: linear-gradient(180deg, #ac8 70%, #133 160%, #011 70%);
+  cursor: pointer;
 }
 
 .topnav a:hover {

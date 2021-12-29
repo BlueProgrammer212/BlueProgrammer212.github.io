@@ -160,7 +160,7 @@ class DownloadPostManager {
       }
       setTitle(element, name = "Pixcel", child_index = 0) {
           if (element.children[child_index]) {
-              element.children[child_index].innerText = name;
+              element.children[child_index].innerHTML = name;
           }
       }
       setDownloadLink(element, src) {

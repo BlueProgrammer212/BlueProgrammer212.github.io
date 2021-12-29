@@ -20,4 +20,6 @@ docRef.add({
   name: arguments[0],
   version: arguments[arguments.length - 2],
   downloadLink: arguments[arguments.length - 1]
+}).then((a) => {
+   console.log("Added the document to the database successfully.", a)
 })
