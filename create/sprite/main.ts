@@ -958,10 +958,14 @@ canvas_overlay_context.canvas.addEventListener("touchstart", (e) => {
     if (e.cancelable) e.preventDefault();
 })
 
+const overlay_clearRect_disabledTools: string[] = ["Select","Rectangle"]
+
 canvas_overlay_context.canvas.addEventListener("pointerout", (e) => {
     e.preventDefault();
-    if (currentTool !== "Select" && currentTool !== "Rectangle") {
-        canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
+    for (let i = 0; i < overlay_clearRect_disabledTools.length; ++i) {
+        if (currentTool !== "Select" && currentTool !== "Rectangle") {
+            canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
+        }
     }
     if (currentTool == "Rectangle") {
         restPixelArrayDispatch(context, p_r, 16);
@@ -992,7 +996,6 @@ function updateCursorEntity(e : MouseEvent): void {
 }
 
 canvas_overlay_context.canvas.oncontextmenu = function() {return false;}
-
 canvas_overlay_context.canvas.addEventListener("mousemove", updateCursorEntity)
 
 canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
