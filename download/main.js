@@ -183,6 +183,14 @@ class DownloadPostManager {
         this.parent_element.removeChild(this.map.get(doc));
         this.map.delete(doc);
       }
+      edit(data, doc) {
+        const clone = this.map.get(doc);
+        this.setTitle(clone, data.name, 0);
+        this.setTitle(clone, data.version, 1);
+        this.setTitle(clone, data.description, 2);
+        this.setDownloadLink(clone.children[3], data.downloadLink);
+        document.getElementById("noPosts").classList.toggle("invisible", true)
+      }
 }
 
 function loadInformation() {
@@ -222,6 +230,9 @@ window.addEventListener("load", () => {
              }
              if (querySnapshots.type === "removed") {
                 downloadManager.remove(querySnapshots.doc.id);
+             }
+             if (querySnapshots.type === "modified") {
+               downloadManager.edit(querySnapshots.doc.data(), querySnapshots.doc.id);
              }
            })
         })
