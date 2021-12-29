@@ -57,7 +57,7 @@ class KeySpritesheet extends Image {
 
 const dialogs_collection : HTMLCollectionOf<HTMLElement | any> = document.getElementsByClassName("dialog") as HTMLCollectionOf<any>;
 document.addEventListener("keydown", (event) => {
-    if (event.key == "ESC") {
+    if (event.key == "Escape") {
         for (let i = 0; i < dialogs_collection.length; ++i) {
              dialogs_collection[i].classList.toggle("invisible", true);
         }
@@ -958,8 +958,7 @@ canvas_overlay_context.canvas.addEventListener("touchstart", (e) => {
     if (e.cancelable) e.preventDefault();
 })
 
-const overlay_clearRect_disabledTools: string[] = ["Select","Rectangle"]
-
+const overlay_clearRect_disabledTools: string[] = ["Select", "Rectangle"];
 canvas_overlay_context.canvas.addEventListener("pointerout", (e) => {
     e.preventDefault();
     for (let i = 0; i < overlay_clearRect_disabledTools.length; ++i) {
