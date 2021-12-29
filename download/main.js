@@ -190,6 +190,7 @@ class DownloadPostManager {
         this.setTitle(clone, data.description, 2);
         this.setDownloadLink(clone.children[3], data.downloadLink);
         document.getElementById("noPosts").classList.toggle("invisible", true)
+        console.log(`Edited release configurations <${doc}>`);
       }
 }
 
