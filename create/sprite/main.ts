@@ -742,13 +742,6 @@ document.addEventListener("keyup", (e) => {
 
 let stVector = new Vec2(0, 0)
 
-document.getElementById("clearCanvasButton").addEventListener("click", () => {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    pixels = [];
-    undoPixel = [];
-    updateFrame();
-})
-
 document.getElementById("editLayers").addEventListener("click", (e) => {
     document.getElementsByClassName("manage_layer_ui")[0].className = "manage_layer_ui";
     document.getElementById("dialog_window_parent").className = "";
@@ -800,7 +793,7 @@ let p_r : object[] = [];
 function restPixelArrayDispatch(c : CanvasRenderingContext2D, a: object[], p?: number): void {
     for (let i = 0; i < a.length; ++i) { 
         let {x, y} = a[i] as any;
-        drawPixel(c, x, y, p); //Dispatch pixels
+        drawPixel(c, x, y, p);
     }
 }
 
@@ -1091,3 +1084,12 @@ canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
 })
 
 canvas_overlay_context.canvas.addEventListener("mousemove", onmousemoveHandler)
+const matrix : any[][] = [pixels, undoPixel, p_r, l_tuple]
+
+document.getElementById("clearCanvasButton").addEventListener("click", () => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < matrix.length; ++i) {
+        matrix[i].length = 0;
+    }
+    updateFrame<void>();
+})
