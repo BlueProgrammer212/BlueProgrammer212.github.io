@@ -107,6 +107,10 @@ class Vec2 {
        return Math.hypot(dx, dy);
     }
 
+    public setByVector(a): void {
+        this.set(a.x, a.y);
+    }
+
     public getFixedPosition(scale : number): object {
         return {x: Math.floor(this.x / scale), y: Math.floor(this.y / scale)};
     }
@@ -858,7 +862,7 @@ function onmousemoveHandler(e: MouseEvent): void {
     if (isDragging && currentTool == "Ruler") {
         let maxVector = new Vec2(Math.max(lastVector.x, e.clientX), Math.max(lastVector.y, e.clientY));
         drawLine(canvas_overlay_context, lastVector, maxVector);
-        lastVector.set(e.clientX - lineStVector.x, e.clientY - lineStVector.y)
+        lastVector.setByVector(maxVector)
     }
     if (isDragging && currentTool == "Select") {
         canvas_overlay_context.fillStyle = "rgba(135,206,235,0.6)";
