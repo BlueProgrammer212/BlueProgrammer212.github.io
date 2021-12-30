@@ -279,6 +279,38 @@ div#extDialogBox {
   opacity: 0;
 }
 
+.viewMoreToolsDialog_black_bg {
+  background-color: #0000005b;
+  position: absolute;
+  z-index: 1009;
+  left: 0px;
+  display: flex;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+#viewMoreToolsDialog_main_modal_box {
+  background-color: #000;
+  width: 50%;
+  height: 60%;
+}
+
+#viewMoreToolsDialog_main_modal_box > label {
+  color: white;
+  font-family: Pixel;
+  font-size: 16px;
+}
+#viewMoreToolsDialog_main_modal_box > input[type="number"] {
+  border: 3.5px solid white;
+  background-color: #000;
+  color: white;
+  font-family: Pixel;
+}
+
 #loading_screen {
   background-color: #0000005b;
   position: absolute;
