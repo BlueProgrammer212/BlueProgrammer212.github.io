@@ -1083,6 +1083,23 @@ canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     if  (e.button == 2) onSwitchTool("Pencil")
 })
 
+//Will probably refactor this code tommorow.
+document.getElementById("subtractButtonWidth").addEventListener("click", () => {
+    (document.getElementById("width_scale") as HTMLInputElement).stepDown();
+})
+
+document.getElementById("addButtonWidth").addEventListener("click", () => {
+    (document.getElementById("width_scale") as HTMLInputElement).stepUp();
+})
+
+document.getElementById("subtractButtonHeight").addEventListener("click", () => {
+    (document.getElementById("height_scale") as HTMLInputElement).stepDown();
+})
+
+document.getElementById("addButtonHeight").addEventListener("click", () => {
+    (document.getElementById("height_scale") as HTMLInputElement).stepUp();
+})
+
 setTimeout(function(a : string, b : boolean) : void{
     document.getElementById("loading_screen").classList.toggle(a,b)
 }, 1000, "invisible-animated", true)
