@@ -281,10 +281,6 @@ class LayerManager implements Layer {
         const elements_for_layer : HTMLCollectionOf<Element> = 
               document.getElementsByClassName("LayerBoxContainer") as HTMLCollectionOf<any>;
         currentLayerSelected += 1;
-        if (canvas !== void 0) {
-            canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
-            intervals.push(setInterval(this.updateLayer, 10, canvas));            
-        }
 
         for (let i = 0; i < elements_for_layer.length; ++i) {
             elements_for_layer[i]["onclick"] = () => {
@@ -608,6 +604,7 @@ function updateFrame<Type>(): void {
         sprite_canvas["getContext"]("2d").clearRect(0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
         sprite_canvas["getContext"]("2d").drawImage(document.getElementById("main_canvas"),
         0, 0, sprite_canvas["width"], sprite_canvas["height"]) 
+        layer.updateLayer(canvas);
     }
 }
 
