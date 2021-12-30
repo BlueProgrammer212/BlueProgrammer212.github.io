@@ -845,7 +845,7 @@ function drawLine(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): voi
         let angle = getAngle(dx, dy);
         getTriangle(sv.x,sv.y,tv.x,tv.y, angle);   
         for(let i = 0; i < tri.long; i++) {
-            let point : Vec2 = new Vec2(Math.round(sv.x + tri.x*i), Math.round(sv.y + tri.y*i));
+            let point : Vec2 = new Vec2(sv.x + tri.x*i, sv.y + tri.y*i);
             drawPixel(context, point.x, point.y, 16)
             l_tuple.push({x: point.x, y: point.y})
         }
