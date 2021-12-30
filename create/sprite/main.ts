@@ -857,7 +857,7 @@ const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementBy
 function onmousemoveHandler(e: MouseEvent): void {
     if (isDragging && currentTool == "Ruler") {
         let maxVector = new Vec2(Math.max(lineStVector.x, e.clientX), Math.max(lineStVector.y, e.clientY));
-        drawLine(canvas_overlay_context, lineStVector, maxVector);
+        drawLine(canvas_overlay_context, maxVector, lineStVector);
     }
     if (isDragging && currentTool == "Select") {
         canvas_overlay_context.fillStyle = "rgba(135,206,235,0.6)";
