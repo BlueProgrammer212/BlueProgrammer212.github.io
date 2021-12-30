@@ -842,12 +842,12 @@ function drawLine(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): voi
         context.fillStyle = CURRENT_COLOR;
         let dx = sv.x - tv.x, dy = sv.y - tv.y;
         let angle = getAngle(dx, dy);
-        getTriangle(sv.x,sv.y,tv.x,tv.y, angle);
+        getTriangle(sv.x,sv.y,tv.x,tv.y, angle);   
         for(let i = 0; i < tri.long; i++) {
             let point : Vec2 = new Vec2(Math.round(sv.x + tri.x*i), Math.round(sv.y + tri.y*i));
-            context.fillRect(point.x * 16, point.y * 16, 16,16);
+            drawPixel(context, point.x, point.y, 16)
         }
-        context.fillRect(Math.round(tv.x) * 16, Math.round(tv.y) * 16, 16, 16);
+        drawPixel(context, tv.x, tv.y, 16)
 }
 
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
