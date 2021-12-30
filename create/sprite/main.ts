@@ -1083,6 +1083,10 @@ canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     if  (e.button == 2) onSwitchTool("Pencil")
 })
 
+setTimeout(function(a : string, b : boolean) : void{
+    document.getElementById("loading_screen").classList.toggle(a,b)
+}, 500, "invisible", true)
+
 canvas_overlay_context.canvas.addEventListener("mousemove", onmousemoveHandler)
 const matrix : any[][] = [pixels, undoPixel, p_r, l_tuple]
 
