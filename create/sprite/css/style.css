@@ -275,9 +275,9 @@ div#extDialogBox {
 }
 
 .invisible-animated {
+  transition: opacity 0.3s;
   opacity: 0;
 }
-
 
 #loading_screen {
   background-color: #0000005b;
@@ -291,8 +291,6 @@ div#extDialogBox {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  opacity: 1;
-  transition: opacity 0.3s;
 }
 #loading_screen > h6 {
   color: white;
