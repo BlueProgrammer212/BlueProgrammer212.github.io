@@ -843,7 +843,7 @@ function drawLine(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): voi
         context.fillStyle = CURRENT_COLOR;
         let dx = sv.x - tv.x, dy = sv.y - tv.y;
         let angle = getAngle(dx, dy);
-        getTriangle(sv.x,sv.y,tv.x,tv.y, angle);   
+        getTriangle(tv.x, tv.y, sv.x, sv.y, angle);   
         for(let i = 0; i < tri.long; i++) {
             let point : Vec2 = new Vec2(sv.x + tri.x*i, sv.y + tri.y*i);
             drawPixel(context, point.x * 16, point.y * 16, 16)
