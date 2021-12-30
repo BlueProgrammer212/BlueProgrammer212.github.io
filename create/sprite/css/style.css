@@ -303,12 +303,19 @@ div#extDialogBox {
   color: white;
   font-family: Pixel;
   font-size: 16px;
+  margin-left: 20px;
 }
 #viewMoreToolsDialog_main_modal_box > input[type="number"] {
   border: 3.5px solid white;
   background-color: #000;
   color: white;
   font-family: Pixel;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+#resizeCanvasCategory {
+  margin-left: 10px;
 }
 
 #loading_screen {
