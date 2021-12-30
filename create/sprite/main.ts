@@ -1087,6 +1087,10 @@ setTimeout(function(a : string, b : boolean) : void{
     document.getElementById("loading_screen").classList.toggle(a,b)
 }, 1000, "invisible-animated", true)
 
+document.getElementById("loading_screen").addEventListener("transitionend", function() {
+    document.getElementById("loading_screen").style.display = "none";
+})
+
 canvas_overlay_context.canvas.addEventListener("mousemove", onmousemoveHandler)
 const matrix : any[][] = [pixels, undoPixel, p_r, l_tuple]
 
