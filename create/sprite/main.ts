@@ -843,19 +843,22 @@ function drawLine(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): voi
         context.fillStyle = CURRENT_COLOR;
         let dx = sv.x - tv.x, dy = sv.y - tv.y;
         let angle = getAngle(dx, dy);
-        getTriangle(tv.x, tv.y, sv.x, sv.y, angle);   
+        getTriangle(tv.x,tv.y,sv.x,sv.y, angle);   
         for(let i = 0; i < tri.long; i++) {
-            let point : Vec2 = new Vec2(sv.x + tri.x*i, sv.y + tri.y*i);
-            drawPixel(context, point.x * 16, point.y * 16, 16)
+            let point : Vec2 = new Vec2(Math.round(sv.x + tri.x*i), Math.round(sv.y + tri.y*i));
+            drawPixel(context, point.x, point.y, 16)
             l_tuple.push({x: point.x, y: point.y})
         }
+        drawPixel(context, tv.x, tv.y, 16)
+        l_tuple = [...l_tuple, {x: tv.x, y: tv.y}];
 }
 
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
     if (isDragging && currentTool == "Ruler") {
-        let maxVector = new Vec2(e.clientX, e.clientY);
-        drawLine(canvas_overlay_context, lineStVector, maxVector);
+        let minVector = new Vec2(Math.min(lineStVector.x, e.clientX), Math.min(lineStVector.y, e.clientY));
+        let maxVector = new Vec2(Math.max(lineStVector.x, e.clientX), Math.max(lineStVector.y, e.clientY));
+        drawLine(canvas_overlay_context, minVector, maxVector);
     }
     if (isDragging && currentTool == "Select") {
         canvas_overlay_context.fillStyle = "rgba(135,206,235,0.6)";
