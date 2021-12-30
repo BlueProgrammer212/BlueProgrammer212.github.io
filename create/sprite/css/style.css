@@ -314,6 +314,14 @@ div#extDialogBox {
   margin-left: 10px;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  content: "+";
+  border: 1px solid white;
+}
+
 #resizeCanvasCategory {
   margin-left: 10px;
 }
