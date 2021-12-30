@@ -853,7 +853,9 @@ function drawLine(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): voi
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
     if (isDragging && currentTool == "Ruler") {
-        drawLine(canvas_overlay_context, lineStVector, new Vec2(e.clientX, e.clientY));
+        let minVector = new Vec2(Math.min(lineStVector.x, e.clientX), Math.min(lineStVector.y, e.clientY));
+        let maxVector = new Vec2(Math.max(lineStVector.x, e.clientX), Math.max(lineStVector.y, e.clientY));
+        drawLine(canvas_overlay_context, minVector, maxVector);
     }
     if (isDragging && currentTool == "Select") {
         canvas_overlay_context.fillStyle = "rgba(135,206,235,0.6)";
