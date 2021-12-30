@@ -626,6 +626,14 @@ function onSpriteSwitch() {
     context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
 }
 
+function drawLayerData(canvas : any, layer_data : object[] | any): void {
+    if (canvas !== void 0) {
+        for (let i = 0; i < layer_data.length; ++i) {
+            drawPixel(canvas.getContext("2d"), layer_data[i].x, layer_data[i].y, layer_data[i].psize);
+        }
+    }
+}
+
 console.log("[System] Enabled pixel selection canvas overlay.");
 
 function onSwitchTool(tool : string): void {
