@@ -28,7 +28,6 @@ This the first initial release for Pixcel!
 - Layer/sprite opacity.
 - Resize/crop canvas GUI.
 - Zooming functionality
-- Add loading screen
 
 Visit our [community](https://www.pixcel.ml/home/community/?r=as)
 
