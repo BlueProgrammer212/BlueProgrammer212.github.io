@@ -279,7 +279,7 @@ div#extDialogBox {
   opacity: 0;
 }
 
-.viewMoreToolsDialog_black_bg {
+#viewMoreToolsDialog_black_bg {
   background-color: #0000005b;
   position: absolute;
   z-index: 1009;
