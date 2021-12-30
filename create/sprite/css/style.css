@@ -275,7 +275,7 @@ div#extDialogBox {
 }
 
 .invisible-animated {
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
   opacity: 0;
 }
 
