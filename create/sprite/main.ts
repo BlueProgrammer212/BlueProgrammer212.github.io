@@ -3,6 +3,15 @@ declare let iro: any;
 const canvas = document.getElementsByTagName('canvas')[0],
       context = canvas.getContext("2d");
 
+Element.prototype.classList.toggle = Element.prototype.classList.toggle || function(token : string, force?: boolean): boolean {
+    if (force) {
+        Element.prototype.classList.add(token);
+    } else {
+        Element.prototype.classList.remove(token);
+    }
+    return force;
+}
+
 const keyIndexes : string[] | number[] = 
 [
     "KEY-A","KEY-B","KEY-C","KEY-D","KEY-E","KEY-F",
@@ -1089,6 +1098,11 @@ setTimeout(function(a : string, b : boolean) : void{
 
 document.getElementById("loading_screen").addEventListener("transitionend", function() {
     document.getElementById("loading_screen").style.display = "none";
+    console.log("Loaded assets successfully...")
+})
+
+document.getElementById("viewMoreToolsButton").addEventListener("click", () => {
+    document.getElementById("viewMoreToolsDialog_black_bg").classList.remove("invisible");
 })
 
 canvas_overlay_context.canvas.addEventListener("mousemove", onmousemoveHandler)
