@@ -846,8 +846,10 @@ function drawLine(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): voi
         for(let i = 0; i < tri.long; i++) {
             let point : Vec2 = new Vec2(Math.round(sv.x + tri.x*i), Math.round(sv.y + tri.y*i));
             drawPixel(context, point.x, point.y, 16)
+            l_tuple.push({x: point.x, y: point.y})
         }
         drawPixel(context, tv.x, tv.y, 16)
+        l_tuple = [...l_tuple, {x: tv.x, y: tv.y}];
 }
 
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
@@ -1050,6 +1052,10 @@ canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     if (currentTool == "Rectangle") {
         restPixelArrayDispatch(context, p_r, 16);
         updateFrame<void>()
+    }
+    if (currentTool == "Ruler") {
+        restPixelArrayDispatch(context, l_tuple, 16);
+        updateFrame<void>();
     }
     if (currentTool == "Select") {
         endVector.set(e.x, e.y)
