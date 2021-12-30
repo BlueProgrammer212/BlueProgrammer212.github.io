@@ -85,6 +85,11 @@ class Vec3 {
     }
 }
 
+interface Vector {
+    x: number,
+    y: number
+}
+
 class Vec2 {
     public x?: number;
     public y?: number;
@@ -95,6 +100,12 @@ class Vec2 {
         }
         this.set(x, y);
     } 
+
+    public round<U extends Vector>(): U {
+        let x = Math.round(this.x),
+            y = Math.round(this.y);
+        return {x, y} as U;
+    }
 
     set(x = 0, y = 0): void {
         this.x = x;
@@ -640,7 +651,7 @@ function drawLayerData(canvas : any, layer_data : object[] | any): void {
 
 console.log("[System] Enabled pixel selection canvas overlay.");
 
-function onSwitchTool(tool : string): void {
+function onSwitchTool<Type>(tool : string): void {
     document.getElementById(`${tool}Tool`).className="toolslot selected";
     canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas["height"]);
     if ("localStorage" in window) localStorage.setItem("toolSelected", tool)
@@ -661,10 +672,10 @@ let FLAG_EVENT_FIRED : boolean = false,
 document.addEventListener("keydown", (e): void => {
     if (e.key == "e" && e.ctrlKey) {
         e.preventDefault();
-        onSwitchTool("EyeDropper");
+        onSwitchTool<void>("EyeDropper");
     } else if (e.key == "e") {
         e.preventDefault();
-        onSwitchTool("Eraser");
+        onSwitchTool<void>("Eraser");
     }
     
     if ((e.altKey && e.ctrlKey && e.key == "K") || (e.ctrlKey && e.key == "/")) {
@@ -830,39 +841,44 @@ function getAngle(x, y): number {
 }
 
 let tri : any = {}
-function getTriangle(x1,y1,x2,y2,ang): void {
-    if(Math.abs(x1-x2) > Math.abs(y1-y2)) {
+function getTriangle<Type extends object>(x1 : number, y1 : number, x2 : number, y2 : number, ang : number): Type {
+    let dy = y1 - y2, dx = x1 - x2;
+    const HALF_PI = Math.PI / 2;
+    if(Math.abs(dx) > Math.abs(dy)) {
         tri.x = Math.sign(Math.cos(ang));
-        tri.y = Math.tan(ang)*Math.sign(Math.cos(ang));
-        tri.long = Math.abs(x1-x2);
+        tri.y = Math.tan(ang) * Math.sign(Math.cos(ang));
+        tri.long = Math.abs(dx);
     } else { 
-        tri.x = Math.tan((Math.PI/2)-ang)*Math.sign(Math.cos((Math.PI/2)-ang));
-        tri.y = Math.sign(Math.cos((Math.PI/2)-ang));
-        tri.long = Math.abs(y1-y2);
+        tri.x = Math.tan((HALF_PI) - ang)*Math.sign(Math.cos((HALF_PI)-ang));
+        tri.y = Math.sign(Math.cos((HALF_PI) - ang));
+        tri.long = Math.abs(dy);
     }
+    return tri;
 }
 
-function drawLine(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): void {
+function drawLine<Type>(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): Type {
         l_tuple = [];
         context.fillStyle = CURRENT_COLOR;
         let dx = sv.x - tv.x, dy = sv.y - tv.y;
         let angle = getAngle(dx, dy);
-        getTriangle(sv.x,sv.y, tv.x,tv.y, angle);   
+        getTriangle<typeof tri>(sv.x,sv.y, tv.x,tv.y, angle);   
         for(let i = 0; i < tri.long; i++) {
             let point : Vec2 = new Vec2(Math.round(sv.x + tri.x*i), Math.round(sv.y + tri.y*i));
-            drawPixel(context, point.x, point.y, 16)
-            l_tuple.push({x: point.x, y: point.y})
+            const {x, y} = point;
+            drawPixel(context, x, y, 16)
+            l_tuple = [...l_tuple, {x, y}]
         }
         drawPixel(context, tv.x, tv.y, 16)
         l_tuple = [...l_tuple, {x: tv.x, y: tv.y}];
+        return null;
 }
 
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
     if (isDragging && currentTool == "Ruler") {
         let maxVector = new Vec2(Math.max(lastVector.x, e.clientX), Math.max(lastVector.y, e.clientY));
-        drawLine(canvas_overlay_context, lastVector, maxVector);
-        lastVector.setByVector(maxVector)
+        drawLine<void>(canvas_overlay_context, lastVector, maxVector);
+        lastVector.setByVector(maxVector.round<Vector>()); 
     }
     if (isDragging && currentTool == "Select") {
         canvas_overlay_context.fillStyle = "rgba(135,206,235,0.6)";
@@ -1038,7 +1054,7 @@ canvas_overlay_context.canvas.addEventListener("touchend", (e) => {
     isDragging = false;
 })
 
-function updateCursorEntity(e : MouseEvent): void {
+function updateCursorEntity<Type>(e : Type | any): Type {
     if (currentTool !== "Select") {
         canvas_overlay_context.clearRect(0, 0, canvas.width, canvas.height); 
         canvas_overlay_context.fillStyle = 'rgba(255, 255, 255, 0.6)';
@@ -1047,20 +1063,23 @@ function updateCursorEntity(e : MouseEvent): void {
         let deltaY : number = Math.floor(mouseVector.y / (psize * scalar));
         canvas_overlay_context.fillRect(deltaX * psize, deltaY * psize, psize, psize)
     }
+    return e;
 }
 
-canvas_overlay_context.canvas.oncontextmenu = function() {return false;}
-canvas_overlay_context.canvas.addEventListener("mousemove", updateCursorEntity)
+canvas_overlay_context.canvas.oncontextmenu = function(): boolean {return false;}
+canvas_overlay_context.canvas.addEventListener("mousemove", (e : MouseEvent) => updateCursorEntity<MouseEvent>(e))
 
 canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     e.preventDefault();
     if (currentTool == "Rectangle") {
         restPixelArrayDispatch(context, p_r, 16);
         updateFrame<void>()
+        canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
     }
     if (currentTool == "Ruler") {
         restPixelArrayDispatch(context, l_tuple, 16);
         updateFrame<void>();
+        canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
     }
     if (currentTool == "Select") {
         endVector.set(e.x, e.y)
