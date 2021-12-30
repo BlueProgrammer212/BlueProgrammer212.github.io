@@ -1106,3 +1106,4 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
     }
     updateFrame<void>();
 })
+

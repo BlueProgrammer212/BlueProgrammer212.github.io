@@ -308,12 +308,18 @@ div#extDialogBox {
 .buttonModResize {
   width: 25px;
   height: 25px;
-  font-size: 10px;
+  /* font-size: 16px; */
+  font-family: 'Pixel';
+  color: white;
+  background-color: black;
+  border: 3.5px solid white;
+  font-size: 12px;
 }
 
 .subtractButton {
   margin-left: 10px;
 }
+
 
 #viewMoreToolsDialog_main_modal_box > input[type="number"] {
   border: 3.5px solid white;
