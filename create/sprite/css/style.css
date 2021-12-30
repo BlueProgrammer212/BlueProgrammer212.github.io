@@ -286,6 +286,12 @@ div#extDialogBox {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.invisible-animated {
+  opacity: 0;
 }
 
 #loading_screen > h6 {
