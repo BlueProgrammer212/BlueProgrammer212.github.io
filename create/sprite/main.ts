@@ -824,12 +824,13 @@ let lineStVector = new Vec2(0, 0),
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
     if (isDragging && currentTool == "Ruler") {
-        let minVector = new Vec2(Math.min(lineStVector.x, e.clientX), Math.min(lineStVector.y, e.clientY));
+        let minVector = new Vec2(Math.min(lineStVector.x, e.clientX), Math.min(lineStVector.y, e.clientY))
         let maxVector = new Vec2(Math.max(lineStVector.x, e.clientX), Math.max(lineStVector.y, e.clientY));
         canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
         let dx_max = Math.hypot(maxVector.x, maxVector.y);
-        for (let xS = minVector.x; xS < dx_max; xS += 16) {
-            for (let yS = minVector.y; yS < dx_max; yS += 16) {
+        let dx_min = Math.hypot(minVector.x, minVector.y);
+        for (let xS = dx_min; xS < dx_max; xS += 16) {
+            for (let yS = dx_min; yS < dx_max; yS += 16) {
                 let fixed_offset_vector = getMousePos(canvas, xS, yS);
                 let dx : number = Math.floor(fixed_offset_vector.x / 16),
                     dy : number = Math.floor(fixed_offset_vector.y / 16);
