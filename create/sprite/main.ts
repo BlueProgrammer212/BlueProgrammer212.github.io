@@ -858,7 +858,7 @@ function onmousemoveHandler(e: MouseEvent): void {
     if (isDragging && currentTool == "Ruler") {
         let maxVector = new Vec2(Math.max(lastVector.x, e.clientX), Math.max(lastVector.y, e.clientY));
         drawLine(canvas_overlay_context, lastVector, maxVector);
-        lastVector.set(e.clientX, e.clientY)
+        lastVector.set(e.clientX - lineStVector.x, e.clientY - lineStVector.y)
     }
     if (isDragging && currentTool == "Select") {
         canvas_overlay_context.fillStyle = "rgba(135,206,235,0.6)";
