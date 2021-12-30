@@ -839,6 +839,7 @@ function getTriangle(x1,y1,x2,y2,ang): void {
 }
 
 function drawLine(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): void {
+        l_tuple = [];
         context.fillStyle = CURRENT_COLOR;
         let dx = sv.x - tv.x, dy = sv.y - tv.y;
         let angle = getAngle(dx, dy);
@@ -892,7 +893,7 @@ function onmousemoveHandler(e: MouseEvent): void {
             drawPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, psize)
         }
         lastVector.set(e.clientX, e.clientY);
-        updateFrame();
+        updateFrame<void>();
     } else if (isDragging && currentTool == "Eraser") {
         clearPixel(context, e.clientX, e.clientY, psize)
         let dx = e.clientX - lastVector.x, dy = e.clientY - lastVector.y;
@@ -901,7 +902,7 @@ function onmousemoveHandler(e: MouseEvent): void {
             clearPixel(context, lastVector.x + dx / d * i, lastVector.y + dy / d * i, psize)
         }
         lastVector.set(e.clientX, e.clientY);
-        updateFrame()
+        updateFrame<void>()
     } else if (isDragging && currentTool == "Rectangle") {
         let minVector = new Vec2(Math.min(stVector.x, e.clientX), Math.min(stVector.y, e.clientY));
         let maxVector = new Vec2(Math.max(stVector.x, e.clientX), Math.max(stVector.y, e.clientY)); 
