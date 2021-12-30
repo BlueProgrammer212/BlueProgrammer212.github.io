@@ -274,6 +274,11 @@ div#extDialogBox {
   font-family: Pixel;
 }
 
+.invisible-animated {
+  opacity: 0;
+}
+
+
 #loading_screen {
   background-color: #0000005b;
   position: absolute;
@@ -289,11 +294,6 @@ div#extDialogBox {
   opacity: 1;
   transition: opacity 0.3s;
 }
-
-.invisible-animated {
-  opacity: 0;
-}
-
 #loading_screen > h6 {
   color: white;
   font-family: Pixel;
