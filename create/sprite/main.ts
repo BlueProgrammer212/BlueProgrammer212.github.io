@@ -821,23 +821,39 @@ function handleTouchMove(evt) {
 let lineStVector = new Vec2(0, 0),
     l_tuple = [];
 
+function getAngle(x, y): number {
+    return Math.atan(y / (x == 0 ? 0.01 : x)) + (x < 0 ? Math.PI : 0);
+}
+
+let tri : any = {}
+function getTriangle(x1,y1,x2,y2,ang): void {
+    if(Math.abs(x1-x2) > Math.abs(y1-y2)) {
+        tri.x = Math.sign(Math.cos(ang));
+        tri.y = Math.tan(ang)*Math.sign(Math.cos(ang));
+        tri.long = Math.abs(x1-x2);
+    } else { 
+        tri.x = Math.tan((Math.PI/2)-ang)*Math.sign(Math.cos((Math.PI/2)-ang));
+        tri.y = Math.sign(Math.cos((Math.PI/2)-ang));
+        tri.long = Math.abs(y1-y2);
+    }
+}
+
+function drawLine(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): void {
+        context.fillStyle = CURRENT_COLOR;
+        let dx = sv.x - tv.x, dy = sv.y - tv.y;
+        let angle = getAngle(dx, dy);
+        getTriangle(sv.x,sv.y,tv.x,tv.y, angle);
+        for(let i = 0; i < tri.long; i++) {
+            let point : Vec2 = new Vec2(Math.round(sv.x + tri.x*i), Math.round(sv.y + tri.y*i));
+            context.fillRect(point.x * 16, point.y * 16, 16,16);
+        }
+        context.fillRect(Math.round(tv.x) * 16, Math.round(tv.y) * 16, 16, 16);
+}
+
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
 function onmousemoveHandler(e: MouseEvent): void {
     if (isDragging && currentTool == "Ruler") {
-        canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
-        let dx = lineStVector.x - e.clientX;
-        let dy = lineStVector.y - e.clientY;
-        let d = Math.hypot(dx, dy);
-        for (let xS = lineStVector.x; xS < d; xS += 16) {
-            for (let yS = lineStVector.y; yS < d; yS += 16) {
-                canvas_overlay_context.fillStyle = CURRENT_COLOR;
-                let fixed_offset_vector = getMousePos(canvas, xS, yS);
-                let dx : number = Math.floor(fixed_offset_vector.x / 16),
-                    dy : number = Math.floor(fixed_offset_vector.y / 16);
-                canvas_overlay_context.fillRect(dx * 16, dy * 16, 16, 16)
-                l_tuple = [...l_tuple, {x: xS, y: yS}]
-            }
-        }
+        drawLine(canvas_overlay_context, lineStVector, new Vec2(e.clientX, e.clientY));
     }
     if (isDragging && currentTool == "Select") {
         canvas_overlay_context.fillStyle = "rgba(135,206,235,0.6)";
