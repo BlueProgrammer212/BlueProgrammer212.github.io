@@ -683,15 +683,12 @@ document.addEventListener("keydown", (e): void => {
     }
 
     if (e.key == "Delete" && currentTool == "Select") {
-        let av = getMousePos(canvas, stVector.x, stVector.y),
-            ev = getMousePos(canvas, endVector.x, endVector.y);
+        let minVector = new Vec2(Math.min(stVector.x, endVector.x), Math.min(stVector.y, endVector.y));
+        let maxVector = new Vec2(Math.max(stVector.x, endVector.x), Math.max(stVector.y, endVector.y));
+        let mmax_v = getMousePos(canvas, maxVector.x, maxVector.y),
+            mmin_v = getMousePos(canvas, minVector.x, minVector.y);
         canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
-        if (ev.x >= av.x && ev.y >= av.y) {
-            context.clearRect(av.x, av.y, ev.x, ev.y);
-        }
-        if (ev.x < av.x && ev.y < av.y) {
-            context.clearRect(ev.x, ev.y, av.x, av.y);
-        }
+        context.clearRect(mmin_v.x, mmin_v.y, mmax_v.x, mmax_v.y);
         updateFrame<void>();
     }
 
