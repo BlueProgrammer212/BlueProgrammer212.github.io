@@ -254,6 +254,7 @@ class LayerManager implements Layer {
     public readonly pid: string;
     public template: Element | HTMLTemplateElement;
     public parent: Element;
+    public pixels: object[];
     public options?: object;
     constructor({ tid, pid, options }: { tid: string; pid: string; options?: object; }) { 
         this.id = tid;
@@ -261,6 +262,7 @@ class LayerManager implements Layer {
         this.template = document.getElementById(this.id) as HTMLTemplateElement;
         this.parent = document.getElementById(this.pid) as any;
         this.options = options;
+        this.pixels = [];
     } 
 
     public updateLayer(canvas): void {
@@ -315,8 +317,11 @@ function initLayers(): void {
 initLayers();
 
 document.getElementById("addLayer").addEventListener("click", () => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
     layer.clone(canvas);
-    document.getElementById("layerMainContainer").scroll(0, 99999)
+    layer.pixels.length = 0;
+    document.getElementById("layerMainContainer").scroll(0, 99999);
 })
 sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
