@@ -305,22 +305,30 @@ div#extDialogBox {
   font-size: 16px;
   margin-left: 20px;
 }
+.buttonModResize {
+  width: 25px;
+  height: 25px;
+  font-size: 10px;
+}
+
 #viewMoreToolsDialog_main_modal_box > input[type="number"] {
   border: 3.5px solid white;
   background-color: #000;
   color: white;
   font-family: Pixel;
   margin-top: 5px;
+  width: 50px;
+  height: 25px;
   margin-left: 10px;
 }
+
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button
 {
   -webkit-appearance: none;
-  content: "+";
-  border: 1px solid white;
 }
+
 
 #resizeCanvasCategory {
   margin-left: 10px;
