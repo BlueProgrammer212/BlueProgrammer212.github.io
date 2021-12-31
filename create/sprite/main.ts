@@ -1146,11 +1146,6 @@ let canvases : HTMLCanvasElement[] = [canvas, canvas_overlay_context.canvas];
 function onResize<T>(a?: T): any{
     redraw_canvas();
     updateFrame<void>();
-    pixels = pixels.filter((a) => {
-        for (let i = 0; i < a.length; ++i) {
-             return a[i].x < canvas.width && a[i].y < canvas.height
-        }
-    });
 }
 
 function resize(canvas_tuple : HTMLCanvasElement[]) {
