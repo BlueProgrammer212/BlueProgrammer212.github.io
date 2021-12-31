@@ -1107,16 +1107,17 @@ const subtractButtonElement : ModifyNumberInput[] = [
     new ButtonElementNumberInput("subtractButtonWidth", "width_scale")
 ]
 
-function stepInput<Type>(t : ModifyNumberInput[], a : Type): void {
+function stepInput<Type>(t : ModifyNumberInput[], a : Type): Promise<Type> {
     for (let i = 0; i < t.length; ++i) {
         document.getElementById(t[i].id).addEventListener("click", () => {
             (document.getElementById(t[i].id_inp) as HTMLInputElement)[`step${a}`]();
         })
     }
+    return new Promise((r, _) => setTimeout(r, 1000, (a as Type)))
 }
 
-stepInput<string>(addButtonElement, "Up");
-stepInput<string>(subtractButtonElement, "Down")
+stepInput<string>(addButtonElement, "Up").then(ot => null);
+stepInput<string>(subtractButtonElement, "Down").then(ot => null)
 
 setTimeout(function(a : string, b : boolean) : void{
     document.getElementById("loading_screen").classList.toggle(a,b)
