@@ -1089,6 +1089,7 @@ canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     if  (e.button == 2) onSwitchTool("Pencil")
 })
 
+
 interface ModifyNumberInput {
     readonly id: string,
     readonly id_inp: string
@@ -1183,3 +1184,8 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
     updateFrame<void>();
 })
 
+canvas_overlay_context.canvas.addEventListener("wheel", (e) => {
+    const wheel = e.deltaY < 0 ? 1 : -1;
+    const zoom = Math.exp(wheel * 0.2);
+    canvases.forEach(e => e.style.transform = `scale(${zoom}) translateX(-25%) translateY(-25%)`)
+});
