@@ -1113,9 +1113,7 @@ let width_value : number = parseInt((document.getElementById("width_scale") as N
 const addButtonElement : ModifyNumberInput[] = [
     new ButtonElementNumberInput("addButtonWidth", "width_scale"), 
     new ButtonElementNumberInput("addButtonHeight", "height_scale")
-];
-
-const subtractButtonElement : ModifyNumberInput[] = [
+], subtractButtonElement : ModifyNumberInput[] = [
     new ButtonElementNumberInput("subtractButtonHeight", "height_scale"),
     new ButtonElementNumberInput("subtractButtonWidth", "width_scale")
 ]
@@ -1134,8 +1132,12 @@ function stepInput<Type>(t : ModifyNumberInput[], a : Type): Promise<Type> {
 stepInput<string>(addButtonElement, "Up").then(ot => null);
 stepInput<string>(subtractButtonElement, "Down").then(ot => null)
 
+let canvases : HTMLCanvasElement[] = [canvas, canvas_overlay_context.canvas]
+
 document.getElementById("Resize").addEventListener("click", () => {
-    CanvasManager.setCanvasSize<number>(canvas, width_value, height_value)
+    for (let i = 0; i < canvases.length; ++i) {
+        CanvasManager.setCanvasSize<number>(canvases[i], width_value, height_value)
+    }
 })
 
 setTimeout(function(a : string, b : boolean) : void{
