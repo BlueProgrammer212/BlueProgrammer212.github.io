@@ -1153,11 +1153,15 @@ function onResize<T>(a?: T): any{
     });
 }
 
-document.getElementById("Resize").addEventListener("click", () => {
-    for (let i = 0; i < canvases.length; ++i) {
+function resize(canvas_tuple : HTMLCanvasElement[]) {
+    for (let i = 0; i < canvas_tuple.length; ++i) {
         CanvasManager.setCanvasSize<HTMLCanvasElement>(
-                     canvases[i], width_value, height_value).then(onResize<HTMLCanvasElement>())
+                     canvas_tuple[i], width_value, height_value).then(onResize<HTMLCanvasElement>())
     }
+}
+
+document.getElementById("Resize").addEventListener("click", () => {
+    resize(canvases)
 })
 
 setTimeout(function(a : string, b : boolean) : void{
