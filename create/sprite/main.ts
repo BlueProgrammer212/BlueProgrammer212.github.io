@@ -601,6 +601,12 @@ class CanvasManager implements CanvasInterface {
         yield ["aspectRatio", 0, 0, cwidth, cheight, cctx];
     }
 
+    static setCanvasSize<Type>(canvas : HTMLCanvasElement | any, width?: number, height?: number): Type {
+        canvas.width = width;
+        canvas.height = height;
+        return canvas;
+    }
+
     public static fill({ dx, dy }: { dx: number; dy: number; }): void {
         let pstack = [];
         for (let mx = 0; mx < 5; ++mx) {
@@ -1097,6 +1103,13 @@ class ButtonElementNumberInput implements ModifyNumberInput {
     }
 }
 
+interface NumberInput extends HTMLElement {
+     value: string;
+}
+
+let width_value : number = parseInt((document.getElementById("width_scale") as NumberInput).value),
+    height_value : number = parseInt((document.getElementById("height_scale") as NumberInput).value);
+
 const addButtonElement : ModifyNumberInput[] = [
     new ButtonElementNumberInput("addButtonWidth", "width_scale"), 
     new ButtonElementNumberInput("addButtonHeight", "height_scale")
@@ -1111,6 +1124,8 @@ function stepInput<Type>(t : ModifyNumberInput[], a : Type): Promise<Type> {
     for (let i = 0; i < t.length; ++i) {
         document.getElementById(t[i].id).addEventListener("click", () => {
             (document.getElementById(t[i].id_inp) as HTMLInputElement)[`step${a}`]();
+            width_value = parseInt((document.getElementById("width_scale") as NumberInput).value);
+            height_value = parseInt((document.getElementById("height_scale") as NumberInput).value);
         })
     }
     return new Promise((r, _) => setTimeout(r, 1000, (a as Type)))
@@ -1118,6 +1133,10 @@ function stepInput<Type>(t : ModifyNumberInput[], a : Type): Promise<Type> {
 
 stepInput<string>(addButtonElement, "Up").then(ot => null);
 stepInput<string>(subtractButtonElement, "Down").then(ot => null)
+
+document.getElementById("Resize").addEventListener("click", () => {
+    CanvasManager.setCanvasSize<number>(canvas, width_value, height_value)
+})
 
 setTimeout(function(a : string, b : boolean) : void{
     document.getElementById("loading_screen").classList.toggle(a,b)
