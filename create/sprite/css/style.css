@@ -319,10 +319,12 @@ div#extDialogBox {
 #Resize {
   border: 3.5px solid white;
   background-color: black;
-  padding: 20px;
-  font-size: 18px;
+  padding: 10px;
+  font-size: 16px;
   font-family: Pixel;
-  color: white
+  color: white;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 
 .subtractButton {
