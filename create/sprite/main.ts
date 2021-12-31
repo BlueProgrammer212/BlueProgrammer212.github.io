@@ -601,10 +601,10 @@ class CanvasManager implements CanvasInterface {
         yield ["aspectRatio", 0, 0, cwidth, cheight, cctx];
     }
 
-    static setCanvasSize<Type>(canvas : HTMLCanvasElement | any, width?: number, height?: number): Type {
+    static setCanvasSize<Type>(canvas : HTMLCanvasElement | any, width?: number, height?: number): Promise<Type> {
         canvas.width = width;
         canvas.height = height;
-        return canvas;
+        return new Promise((r) => r(canvas))
     }
 
     public static fill({ dx, dy }: { dx: number; dy: number; }): void {
@@ -1145,7 +1145,7 @@ let canvases : HTMLCanvasElement[] = [canvas, canvas_overlay_context.canvas]
 
 document.getElementById("Resize").addEventListener("click", () => {
     for (let i = 0; i < canvases.length; ++i) {
-        CanvasManager.setCanvasSize<number>(canvases[i], width_value, height_value)
+        CanvasManager.setCanvasSize<HTMLCanvasElement>(canvases[i], width_value, height_value).then(() => redraw_canvas())
     }
 })
 
