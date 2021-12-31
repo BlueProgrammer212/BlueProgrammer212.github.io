@@ -1107,8 +1107,17 @@ interface NumberInput extends HTMLElement {
      value: string;
 }
 
-let width_value : number = parseInt((document.getElementById("width_scale") as NumberInput).value),
-    height_value : number = parseInt((document.getElementById("height_scale") as NumberInput).value);
+let number_width : NumberInput = document.getElementById("width_scale") as NumberInput;
+let number_height : NumberInput = document.getElementById("height_scale") as NumberInput;
+
+let width_value : number = parseInt(number_width.value),
+    height_value : number = parseInt(number_height.value);
+
+const number_inputs : NodeListOf<NumberInput> = document.querySelectorAll(".inputNumberResizeBox"),
+      disabled_events_number_inputs : string[] = ["keypress", "keydown"];
+
+number_inputs.forEach(elements => disabled_events_number_inputs.forEach
+                     (ev_n => elements.addEventListener(ev_n, e => e.preventDefault())))
 
 const addButtonElement : ModifyNumberInput[] = [
     new ButtonElementNumberInput("addButtonWidth", "width_scale"), 

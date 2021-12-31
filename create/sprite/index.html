@@ -100,7 +100,9 @@
           <p class="save_artwork_ui" id="ScaleCategory">Pixel scale</p>
           <input class="save_artwork_ui" type="range" max="8" value="1" min="1" class="scaleSlider" id="scaleSliderRange" />
           <p class="save_artwork_ui" id="SpritePreviewCategory">Preview</p>
-          <canvas class="save_artwork_ui" id="preview_canvas_sprite_animation"></canvas>
+          <canvas class="save_artwork_ui" id="preview_canvas_sprite_animation">
+             Sorry, but your browser does not support HTML5 canvas. 
+          </canvas>
           <p class="save_artwork_ui" id="ClearCanvasCategoryTitle">Canvas Edit</p>
           <button class="save_artwork_ui" id="clearCanvasButton" title="Clear Canvas">Clear canvas</button>
           <p class="save_artwork_ui" id="MoreToolsCategory">Misc tools</p>
@@ -172,12 +174,15 @@
              <p id="resizeCanvasCategory">Resize canvas</p>
              <label for="width">Width:</label>
              <button id="subtractButtonWidth" class="buttonModResize subtractButton">-</button>
-             <input type="number" name="width" title="Resize width" value="672" id="width_scale" min="16" max="928" step="16" />
+             <input type="number" name="width" title="Resize width" value="672" id="width_scale" class="inputNumberResizeBox" min="16" max="928" step="16" />
              <button id="addButtonWidth" class="buttonModResize">+</button><br>
              <label for="height">Height:</label>
              <button id="subtractButtonHeight" class="buttonModResize subtractButton">-</button>
-             <input type="number" name="height" title="Resize height" value="608" id="height_scale" min="16" max="928" step="16" />
+             <input type="number" name="height" title="Resize height" value="608" id="height_scale" class="inputNumberResizeBox" min="16" max="928" step="16" />
              <button id="addButtonHeight" class="buttonModResize">+</button><br>
+             <!--Indevelopment
+             <label for="aspectRatio">Keep aspect ratio</label>
+             <input id="keepAspectRatio" type="checkbox" /><br> -->
              <button id="Resize" title="Resize" class="resizeButton">Resize</button>
           </div>
       </div>
