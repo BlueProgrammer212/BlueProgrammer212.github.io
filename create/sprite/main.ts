@@ -1141,11 +1141,17 @@ function stepInput<Type>(t : ModifyNumberInput[], a : Type): Promise<Type> {
 stepInput<string>(addButtonElement, "Up").then(ot => null);
 stepInput<string>(subtractButtonElement, "Down").then(ot => null)
 
-let canvases : HTMLCanvasElement[] = [canvas, canvas_overlay_context.canvas]
+let canvases : HTMLCanvasElement[] = [canvas, canvas_overlay_context.canvas];
+
+function onResize<T>(a?: T): any{
+    redraw_canvas();
+    updateFrame<void>();
+}
 
 document.getElementById("Resize").addEventListener("click", () => {
     for (let i = 0; i < canvases.length; ++i) {
-        CanvasManager.setCanvasSize<HTMLCanvasElement>(canvases[i], width_value, height_value).then(() => redraw_canvas())
+        CanvasManager.setCanvasSize<HTMLCanvasElement>(
+                     canvases[i], width_value, height_value).then(onResize<HTMLCanvasElement>())
     }
 })
 
