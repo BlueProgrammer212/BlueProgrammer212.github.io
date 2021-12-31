@@ -339,7 +339,9 @@ div#extDialogBox {
   font-family: Pixel;
   margin-top: 5px;
   width: 50px;
+  cursor: default;
   height: 25px;
+  caret-color: rgba(0,0,0,0);
 }
 
 
