@@ -1185,7 +1185,6 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
 })
 
 canvas_overlay_context.canvas.addEventListener("wheel", (e) => {
-    const wheel = e.deltaY < 0 ? 1 : -1;
-    const zoom = Math.exp(wheel * 0.2);
+    const zoom = Math.exp(e.deltaY * 0.2);
     canvases.forEach(e => e.style.transform = `scale(${zoom}) translateX(-25%) translateY(-25%)`)
 });
