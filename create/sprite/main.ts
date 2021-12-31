@@ -1088,14 +1088,23 @@ interface ModifyNumberInput {
     readonly id_inp: string
 }
 
+class ButtonElementNumberInput implements ModifyNumberInput {
+    readonly id: string;
+    readonly id_inp: string;
+    constructor(id : string, id_inp:  string) {
+        this.id = id;
+        this.id_inp = id_inp
+    }
+}
+
 const addButtonElement : ModifyNumberInput[] = [
-    {id: "addButtonWidth", id_inp: "width_scale"}, 
-    {id: "addButtonHeight", id_inp: "height_scale"}
+    new ButtonElementNumberInput("addButtonWidth", "width_scale"), 
+    new ButtonElementNumberInput("addButtonHeight", "height_scale")
 ];
 
 const subtractButtonElement : ModifyNumberInput[] = [
-    {id: "subtractButtonHeight", id_inp: "height_scale"},
-    {id: "subtractButtonWidth", id_inp: "width_scale"}
+    new ButtonElementNumberInput("subtractButtonHeight", "height_scale"),
+    new ButtonElementNumberInput("subtractButtonWidth", "width_scale")
 ]
 
 function stepInput<Type>(t : ModifyNumberInput[], a : Type): void {
