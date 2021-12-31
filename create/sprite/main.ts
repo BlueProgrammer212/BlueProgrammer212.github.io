@@ -1186,6 +1186,6 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
 let old_scale = 1;
 canvas_overlay_context.canvas.addEventListener("wheel", (ev) => {
     let d = Math.sign(ev.deltaY) * 0.25;
-    canvases.forEach(e => e.style.transform = `scale(${d + old_scale}) translate(-50%, -46%)`)
+    canvases.forEach(e => e.style.transform = `scale(${d + old_scale}) translate(-${50 * (d + old_scale)}%, -${46 * (d + old_scale)}%)`)
     old_scale = old_scale + d;
 });
