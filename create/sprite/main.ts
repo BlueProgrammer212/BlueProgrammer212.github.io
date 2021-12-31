@@ -1083,22 +1083,31 @@ canvas_overlay_context.canvas.addEventListener("mouseup", (e) => {
     if  (e.button == 2) onSwitchTool("Pencil")
 })
 
-//Will probably refactor this code tommorow.
-document.getElementById("subtractButtonWidth").addEventListener("click", () => {
-    (document.getElementById("width_scale") as HTMLInputElement).stepDown();
-})
+interface ModifyNumberInput {
+    readonly id: string,
+    readonly id_inp: string
+}
 
-document.getElementById("addButtonWidth").addEventListener("click", () => {
-    (document.getElementById("width_scale") as HTMLInputElement).stepUp();
-})
+const addButtonElement : ModifyNumberInput[] = [
+    {id: "addButtonWidth", id_inp: "width_scale"}, 
+    {id: "addButtonHeight", id_inp: "height_scale"}
+];
 
-document.getElementById("subtractButtonHeight").addEventListener("click", () => {
-    (document.getElementById("height_scale") as HTMLInputElement).stepDown();
-})
+const subtractButtonElement : ModifyNumberInput[] = [
+    {id: "subtractButtonHeight", id_inp: "height_scale"},
+    {id: "subtractButtonWidth", id_inp: "width_scale"}
+]
 
-document.getElementById("addButtonHeight").addEventListener("click", () => {
-    (document.getElementById("height_scale") as HTMLInputElement).stepUp();
-})
+function stepInput<Type>(t : ModifyNumberInput[], a : Type): void {
+    for (let i = 0; i < t.length; ++i) {
+        document.getElementById(t[i].id).addEventListener("click", () => {
+            (document.getElementById(t[i].id_inp) as HTMLInputElement)[`step${a}`]();
+        })
+    }
+}
+
+stepInput<string>(addButtonElement, "Up");
+stepInput<string>(subtractButtonElement, "Down")
 
 setTimeout(function(a : string, b : boolean) : void{
     document.getElementById("loading_screen").classList.toggle(a,b)
