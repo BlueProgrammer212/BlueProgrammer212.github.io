@@ -786,11 +786,8 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
       width: 100%;
   }
   .colorBox {
-     width:20px;
-     height: 20px;
-  }
-  #bg-color-pallete {
-     display: none;
+     width:25px;
+     height: 25px;
   }
 }
 
@@ -820,7 +817,7 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
    position: relative;
    top: -7%;
  }
- #arrow > p {
+ div#arrow > p {
   margin-left: 5px;
 }
 }
