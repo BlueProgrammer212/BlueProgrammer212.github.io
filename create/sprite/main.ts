@@ -1221,7 +1221,7 @@ document.getElementById("arrow_left").addEventListener("click", () => {
          TOGGLE_SIDEBAR_RIGHT = true;
          TOGGLE_SIDEBAR = false;
     } else {
-        document.getElementById("layer_tool_box").style.transform = "translateX(-100%)"
+        document.getElementById("layer_tool_box").style.transform = "translateX(100%)"
         TOGGLE_SIDEBAR_RIGHT = false;
     }
 })
