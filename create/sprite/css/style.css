@@ -45,7 +45,7 @@ body {
   align-content: center;
   justify-content: center;
   justify-items: center;
-  transition: transform 1s;
+  transition: transform 0.5s;
   /* align-items: center; */
 }
 
@@ -62,7 +62,7 @@ body {
   align-content: center;
   justify-content: center;
   justify-items: center;
-  transition: transform 1s;
+  transition: transform 0.5s;
 }
 
 .exitbtn {
