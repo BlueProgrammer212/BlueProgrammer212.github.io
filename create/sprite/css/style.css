@@ -789,4 +789,7 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
      width:20px;
      height: 20px;
   }
+  #bg-color-pallete {
+     display: none;
+  }
 }
