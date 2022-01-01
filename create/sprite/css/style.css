@@ -45,6 +45,7 @@ body {
   align-content: center;
   justify-content: center;
   justify-items: center;
+  transition: transform 1s;
   /* align-items: center; */
 }
 
@@ -61,6 +62,7 @@ body {
   align-content: center;
   justify-content: center;
   justify-items: center;
+  transition: transform 1s;
 }
 
 .exitbtn {
@@ -810,11 +812,9 @@ div#arrow {
 
 @media only screen and (max-width: 1100px) {
   #toolset {
-    transition: transform 1s;
     transform: translate(-100%);
  }
  #layer_tool_box {
-   transition: transform 1s;
    transform: translateX(100%);
  }
  #addFrameButton {
