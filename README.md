@@ -27,6 +27,7 @@ This the first initial release for Pixcel!
 - Drawing sample dialog.
 - Layer/sprite opacity.
 - Resize/crop canvas GUI.
+- Add sort by feature in the comment section & community posts
 - Onion Skin feature
 - Zooming functionality
 
