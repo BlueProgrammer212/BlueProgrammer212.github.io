@@ -1198,5 +1198,5 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
 })
 
 document.getElementById("arrow").addEventListener("click", () => {
-   document.getElementById("toolset").style.transform = "translateX(100%)"
+   document.getElementById("toolset").style.transform = "translateX(0%)"
 })
