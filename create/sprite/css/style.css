@@ -200,8 +200,8 @@ div#extDialogBox {
      display: none;
   }
   .toolslot {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
   }
 }
 
@@ -784,5 +784,9 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
 @media screen and (max-width:600px) {
   .column {
       width: 100%;
+  }
+  .colorBox {
+     width:20px;
+     height: 20px;
   }
 }
