@@ -791,16 +791,7 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@media only screen and (max-width: 1100px) {
-  #toolset {
-    transition: transform 1s;
-    transform: translate(-100%);
- }
- #layer_tool_box {
-   transition: transform 1s;
-   transform: translateX(100%);
- }
- div#arrow {
+div#arrow {
   height: 100px;
   width: 20px;
   background-color: #858585;
@@ -813,11 +804,21 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
   color: white;
   cursor: pointer;
  }
+ div#arrow > p {
+  margin-left: 5px;
+}
+
+@media only screen and (max-width: 1100px) {
+  #toolset {
+    transition: transform 1s;
+    transform: translate(-100%);
+ }
+ #layer_tool_box {
+   transition: transform 1s;
+   transform: translateX(100%);
+ }
  #addFrameButton {
    position: relative;
    top: -7%;
  }
- div#arrow > p {
-  margin-left: 5px;
-}
 }
