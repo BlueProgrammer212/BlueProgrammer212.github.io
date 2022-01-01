@@ -1200,6 +1200,6 @@ let old_scale = 1;
 canvas_overlay_context.canvas.addEventListener("wheel", (ev) => {
     let d = -Math.sign(ev.deltaY) * 0.1;
     let s = Math.min(Math.max(d + old_scale, 0.4), 3);
-    canvases.forEach(e => e.style.transform = `scale(${s}) translate(-${50 * (s * 4)}%, -${46 * (s * 4)}%)`)
+    canvases.forEach(e => e.style.transform = `scale(${s})`)
     old_scale = old_scale + d;
 });
