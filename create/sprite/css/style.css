@@ -195,6 +195,12 @@ div#extDialogBox {
   z-index: 100;
 }
 
+@media only screen and (max-width: 600px) {
+  .topnav {
+     display: none;
+  }
+}
+
 .pixel.search {
   border: 3.5px solid black;
   display: inline-flex;

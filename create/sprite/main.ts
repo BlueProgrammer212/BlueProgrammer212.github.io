@@ -587,6 +587,7 @@ void async function addEvent() {
     eventManager.runCallback("hashevent")
 }();
 
+
 class CanvasManager implements CanvasInterface {
 
     canvas: HTMLCanvasElement | any;
