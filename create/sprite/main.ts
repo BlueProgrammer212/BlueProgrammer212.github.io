@@ -1197,12 +1197,31 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
     updateFrame<void>();
 })
 let TOGGLE_SIDEBAR : boolean = false;
+let TOGGLE_SIDEBAR_RIGHT : boolean = false;
+
+
+//This is currently on test mode. (It will be refactored later)
 document.getElementById("arrow").addEventListener("click", () => {
     if (!TOGGLE_SIDEBAR) {
+        document.getElementById("layer_tool_box").style.transform = "translateX(100%)"
          document.getElementById("toolset").style.transform = "translateX(0%)"
          TOGGLE_SIDEBAR = true;
+         TOGGLE_SIDEBAR_RIGHT = false;
+
     } else {
         document.getElementById("toolset").style.transform = "translateX(-100%)"
         TOGGLE_SIDEBAR = false;
+    }
+})
+
+document.getElementById("arrow_left").addEventListener("click", () => {
+    if (!TOGGLE_SIDEBAR_RIGHT) {
+         document.getElementById("layer_tool_box").style.transform = "translateX(0%)"
+         document.getElementById("toolset").style.transform = "translateX(-100%)"
+         TOGGLE_SIDEBAR_RIGHT = true;
+         TOGGLE_SIDEBAR = false;
+    } else {
+        document.getElementById("layer_tool_box").style.transform = "translateX(-100%)"
+        TOGGLE_SIDEBAR_RIGHT = false;
     }
 })
