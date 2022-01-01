@@ -611,14 +611,12 @@ class CanvasManager implements CanvasInterface {
     
     public static drawOnionSkin<Type>(canvas : HTMLCanvasElement | any, currentCanvas: Type, alpha: number): Type {
        const buffer_context = currentCanvas["getContext"]("2d");
-       if (parseFloat(alpha) < 0 || alpha === void 0) return;
        buffer_context.save();
-       buffer_context.globalAlpha = parseFloat(alpha);
+       buffer_context.globalAlpha = alpha
        const origin: Vec2 = new Vec2(0, 0), {x, y} = origin;
        buffer_context.drawImage(canvas, x, y, buffer_context.canvas.width, buffer_context.canvas.height);
        buffer_context.restore();
        buffer_context.globalAlpha = 1;
-       origin = null; 
        return canvas;
     }
 
@@ -1202,6 +1200,6 @@ let old_scale = 1;
 canvas_overlay_context.canvas.addEventListener("wheel", (ev) => {
     let d = -Math.sign(ev.deltaY) * 0.1;
     let s = Math.min(Math.max(d + old_scale, 0.4), 3);
-    canvases.forEach(e => e.style.transform = `scale(${s}) translate(-${50 * (s * 4)}%, -${46 + (50 * (s * 4))}%)`)
+    canvases.forEach(e => e.style.transform = `scale(${s}) translate(-${50 * (s * 4)}%, -${46 * (s * 4)}%)`)
     old_scale = old_scale + d;
 });
