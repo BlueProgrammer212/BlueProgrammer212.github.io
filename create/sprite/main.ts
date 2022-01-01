@@ -840,9 +840,9 @@ function handleTouchMove(evt) {
     var dy = swipeVector.y - yUp;
     if ( Math.abs(dx) > Math.abs(dy)) {
         if ( dx < 0 && evt.target !== canvas && evt.target !== canvas_overlay_context.canvas) {
-            side_r.style.transform = (side_r.style.transform===
+            /*side_r.style.transform = (side_r.style.transform===
             "translateX(-500px)" ? "translateX(0px)" : "translateX(-500px)")
-            side_r.style.opacity = (side_r.style.opacity==0 ? 1 : 0) 
+            side_r.style.opacity = (side_r.style.opacity==0 ? 1 : 0) */
         }
     }
     swipeVector.set(0, 0)
