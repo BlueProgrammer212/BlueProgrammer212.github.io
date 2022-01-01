@@ -803,4 +803,17 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
    transition: transform 1s;
    transform: translateX(100%);
  }
+ div#arrow {
+  height: 100px;
+  width: 20px;
+  background-color: #858585;
+  position: relative;
+  left: 103%;
+  top: -59%;
+  word-break: break-all;
+  font-size: 15px;
+  font-family: 'Pixel';
+  color: white;
+  cursor: pointer;
+ }
 }
