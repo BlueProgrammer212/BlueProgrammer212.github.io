@@ -534,6 +534,8 @@ interface Adjacent {
     y: number
 }
 
+let ONION_TOOL_ENABLED = false;
+
 const adjacent : Adjacent[] = [//
     {x: -1, y: 0}, //A1
     {x: 1, y: 0}, //A2
@@ -585,7 +587,6 @@ void async function addEvent() {
     eventManager.runCallback("hashevent")
 }();
 
-
 class CanvasManager implements CanvasInterface {
 
     canvas: HTMLCanvasElement | any;
@@ -605,6 +606,19 @@ class CanvasManager implements CanvasInterface {
         canvas.width = width;
         canvas.height = height;
         return new Promise((r) => r(canvas))
+    }
+    
+    public static drawOnionSkin<Type>(canvas : HTMLCanvasElement | any, currentCanvas: Type, alpha: number): Type {
+       const buffer_context = currentCanvas["getContext"]("2d");
+       if (parseFloat(alpha) < 0 || alpha === void 0) return;
+       buffer_context.save();
+       buffer_context.globalAlpha = parseFloat(alpha);
+       const origin: Vec2 = new Vec2(0, 0), {x, y} = origin;
+       buffer_context.drawImage(canvas, x, y, buffer_context.canvas.width, buffer_context.canvas.height);
+       buffer_context.restore();
+       buffer_context.globalAlpha = 1;
+       origin = null; 
+       return canvas;
     }
 
     public static fill({ dx, dy }: { dx: number; dy: number; }): void {
