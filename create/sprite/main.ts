@@ -1196,7 +1196,11 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
     }
     updateFrame<void>();
 })
-
+let TOGGLE_SIDEBAR : boolean = false;
 document.getElementById("arrow").addEventListener("click", () => {
-   document.getElementById("toolset").style.transform = "translateX(0%)"
+    if (!TOGGLE_SIDEBAR) {
+         document.getElementById("toolset").style.transform = "translateX(0%)"
+    } else {
+        document.getElementById("toolset").style.transform = "translateX(-100%)"
+    }
 })
