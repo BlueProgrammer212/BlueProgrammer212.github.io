@@ -792,4 +792,12 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
   #bg-color-pallete {
      display: none;
   }
+  #toolset {
+     transition: transform 1s;
+     transform: translate(-100%);
+  }
+  #layer_tool_box {
+    transition: transform 1s;
+    transform: translateX(100%);
+  }
 }
