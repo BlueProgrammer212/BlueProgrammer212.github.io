@@ -197,16 +197,6 @@ div#extDialogBox {
   z-index: 100;
 }
 
-@media only screen and (max-width: 600px) {
-  .topnav {
-     display: none;
-  }
-  .toolslot {
-    width: 32px;
-    height: 32px;
-  }
-}
-
 .pixel.search {
   border: 3.5px solid black;
   display: inline-flex;
@@ -783,13 +773,17 @@ p, a, span, h1, h2, h3, h4, h5, h6 {
   font-size: 30px;
 }
 
-@media screen and (max-width:600px) {
+@media only screen and (max-width:600px) {
   .column {
       width: 100%;
   }
   .colorBox {
      width:25px;
      height: 25px;
+  }
+  .toolslot {
+    width: 32px;
+    height: 32px;
   }
 }
 
@@ -836,4 +830,10 @@ div#arrow_left > p {
    position: relative;
    top: -7%;
  }
+}
+
+@media only screen and (max-width: 865px) {
+  .topnav {
+    display: none;
+  }
 }
