@@ -1196,26 +1196,32 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
     }
     updateFrame<void>();
 })
+let TOGGLE_SIDEBAR : boolean = false;
+let TOGGLE_SIDEBAR_RIGHT : boolean = false;
 
-const div_ids : string[] = ["arrow", "arrow_left"];
 
-function addArrowToDiv<T extends string[]>(ids: T): T {
-    let a = false, b = false;
-    if (ids.length == 0) return;
-    ids.forEach(id => document.getElementById(id).addEventListener("click", () => {
-        if (!a) {
-            document.getElementById(id).style.transform = "translateX(100%)";
-            let ab = ids.filter(id_ => id_ !== id);
-            for (let i = 0; i < ab.length; ++i) {
-                document.getElementById(ab[i]).style.transform = "translateX(0%)"
-            }
-             a = true; b = !a;
-        } else {
-            document.getElementById(id).style.transform = "translateX(-100%)"
-            a = false;
-        }
-    }));
-    return ids;
-}
+//This is currently on test mode. (It will be refactored later)
+document.getElementById("arrow").addEventListener("click", () => {
+    if (!TOGGLE_SIDEBAR) {
+        document.getElementById("layer_tool_box").style.transform = "translateX(100%)"
+         document.getElementById("toolset").style.transform = "translateX(0%)"
+         TOGGLE_SIDEBAR = true;
+         TOGGLE_SIDEBAR_RIGHT = false;
 
-addArrowToDiv<typeof div_ids>(div_ids);
+    } else {
+        document.getElementById("toolset").style.transform = "translateX(-100%)"
+        TOGGLE_SIDEBAR = false;
+    }
+})
+
+document.getElementById("arrow_left").addEventListener("click", () => {
+    if (!TOGGLE_SIDEBAR_RIGHT) {
+         document.getElementById("layer_tool_box").style.transform = "translateX(0%)"
+         document.getElementById("toolset").style.transform = "translateX(-100%)"
+         TOGGLE_SIDEBAR_RIGHT = true;
+         TOGGLE_SIDEBAR = false;
+    } else {
+        document.getElementById("layer_tool_box").style.transform = "translateX(100%)"
+        TOGGLE_SIDEBAR_RIGHT = false;
+    }
+})
