@@ -1196,8 +1196,7 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
     }
     updateFrame<void>();
 })
-let TOGGLE_SIDEBAR : boolean = false,
-    TOGGLE_SIDEBAR_RIGHT : boolean = false;
+
 const div_ids : string[] = ["arrow", "arrow_left"];
 
 function addArrowToDiv<T extends string[]>(ids: T): T {
