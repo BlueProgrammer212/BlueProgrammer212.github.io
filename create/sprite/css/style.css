@@ -199,6 +199,10 @@ div#extDialogBox {
   .topnav {
      display: none;
   }
+  .toolslot {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .pixel.search {
