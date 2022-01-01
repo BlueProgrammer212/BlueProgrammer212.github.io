@@ -1200,7 +1200,9 @@ let TOGGLE_SIDEBAR : boolean = false;
 document.getElementById("arrow").addEventListener("click", () => {
     if (!TOGGLE_SIDEBAR) {
          document.getElementById("toolset").style.transform = "translateX(0%)"
+         TOGGLE_SIDEBAR = true;
     } else {
         document.getElementById("toolset").style.transform = "translateX(-100%)"
+        TOGGLE_SIDEBAR = false;
     }
 })
