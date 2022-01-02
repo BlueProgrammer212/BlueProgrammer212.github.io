@@ -974,7 +974,7 @@ function animate() {
     canvas_preview.getContext("2d").drawImage(buffer, 0, 0, canvas_preview.width, canvas_preview.height);
 }
 
-setInterval(animate, 100)
+let interval_frames = setInterval(animate, 100)
 
 let scale = 1;
 
@@ -1230,15 +1230,17 @@ interface HTMLInputImageElement extends HTMLElement {
     src: string;
 }
 let TOGGLE_PAUSE_BUTTON = false;
-function toggleImgButton<T extends string>(s : T, s1 : T, id : T): T[] {
+function toggleImgButton<T extends string>(s : T, s1 : T, id : T, callback, callback1): T[] {
     let element = document.getElementById(id) as HTMLInputImageElement;
     element.addEventListener("click", () => {
         if (!TOGGLE_PAUSE_BUTTON) {
             element.src = s1;
             TOGGLE_PAUSE_BUTTON = true;
+            callback();
         } else {
             element.src = s;
             TOGGLE_PAUSE_BUTTON = false;
+            callback1();
         }
     })
     return [s, s1];
@@ -1247,5 +1249,12 @@ function toggleImgButton<T extends string>(s : T, s1 : T, id : T): T[] {
 toggleImgButton<string>(
     "assets/pause_preview_ico.png",
     "assets/play_preview_ico.png", 
-    "pbutton_preview"
+    "pbutton_preview",
+    function() {
+        clearInterval(interval_frames);
+        interval_frames = null
+    }, 
+    function() {
+        interval_frames = setInterval(animate, 100);
+    }
 )
