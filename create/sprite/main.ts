@@ -226,8 +226,8 @@ class SpriteManager {
         scrollByVector = null;
         this.clone.children[2].children[0].addEventListener("click", (e) => {
             e.preventDefault(); 
+            sprite.remove("sprite_frame_fragment_container", selected_layer_frame_indx)
             if (selected_sprite_frame_index !== 0) {
-                sprite.remove("sprite_frame_fragment_container", [...document.querySelectorAll("spriteBoxContainer")].indexOf(this.clone))
                 context.clearRect(0, 0, canvas.width, canvas.height)
                 for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
                     document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
