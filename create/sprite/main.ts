@@ -226,8 +226,11 @@ function updateEventSpriteBox<T>(): T {
     }
     return;
 }
-
-class SpriteManager {
+interface Sprite {
+    template: any;
+    clone: any;
+}
+class SpriteManager implements Sprite {
     template: any;
     clone: any;
     constructor(id: string) {
@@ -235,7 +238,7 @@ class SpriteManager {
     }
     add(id : string): Promise<any> {
         this.clone = document.importNode(this.template.content, true).children[0];
-        if (this.clone.children[0].className==="numTag") { 
+        if (this.clone.children[0].className === "numTag") { 
              this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length + 1;
         }
         let scrollByVector = new Vec2(0, 999999);
