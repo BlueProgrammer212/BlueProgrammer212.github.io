@@ -228,7 +228,7 @@ class SpriteManager {
             (document.querySelectorAll(".pbutton_remove_button")[i] as any).onclick = (e) => {
                 e.preventDefault(); 
                 if (i !== 0) {
-                    this.remove("sprite_frame_fragment_container", selected_sprite_frame_index)
+                    this.remove("sprite_frame_fragment_container", i)
                 } else {
                     context.clearRect(0, 0, canvas.width, canvas.height);
                     canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
@@ -240,11 +240,11 @@ class SpriteManager {
     } 
     remove(id : string, ind : number) { 
         context.clearRect(0, 0, canvas.height, canvas.width);
-        if (selected_sprite_frame_index - 1 >= 0) {
+        if (ind - 1 >= 0) {
             document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
-            if (selected_sprite_frame_index !== 0) selected_sprite_frame_index -= 1;
+            if (ind !== 0) selected_sprite_frame_index -= 1;
             onSpriteSwitch();
-        } else if (document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index + 1]) {
+        } else if (document.getElementsByClassName("spriteBoxContainer")[ind + 1]) {
             document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
             selected_sprite_frame_index += 1;
             onSpriteSwitch();
