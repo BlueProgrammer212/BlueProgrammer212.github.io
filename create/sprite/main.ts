@@ -230,7 +230,6 @@ class SpriteManager {
     update() {
         for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
             document.getElementsByClassName("spriteBoxContainer")[k].innerHTML = (k + 1).toString();
-            
             document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
                 selected_sprite_frame_index = k;
                 context.clearRect(0, 0, canvas.width, canvas.height);
@@ -360,7 +359,6 @@ sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
     0, 0, c.children[1].width, c.children[1].height)
     document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected", true)
-    sprite.update();
 })
 let selected_sprite_frame_index : number = 0;
 document.getElementById("addFrameButton").addEventListener("click", async e => {
