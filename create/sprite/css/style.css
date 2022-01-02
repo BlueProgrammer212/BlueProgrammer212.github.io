@@ -77,6 +77,20 @@ div#overlay_div_preview {
   flex-wrap: wrap;
 } 
 
+.overlay_image_input_lock_btn {
+  position: relative;
+  background-color: rgba(0,0,0,0.5);
+  width: 32px;
+  height: 33px;
+  left: 63%;
+  display: flex;
+  top: -160px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
 
 div#preview_container {
   position: relative;
