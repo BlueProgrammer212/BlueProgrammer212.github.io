@@ -226,6 +226,22 @@ class SpriteManager {
         scrollByVector = null;
         return new Promise(res => setTimeout(res, 100, this.clone));
     } 
+    updateEventSpriteBox(): void {
+        for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
+            document.getElementsByClassName("spriteBoxContainer")[k].children[0].innerHTML = (k + 1).toString();
+            document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
+                selected_sprite_frame_index = k;
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
+                .filter(a => { return a.className.includes("selected")});
+                old_frame.forEach(elem => elem.className = "spriteBoxContainer");
+                document.getElementsByClassName("spriteBoxContainer")[k].className += " selected";
+                let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
+                context.imageSmoothingEnabled = false;
+                context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
+            };
+        }
+    }
     remove(id : string, ind : number) { 
         context.clearRect(0, 0, canvas.height, canvas.width);
         if (selected_sprite_frame_index - 1 >= 0) {
@@ -342,6 +358,7 @@ sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
     0, 0, c.children[1].width, c.children[1].height)
     document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected", true)
+    sprite.updateEventSpriteBox();
 })
 let selected_sprite_frame_index : number = 0;
 document.getElementById("addFrameButton").addEventListener("click", async e => {
@@ -355,25 +372,6 @@ document.getElementById("addFrameButton").addEventListener("click", async e => {
         document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].classList.toggle("selected", true)
     });
     context.clearRect(0, 0, canvas.width, canvas.height)
-
-    for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
-
-        document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
-            selected_sprite_frame_index = k;
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            
-            let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
-            .filter(a => { return a.className.includes("selected")});
-            
-            old_frame.forEach(elem => elem.className = "spriteBoxContainer");
-            document.getElementsByClassName("spriteBoxContainer")[k].className += " selected";
-            
-            let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-            context.imageSmoothingEnabled = false;
-            context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
-        };
-
-    }
 })
 
 if (document.getElementById("LayerTitle").getAttribute("data-diatype")!=='category') 
@@ -718,6 +716,7 @@ document.addEventListener("keydown", (e): void => {
         e.preventDefault(); 
         if (selected_sprite_frame_index !== 0) {
             sprite.remove("sprite_frame_fragment_container", selected_sprite_frame_index)
+            sprite.updateEventSpriteBox()
         } else {
             context.clearRect(0, 0, canvas.width, canvas.height);
             canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
