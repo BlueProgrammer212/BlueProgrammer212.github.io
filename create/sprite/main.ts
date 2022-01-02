@@ -341,7 +341,7 @@ document.getElementById("addLayer").addEventListener("click", () => {
 sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
     0, 0, c.children[1].width, c.children[1].height)
-    document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected")
+    document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected", true)
 })
 let selected_sprite_frame_index : number = 0;
 document.getElementById("addFrameButton").addEventListener("click", async e => {
@@ -352,7 +352,7 @@ document.getElementById("addFrameButton").addEventListener("click", async e => {
         .filter(a => { return a.className.includes("selected")});
         
         sel_frames.forEach(elem => elem.className = "spriteBoxContainer");
-        document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
+        document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].classList.toggle("selected", true)
     });
     context.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -1260,3 +1260,6 @@ toggleImgButton<string>(
         interval_frames = setInterval(animate, 100);
     }
 )
+
+
+
