@@ -1286,7 +1286,6 @@ toggleImgButton<string>(
     "pbutton_preview",
     function() {
         clearInterval(interval_frames);
-        interval_frames = null
     }, 
     function() {
         interval_frames = setInterval(animate, 100);
