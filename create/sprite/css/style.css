@@ -63,6 +63,17 @@ div#overlay_div_preview {
   flex-wrap: wrap;
 }
 
+.overlay_image_input_btn {
+  position: relative;
+}
+
+.pbutton_remove_button {
+   position: absolute;
+   left: 73%;
+   top: -48px;
+}
+
+
 div#preview_container {
   position: relative;
 }
