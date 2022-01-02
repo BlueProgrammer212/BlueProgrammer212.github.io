@@ -224,26 +224,24 @@ class SpriteManager {
         document.getElementById(id).appendChild(this.clone);
         document.getElementById(id).scrollBy(scrollByVector.x, scrollByVector.y);
         scrollByVector = null;
+        document.querySelectorAll(".pbutton_remove_button").forEach((a : any) => a.onclick = e => console.log(this))
         return new Promise(res => setTimeout(res, 100, this.clone));
     } 
     update() {
         for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
-
+            document.getElementsByClassName("spriteBoxContainer")[k].innerHTML = (k + 1).toString();
+            
             document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
                 selected_sprite_frame_index = k;
                 context.clearRect(0, 0, canvas.width, canvas.height);
-                
                 let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
                 .filter(a => { return a.className.includes("selected")});
-                
                 old_frame.forEach(elem => elem.className = "spriteBoxContainer");
                 document.getElementsByClassName("spriteBoxContainer")[k].className += " selected";
-                
                 let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
                 context.imageSmoothingEnabled = false;
                 context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
             };
-    
         }
     }
     remove(id : string, ind : number) { 
@@ -375,7 +373,7 @@ document.getElementById("addFrameButton").addEventListener("click", async e => {
         sel_frames.forEach(elem => elem.className = "spriteBoxContainer");
         document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
     });
-    context.clearRect(0, 0, canvas.width, canvas.height)
+    CanvasManager.clearCanvas(canvas)
     sprite.update();
 })
 
