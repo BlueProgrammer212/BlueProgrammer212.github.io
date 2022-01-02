@@ -1279,8 +1279,8 @@ toggleImgButton<string>(
 )
 
 toggleImgButtonClass<string>(
+    "assets/unlock_ico_sprite.png",
     "assets/lock_sprite_ico.png",
-    "assets/unlock_sprite_ico.png",
     "pbutton_lock_button",
     function() {
         document.getElementById("overlay_locked_canvas_container").classList.add("invisible")
