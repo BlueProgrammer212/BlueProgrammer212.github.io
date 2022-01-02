@@ -1,6 +1,6 @@
 declare let iro: any;
 
-const canvas = document.getElementsByTagName('canvas')[0],
+const canvas = document.getElementById("main_canvas") as any,
       context = canvas.getContext("2d");
 
 let lock = {};
