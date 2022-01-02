@@ -1248,6 +1248,23 @@ function toggleImgButton<T extends string>(s : T, s1 : T, id : T, callback, call
     return [s, s1];
 }
 
+function toggleImgButtonClass<T extends string>(s : T, s1 : T, token : T, callback, callback1): T[] {
+    let elements = document.querySelectorAll(`.${token}`);
+    elements.forEach((element : any) => {
+        element.addEventListener("click", () => {
+            if (!TOGGLE_PAUSE_BUTTON) {
+                element.src = s1;
+                TOGGLE_PAUSE_BUTTON = true;
+                callback();
+            } else {
+                element.src = s;
+                TOGGLE_PAUSE_BUTTON = false;
+                callback1();
+            }
+        })
+    });
+    return [s, s1];
+}
 toggleImgButton<string>(
     "assets/pause_preview_ico.png",
     "assets/play_preview_ico.png", 
@@ -1258,5 +1275,17 @@ toggleImgButton<string>(
     }, 
     function() {
         interval_frames = setInterval(animate, 100);
+    }
+)
+
+toggleImgButton<string>(
+    "assets/lock_sprite_ico.png",
+    "assets/unlock_sprite_ico.png",
+    "pbutton_lock_button",
+    function() {
+        document.getElementById("overlay_locked_canvas_container").classList.remove("invisible")
+    },
+    function() {
+        document.getElementById("overlay_locked_canvas_container").classList.add("invisible")
     }
 )
