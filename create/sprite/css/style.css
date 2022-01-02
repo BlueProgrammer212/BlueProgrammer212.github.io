@@ -628,7 +628,7 @@ input#scaleSliderRange::-webkit-slider-thumb {
   transform: translate(-2.5px, -5px);
 }
 
-#background_canvas {
+#background_canvas_underlay {
     background-image: url(../assets/background_canvas.png);
     position: absolute;
     left: 50%;
