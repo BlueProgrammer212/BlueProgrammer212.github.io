@@ -224,6 +224,16 @@ class SpriteManager {
         document.getElementById(id).appendChild(this.clone);
         document.getElementById(id).scrollBy(scrollByVector.x, scrollByVector.y);
         scrollByVector = null;
+        this.clone.children[2].children[0].addEventListener("click", (e) => {
+            e.preventDefault(); 
+            if (selected_sprite_frame_index !== 0) {
+                sprite.remove("sprite_frame_fragment_container", selected_sprite_frame_index)
+            } else {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
+                updateFrame<void>();
+            }
+        })
         return new Promise(res => setTimeout(res, 100, this.clone));
     } 
     remove(id : string, ind : number) { 
@@ -1260,16 +1270,3 @@ toggleImgButton<string>(
         interval_frames = setInterval(animate, 100);
     }
 )
-
-document.querySelectorAll(".pbutton_remove_button").forEach((element) => {
-    element.addEventListener("click", (e) => {
-        e.preventDefault(); 
-        if (selected_sprite_frame_index !== 0) {
-            sprite.remove("sprite_frame_fragment_container", selected_sprite_frame_index)
-        } else {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
-            updateFrame<void>();
-        }
-    })
-})
