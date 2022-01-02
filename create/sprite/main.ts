@@ -718,6 +718,10 @@ document.addEventListener("keydown", (e): void => {
         e.preventDefault(); 
         if (selected_sprite_frame_index !== 0) {
             sprite.remove("sprite_frame_fragment_container", selected_sprite_frame_index)
+        } else {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
+            updateFrame<void>();
         }
     }
 
@@ -869,20 +873,20 @@ function getTriangle<Type extends object>(x1 : number, y1 : number, x2 : number,
 }
 
 function drawLine<Type>(context : CanvasRenderingContext2D, sv : Vec2, tv : Vec2): Type {
-        l_tuple = [];
-        context.fillStyle = CURRENT_COLOR;
-        let dx = sv.x - tv.x, dy = sv.y - tv.y;
-        let angle = getAngle(dx, dy);
-        getTriangle<typeof tri>(sv.x,sv.y, tv.x,tv.y, angle);   
-        for(let i = 0; i < tri.long; i++) {
-            let point : Vec2 = new Vec2(Math.round(sv.x + tri.x*i), Math.round(sv.y + tri.y*i));
-            const {x, y} = point;
-            drawPixel(context, x, y, 16)
-            l_tuple = [...l_tuple, {x, y}]
-        }
-        drawPixel(context, tv.x, tv.y, 16)
-        l_tuple = [...l_tuple, {x: tv.x, y: tv.y}];
-        return null;
+    l_tuple = [];
+    context.fillStyle = CURRENT_COLOR;
+    let dx = sv.x - tv.x, dy = sv.y - tv.y;
+    let angle = getAngle(dx, dy);
+    getTriangle<typeof tri>(sv.x,sv.y, tv.x,tv.y, angle);   
+    for(let i = 0; i < tri.long; i++) {
+        let point : Vec2 = new Vec2(Math.round(sv.x + tri.x*i), Math.round(sv.y + tri.y*i));
+        const {x, y} = point;
+        drawPixel(context, x, y, 16)
+        l_tuple = [...l_tuple, {x, y}]
+    }
+    drawPixel(context, tv.x, tv.y, 16)
+    l_tuple = [...l_tuple, {x: tv.x, y: tv.y}];
+    return null;
 }
 
 const canvas_overlay_context : CanvasRenderingContext2D = (document.getElementById("selected-canvas") as any).getContext("2d");
@@ -1256,3 +1260,16 @@ toggleImgButton<string>(
         interval_frames = setInterval(animate, 100);
     }
 )
+
+document.querySelectorAll(".pbutton_remove_button").forEach((element) => {
+    element.addEventListener("click", (e) => {
+        e.preventDefault(); 
+        if (selected_sprite_frame_index !== 0) {
+            sprite.remove("sprite_frame_fragment_container", selected_sprite_frame_index)
+        } else {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
+            updateFrame<void>();
+        }
+    })
+})
