@@ -394,6 +394,7 @@ document.getElementById("addFrameButton").addEventListener("click", async e => {
         };
 
     }
+    document.getElementById("overlay_locked_canvas_container").classList.add("invisible")
     toggleImgButtonClass<string>(
         "assets/unlock_ico_sprite.png",
         "assets/lock_sprite_ico.png",
