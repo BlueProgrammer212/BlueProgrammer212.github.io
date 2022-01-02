@@ -241,12 +241,12 @@ class SpriteManager {
     remove(id : string, ind : number) { 
         context.clearRect(0, 0, canvas.height, canvas.width);
         if (ind - 1 >= 0) {
+            if (ind !== 0) selected_sprite_frame_index -= 1; 
             document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
-            if (ind !== 0) selected_sprite_frame_index -= 1;
             onSpriteSwitch();
         } else if (document.getElementsByClassName("spriteBoxContainer")[ind + 1]) {
-            document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
             selected_sprite_frame_index += 1;
+            document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
             onSpriteSwitch();
         } else if (document.getElementsByClassName("spriteBoxContainer").length == 1) {
             context.clearRect(0, 0, canvas.height, canvas.width);
