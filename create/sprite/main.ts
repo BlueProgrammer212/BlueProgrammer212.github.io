@@ -209,28 +209,7 @@ class ColorManager {
     }
 }
 
-function updateEventSpriteBox<T>(): T {
-    for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
-        document.getElementsByClassName("spriteBoxContainer")[k].children[0].innerHTML = `${k + 1}`; 
-        document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
-            selected_sprite_frame_index = k;
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
-            .filter(a => { return a.className.includes("selected")});
-            old_frame.forEach(elem => elem.className = "spriteBoxContainer");
-            document.getElementsByClassName("spriteBoxContainer")[k].classList.toggle("selected", true);
-            let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-            context.imageSmoothingEnabled = false;
-            context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
-        };
-    }
-    return;
-}
-interface Sprite {
-    template: any;
-    clone: any;
-}
-class SpriteManager implements Sprite {
+class SpriteManager {
     template: any;
     clone: any;
     constructor(id: string) {
@@ -238,31 +217,27 @@ class SpriteManager implements Sprite {
     }
     add(id : string): Promise<any> {
         this.clone = document.importNode(this.template.content, true).children[0];
-        if (this.clone.children[0].className === "numTag") { 
+        if (this.clone.children[0].className==="numTag") { 
              this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length + 1;
         }
         let scrollByVector = new Vec2(0, 999999);
         document.getElementById(id).appendChild(this.clone);
         document.getElementById(id).scrollBy(scrollByVector.x, scrollByVector.y);
         scrollByVector = null;
-        this.clone.children[2].children[0].addEventListener("click", (e) => {
-            e.preventDefault(); 
-            if (this.clone.children[0].innerHTML != "1") {
-                this.removeElement("sprite_frame_fragment_container", this.clone)
-                selected_sprite_frame_index -= 1;
-                updateEventSpriteBox<void>();
-                onSpriteSwitch();
-            } else {
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
-                updateFrame<void>();
+        for (let i = 0; i < document.querySelectorAll(".pbutton_remove_button").length; ++i) {
+            (document.querySelectorAll(".pbutton_remove_button")[i] as any).onclick = (e) => {
+                e.preventDefault(); 
+                if (i !== 0) {
+                    this.remove("sprite_frame_fragment_container", selected_sprite_frame_index)
+                } else {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
+                    updateFrame<void>();
+                }
             }
-        })
+        }
         return new Promise(res => setTimeout(res, 100, this.clone));
     } 
-    removeElement(id: string, clone) {
-        document.getElementById(id).removeChild(clone)
-    }
     remove(id : string, ind : number) { 
         context.clearRect(0, 0, canvas.height, canvas.width);
         if (selected_sprite_frame_index - 1 >= 0) {
@@ -378,7 +353,7 @@ document.getElementById("addLayer").addEventListener("click", () => {
 sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
     0, 0, c.children[1].width, c.children[1].height)
-    document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected", true)
+    document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected")
 })
 let selected_sprite_frame_index : number = 0;
 document.getElementById("addFrameButton").addEventListener("click", async e => {
@@ -392,7 +367,25 @@ document.getElementById("addFrameButton").addEventListener("click", async e => {
         document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
     });
     context.clearRect(0, 0, canvas.width, canvas.height)
-    updateEventSpriteBox<void>();
+
+    for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
+
+        document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
+            selected_sprite_frame_index = k;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            
+            let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
+            .filter(a => { return a.className.includes("selected")});
+            
+            old_frame.forEach(elem => elem.className = "spriteBoxContainer");
+            document.getElementsByClassName("spriteBoxContainer")[k].className += " selected";
+            
+            let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
+            context.imageSmoothingEnabled = false;
+            context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
+        };
+
+    }
 })
 
 if (document.getElementById("LayerTitle").getAttribute("data-diatype")!=='category') 
@@ -737,8 +730,6 @@ document.addEventListener("keydown", (e): void => {
         e.preventDefault(); 
         if (selected_sprite_frame_index !== 0) {
             sprite.remove("sprite_frame_fragment_container", selected_sprite_frame_index)
-            context.clearRect(0, 0, canvas.width, canvas.height)
-            updateEventSpriteBox<void>();
         } else {
             context.clearRect(0, 0, canvas.width, canvas.height);
             canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
