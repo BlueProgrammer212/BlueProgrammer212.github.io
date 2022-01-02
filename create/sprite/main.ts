@@ -245,7 +245,6 @@ class SpriteManager {
         this.clone.children[2].children[0].addEventListener("click", (e) => {
             e.preventDefault(); 
             if (selected_sprite_frame_index !== 0) {
-                context.clearRect(0, 0, canvas.width, canvas.height)
                 this.remove("sprite_frame_fragment_container", selected_layer_frame_indx)
                 updateEventSpriteBox<void>();
             } else {
