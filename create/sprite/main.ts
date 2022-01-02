@@ -224,50 +224,20 @@ class SpriteManager {
         document.getElementById(id).appendChild(this.clone);
         document.getElementById(id).scrollBy(scrollByVector.x, scrollByVector.y);
         scrollByVector = null;
-        for (let i = 0; i < document.querySelectorAll(".pbutton_remove_button").length; ++i) {
-            (document.querySelectorAll(".pbutton_remove_button")[i] as any).onclick = (e) => {
-                e.preventDefault(); 
-                if (i !== 0) {
-                    this.remove("sprite_frame_fragment_container", i)
-                } else {
-                    context.clearRect(0, 0, canvas.width, canvas.height);
-                    canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
-                    updateFrame<void>();
-                }
-            }
-        }
         return new Promise(res => setTimeout(res, 100, this.clone));
     } 
     remove(id : string, ind : number) { 
         context.clearRect(0, 0, canvas.height, canvas.width);
-        if (ind - 1 >= 0) {
-            if (ind !== 0) selected_sprite_frame_index -= 1; 
+        if (selected_sprite_frame_index - 1 >= 0) {
             document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
+            if (selected_sprite_frame_index !== 0) selected_sprite_frame_index -= 1;
             onSpriteSwitch();
-        } else if (document.getElementsByClassName("spriteBoxContainer")[ind + 1]) {
-            selected_sprite_frame_index += 1;
+        } else if (document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index + 1]) {
             document.getElementById(id).removeChild(document.getElementsByClassName("spriteBoxContainer")[ind])
+            selected_sprite_frame_index += 1;
             onSpriteSwitch();
         } else if (document.getElementsByClassName("spriteBoxContainer").length == 1) {
             context.clearRect(0, 0, canvas.height, canvas.width);
-        }
-        for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
-
-            document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
-                selected_sprite_frame_index = k;
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                
-                let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
-                .filter(a => { return a.className.includes("selected")});
-                
-                old_frame.forEach(elem => elem.className = "spriteBoxContainer");
-                document.getElementsByClassName("spriteBoxContainer")[k].className += " selected";
-                
-                let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-                context.imageSmoothingEnabled = false;
-                context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
-            };
-    
         }
     }
 } 
