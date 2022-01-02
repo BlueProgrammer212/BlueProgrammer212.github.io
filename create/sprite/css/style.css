@@ -628,6 +628,20 @@ input#scaleSliderRange::-webkit-slider-thumb {
   transform: translate(-2.5px, -5px);
 }
 
+#background_canvas {
+    background-image: url(../assets/background_canvas.png);
+    position: absolute;
+    left: 50%;
+    top: 53%;
+    margin-right: -50%;
+    transform: translate(-50%, -46%);
+    aspect-ratio: 100 / 100;
+    background-size: 32px 32px;
+    z-index: -1;
+    image-rendering: pixelated;
+    background-position: fixed;
+}
+
 #main_canvas {
     position: absolute;
     left: 50%;
@@ -638,7 +652,6 @@ input#scaleSliderRange::-webkit-slider-thumb {
     background-size: 32px 32px;
     z-index: -1;
     image-rendering: pixelated;
-    background-image: url(../assets/background_canvas.png);
     background-position: fixed;
 }
 
