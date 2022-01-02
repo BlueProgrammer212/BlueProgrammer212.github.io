@@ -3,6 +3,8 @@ declare let iro: any;
 const canvas = document.getElementsByTagName('canvas')[0],
       context = canvas.getContext("2d");
 
+let lock = {};
+
 const keyIndexes : string[] | number[] = 
 [
     "KEY-A","KEY-B","KEY-C","KEY-D","KEY-E","KEY-F",
@@ -678,6 +680,7 @@ function updateFrame<Type>(): void {
 
 function onSpriteSwitch() {
     selected_layer_frame_indx = 0;
+    document.getElementById("overlay_locked_canvas_container").classList.add("invisible")
     context.clearRect(0, 0, canvas.width, canvas.height);
     canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas["height"]);
     let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
