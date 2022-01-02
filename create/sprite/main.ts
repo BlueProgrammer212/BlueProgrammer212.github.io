@@ -224,25 +224,8 @@ class SpriteManager {
         document.getElementById(id).appendChild(this.clone);
         document.getElementById(id).scrollBy(scrollByVector.x, scrollByVector.y);
         scrollByVector = null;
-        document.querySelectorAll(".pbutton_remove_button").forEach((a : any) => a.onclick = e => console.log(this))
         return new Promise(res => setTimeout(res, 100, this.clone));
     } 
-    update() {
-        for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
-            document.getElementsByClassName("spriteBoxContainer")[k].innerHTML = (k + 1).toString();
-            document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
-                selected_sprite_frame_index = k;
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
-                .filter(a => { return a.className.includes("selected")});
-                old_frame.forEach(elem => elem.className = "spriteBoxContainer");
-                document.getElementsByClassName("spriteBoxContainer")[k].className += " selected";
-                let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-                context.imageSmoothingEnabled = false;
-                context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
-            };
-        }
-    }
     remove(id : string, ind : number) { 
         context.clearRect(0, 0, canvas.height, canvas.width);
         if (selected_sprite_frame_index - 1 >= 0) {
@@ -358,7 +341,7 @@ document.getElementById("addLayer").addEventListener("click", () => {
 sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
     0, 0, c.children[1].width, c.children[1].height)
-    document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected", true)
+    document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected")
 })
 let selected_sprite_frame_index : number = 0;
 document.getElementById("addFrameButton").addEventListener("click", async e => {
@@ -371,8 +354,26 @@ document.getElementById("addFrameButton").addEventListener("click", async e => {
         sel_frames.forEach(elem => elem.className = "spriteBoxContainer");
         document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
     });
-    CanvasManager.clearCanvas(canvas)
-    sprite.update();
+    context.clearRect(0, 0, canvas.width, canvas.height)
+
+    for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
+
+        document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
+            selected_sprite_frame_index = k;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            
+            let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
+            .filter(a => { return a.className.includes("selected")});
+            
+            old_frame.forEach(elem => elem.className = "spriteBoxContainer");
+            document.getElementsByClassName("spriteBoxContainer")[k].className += " selected";
+            
+            let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
+            context.imageSmoothingEnabled = false;
+            context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
+        };
+
+    }
 })
 
 if (document.getElementById("LayerTitle").getAttribute("data-diatype")!=='category') 
@@ -602,12 +603,6 @@ class CanvasManager implements CanvasInterface {
         yield ["aspectRatio", 0, 0, cwidth, cheight, cctx];
     }
 
-    static clearCanvas(canvas: HTMLCanvasElement) {
-        const buffer_context : CanvasRenderingContext2D = canvas.getContext("2d"),
-              {width, height} : HTMLCanvasElement = canvas;
-        buffer_context.clearRect(0, 0, width, height);
-    }
-
     static setCanvasSize<Type>(canvas : HTMLCanvasElement | any, width?: number, height?: number): Promise<Type> {
         canvas.width = width;
         canvas.height = height;
@@ -625,7 +620,16 @@ class CanvasManager implements CanvasInterface {
        return canvas;
     }
 
-    public static fill({ dx, dy }: { dx: number; dy: number; }): void {}
+    public static fill({ dx, dy }: { dx: number; dy: number; }): void {
+        let pstack = [];
+        for (let mx = 0; mx < 5; ++mx) {
+            for (let my = 0; my < 5; ++my) {
+                pstack.push({x: mx, y: my})
+            }
+        }
+
+    }
+    
 }
 
 let canvasManager = new CanvasManager(canvas);
@@ -645,8 +649,8 @@ function updateFrame<Type>(): void {
 
 function onSpriteSwitch() {
     selected_layer_frame_indx = 0;
-    CanvasManager.clearCanvas(canvas);
-    CanvasManager.clearCanvas(canvas_overlay_context.canvas)
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas["height"]);
     let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
     .filter(a => { return a.className.includes("selected")});
     old_frame.forEach(elem => elem.className = "spriteBoxContainer");
@@ -668,7 +672,7 @@ console.log("[System] Enabled pixel selection canvas overlay.");
 
 function onSwitchTool<Type>(tool : string): void {
     document.getElementById(`${tool}Tool`).className="toolslot selected";
-    CanvasManager.clearCanvas(canvas_overlay_context.canvas)
+    canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas["height"]);
     if ("localStorage" in window) localStorage.setItem("toolSelected", tool)
     currentTool = tool;
     let ax = ToolName.filter(b => {return b !== tool});
@@ -700,7 +704,7 @@ document.addEventListener("keydown", (e): void => {
     if (e.key == "Delete" && currentTool == "Select") {
         let av = getMousePos(canvas, stVector.x, stVector.y),
             ev = getMousePos(canvas, endVector.x, endVector.y);
-        CanvasManager.clearCanvas(canvas_overlay_context.canvas)
+        canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
         if (ev.x > av.x && ev.y > av.y) {
             context.clearRect(av.x, av.y, ev.x, ev.y);
         }
@@ -714,10 +718,9 @@ document.addEventListener("keydown", (e): void => {
         e.preventDefault(); 
         if (selected_sprite_frame_index !== 0) {
             sprite.remove("sprite_frame_fragment_container", selected_sprite_frame_index)
-            sprite.update();
         } else {
             context.clearRect(0, 0, canvas.width, canvas.height);
-            CanvasManager.clearCanvas(canvas_overlay_context.canvas)
+            canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
             updateFrame<void>();
         }
     }
@@ -728,7 +731,7 @@ document.addEventListener("keydown", (e): void => {
 
     if (((e.ctrlKey && e.key == "z") || e.key == "Backspace") && pixels.length > 0) {
         pixels.pop();
-        CanvasManager.clearCanvas(canvas)
+        context.clearRect(0, 0, canvas.width, canvas.height)
         redraw_canvas();
         updateFrame();
     }
@@ -1257,6 +1260,3 @@ toggleImgButton<string>(
         interval_frames = setInterval(animate, 100);
     }
 )
-
-
-
