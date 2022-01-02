@@ -376,7 +376,7 @@ document.getElementById("addLayer").addEventListener("click", () => {
 sprite.add("sprite_frame_fragment_container").then(c => {
     c.children[1].getContext("2d").drawImage(document.getElementById("main_canvas"), 
     0, 0, c.children[1].width, c.children[1].height)
-    document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected")
+    document.getElementsByClassName("spriteBoxContainer")[0].classList.toggle("selected", true)
 })
 let selected_sprite_frame_index : number = 0;
 document.getElementById("addFrameButton").addEventListener("click", async e => {
@@ -390,25 +390,7 @@ document.getElementById("addFrameButton").addEventListener("click", async e => {
         document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].className += " selected";
     });
     context.clearRect(0, 0, canvas.width, canvas.height)
-
-    for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
-
-        document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
-            selected_sprite_frame_index = k;
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            
-            let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
-            .filter(a => { return a.className.includes("selected")});
-            
-            old_frame.forEach(elem => elem.className = "spriteBoxContainer");
-            document.getElementsByClassName("spriteBoxContainer")[k].className += " selected";
-            
-            let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-            context.imageSmoothingEnabled = false;
-            context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
-        };
-
-    }
+    updateEventSpriteBox<void>();
 })
 
 if (document.getElementById("LayerTitle").getAttribute("data-diatype")!=='category') 
