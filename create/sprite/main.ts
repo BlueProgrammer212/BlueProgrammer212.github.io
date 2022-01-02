@@ -1283,9 +1283,9 @@ toggleImgButton<string>(
     "assets/unlock_sprite_ico.png",
     "pbutton_lock_button",
     function() {
-        document.getElementById("overlay_locked_canvas_container").classList.remove("invisible")
+        document.getElementById("overlay_locked_canvas_container").classList.add("invisible")
     },
     function() {
-        document.getElementById("overlay_locked_canvas_container").classList.add("invisible")
+        document.getElementById("overlay_locked_canvas_container").classList.remove("invisible")
     }
 )
