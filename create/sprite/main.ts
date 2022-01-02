@@ -209,6 +209,23 @@ class ColorManager {
     }
 }
 
+function updateEventSpriteBox<T>(): T {
+    for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
+        document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
+            selected_sprite_frame_index = k;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
+            .filter(a => { return a.className.includes("selected")});
+            old_frame.forEach(elem => elem.className = "spriteBoxContainer");
+            document.getElementsByClassName("spriteBoxContainer")[k].classList.toggle("selected", true);
+            let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
+            context.imageSmoothingEnabled = false;
+            context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
+        };
+    }
+    return;
+}
+
 class SpriteManager {
     template: any;
     clone: any;
@@ -229,19 +246,7 @@ class SpriteManager {
             sprite.remove("sprite_frame_fragment_container", selected_layer_frame_indx)
             if (selected_sprite_frame_index !== 0) {
                 context.clearRect(0, 0, canvas.width, canvas.height)
-                for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
-                    document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
-                        selected_sprite_frame_index = k;
-                        context.clearRect(0, 0, canvas.width, canvas.height);
-                        let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
-                        .filter(a => { return a.className.includes("selected")});
-                        old_frame.forEach(elem => elem.className = "spriteBoxContainer");
-                        document.getElementsByClassName("spriteBoxContainer")[k].classList.toggle("selected", true);
-                        let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-                        context.imageSmoothingEnabled = false;
-                        context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
-                    };
-                }
+                updateEventSpriteBox<void>();
             } else {
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
