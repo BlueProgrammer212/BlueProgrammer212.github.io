@@ -248,7 +248,7 @@ class SpriteManager {
                 this.remove("sprite_frame_fragment_container", selected_layer_frame_indx)
                 updateEventSpriteBox<void>();
                 if (this.clone.children[0].className==="numTag") { 
-                    this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length + 1;
+                    this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length - 1;
                 }
             } else {
                 context.clearRect(0, 0, canvas.width, canvas.height);
