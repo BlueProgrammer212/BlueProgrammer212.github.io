@@ -1225,3 +1225,27 @@ document.getElementById("arrow_left").addEventListener("click", () => {
         TOGGLE_SIDEBAR_RIGHT = false;
     }
 })
+
+interface HTMLInputImageElement extends HTMLElement {
+    src: string;
+}
+let TOGGLE_PAUSE_BUTTON = false;
+function toggleImgButton<T extends string>(s : T, s1 : T, id : T): T[] {
+    let element = document.getElementById(id) as HTMLInputImageElement;
+    element.addEventListener("click", () => {
+        if (!TOGGLE_PAUSE_BUTTON) {
+            element.src = s1;
+            TOGGLE_PAUSE_BUTTON = true;
+        } else {
+            element.src = s;
+            TOGGLE_PAUSE_BUTTON = false;
+        }
+    })
+    return [s, s1];
+}
+
+toggleImgButton<string>(
+    "assets/pause_preview_ico.png",
+    "assets/play_preview_ico.png", 
+    "pbutton_preview"
+)

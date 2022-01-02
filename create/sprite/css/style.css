@@ -49,6 +49,24 @@ body {
   /* align-items: center; */
 }
 
+div#overlay_div_preview {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 36px;
+  height: 36px;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+div#preview_container {
+  position: relative;
+}
+
 #layer_tool_box {
   background-color: #222;
   padding: 7.5px;
