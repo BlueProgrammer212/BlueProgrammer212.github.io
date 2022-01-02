@@ -244,8 +244,8 @@ class SpriteManager {
         scrollByVector = null;
         this.clone.children[2].children[0].addEventListener("click", (e) => {
             e.preventDefault(); 
-            if (selected_sprite_frame_index !== 0) {
-                this.remove("sprite_frame_fragment_container", selected_layer_frame_indx)
+            if (document.getElementById("sprite_frame_fragment_container").children[0] != this.clone) {
+                this.removeElement("sprite_frame_fragment_container", this.clone)
                 updateEventSpriteBox<void>();
             } else {
                 context.clearRect(0, 0, canvas.width, canvas.height);
@@ -255,6 +255,9 @@ class SpriteManager {
         })
         return new Promise(res => setTimeout(res, 100, this.clone));
     } 
+    removeElement(id: string, clone) {
+        document.getElementById(id).removeChild(clone)
+    }
     remove(id : string, ind : number) { 
         context.clearRect(0, 0, canvas.height, canvas.width);
         if (selected_sprite_frame_index - 1 >= 0) {
@@ -748,24 +751,7 @@ document.addEventListener("keydown", (e): void => {
         if (selected_sprite_frame_index !== 0) {
             sprite.remove("sprite_frame_fragment_container", selected_sprite_frame_index)
             context.clearRect(0, 0, canvas.width, canvas.height)
-            for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
-
-                document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
-                    selected_sprite_frame_index = k;
-                    context.clearRect(0, 0, canvas.width, canvas.height);
-                    
-                    let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
-                    .filter(a => { return a.className.includes("selected")});
-                    
-                    old_frame.forEach(elem => elem.className = "spriteBoxContainer");
-                    document.getElementsByClassName("spriteBoxContainer")[k].className += " selected";
-                    
-                    let sprite_canvas : any = document.getElementsByClassName("spriteBoxContainer")[selected_sprite_frame_index].children[1];
-                    context.imageSmoothingEnabled = false;
-                    context.drawImage(sprite_canvas, 0, 0, canvas.width, canvas.height);
-                };
-
-            }
+            updateEventSpriteBox<void>();
         } else {
             context.clearRect(0, 0, canvas.width, canvas.height);
             canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
