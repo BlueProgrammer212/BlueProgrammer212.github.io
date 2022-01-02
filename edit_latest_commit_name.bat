@@ -1,2 +1,3 @@
-set /p nmsg = New commit message:
-git commit --amend -m "%nsmg%"
+@echo off
+set /p nmsg=New commit message:
+git commit --amend -m "%nmsg%"
