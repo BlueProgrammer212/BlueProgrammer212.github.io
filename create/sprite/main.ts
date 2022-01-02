@@ -1199,8 +1199,6 @@ document.getElementById("clearCanvasButton").addEventListener("click", () => {
 let TOGGLE_SIDEBAR : boolean = false;
 let TOGGLE_SIDEBAR_RIGHT : boolean = false;
 
-
-//This is currently on test mode. (It will be refactored later)
 document.getElementById("arrow").addEventListener("click", () => {
     if (!TOGGLE_SIDEBAR) {
         document.getElementById("layer_tool_box").style.transform = "translateX(100%)"

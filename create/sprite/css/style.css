@@ -65,13 +65,17 @@ div#overlay_div_preview {
 
 .overlay_image_input_btn {
   position: relative;
-}
-
-.pbutton_remove_button {
-  position: absolute;
-  left: 68%;
-  top: -171px;
-}
+  background-color: rgba(0,0,0,0.5);
+  width: 32px;
+  height: 33px;
+  left: 73%;
+  display: flex;
+  top: -160px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+} 
 
 
 div#preview_container {
