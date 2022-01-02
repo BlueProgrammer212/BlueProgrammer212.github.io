@@ -102,9 +102,14 @@
           <p class="save_artwork_ui" id="ScaleCategory">Pixel scale</p>
           <input class="save_artwork_ui" type="range" max="8" value="1" min="1" class="scaleSlider" id="scaleSliderRange" />
           <p class="save_artwork_ui" id="SpritePreviewCategory">Preview</p>
-          <canvas class="save_artwork_ui" id="preview_canvas_sprite_animation">
-             Sorry, but your browser does not support HTML5 canvas. 
-          </canvas>
+          <div id="preview_container">
+              <canvas class="save_artwork_ui" id="preview_canvas_sprite_animation">
+                Sorry, but your browser does not support HTML5 canvas. 
+              </canvas>
+              <div id="overlay_div_preview">
+                <input id="pbutton_preview" type="image" role="button" src="assets/pause_preview_ico.png" width="25" height="25" />
+              </div>
+          </div>
           <p class="save_artwork_ui" id="ClearCanvasCategoryTitle">Canvas Edit</p>
           <button class="save_artwork_ui" id="clearCanvasButton" title="Clear Canvas">Clear canvas</button>
           <p class="save_artwork_ui" id="MoreToolsCategory">Misc tools</p>
