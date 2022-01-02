@@ -247,10 +247,11 @@ class SpriteManager implements Sprite {
         scrollByVector = null;
         this.clone.children[2].children[0].addEventListener("click", (e) => {
             e.preventDefault(); 
-            if (document.getElementById("sprite_frame_fragment_container").children[0] != this.clone) {
+            if (this.clone.children[0].innerHTML != "1") {
                 this.removeElement("sprite_frame_fragment_container", this.clone)
                 selected_sprite_frame_index -= 1;
                 updateEventSpriteBox<void>();
+                onSpriteSwitch();
             } else {
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
