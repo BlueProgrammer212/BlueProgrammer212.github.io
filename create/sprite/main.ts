@@ -211,6 +211,7 @@ class ColorManager {
 
 function updateEventSpriteBox<T>(): T {
     for (let k = 0; k < document.getElementsByClassName("spriteBoxContainer").length; ++k) {
+        document.getElementsByClassName("spriteBoxContainer")[k].children[0].innerHTML = `${k + 1}`; 
         document.getElementsByClassName("spriteBoxContainer")[k]["onclick"] = () => {
             selected_sprite_frame_index = k;
             context.clearRect(0, 0, canvas.width, canvas.height);
@@ -247,9 +248,6 @@ class SpriteManager {
                 context.clearRect(0, 0, canvas.width, canvas.height)
                 this.remove("sprite_frame_fragment_container", selected_layer_frame_indx)
                 updateEventSpriteBox<void>();
-                if (this.clone.children[0].className==="numTag") { 
-                    this.clone.children[0].innerHTML = document.getElementsByClassName("spriteBoxContainer").length - 1;
-                }
             } else {
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
