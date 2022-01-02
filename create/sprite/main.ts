@@ -606,6 +606,12 @@ class CanvasManager implements CanvasInterface {
         yield ["aspectRatio", 0, 0, cwidth, cheight, cctx];
     }
 
+    static clearCanvas(canvas: HTMLCanvasElement) {
+        const buffer_context : CanvasRenderingContext2D = canvas.getContext("2d"),
+              {width, height} : HTMLCanvasElement = canvas;
+        buffer_context.clearRect(0, 0, width, height);
+    }
+
     static setCanvasSize<Type>(canvas : HTMLCanvasElement | any, width?: number, height?: number): Promise<Type> {
         canvas.width = width;
         canvas.height = height;
@@ -623,16 +629,7 @@ class CanvasManager implements CanvasInterface {
        return canvas;
     }
 
-    public static fill({ dx, dy }: { dx: number; dy: number; }): void {
-        let pstack = [];
-        for (let mx = 0; mx < 5; ++mx) {
-            for (let my = 0; my < 5; ++my) {
-                pstack.push({x: mx, y: my})
-            }
-        }
-
-    }
-    
+    public static fill({ dx, dy }: { dx: number; dy: number; }): void {}
 }
 
 let canvasManager = new CanvasManager(canvas);
@@ -652,8 +649,8 @@ function updateFrame<Type>(): void {
 
 function onSpriteSwitch() {
     selected_layer_frame_indx = 0;
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas["height"]);
+    CanvasManager.clearCanvas(canvas);
+    CanvasManager.clearCanvas(canvas_overlay_context.canvas)
     let old_frame = [...document.getElementsByClassName("spriteBoxContainer")]
     .filter(a => { return a.className.includes("selected")});
     old_frame.forEach(elem => elem.className = "spriteBoxContainer");
@@ -675,7 +672,7 @@ console.log("[System] Enabled pixel selection canvas overlay.");
 
 function onSwitchTool<Type>(tool : string): void {
     document.getElementById(`${tool}Tool`).className="toolslot selected";
-    canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas["height"]);
+    CanvasManager.clearCanvas(canvas_overlay_context.canvas)
     if ("localStorage" in window) localStorage.setItem("toolSelected", tool)
     currentTool = tool;
     let ax = ToolName.filter(b => {return b !== tool});
@@ -707,7 +704,7 @@ document.addEventListener("keydown", (e): void => {
     if (e.key == "Delete" && currentTool == "Select") {
         let av = getMousePos(canvas, stVector.x, stVector.y),
             ev = getMousePos(canvas, endVector.x, endVector.y);
-        canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height);
+        CanvasManager.clearCanvas(canvas_overlay_context.canvas)
         if (ev.x > av.x && ev.y > av.y) {
             context.clearRect(av.x, av.y, ev.x, ev.y);
         }
@@ -724,7 +721,7 @@ document.addEventListener("keydown", (e): void => {
             sprite.update();
         } else {
             context.clearRect(0, 0, canvas.width, canvas.height);
-            canvas_overlay_context.clearRect(0, 0, canvas_overlay_context.canvas.width, canvas_overlay_context.canvas.height)
+            CanvasManager.clearCanvas(canvas_overlay_context.canvas)
             updateFrame<void>();
         }
     }
@@ -735,7 +732,7 @@ document.addEventListener("keydown", (e): void => {
 
     if (((e.ctrlKey && e.key == "z") || e.key == "Backspace") && pixels.length > 0) {
         pixels.pop();
-        context.clearRect(0, 0, canvas.width, canvas.height)
+        CanvasManager.clearCanvas(canvas)
         redraw_canvas();
         updateFrame();
     }
