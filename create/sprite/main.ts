@@ -249,6 +249,7 @@ class SpriteManager implements Sprite {
             e.preventDefault(); 
             if (document.getElementById("sprite_frame_fragment_container").children[0] != this.clone) {
                 this.removeElement("sprite_frame_fragment_container", this.clone)
+                selected_sprite_frame_index -= 1;
                 updateEventSpriteBox<void>();
             } else {
                 context.clearRect(0, 0, canvas.width, canvas.height);
