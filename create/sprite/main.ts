@@ -1278,7 +1278,7 @@ toggleImgButton<string>(
     }
 )
 
-toggleImgButton<string>(
+toggleImgButtonClass<string>(
     "assets/lock_sprite_ico.png",
     "assets/unlock_sprite_ico.png",
     "pbutton_lock_button",
